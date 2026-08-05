@@ -1554,6 +1554,37 @@ body {
 </div>
 
 <!-- ============================================================ -->
+<!--  FLOATING BUTTONS + FEEDBACK MODAL (must be before script)  -->
+<!-- ============================================================ -->
+<div class="fab-stack">
+    <button class="fab fab-feedback" aria-label="反馈与建议" title="反馈与建议">💬</button>
+    <button class="fab fab-theme" aria-label="切换深色模式" title="切换深色/浅色模式">🌙</button>
+    <button class="fab fab-back" aria-label="回到顶部" title="回到顶部">↑</button>
+</div>
+
+<!-- Feedback Modal -->
+<div class="feedback-overlay" id="feedbackOverlay">
+    <div class="feedback-modal" role="dialog" aria-labelledby="feedbackTitle">
+        <h3 id="feedbackTitle">📋 反馈与建议</h3>
+        <p class="feedback-hint">发现错误或有改进建议？请告诉我们，您的反馈会让这个面板更好。</p>
+        <div class="feedback-type">
+            <button class="feedback-type-btn active" data-type="bug">🐛 报告错误</button>
+            <button class="feedback-type-btn" data-type="suggestion">💡 功能建议</button>
+            <button class="feedback-type-btn" data-type="content">📝 内容补充</button>
+        </div>
+        <textarea id="feedbackText" placeholder="请描述您遇到的问题或建议……&#10;&#10;例如：某个政策条目的链接打不开 / 希望增加某国监管动态 / 页面显示异常等"></textarea>
+        <div class="feedback-actions">
+            <a class="feedback-btn feedback-btn-primary" id="feedbackGithub" href="#" target="_blank" rel="noopener">🔗 GitHub Issue</a>
+            <a class="feedback-btn feedback-btn-secondary" id="feedbackEmail" href="#">📧 邮件反馈</a>
+            <button class="feedback-btn feedback-btn-close" id="feedbackClose" aria-label="关闭">✕</button>
+        </div>
+        <p class="feedback-note">
+            💡 GitHub Issue 会直接通知仓库管理员；邮件反馈将打开您的邮件应用。反馈内容也会保存在本地浏览器中。
+        </p>
+    </div>
+</div>
+
+<!-- ============================================================ -->
 <!--  JAVASCRIPT                                                  -->
 <!-- ============================================================ -->
 <script>
@@ -1889,32 +1920,5 @@ body {
 
 })();
 </script>
-<div class="fab-stack">
-    <button class="fab fab-feedback" aria-label="反馈与建议" title="反馈与建议">💬</button>
-    <button class="fab fab-theme" aria-label="切换深色模式" title="切换深色/浅色模式">🌙</button>
-    <button class="fab fab-back" aria-label="回到顶部" title="回到顶部">↑</button>
-</div>
-
-<!-- Feedback Modal -->
-<div class="feedback-overlay" id="feedbackOverlay">
-    <div class="feedback-modal" role="dialog" aria-labelledby="feedbackTitle">
-        <h3 id="feedbackTitle">📋 反馈与建议</h3>
-        <p class="feedback-hint">发现错误或有改进建议？请告诉我们，您的反馈会让这个面板更好。</p>
-        <div class="feedback-type">
-            <button class="feedback-type-btn active" data-type="bug">🐛 报告错误</button>
-            <button class="feedback-type-btn" data-type="suggestion">💡 功能建议</button>
-            <button class="feedback-type-btn" data-type="content">📝 内容补充</button>
-        </div>
-        <textarea id="feedbackText" placeholder="请描述您遇到的问题或建议……&#10;&#10;例如：某个政策条目的链接打不开 / 希望增加某国监管动态 / 页面显示异常等"></textarea>
-        <div class="feedback-actions">
-            <a class="feedback-btn feedback-btn-primary" id="feedbackGithub" href="#" target="_blank" rel="noopener">🔗 GitHub Issue</a>
-            <a class="feedback-btn feedback-btn-secondary" id="feedbackEmail" href="#">📧 邮件反馈</a>
-            <button class="feedback-btn feedback-btn-close" id="feedbackClose" aria-label="关闭">✕</button>
-        </div>
-        <p class="feedback-note">
-            💡 GitHub Issue 会直接通知仓库管理员；邮件反馈将打开您的邮件应用。反馈内容也会保存在本地浏览器中。
-        </p>
-    </div>
-</div>
 </body>
 </html>
