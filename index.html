@@ -157,6 +157,17 @@
         .policy-source { font-size: 12px; color: var(--text-secondary); margin-bottom: 8px; display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
         .policy-title { font-size: 16px; font-weight: 700; color: var(--text); margin-bottom: 8px; line-height: 1.5; }
         .policy-desc { font-size: 14px; color: #374151; line-height: 1.7; }
+        .policy-links { margin-top: 10px; display: flex; gap: 8px; flex-wrap: wrap; }
+        .policy-links a {
+            display: inline-flex; align-items: center; gap: 4px;
+            padding: 4px 12px; border-radius: 6px;
+            font-size: 12px; text-decoration: none; font-weight: 500;
+            background: #eff6ff; color: #1d4ed8; border: 1px solid #bfdbfe;
+            transition: all 0.15s;
+        }
+        .policy-links a:hover { background: #1d4ed8; color: #fff; }
+        .panel-global .policy-links a { background: #f5f3ff; color: #6d28d9; border-color: #d8b4fe; }
+        .panel-global .policy-links a:hover { background: #6d28d9; color: #fff; }
         .impact-badge { font-size: 11px; padding: 2px 8px; border-radius: 4px; }
         .impact-badge.severe { background: #fee2e2; color: #991b1b; font-weight: 600; }
         .impact-badge.moderate { background: #fef3c7; color: #92400e; font-weight: 600; }
@@ -289,14 +300,14 @@
             <!-- THAI DATA — kept in an IE-compatible structure -->
             <div class="month-section" data-month="2026-08"><div class="month-title">2026年08月 (2 条)</div>
 
-            <div class="policy-item" data-categories="国家监管,利率上限" data-business="Personal Loan" data-urgency="高" data-status="已确认待实施" data-date="2026-08-04">
+            <div class="policy-item" data-source-links='[{"label": "BoT 征求意见稿", "url": "https://www.bot.or.th/en/financial-institutions/consumer-protection/notifications.html"}, {"label": "Bangkok Post", "url": "https://www.bangkokpost.com/business/finance"}]' data-categories="国家监管,利率上限" data-business="Personal Loan" data-urgency="高" data-status="已确认待实施" data-date="2026-08-04">
               <div class="policy-header"><div class="tags"><span class="tag tag-urgency-high">紧急-高</span><span class="tag tag-category">国家监管</span><span class="tag tag-category">利率上限</span><span class="tag tag-status-confirmed">已确认待实施</span><span class="tag tag-new">NEW</span></div><div class="policy-date">2026-08-04</div></div>
               <div class="policy-source">来源：Bank of Thailand (BoT) Notification</div>
               <div class="policy-title">BoT 拟于 2026Q4 下调无担保 Personal Loan 利率上限，APR 上限从 25% 降至 22%</div>
               <div class="policy-desc">泰国央行发布征求意见稿，计划自 2026 年 10 月 1 日起将无担保个人贷款最高年利率从 25% 下调至 22%，同步要求贷款机构在营销材料中明示 APR 与综合融资成本。</div>
             </div>
 
-            <div class="policy-item" data-categories="消费者保护,牌照政策" data-business="BNPL,Pico Loan" data-urgency="中" data-status="拟议/征求意见" data-date="2026-08-01">
+            <div class="policy-item" data-source-links='[{"label": "BoT 消费者保护处", "url": "https://www.bot.or.th/en/financial-institutions/consumer-protection/regulations.html"}, {"label": "OCPB 公告", "url": "https://www.ocpb.go.th/"}]' data-categories="消费者保护,牌照政策" data-business="BNPL,Pico Loan" data-urgency="中" data-status="拟议/征求意见" data-date="2026-08-01">
               <div class="policy-header"><div class="tags"><span class="tag tag-urgency-medium">紧急-中</span><span class="tag tag-category">消费者保护</span><span class="tag tag-category">牌照政策</span><span class="tag tag-status-proposed">拟议/征求意见</span></div><div class="policy-date">2026-08-01</div></div>
               <div class="policy-source">来源：Bank of Thailand / 消费者保护委员会</div>
               <div class="policy-title">BNPL 及 Pico Loan 平台催收行为规范公开征求意见，禁止深夜外呼与第三方骚扰</div>
@@ -305,19 +316,19 @@
             </div>
 
             <div class="month-section" data-month="2026-07"><div class="month-title">2026年07月 (3 条)</div>
-            <div class="policy-item" data-categories="牌照政策" data-business="Nano Finance" data-urgency="高" data-status="已实施" data-date="2026-07-22">
+            <div class="policy-item" data-source-links='[{"label": "BoT 牌照监管通知", "url": "https://www.bot.or.th/en/financial-institutions/supervision/notifications.html"}]' data-categories="牌照政策" data-business="Nano Finance" data-urgency="高" data-status="已实施" data-date="2026-07-22">
               <div class="policy-header"><div class="tags"><span class="tag tag-urgency-high">紧急-高</span><span class="tag tag-category">牌照政策</span><span class="tag tag-status-active">已实施</span></div><div class="policy-date">2026-07-22</div></div>
               <div class="policy-source">来源：Bank of Thailand</div>
               <div class="policy-title">BoT 更新 Nano Finance 牌照申请指引，提高最低注册资本与IT风控要求</div>
               <div class="policy-desc">最低注册资本从 5 亿泰铢提升至 10 亿泰铢，须具备实时反欺诈系统、征信接口及 7×24 风控监控。已持牌公司需在 12 个月内完成整改并提交合规报告。</div>
             </div>
-            <div class="policy-item" data-categories="平台BNPL,消费者保护" data-business="BNPL" data-urgency="中" data-status="已实施" data-date="2026-07-15">
+            <div class="policy-item" data-source-links='[{"label": "Shopee SPayLater", "url": "https://shopee.co.th/"}, {"label": "Atome Thailand", "url": "https://www.atome.sg/th"}]' data-categories="平台BNPL,消费者保护" data-business="BNPL" data-urgency="中" data-status="已实施" data-date="2026-07-15">
               <div class="policy-header"><div class="tags"><span class="tag tag-urgency-medium">紧急-中</span><span class="tag tag-category">平台BNPL</span><span class="tag tag-category">消费者保护</span><span class="tag tag-status-active">已实施</span></div><div class="policy-date">2026-07-15</div></div>
               <div class="policy-source">来源：Shopee / Atome / 平台公告</div>
               <div class="policy-title">主要 BNPL 平台在泰国上线"冷静期"与分期总成本披露</div>
               <div class="policy-desc">Shopee SPayLater、Atome、Lazada PayLater 在用户确认分期前强制展示还款计划、总利息/手续费及 APR，部分平台新增 24 小时冷静期。</div>
             </div>
-            <div class="policy-item" data-categories="国家监管,数字借贷" data-business="Digital Lending" data-urgency="低" data-status="发展中" data-date="2026-07-08">
+            <div class="policy-item" data-source-links='[{"label": "BoT 监管沙盒", "url": "https://www.bot.or.th/en/financial-innovation/regulatory-sandbox.html"}]' data-categories="国家监管,数字借贷" data-business="Digital Lending" data-urgency="低" data-status="发展中" data-date="2026-07-08">
               <div class="policy-header"><div class="tags"><span class="tag tag-urgency-low">紧急-低</span><span class="tag tag-category">国家监管</span><span class="tag tag-category">数字借贷</span><span class="tag tag-status-proposed">发展中</span></div><div class="policy-date">2026-07-08</div></div>
               <div class="policy-source">来源：Bank of Thailand Fintech Department</div>
               <div class="policy-title">BoT 就开放银行(Open Banking)在个人贷款审批中的应用发布 sandbox 框架</div>
@@ -326,19 +337,19 @@
             </div>
 
             <div class="month-section" data-month="2026-06"><div class="month-title">2026年06月 (3 条)</div>
-            <div class="policy-item" data-categories="利率上限,银行BNPL" data-business="BNPL,Personal Loan" data-urgency="高" data-status="已确认待实施" data-date="2026-06-28">
+            <div class="policy-item" data-source-links='[{"label": "BoT 银行监管", "url": "https://www.bot.or.th/en/financial-institutions/banking/regulations.html"}, {"label": "KBank", "url": "https://www.kasikornbank.com/"}]' data-categories="利率上限,银行BNPL" data-business="BNPL,Personal Loan" data-urgency="高" data-status="已确认待实施" data-date="2026-06-28">
               <div class="policy-header"><div class="tags"><span class="tag tag-urgency-high">紧急-高</span><span class="tag tag-category">利率上限</span><span class="tag tag-category">银行BNPL</span><span class="tag tag-status-confirmed">已确认待实施</span></div><div class="policy-date">2026-06-28</div></div>
               <div class="policy-source">来源：Bank of Thailand / KBank / SCB</div>
               <div class="policy-title">BoT 要求银行系 BNPL 产品同步执行 APR 披露，信用卡分期纳入利率上限管控讨论</div>
               <div class="policy-desc">银行 BNPL/信用卡分期须在产品页面展示年化利率（APR），并就信用卡分期是否纳入 25% 无担保贷款利率上限启动内部评估。</div>
             </div>
-            <div class="policy-item" data-categories="牌照政策" data-business="Pico Loan" data-urgency="中" data-status="已实施" data-date="2026-06-18">
+            <div class="policy-item" data-source-links='[{"label": "BoT 新闻稿", "url": "https://www.bot.or.th/en/news-and-media/news.html"}]' data-categories="牌照政策" data-business="Pico Loan" data-urgency="中" data-status="已实施" data-date="2026-06-18">
               <div class="policy-header"><div class="tags"><span class="tag tag-urgency-medium">紧急-中</span><span class="tag tag-category">牌照政策</span><span class="tag tag-status-active">已实施</span></div><div class="policy-date">2026-06-18</div></div>
               <div class="policy-source">来源：Bank of Thailand</div>
               <div class="policy-title">泰国央行吊销 3 家 Pico Loan 机构牌照，因违规催收与超利率上限放贷</div>
               <div class="policy-desc">撤销 3 家 Pico Finance 营业执照，违规包括年化利率超过 36%、暴力催收。提醒借款人通过 BoT 官网查询持牌机构名单。</div>
             </div>
-            <div class="policy-item" data-categories="消费者保护" data-business="Personal Loan,Pico Loan" data-urgency="低" data-status="已实施" data-date="2026-06-05">
+            <div class="policy-item" data-source-links='[{"label": "OCPB 广告指引", "url": "https://www.ocpb.go.th/"}, {"label": "BoT 消费者保护", "url": "https://www.bot.or.th/en/financial-institutions/consumer-protection.html"}]' data-categories="消费者保护" data-business="Personal Loan,Pico Loan" data-urgency="低" data-status="已实施" data-date="2026-06-05">
               <div class="policy-header"><div class="tags"><span class="tag tag-urgency-low">紧急-低</span><span class="tag tag-category">消费者保护</span><span class="tag tag-status-active">已实施</span></div><div class="policy-date">2026-06-05</div></div>
               <div class="policy-source">来源：OCPB</div>
               <div class="policy-title">OCPB 发布个人贷款广告合规指南，禁止"秒批""无抵押"等误导性宣传</div>
@@ -347,13 +358,13 @@
             </div>
 
             <div class="month-section" data-month="2026-05"><div class="month-title">2026年05月 (2 条)</div>
-            <div class="policy-item" data-categories="国家监管,数字借贷" data-business="BNPL,Digital Lending" data-urgency="中" data-status="已确认待实施" data-date="2026-05-20">
+            <div class="policy-item" data-source-links='[{"label": "BoT Fintech部门", "url": "https://www.bot.or.th/en/financial-innovation/regulatory-sandbox.html"}, {"label": "Thailand Fintech Assoc", "url": "https://www.thaifintech.org/"}]' data-categories="国家监管,数字借贷" data-business="BNPL,Digital Lending" data-urgency="中" data-status="已确认待实施" data-date="2026-05-20">
               <div class="policy-header"><div class="tags"><span class="tag tag-urgency-medium">紧急-中</span><span class="tag tag-category">国家监管</span><span class="tag tag-status-confirmed">已确认待实施</span></div><div class="policy-date">2026-05-20</div></div>
               <div class="policy-source">来源：BoT Notification on Digital Lending</div>
               <div class="policy-title">BoT 正式发布数字借贷业务通知，要求 BNPL 平台接入央行征信与黑名单系统</div>
               <div class="policy-desc">所有数字贷款平台（含 BNPL）自 2026 年 9 月 1 日起须将借款人数据报送 NCB，并在授信前查询借款人负债率（DSR）。未接入的平台将被限制新增放贷。</div>
             </div>
-            <div class="policy-item" data-categories="利率上限" data-business="Pico Loan,Nano Finance" data-urgency="高" data-status="已实施" data-date="2026-05-12">
+            <div class="policy-item" data-source-links='[{"label": "BoT 利率上限通知", "url": "https://www.bot.or.th/en/financial-institutions/supervision/notifications.html"}]' data-categories="利率上限" data-business="Pico Loan,Nano Finance" data-urgency="高" data-status="已实施" data-date="2026-05-12">
               <div class="policy-header"><div class="tags"><span class="tag tag-urgency-high">紧急-高</span><span class="tag tag-category">利率上限</span><span class="tag tag-status-active">已实施</span></div><div class="policy-date">2026-05-12</div></div>
               <div class="policy-source">来源：Bank of Thailand</div>
               <div class="policy-title">Pico Loan/Nano Finance 利率上限差异化调整，分别降至 33% 与 25% APR</div>
@@ -362,31 +373,31 @@
             </div>
 
             <div class="month-section" data-month="2026-04"><div class="month-title">2026年04月及更早 (5 条)</div>
-            <div class="policy-item" data-categories="牌照政策" data-business="Nano Finance" data-urgency="中" data-status="已实施" data-date="2026-04-22">
+            <div class="policy-item" data-source-links='[{"label": "BoT 牌照管理", "url": "https://www.bot.or.th/en/financial-institutions/supervision/regulations.html"}]' data-categories="牌照政策" data-business="Nano Finance" data-urgency="中" data-status="已实施" data-date="2026-04-22">
               <div class="policy-header"><div class="tags"><span class="tag tag-urgency-medium">紧急-中</span><span class="tag tag-category">牌照政策</span><span class="tag tag-status-active">已实施</span></div><div class="policy-date">2026-04-22</div></div>
               <div class="policy-source">来源：Bank of Thailand</div>
               <div class="policy-title">BoT 简化 Nano Finance 牌照续期材料，推行电子化续期审批</div>
               <div class="policy-desc">推出在线续期系统，续期审批从 90 天缩短至 45 天。</div>
             </div>
-            <div class="policy-item" data-categories="消费者保护,平台BNPL" data-business="BNPL" data-urgency="中" data-status="已实施" data-date="2026-03-15">
+            <div class="policy-item" data-source-links='[{"label": "BoT BNPL监管公告", "url": "https://www.bot.or.th/en/news-and-media/news.html"}, {"label": "泰国财政部", "url": "https://www.mof.go.th/"}]' data-categories="消费者保护,平台BNPL" data-business="BNPL" data-urgency="中" data-status="已实施" data-date="2026-03-15">
               <div class="policy-header"><div class="tags"><span class="tag tag-urgency-medium">紧急-中</span><span class="tag tag-category">消费者保护</span><span class="tag tag-category">平台BNPL</span><span class="tag tag-status-active">已实施</span></div><div class="policy-date">2026-03-15</div></div>
               <div class="policy-source">来源：Lazada / TikTok Shop</div>
               <div class="policy-title">TikTok Shop 与 Lazada 在泰国上线 BNPL 准入审核，要求合作方持牌经营</div>
               <div class="policy-desc">仅允许持有 BoT 颁发的 Nano/Pico Finance 或银行牌照的机构在站内提供 BNPL 服务，须展示牌照编号。</div>
             </div>
-            <div class="policy-item" data-categories="国家监管" data-business="Personal Loan" data-urgency="高" data-status="已实施" data-date="2025-12-10">
+            <div class="policy-item" data-source-links='[{"label": "BoT 利率政策", "url": "https://www.bot.or.th/en/financial-institutions/consumer-protection.html"}, {"label": "皇家公报", "url": "https://ratchakitcha.soc.go.th/"}]' data-categories="国家监管" data-business="Personal Loan" data-urgency="高" data-status="已实施" data-date="2025-12-10">
               <div class="policy-header"><div class="tags"><span class="tag tag-urgency-high">紧急-高</span><span class="tag tag-category">国家监管</span><span class="tag tag-status-active">已实施</span></div><div class="policy-date">2025-12-10</div></div>
               <div class="policy-source">来源：Bank of Thailand</div>
               <div class="policy-title">BoT 修订《贷款业务通知》，明确 BNPL 属于消费信贷须受利率上限约束</div>
               <div class="policy-desc">BNPL 正式纳入消费贷款监管框架，非银行金融科技公司适用与 Personal Loan 相同的利率上限与信息披露规则。</div>
             </div>
-            <div class="policy-item" data-categories="牌照政策" data-business="Pico Loan" data-urgency="中" data-status="已确认待实施" data-date="2025-09-30">
+            <div class="policy-item" data-source-links='[{"label": "BoT 监管政策", "url": "https://www.bot.or.th/en/financial-institutions/supervision/regulations.html"}]' data-categories="牌照政策" data-business="Pico Loan" data-urgency="中" data-status="已确认待实施" data-date="2025-09-30">
               <div class="policy-header"><div class="tags"><span class="tag tag-urgency-medium">紧急-中</span><span class="tag tag-category">牌照政策</span><span class="tag tag-status-confirmed">已确认待实施</span></div><div class="policy-date">2025-09-30</div></div>
               <div class="policy-source">来源：BoT / 泰国财政部</div>
               <div class="policy-title">财政部发布 Pico Finance 新牌照类别实施细则</div>
               <div class="policy-desc">Pico Finance 细分为 Pico Loan 与 Nano Finance，分别设定放贷额度上限、利率上限与资本金要求及外资持股限制。</div>
             </div>
-            <div class="policy-item" data-categories="银行BNPL,利率上限" data-business="BNPL" data-urgency="低" data-status="已实施" data-date="2025-06-18">
+            <div class="policy-item" data-source-links='[{"label": "BoT 审慎监管", "url": "https://www.bot.or.th/en/financial-institutions/banking/regulations.html"}]' data-categories="银行BNPL,利率上限" data-business="BNPL" data-urgency="低" data-status="已实施" data-date="2025-06-18">
               <div class="policy-header"><div class="tags"><span class="tag tag-urgency-low">紧急-低</span><span class="tag tag-category">银行BNPL</span><span class="tag tag-category">利率上限</span><span class="tag tag-status-active">已实施</span></div><div class="policy-date">2025-06-18</div></div>
               <div class="policy-source">来源：KBank / KTC</div>
               <div class="policy-title">银行调整 BNPL 分期手续费，部分产品费率超过 20% APR 引发监管关注</div>
@@ -520,7 +531,7 @@
             <!-- ===== 2026-08 ===== -->
             <div class="month-section" data-month="2026-08"><div class="month-title">2026年08月 (4 条)</div>
 
-            <div class="policy-item" data-region="印尼" data-categories="牌照合规,利率上限" data-urgency="高" data-status="已确认待实施" data-verified="verified" data-date="2026-08-03">
+            <div class="policy-item" data-source-links='[{"label": "OJK 官方通知", "url": "https://www.ojk.go.id/id/regulasi/Pages/default.aspx"}, {"label": "Bank Indonesia", "url": "https://www.bi.go.id/"}, {"label": "Reuters 报道", "url": "https://www.reuters.com/markets/asia/"}]' data-region="印尼" data-categories="牌照合规,利率上限" data-urgency="高" data-status="已确认待实施" data-verified="verified" data-date="2026-08-03">
               <div class="policy-header"><div class="tags"><span class="tag tag-urgency-high">紧急-高</span><span class="tag tag-region">印尼 🇮🇩</span><span class="tag tag-category">牌照合规</span><span class="tag tag-category">利率上限</span><span class="tag tag-status-confirmed">已确认待实施</span><span class="tag tag-verified">✅ 3源交叉验证</span><span class="tag tag-new">NEW</span></div><div class="policy-date">2026-08-03</div></div>
               <div class="policy-source">
                   <span>来源：OJK / Kontan / Reuters</span>
@@ -530,7 +541,7 @@
               <div class="policy-desc">OJK（金融服务管理局）发布 POJK 新规，将 P2P 借贷及现金贷平台日利率从 0.4% 降至 0.3%（年化约 109.5% 降至 82.1%），并要求所有运营中的数字借贷平台在 2026 年 12 月 31 日前完成正式持牌。外资持股不超过 85%，注册资本不低于 250 亿印尼盾。</div>
             </div>
 
-            <div class="policy-item" data-region="墨西哥" data-categories="牌照合规" data-urgency="高" data-status="已实施" data-verified="verified" data-date="2026-08-02">
+            <div class="policy-item" data-source-links='[{"label": "CNBV 通知", "url": "https://www.gob.mx/cnbv"}, {"label": "CONDUSEF", "url": "https://www.condusef.gob.mx/"}]' data-region="墨西哥" data-categories="牌照合规" data-urgency="高" data-status="已实施" data-verified="verified" data-date="2026-08-02">
               <div class="policy-header"><div class="tags"><span class="tag tag-urgency-high">紧急-高</span><span class="tag tag-region">墨西哥 🇲🇽</span><span class="tag tag-category">牌照合规</span><span class="tag tag-status-active">已实施</span><span class="tag tag-verified">✅ 3源交叉验证</span></div><div class="policy-date">2026-08-02</div></div>
               <div class="policy-source">
                   <span>来源：CNBV / El Economista / BNamericas</span>
@@ -540,7 +551,7 @@
               <div class="policy-desc">墨西哥银行与证券委员会(CNBV)宣布所有未受监管的 SOFOM ENR 须在 60 个工作日内向 CONDUSEF 注册并完成合规审查。未注册者将被禁止运营并可能被追究刑事责任。此举直击大量以 SOFOM ENR 模式运营的中国出海现金贷平台。</div>
             </div>
 
-            <div class="policy-item" data-region="尼日利亚" data-categories="牌照合规,利率上限" data-urgency="中" data-status="已确认待实施" data-verified="unverified" data-date="2026-08-01">
+            <div class="policy-item" data-source-links='[{"label": "CBN 货币政策", "url": "https://www.cbn.gov.ng/"}, {"label": "NDPC 数据保护", "url": "https://ndpc.gov.ng/"}]' data-region="尼日利亚" data-categories="牌照合规,利率上限" data-urgency="中" data-status="已确认待实施" data-verified="unverified" data-date="2026-08-01">
               <div class="policy-header"><div class="tags"><span class="tag tag-urgency-medium">紧急-中</span><span class="tag tag-region">尼日利亚 🇳🇬</span><span class="tag tag-category">牌照合规</span><span class="tag tag-category">利率上限</span><span class="tag tag-status-confirmed">已确认待实施</span><span class="tag tag-unverified">⚠ 未交叉认证</span></div><div class="policy-date">2026-08-01</div></div>
               <div class="policy-source">
                   <span>来源：CBN / Nairalytics</span>
@@ -550,7 +561,7 @@
               <div class="policy-desc">CBN 正在制定数字借贷利率上限新规，拟将数字贷款月息上限从目前无明确标准收紧至 5%（年化 60%）。同时要求所有贷款 App 必须公示 CBN 牌照编号与统一利率计算器。⚠ 目前仅有 Nairalytics 与当地媒体报道，CBN 官方尚未发布正式通知，有待交叉验证。</div>
             </div>
 
-            <div class="policy-item" data-region="阿根廷" data-categories="市场准入,数据隐私" data-urgency="中" data-status="拟议/征求意见" data-verified="verified" data-date="2026-08-01">
+            <div class="policy-item" data-source-links='[{"label": "BCRA 公告", "url": "https://www.bcra.gob.ar/"}, {"label": "Mercado Pago", "url": "https://www.mercadopago.com.ar/"}]' data-region="阿根廷" data-categories="市场准入,数据隐私" data-urgency="中" data-status="拟议/征求意见" data-verified="verified" data-date="2026-08-01">
               <div class="policy-header"><div class="tags"><span class="tag tag-urgency-medium">紧急-中</span><span class="tag tag-region">阿根廷 🇦🇷</span><span class="tag tag-category">市场准入</span><span class="tag tag-category">数据隐私</span><span class="tag tag-status-proposed">拟议/征求意见</span><span class="tag tag-verified">✅ 3源交叉验证</span></div><div class="policy-date">2026-08-01</div></div>
               <div class="policy-source">
                   <span>来源：BCRA / La Nación / Infobae</span>
@@ -564,7 +575,7 @@
             <!-- ===== 2026-07 ===== -->
             <div class="month-section" data-month="2026-07"><div class="month-title">2026年07月 (4 条)</div>
 
-            <div class="policy-item" data-region="菲律宾" data-categories="牌照合规" data-urgency="高" data-status="已确认待实施" data-verified="verified" data-date="2026-07-25">
+            <div class="policy-item" data-source-links='[{"label": "SEC Philippines", "url": "https://www.sec.gov.ph/"}, {"label": "BSP 央行", "url": "https://www.bsp.gov.ph/"}]' data-region="菲律宾" data-categories="牌照合规" data-urgency="高" data-status="已确认待实施" data-verified="verified" data-date="2026-07-25">
               <div class="policy-header"><div class="tags"><span class="tag tag-urgency-high">紧急-高</span><span class="tag tag-region">菲律宾 🇵🇭</span><span class="tag tag-category">牌照合规</span><span class="tag tag-status-confirmed">已确认待实施</span><span class="tag tag-verified">✅ 3源交叉验证</span></div><div class="policy-date">2026-07-25</div></div>
               <div class="policy-source">
                   <span>来源：SEC Philippines / Philstar / BusinessWorld</span>
@@ -574,7 +585,7 @@
               <div class="policy-desc">SEC 发布备忘录通知，要求所有在线贷款平台(OLP)须持有 Certificate of Authority(CA)，未注册平台将在 9 月 30 日后被刑事调查，并向 Google/Apple 发函要求下架 App。菲律宾此前已吊销逾 100 家违规 OLP 牌照。</div>
             </div>
 
-            <div class="policy-item" data-region="巴西" data-categories="利率上限,数据隐私" data-urgency="高" data-status="已实施" data-verified="verified" data-date="2026-07-18">
+            <div class="policy-item" data-source-links='[{"label": "BCB 新闻", "url": "https://www.bcb.gov.br/"}, {"label": "ANPD 数据保护局", "url": "https://www.gov.br/anpd/"}]' data-region="巴西" data-categories="利率上限,数据隐私" data-urgency="高" data-status="已实施" data-verified="verified" data-date="2026-07-18">
               <div class="policy-header"><div class="tags"><span class="tag tag-urgency-high">紧急-高</span><span class="tag tag-region">巴西 🇧🇷</span><span class="tag tag-category">利率上限</span><span class="tag tag-category">数据隐私</span><span class="tag tag-status-active">已实施</span><span class="tag tag-verified">✅ 3源交叉验证</span></div><div class="policy-date">2026-07-18</div></div>
               <div class="policy-source">
                   <span>来源：BCB / LGPD(ANPD) / Valor Econômico</span>
@@ -584,7 +595,7 @@
               <div class="policy-desc">巴西央行(BCB)与国家数据保护局(ANPD)签署合作协议，对未遵守 LGPD(巴西通用数据保护法)的金融科技及数字借贷平台实施联合执法。罚款最高可达公司年营收的 2%（上限 5000 万雷亚尔）。巴西同时维持个人贷款利率上限 30% 年化。</div>
             </div>
 
-            <div class="policy-item" data-region="肯尼亚" data-categories="牌照合规,消费者保护" data-urgency="中" data-status="已实施" data-verified="verified" data-date="2026-07-12">
+            <div class="policy-item" data-source-links='[{"label": "CBK 公告", "url": "https://www.centralbank.go.ke/"}, {"label": "Business Daily", "url": "https://www.businessdailyafrica.com/"}]' data-region="肯尼亚" data-categories="牌照合规,消费者保护" data-urgency="中" data-status="已实施" data-verified="verified" data-date="2026-07-12">
               <div class="policy-header"><div class="tags"><span class="tag tag-urgency-medium">紧急-中</span><span class="tag tag-region">肯尼亚 🇰🇪</span><span class="tag tag-category">牌照合规</span><span class="tag tag-category">消费者保护</span><span class="tag tag-status-active">已实施</span><span class="tag tag-verified">✅ 3源交叉验证</span></div><div class="policy-date">2026-07-12</div></div>
               <div class="policy-source">
                   <span>来源：CBK / Business Daily Africa / Reuters</span>
@@ -594,21 +605,21 @@
               <div class="policy-desc">CBK 正式施行《2026 数字信贷提供商条例》要求所有 DCP(Digital Credit Provider)在 90 天内申请牌照。条例设定利率上限挂钩央行基准利率，禁止滥用手机通讯录催收，违者最高罚 500 万肯先令。</div>
             </div>
 
-            <div class="policy-item" data-region="跨市场" data-categories="App政策" data-urgency="中" data-status="已确认待实施" data-verified="verified" data-date="2026-07-05">
+            <div class="policy-item" data-source-links='[{"label": "Google Play 政策中心", "url": "https://support.google.com/googleplay/android-developer/answer/9877150"}, {"label": "App Store 指南", "url": "https://developer.apple.com/app-store/review/guidelines/"}]' data-region="跨市场" data-categories="App政策" data-urgency="中" data-status="已确认待实施" data-verified="verified" data-date="2026-07-05">
               <div class="policy-header"><div class="tags"><span class="tag tag-urgency-medium">紧急-中</span><span class="tag tag-region">跨市场 🌐</span><span class="tag tag-category">App政策</span><span class="tag tag-status-confirmed">已确认待实施</span><span class="tag tag-verified">✅ 3源交叉验证</span></div><div class="policy-date">2026-07-05</div></div>
               <div class="policy-source">
                   <span>来源：Google Play Policy / Apple Developer / TechCrunch</span>
                   <span class="impact-badge severe">出海影响：严重</span>
               </div>
               <div class="policy-title">Google Play 更新贷款 App 政策：无牌照证明的现金贷 App 将于 2026Q4 全球下架</div>
-              <div class="policy-desc">Google 更新个人贷款 App 政策，要求所有贷款类 App 必须在 Play Console 上传目标市场的有效金融牌照证明。未能在 2026 年 11 月 1 日前提供证明的 App 将被全球下架。Apple 同步强化开发者审核，要求贷款 App 提交目���市场监管机构的合规声明。</div>
+              <div class="policy-desc">Google 更新个人贷款 App 政策，要求所有贷款类 App 必须在 Play Console 上传目标市场的有效金融牌照证明。未能在 2026 年 11 月 1 日前提供证明的 App 将被全球下架。Apple 同步强化开发者审核，要求贷款 App 提交目标市场监管机构的合规声明。</div>
             </div>
             </div>
 
             <!-- ===== 2026-06 ===== -->
             <div class="month-section" data-month="2026-06"><div class="month-title">2026年06月 (3 条)</div>
 
-            <div class="policy-item" data-region="越南" data-categories="市场准入,牌照合规" data-urgency="高" data-status="已确认待实施" data-verified="verified" data-date="2026-06-22">
+            <div class="policy-item" data-source-links='[{"label": "SBV 通知", "url": "https://www.sbv.gov.vn/"}, {"label": "Vietnam News", "url": "https://vietnamnews.vn/"}]' data-region="越南" data-categories="市场准入,牌照合规" data-urgency="高" data-status="已确认待实施" data-verified="verified" data-date="2026-06-22">
               <div class="policy-header"><div class="tags"><span class="tag tag-urgency-high">紧急-高</span><span class="tag tag-region">越南 🇻🇳</span><span class="tag tag-category">市场准入</span><span class="tag tag-category">牌照合规</span><span class="tag tag-status-confirmed">已确认待实施</span><span class="tag tag-verified">✅ 3源交叉验证</span></div><div class="policy-date">2026-06-22</div></div>
               <div class="policy-source">
                   <span>来源：SBV / VNExpress / Tuoi Tre</span>
@@ -618,7 +629,7 @@
               <div class="policy-desc">SBV 发布 Circular 更新将消费金融公司外资持股上限从 50% 调整为试点 100%允许，但要求董事会至少一名越南籍成员且 CEO 需常驻越南。此政策可能打开此前因外资限制而受阻的中国出海企业进入通道。</div>
             </div>
 
-            <div class="policy-item" data-region="埃及" data-categories="牌照合规,外汇管制" data-urgency="中" data-status="发展中" data-verified="unverified" data-date="2026-06-15">
+            <div class="policy-item" data-source-links='[{"label": "CBE 沙盒公告", "url": "https://www.cbe.org.eg/"}, {"label": "Egypt Today", "url": "https://www.egypttoday.com/"}]' data-region="埃及" data-categories="牌照合规,外汇管制" data-urgency="中" data-status="发展中" data-verified="unverified" data-date="2026-06-15">
               <div class="policy-header"><div class="tags"><span class="tag tag-urgency-medium">紧急-中</span><span class="tag tag-region">埃及 🇪🇬</span><span class="tag tag-category">牌照合规</span><span class="tag tag-category">外汇管制</span><span class="tag tag-status-proposed">发展中</span><span class="tag tag-unverified">⚠ 未交叉认证</span></div><div class="policy-date">2026-06-15</div></div>
               <div class="policy-source">
                   <span>来源：CBE / Daily News Egypt</span>
@@ -628,7 +639,7 @@
               <div class="policy-desc">CBE 将数字借贷平台纳入监管沙盒，要求外资企业须与埃及本地实体合资（外资持股不超过 51%）方可申请电子支付与借贷牌照。此政策限制独立出海模式。⚠ 目前仅 CBE 与 Daily News Egypt 来源，未经 Reuters/Bloomberg 交叉验证。</div>
             </div>
 
-            <div class="policy-item" data-region="巴基斯坦" data-categories="牌照合规,利率上限" data-urgency="中" data-status="已实施" data-verified="verified" data-date="2026-06-08">
+            <div class="policy-item" data-source-links='[{"label": "SECP 框架全文", "url": "https://www.secp.gov.pk/"}, {"label": "SBP 央行", "url": "https://www.sbp.org.pk/"}]' data-region="巴基斯坦" data-categories="牌照合规,利率上限" data-urgency="中" data-status="已实施" data-verified="verified" data-date="2026-06-08">
               <div class="policy-header"><div class="tags"><span class="tag tag-urgency-medium">紧急-中</span><span class="tag tag-region">巴基斯坦 🇵🇰</span><span class="tag tag-category">牌照合规</span><span class="tag tag-category">利率上限</span><span class="tag tag-status-active">已实施</span><span class="tag tag-verified">✅ 3源交叉验证</span></div><div class="policy-date">2026-06-08</div></div>
               <div class="policy-source">
                   <span>来源：SECP / Dawn / Bloomberg</span>
@@ -642,7 +653,7 @@
             <!-- ===== 2026-05 ===== -->
             <div class="month-section" data-month="2026-05"><div class="month-title">2026年05月 (3 条)</div>
 
-            <div class="policy-item" data-region="尼日利亚" data-categories="催收规范,数据隐私" data-urgency="高" data-status="已实施" data-verified="verified" data-date="2026-05-28">
+            <div class="policy-item" data-source-links='[{"label": "NDPC 通知", "url": "https://ndpc.gov.ng/"}, {"label": "FCCPC 消费者保护", "url": "https://fccpc.gov.ng/"}]' data-region="尼日利亚" data-categories="催收规范,数据隐私" data-urgency="高" data-status="已实施" data-verified="verified" data-date="2026-05-28">
               <div class="policy-header"><div class="tags"><span class="tag tag-urgency-high">紧急-高</span><span class="tag tag-region">尼日利亚 🇳🇬</span><span class="tag tag-category">催收规范</span><span class="tag tag-category">数据隐私</span><span class="tag tag-status-active">已实施</span><span class="tag tag-verified">✅ 3源交叉验证</span></div><div class="policy-date">2026-05-28</div></div>
               <div class="policy-source">
                   <span>来源：NDPC / FCCPC / Premium Times</span>
@@ -652,7 +663,7 @@
               <div class="policy-desc">国家数据保护委员会(NDPC)与联邦竞争与消费者保护委员会(FCCPC)联合发布执法令，要求 Google Play 下架所有未经许可访问通讯录/相册的贷款 App，并对已下架的 27 家平台开出罚单。合规贷款 App 必须展示 NDPC 数据保护合规编号。</div>
             </div>
 
-            <div class="policy-item" data-region="跨市场" data-categories="外汇管制" data-urgency="中" data-status="拟议/征求意见" data-verified="verified" data-date="2026-05-18">
+            <div class="policy-item" data-source-links='[{"label": "SAFE 外管局", "url": "https://www.safe.gov.cn/"}, {"label": "中国人民银行", "url": "https://www.pbc.gov.cn/"}]' data-region="跨市场" data-categories="外汇管制" data-urgency="中" data-status="拟议/征求意见" data-verified="verified" data-date="2026-05-18">
               <div class="policy-header"><div class="tags"><span class="tag tag-urgency-medium">紧急-中</span><span class="tag tag-region">跨市场 🌐</span><span class="tag tag-category">外汇管制</span><span class="tag tag-status-proposed">拟议/征求意见</span><span class="tag tag-verified">✅ 3源交叉验证</span></div><div class="policy-date">2026-05-18</div></div>
               <div class="policy-source">
                   <span>来源：SAFE / 21世纪经济报道 / WSJ</span>
@@ -662,7 +673,7 @@
               <div class="policy-desc">国家外汇管理局拟修订《跨境信贷业务指引》，要求中国出海贷款平台对单笔超过 50 万美元的境外放款进行逐笔备案登记，强化跨境资金流动反洗钱（AML）审查。该政策将显著增加以自有资金在境外放贷的现金贷平台合规成本。</div>
             </div>
 
-            <div class="policy-item" data-region="孟加拉" data-categories="牌照合规" data-urgency="低" data-status="发展中" data-verified="unverified" data-date="2026-05-10">
+            <div class="policy-item" data-source-links='[{"label": "Bangladesh Bank", "url": "https://www.bb.org.bd/"}, {"label": "The Daily Star", "url": "https://www.thedailystar.net/"}]' data-region="孟加拉" data-categories="牌照合规" data-urgency="低" data-status="发展中" data-verified="unverified" data-date="2026-05-10">
               <div class="policy-header"><div class="tags"><span class="tag tag-urgency-low">紧急-低</span><span class="tag tag-region">孟加拉 🇧🇩</span><span class="tag tag-category">牌照合规</span><span class="tag tag-status-proposed">发展中</span><span class="tag tag-unverified">⚠ 未交叉认证</span></div><div class="policy-date">2026-05-10</div></div>
               <div class="policy-source">
                   <span>来源：Bangladesh Bank / Dhaka Tribune</span>
@@ -676,7 +687,7 @@
             <!-- ===== 2026-04 and earlier ===== -->
             <div class="month-section" data-month="2026-04"><div class="month-title">2026年04月及更早 (4 条)</div>
 
-            <div class="policy-item" data-region="墨西哥" data-categories="利率上限,消费者保护" data-urgency="中" data-status="已实施" data-verified="verified" data-date="2026-04-20">
+            <div class="policy-item" data-source-links='[{"label": "CONDUSEF 指引", "url": "https://www.condusef.gob.mx/"}, {"label": "CNBV", "url": "https://www.gob.mx/cnbv"}]' data-region="墨西哥" data-categories="利率上限,消费者保护" data-urgency="中" data-status="已实施" data-verified="verified" data-date="2026-04-20">
               <div class="policy-header"><div class="tags"><span class="tag tag-urgency-medium">紧急-中</span><span class="tag tag-region">墨西哥 🇲🇽</span><span class="tag tag-category">利率上限</span><span class="tag tag-category">消费者保护</span><span class="tag tag-status-active">已实施</span><span class="tag tag-verified">✅ 3源交叉验证</span></div><div class="policy-date">2026-04-20</div></div>
               <div class="policy-source">
                   <span>来源：CONDUSEF / El Financiero / Bloomberg</span>
@@ -685,7 +696,7 @@
               <div class="policy-desc">墨西哥消费者保护机构 CONDUSEF 要求所有 SOFOM 及银行在贷款产品的营销页面和合同中明示 CAT（Costo Anual Total，总成本年化费率），类似 APR 的综合费率指标。未达标者将被暂停放贷。</div>
             </div>
 
-            <div class="policy-item" data-region="菲律宾" data-categories="催收规范" data-urgency="中" data-status="已实施" data-verified="verified" data-date="2026-03-28">
+            <div class="policy-item" data-source-links='[{"label": "SEC 备忘录", "url": "https://www.sec.gov.ph/"}, {"label": "BSP 消费者保护", "url": "https://www.bsp.gov.ph/"}]' data-region="菲律宾" data-categories="催收规范" data-urgency="中" data-status="已实施" data-verified="verified" data-date="2026-03-28">
               <div class="policy-header"><div class="tags"><span class="tag tag-urgency-medium">紧急-中</span><span class="tag tag-region">菲律宾 🇵🇭</span><span class="tag tag-category">催收规范</span><span class="tag tag-status-active">已实施</span><span class="tag tag-verified">✅ 3源交叉验证</span></div><div class="policy-date">2026-03-28</div></div>
               <div class="policy-source">
                   <span>来源：NPC / SEC / Rappler</span>
@@ -694,7 +705,7 @@
               <div class="policy-desc">NPC 明确在线贷款平台的隐私义务：不得在未获独立授权的情况下将借款人手机通讯录用于催收或分享至第三方。此政策与尼日利亚 NDPC 2026-05 执法方向一致，反映新兴市场收紧通讯录催收的全球趋势。</div>
             </div>
 
-            <div class="policy-item" data-region="巴西" data-categories="牌照合规,市场准入" data-urgency="中" data-status="已实施" data-verified="verified" data-date="2026-02-14">
+            <div class="policy-item" data-source-links='[{"label": "BCB SCD监管", "url": "https://www.bcb.gov.br/"}, {"label": "Valor Economico", "url": "https://valor.globo.com/"}]' data-region="巴西" data-categories="牌照合规,市场准入" data-urgency="中" data-status="已实施" data-verified="verified" data-date="2026-02-14">
               <div class="policy-header"><div class="tags"><span class="tag tag-urgency-medium">紧急-中</span><span class="tag tag-region">巴西 🇧🇷</span><span class="tag tag-category">牌照合规</span><span class="tag tag-category">市场准入</span><span class="tag tag-status-active">已实施</span><span class="tag tag-verified">✅ 3源交叉验证</span></div><div class="policy-date">2026-02-14</div></div>
               <div class="policy-source">
                   <span>来源：BCB / Reuters / Estadão</span>
@@ -703,7 +714,7 @@
               <div class="policy-desc">BCB 正式颁布两类金融科技牌照细则：SCD（Sociedade de Crédito Direto）允许平台使用自有资金放贷；SEP（Sociedade de Empréstimo entre Pessoas）允许 P2P 借贷。两类均需在 BCB 注册并遵守 30% 年化利率上限。牌照审批周期约 6-12 个月。</div>
             </div>
 
-            <div class="policy-item" data-region="印尼" data-categories="数据隐私" data-urgency="低" data-status="已实施" data-verified="verified" data-date="2025-11-05">
+            <div class="policy-item" data-source-links='[{"label": "OJK 合规要求", "url": "https://www.ojk.go.id/"}, {"label": "Kominfo", "url": "https://www.kominfo.go.id/"}]' data-region="印尼" data-categories="数据隐私" data-urgency="低" data-status="已实施" data-verified="verified" data-date="2025-11-05">
               <div class="policy-header"><div class="tags"><span class="tag tag-urgency-low">紧急-低</span><span class="tag tag-region">印尼 🇮🇩</span><span class="tag tag-category">数据隐私</span><span class="tag tag-status-active">已实施</span><span class="tag tag-verified">✅ 3源交叉验证</span></div><div class="policy-date">2025-11-05</div></div>
               <div class="policy-source">
                   <span>来源：PDP Law / OJK / Jakarta Post</span>
@@ -715,7 +726,7 @@
         </div>
         <div class="footer-note">
             <strong>来源标准：</strong>
-            高严谨度 → 各国央���/监管机构官网 + 权威财经媒体 ≥ 3个独立来源交叉验证。<br>
+            高严谨度 → 各国央行/监管机构官网 + 权威财经媒体 ≥ 3个独立来源交叉验证。<br>
             <strong>标签说明：</strong> ✅ 3源交叉验证 = Bloomberg/Reuters/当地权威媒体等 3+ 来源确认； ⚠ 未交叉认证 = 来源有限（1-2 个媒体），有待更多独立来源验证，建议交叉核验后再决策。<br>
             示例数据截至 2026-08-05，每日 09:30 (GMT+8) 自动更新。
         </div>
@@ -735,6 +746,27 @@
             this.classList.add('active');
             document.getElementById('module-' + this.dataset.module).classList.add('active');
         });
+    });
+
+    // ── Render source links from data-source-links ──
+    document.querySelectorAll('.policy-item').forEach(function(item) {
+        var raw = item.dataset.sourceLinks;
+        if (!raw) return;
+        try {
+            var links = JSON.parse(raw);
+            if (!links.length) return;
+            var linksDiv = document.createElement('div');
+            linksDiv.className = 'policy-links';
+            links.forEach(function(link) {
+                var a = document.createElement('a');
+                a.href = link.url;
+                a.target = '_blank';
+                a.rel = 'noopener';
+                a.textContent = ' ' + link.label;
+                linksDiv.appendChild(a);
+            });
+            item.appendChild(linksDiv);
+        } catch(e) { /* ignore parse errors */ }
     });
 
     // ── Generic filter logic ──
