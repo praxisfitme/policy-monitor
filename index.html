@@ -1,0 +1,912 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>政策监控面板 — 泰国 BNPL 监管 + 中国出海现金贷全球监管</title>
+    <style>
+        :root {
+            --primary: #1a56db; --primary-dark: #1e429f; --primary-light: #e1effe;
+            --accent: #7c3aed; --accent-dark: #5b21b6; --accent-light: #ede9fe;
+            --bg: #f3f4f6; --card: #ffffff; --text: #111827; --text-secondary: #6b7280;
+            --border: #e5e7eb; --danger: #dc2626; --warning: #d97706;
+            --success: #059669; --info: #2563eb;
+            --orange: #ea580c;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC", "Microsoft YaHei", sans-serif;
+            background: var(--bg); color: var(--text); line-height: 1.6;
+        }
+        /* ── Top-level module nav ── */
+        .module-nav {
+            display: flex; gap: 0; background: white; border-bottom: 1px solid var(--border);
+            position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+        }
+        .module-tab {
+            flex: 1; text-align: center; padding: 16px 24px; font-size: 15px; font-weight: 700;
+            cursor: pointer; color: var(--text-secondary); border-bottom: 3px solid transparent;
+            transition: all 0.2s; background: transparent; border-top: none; border-left: none; border-right: none;
+        }
+        .module-tab:hover { background: #f9fafb; color: var(--text); }
+        .module-tab.active { color: var(--primary); border-bottom-color: var(--primary); background: var(--primary-light); }
+        .module-tab.global.active { color: var(--accent); border-bottom-color: var(--accent); background: var(--accent-light); }
+
+        /* ── Header ── */
+        .header {
+            padding: 10px 20px; border-radius: 0 0 14px 14px; color: white; cursor: pointer;
+            box-shadow: 0 4px 15px rgba(30,66,159,0.12);
+            background: linear-gradient(135deg, #1e429f 0%, #1a56db 100%);
+            transition: padding 0.3s, box-shadow 0.3s, border-radius 0.3s;
+        }
+        .header.global { background: linear-gradient(135deg, #4c1d95 0%, #7c3aed 100%); box-shadow: 0 4px 15px rgba(124,58,237,0.12); }
+        .header .header-inner { display: flex; align-items: center; gap: 10px; user-select: none; }
+        .header .header-inner h1 { font-size: 16px; font-weight: 700; margin: 0; flex: 1; line-height: 1.3; }
+        .header .header-inner .toggle-arrow {
+            width: 28px; height: 28px; display: flex; align-items: center; justify-content: center;
+            font-size: 14px; opacity: 0.8; transition: transform 0.3s; flex-shrink: 0;
+        }
+        .header.expanded .header-inner .toggle-arrow { transform: rotate(180deg); }
+        .header .header-body { max-height: 0; overflow: hidden; transition: max-height 0.35s ease, opacity 0.25s ease, margin 0.3s; opacity: 0; }
+        .header.expanded .header-body { max-height: 400px; opacity: 1; }
+        .header .subtitle { font-size: 14px; opacity: 0.92; line-height: 1.7; }
+        .header .meta { margin-top: 12px; font-size: 13px; opacity: 0.85; display: flex; gap: 20px; flex-wrap: wrap; }
+        .header.expanded {
+            padding: 16px 20px; border-radius: 0 0 20px 20px;
+            box-shadow: 0 10px 30px rgba(30,66,159,0.2);
+        }
+        .header.global.expanded { box-shadow: 0 10px 30px rgba(124,58,237,0.2); }
+        .container { max-width: 1340px; margin: 0 auto; padding: 24px; }
+        .module-panel { display: none; }
+        .module-panel.active { display: block; }
+
+        /* ── Tabs (sub-navigation) ── */
+        .tabs { display: flex; gap: 10px; margin-bottom: 20px; flex-wrap: wrap; }
+        .tab {
+            padding: 9px 18px; border-radius: 20px; font-size: 13px; font-weight: 600;
+            cursor: pointer; background: white; color: var(--text-secondary);
+            border: 1px solid var(--border); transition: all 0.2s; white-space: nowrap;
+        }
+        .tab:hover { background: var(--primary-light); border-color: #bfdbfe; }
+        .tab.active { background: var(--primary); color: white; border-color: var(--primary); box-shadow: 0 4px 12px rgba(26,86,219,0.25); }
+        .panel-global .tab:hover { background: var(--accent-light); border-color: #d8b4fe; }
+        .panel-global .tab.active { background: var(--accent); color: white; border-color: var(--accent); box-shadow: 0 4px 12px rgba(124,58,237,0.25); }
+
+        /* ── Stats ── */
+        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 14px; margin-bottom: 24px; }
+        .stat-card {
+            background: var(--card); border-radius: 14px; padding: 16px; text-align: center;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05); border: 1px solid var(--border);
+        }
+        .stat-card .number { font-size: 30px; font-weight: 800; margin-bottom: 4px; }
+        .stat-card .label { font-size: 11px; color: var(--text-secondary); line-height: 1.4; }
+        .stat-card.high .number { color: var(--danger); }
+        .stat-card.medium .number { color: var(--warning); }
+        .stat-card.low .number { color: var(--success); }
+        .stat-card.info .number { color: var(--info); }
+        .stat-card.accent .number { color: var(--accent); }
+        .stat-card.warn .number { color: var(--orange); }
+
+        /* ── Filters ── */
+        .filters { background: var(--card); border-radius: 14px; padding: 20px; margin-bottom: 24px; border: 1px solid var(--border); }
+        .filter-row { display: flex; align-items: center; gap: 14px; margin-bottom: 12px; flex-wrap: wrap; }
+        .filter-row:last-child { margin-bottom: 0; }
+        .filter-label { font-size: 13px; color: var(--text-secondary); min-width: 64px; white-space: nowrap; }
+        .filter-options { display: flex; gap: 8px; flex-wrap: wrap; }
+        .chip {
+            padding: 6px 14px; border-radius: 20px; font-size: 13px; cursor: pointer;
+            background: #f9fafb; border: 1px solid var(--border); color: var(--text);
+            transition: all 0.2s; white-space: nowrap;
+        }
+        .chip:hover { background: var(--primary-light); border-color: #bfdbfe; }
+        .chip.active { background: var(--primary); color: white; border-color: var(--primary); }
+        .panel-global .chip:hover { background: var(--accent-light); border-color: #d8b4fe; }
+        .panel-global .chip.active { background: var(--accent); color: white; border-color: var(--accent); }
+        .search-box { display: flex; align-items: center; gap: 10px; flex: 1; min-width: 240px; }
+        .search-box input {
+            flex: 1; padding: 8px 14px; border: 1px solid var(--border); border-radius: 8px;
+            font-size: 13px; outline: none;
+        }
+        .search-box input:focus { border-color: var(--primary); }
+        .panel-global .search-box input:focus { border-color: var(--accent); }
+
+        /* ── View toggle ── */
+        .view-toggle { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
+        .view-buttons { display: flex; gap: 8px; }
+        .view-btn {
+            padding: 8px 16px; border-radius: 8px; font-size: 13px; cursor: pointer;
+            background: white; border: 1px solid var(--border); color: var(--text-secondary);
+        }
+        .view-btn.active { background: var(--primary); color: white; border-color: var(--primary); }
+        .panel-global .view-btn.active { background: var(--accent); color: white; border-color: var(--accent); }
+        .sort-select { padding: 8px 12px; border: 1px solid var(--border); border-radius: 8px; font-size: 13px; background: white; }
+
+        /* ── Timeline / Cards ── */
+        .timeline { background: var(--card); border-radius: 14px; padding: 24px; border: 1px solid var(--border); }
+        .month-section { margin-bottom: 28px; }
+        .month-section:last-child { margin-bottom: 0; }
+        .month-title {
+            font-size: 16px; font-weight: 700; color: var(--primary-dark);
+            margin-bottom: 16px; padding-left: 12px; border-left: 4px solid var(--primary);
+        }
+        .panel-global .month-title { color: var(--accent-dark); border-left-color: var(--accent); }
+        .policy-item {
+            padding: 18px 20px; border-radius: 12px; background: #f9fafb; margin-bottom: 14px;
+            border: 1px solid var(--border); transition: all 0.2s;
+        }
+        .policy-item:hover { box-shadow: 0 4px 12px rgba(0,0,0,0.06); border-color: #bfdbfe; }
+        .policy-item.hidden { display: none; }
+        .policy-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 10px; flex-wrap: wrap; gap: 10px; }
+        .policy-date { font-size: 13px; color: var(--text-secondary); white-space: nowrap; }
+        .tags { display: flex; gap: 8px; flex-wrap: wrap; }
+
+        /* Tag colors */
+        .tag { padding: 3px 10px; border-radius: 6px; font-size: 12px; font-weight: 500; white-space: nowrap; }
+        .tag-urgency-high { background: #fee2e2; color: #991b1b; }
+        .tag-urgency-medium { background: #fef3c7; color: #92400e; }
+        .tag-urgency-low { background: #d1fae5; color: #065f46; }
+        .tag-category { background: #dbeafe; color: #1e40af; }
+        .tag-region { background: #e0e7ff; color: #3730a3; font-weight: 600; }
+        .tag-status-proposed { background: #f3e8ff; color: #6b21a8; }
+        .tag-status-confirmed { background: #e0e7ff; color: #3730a3; }
+        .tag-status-active { background: #dcfce7; color: #166534; }
+        .tag-new { background: #dc2626; color: white; font-weight: 700; }
+        .tag-verified { background: #d1fae5; color: #065f46; font-weight: 600; }
+        .tag-unverified { background: #fef3c7; color: #92400e; font-weight: 600; }
+
+        .policy-source { font-size: 12px; color: var(--text-secondary); margin-bottom: 8px; display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+        .policy-title { font-size: 16px; font-weight: 700; color: var(--text); margin-bottom: 8px; line-height: 1.5; }
+        .policy-desc { font-size: 14px; color: #374151; line-height: 1.7; }
+        .impact-badge { font-size: 11px; padding: 2px 8px; border-radius: 4px; }
+        .impact-badge.severe { background: #fee2e2; color: #991b1b; font-weight: 600; }
+        .impact-badge.moderate { background: #fef3c7; color: #92400e; font-weight: 600; }
+        .impact-badge.mild { background: #d1fae5; color: #065f46; }
+
+        .footer-note { margin-top: 24px; padding: 16px; border-radius: 10px; font-size: 13px; background: #eff6ff; color: #1e40af; border: 1px solid #bfdbfe; }
+        .panel-global .footer-note { background: #f5f3ff; color: #5b21b6; border-color: #d8b4fe; }
+
+        @media (max-width: 768px) {
+            .header { padding: 10px 16px; }
+            .header.expanded { padding: 14px 16px; }
+            .header .header-inner h1 { font-size: 14px; }
+            .header .subtitle { font-size: 13px; }
+            .container { padding: 16px; }
+            .stats-grid { grid-template-columns: repeat(2, 1fr); }
+            .filter-row { align-items: flex-start; flex-direction: column; }
+            .search-box { width: 100%; }
+            .module-tab { font-size: 13px; padding: 12px 10px; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ============================================================ -->
+<!--  TOP-LEVEL MODULE NAV                                        -->
+<!-- ============================================================ -->
+<nav class="module-nav">
+    <button class="module-tab active" data-module="thai">TH 泰国 BNPL / Personal Loan / Pico Loan 政策监控</button>
+    <button class="module-tab global" data-module="global">中国出海现金贷全球监管追踪</button>
+</nav>
+
+<!-- ============================================================ -->
+<!--  MODULE 1: THAILAND                                          -->
+<!-- ============================================================ -->
+<div class="module-panel active panel-thai" id="module-thai">
+    <div class="header">
+        <div class="header-inner" onclick="this.parentElement.classList.toggle('expanded')">
+            <h1>TH 泰国 BNPL / Personal Loan / Pico Loan 政策监控面板</h1>
+            <span class="toggle-arrow">▼</span>
+        </div>
+        <div class="header-body">
+            <div class="subtitle">
+                追踪泰国央行(BoT)及监管机构针对 BNPL、Personal Loan、Pico Loan/Nano Finance 牌照发布的政策通知、利率上限调整(APR/综合融资成本)、合规要求变更、消费者保护规定等监管动态。
+            </div>
+            <div class="meta">
+                <span>📅 数据最后更新：<span class="last-updated-label">2026-08-05 09:30 (GMT+8)</span></span>
+                <span>🤖 自动更新：每日 09:30</span>
+                <span>📊 监控范围：泰国央行(BoT)、SEC、财政部、OCPB、NCB</span>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="tabs" id="thai-tabs">
+            <div class="tab active" data-tab="all">全部政策</div>
+            <div class="tab" data-tab="bnpl">BNPL 监管</div>
+            <div class="tab" data-tab="ploan">Personal Loan</div>
+            <div class="tab" data-tab="pico">Pico/Nano Finance</div>
+            <div class="tab" data-tab="license">牌照动态</div>
+        </div>
+        <div class="stats-grid" id="thai-stats">
+            <div class="stat-card info">  <div class="number stat-total">28</div> <div class="label">监控条目</div> </div>
+            <div class="stat-card high">  <div class="number stat-high">6</div>  <div class="label">紧急-高</div> </div>
+            <div class="stat-card medium"><div class="number stat-medium">9</div><div class="label">紧急-中</div> </div>
+            <div class="stat-card low">   <div class="number stat-low">13</div> <div class="label">紧急-低</div> </div>
+            <div class="stat-card info">  <div class="number">8</div>  <div class="label">央行/监管机构</div> </div>
+            <div class="stat-card info">  <div class="number">20</div> <div class="label">政策/银行/平台</div> </div>
+        </div>
+        <div class="filters" id="thai-filters">
+            <div class="filter-row">
+                <span class="filter-label">内容分类</span>
+                <div class="filter-options" data-filter="category">
+                    <span class="chip active" data-value="all">全部</span>
+                    <span class="chip" data-value="国家监管">国家监管</span>
+                    <span class="chip" data-value="利率上限">利率上限</span>
+                    <span class="chip" data-value="银行BNPL">银行BNPL</span>
+                    <span class="chip" data-value="平台BNPL">平台BNPL</span>
+                    <span class="chip" data-value="消费者保护">消费者保护</span>
+                    <span class="chip" data-value="牌照政策">牌照政策</span>
+                </div>
+            </div>
+            <div class="filter-row">
+                <span class="filter-label">业务类型</span>
+                <div class="filter-options" data-filter="business">
+                    <span class="chip active" data-value="all">全部</span>
+                    <span class="chip" data-value="BNPL">BNPL</span>
+                    <span class="chip" data-value="Personal Loan">Personal Loan</span>
+                    <span class="chip" data-value="Pico Loan">Pico Loan</span>
+                    <span class="chip" data-value="Nano Finance">Nano Finance</span>
+                    <span class="chip" data-value="Digital Lending">Digital Lending</span>
+                </div>
+            </div>
+            <div class="filter-row">
+                <span class="filter-label">紧急程度</span>
+                <div class="filter-options" data-filter="urgency">
+                    <span class="chip active" data-value="all">全部</span>
+                    <span class="chip" data-value="高">高</span>
+                    <span class="chip" data-value="中">中</span>
+                    <span class="chip" data-value="低">低</span>
+                </div>
+            </div>
+            <div class="filter-row">
+                <span class="filter-label">状态</span>
+                <div class="filter-options" data-filter="status">
+                    <span class="chip active" data-value="all">全部</span>
+                    <span class="chip" data-value="拟议/征求意见">拟议/征求意见</span>
+                    <span class="chip" data-value="已确认待实施">已确认待实施</span>
+                    <span class="chip" data-value="已实施">已实施</span>
+                    <span class="chip" data-value="发展中">发展中</span>
+                </div>
+            </div>
+            <div class="filter-row">
+                <span class="filter-label">关键词</span>
+                <div class="search-box">
+                    <input type="text" class="search-input" placeholder="输入关键词，如 SPayLater、利率上限、Nano Finance、催收 ...">
+                </div>
+            </div>
+        </div>
+        <div class="view-toggle">
+            <div class="view-buttons">
+                <button class="view-btn active" data-view="timeline">时间线视图</button>
+                <button class="view-btn" data-view="card">卡片视图</button>
+            </div>
+            <select class="sort-select">
+                <option value="newest">时间：新 → 旧</option>
+                <option value="oldest">时间：旧 → 新</option>
+                <option value="urgency">紧急程度：高 → 低</option>
+            </select>
+        </div>
+        <div class="timeline thai-timeline">
+            <!-- THAI DATA — kept in an IE-compatible structure -->
+            <div class="month-section" data-month="2026-08"><div class="month-title">2026年08月 (2 条)</div>
+
+            <div class="policy-item" data-categories="国家监管,利率上限" data-business="Personal Loan" data-urgency="高" data-status="已确认待实施" data-date="2026-08-04">
+              <div class="policy-header"><div class="tags"><span class="tag tag-urgency-high">紧急-高</span><span class="tag tag-category">国家监管</span><span class="tag tag-category">利率上限</span><span class="tag tag-status-confirmed">已确认待实施</span><span class="tag tag-new">NEW</span></div><div class="policy-date">2026-08-04</div></div>
+              <div class="policy-source">来源：Bank of Thailand (BoT) Notification</div>
+              <div class="policy-title">BoT 拟于 2026Q4 下调无担保 Personal Loan 利率上限，APR 上限从 25% 降至 22%</div>
+              <div class="policy-desc">泰国央行发布征求意见稿，计划自 2026 年 10 月 1 日起将无担保个人贷款最高年利率从 25% 下调至 22%，同步要求贷款机构在营销材料中明示 APR 与综合融资成本。</div>
+            </div>
+
+            <div class="policy-item" data-categories="消费者保护,牌照政策" data-business="BNPL,Pico Loan" data-urgency="中" data-status="拟议/征求意见" data-date="2026-08-01">
+              <div class="policy-header"><div class="tags"><span class="tag tag-urgency-medium">紧急-中</span><span class="tag tag-category">消费者保护</span><span class="tag tag-category">牌照政策</span><span class="tag tag-status-proposed">拟议/征求意见</span></div><div class="policy-date">2026-08-01</div></div>
+              <div class="policy-source">来源：Bank of Thailand / 消费者保护委员会</div>
+              <div class="policy-title">BNPL 及 Pico Loan 平台催收行为规范公开征求意见，禁止深夜外呼与第三方骚扰</div>
+              <div class="policy-desc">《数字贷款催收行为指引》拟禁止 20:00-08:00 电话催收，禁止向借款人亲友/同事透露债务信息，催收通话录音保存不少于 2 年。违规机构面临罚款、牌照暂停或吊销。</div>
+            </div>
+            </div>
+
+            <div class="month-section" data-month="2026-07"><div class="month-title">2026年07月 (3 条)</div>
+            <div class="policy-item" data-categories="牌照政策" data-business="Nano Finance" data-urgency="高" data-status="已实施" data-date="2026-07-22">
+              <div class="policy-header"><div class="tags"><span class="tag tag-urgency-high">紧急-高</span><span class="tag tag-category">牌照政策</span><span class="tag tag-status-active">已实施</span></div><div class="policy-date">2026-07-22</div></div>
+              <div class="policy-source">来源：Bank of Thailand</div>
+              <div class="policy-title">BoT 更新 Nano Finance 牌照申请指引，提高最低注册资本与IT风控要求</div>
+              <div class="policy-desc">最低注册资本从 5 亿泰铢提升至 10 亿泰铢，须具备实时反欺诈系统、征信接口及 7×24 风控监控。已持牌公司需在 12 个月内完成整改并提交合规报告。</div>
+            </div>
+            <div class="policy-item" data-categories="平台BNPL,消费者保护" data-business="BNPL" data-urgency="中" data-status="已实施" data-date="2026-07-15">
+              <div class="policy-header"><div class="tags"><span class="tag tag-urgency-medium">紧急-中</span><span class="tag tag-category">平台BNPL</span><span class="tag tag-category">消费者保护</span><span class="tag tag-status-active">已实施</span></div><div class="policy-date">2026-07-15</div></div>
+              <div class="policy-source">来源：Shopee / Atome / 平台公告</div>
+              <div class="policy-title">主要 BNPL 平台在泰国上线"冷静期"与分期总成本披露</div>
+              <div class="policy-desc">Shopee SPayLater、Atome、Lazada PayLater 在用户确认分期前强制展示还款计划、总利息/手续费及 APR，部分平台新增 24 小时冷静期。</div>
+            </div>
+            <div class="policy-item" data-categories="国家监管,数字借贷" data-business="Digital Lending" data-urgency="低" data-status="发展中" data-date="2026-07-08">
+              <div class="policy-header"><div class="tags"><span class="tag tag-urgency-low">紧急-低</span><span class="tag tag-category">国家监管</span><span class="tag tag-category">数字借贷</span><span class="tag tag-status-proposed">发展中</span></div><div class="policy-date">2026-07-08</div></div>
+              <div class="policy-source">来源：Bank of Thailand Fintech Department</div>
+              <div class="policy-title">BoT 就开放银行(Open Banking)在个人贷款审批中的应用发布 sandbox 框架</div>
+              <div class="policy-desc">允许持牌贷款机构在借款人授权下调取银行账户流水用于信用评估，强调数据最小化、用户明示同意及数据安全审计。预计 2026Q4 正式试点。</div>
+            </div>
+            </div>
+
+            <div class="month-section" data-month="2026-06"><div class="month-title">2026年06月 (3 条)</div>
+            <div class="policy-item" data-categories="利率上限,银行BNPL" data-business="BNPL,Personal Loan" data-urgency="高" data-status="已确认待实施" data-date="2026-06-28">
+              <div class="policy-header"><div class="tags"><span class="tag tag-urgency-high">紧急-高</span><span class="tag tag-category">利率上限</span><span class="tag tag-category">银行BNPL</span><span class="tag tag-status-confirmed">已确认待实施</span></div><div class="policy-date">2026-06-28</div></div>
+              <div class="policy-source">来源：Bank of Thailand / KBank / SCB</div>
+              <div class="policy-title">BoT 要求银行系 BNPL 产品同步执行 APR 披露，信用卡分期纳入利率上限管控讨论</div>
+              <div class="policy-desc">银行 BNPL/信用卡分期须在产品页面展示年化利率（APR），并就信用卡分期是否纳入 25% 无担保贷款利率上限启动内部评估。</div>
+            </div>
+            <div class="policy-item" data-categories="牌照政策" data-business="Pico Loan" data-urgency="中" data-status="已实施" data-date="2026-06-18">
+              <div class="policy-header"><div class="tags"><span class="tag tag-urgency-medium">紧急-中</span><span class="tag tag-category">牌照政策</span><span class="tag tag-status-active">已实施</span></div><div class="policy-date">2026-06-18</div></div>
+              <div class="policy-source">来源：Bank of Thailand</div>
+              <div class="policy-title">泰国央行吊销 3 家 Pico Loan 机构牌照，因违规催收与超利率上限放贷</div>
+              <div class="policy-desc">撤销 3 家 Pico Finance 营业执照，违规包括年化利率超过 36%、暴力催收。提醒借款人通过 BoT 官网查询持牌机构名单。</div>
+            </div>
+            <div class="policy-item" data-categories="消费者保护" data-business="Personal Loan,Pico Loan" data-urgency="低" data-status="已实施" data-date="2026-06-05">
+              <div class="policy-header"><div class="tags"><span class="tag tag-urgency-low">紧急-低</span><span class="tag tag-category">消费者保护</span><span class="tag tag-status-active">已实施</span></div><div class="policy-date">2026-06-05</div></div>
+              <div class="policy-source">来源：OCPB</div>
+              <div class="policy-title">OCPB 发布个人贷款广告合规指南，禁止"秒批""无抵押"等误导性宣传</div>
+              <div class="policy-desc">贷款广告须披露年化利率、费用、逾期后果及机构名称，违规最高可处 50 万泰铢罚款。</div>
+            </div>
+            </div>
+
+            <div class="month-section" data-month="2026-05"><div class="month-title">2026年05月 (2 条)</div>
+            <div class="policy-item" data-categories="国家监管,数字借贷" data-business="BNPL,Digital Lending" data-urgency="中" data-status="已确认待实施" data-date="2026-05-20">
+              <div class="policy-header"><div class="tags"><span class="tag tag-urgency-medium">紧急-中</span><span class="tag tag-category">国家监管</span><span class="tag tag-status-confirmed">已确认待实施</span></div><div class="policy-date">2026-05-20</div></div>
+              <div class="policy-source">来源：BoT Notification on Digital Lending</div>
+              <div class="policy-title">BoT 正式发布数字借贷业务通知，要求 BNPL 平台接入央行征信与黑名单系统</div>
+              <div class="policy-desc">所有数字贷款平台（含 BNPL）自 2026 年 9 月 1 日起须将借款人数据报送 NCB，并在授信前查询借款人负债率（DSR）。未接入的平台将被限制新增放贷。</div>
+            </div>
+            <div class="policy-item" data-categories="利率上限" data-business="Pico Loan,Nano Finance" data-urgency="高" data-status="已实施" data-date="2026-05-12">
+              <div class="policy-header"><div class="tags"><span class="tag tag-urgency-high">紧急-高</span><span class="tag tag-category">利率上限</span><span class="tag tag-status-active">已实施</span></div><div class="policy-date">2026-05-12</div></div>
+              <div class="policy-source">来源：Bank of Thailand</div>
+              <div class="policy-title">Pico Loan/Nano Finance 利率上限差异化调整，分别降至 33% 与 25% APR</div>
+              <div class="policy-desc">Pico Loan（小额短期）上限从 36% 降至 33% APR；Nano Finance 上限维持 25% APR。同时要求合同拆分本金、利息与各项费用。</div>
+            </div>
+            </div>
+
+            <div class="month-section" data-month="2026-04"><div class="month-title">2026年04月及更早 (5 条)</div>
+            <div class="policy-item" data-categories="牌照政策" data-business="Nano Finance" data-urgency="中" data-status="已实施" data-date="2026-04-22">
+              <div class="policy-header"><div class="tags"><span class="tag tag-urgency-medium">紧急-中</span><span class="tag tag-category">牌照政策</span><span class="tag tag-status-active">已实施</span></div><div class="policy-date">2026-04-22</div></div>
+              <div class="policy-source">来源：Bank of Thailand</div>
+              <div class="policy-title">BoT 简化 Nano Finance 牌照续期材料，推行电子化续期审批</div>
+              <div class="policy-desc">推出在线续期系统，续期审批从 90 天缩短至 45 天。</div>
+            </div>
+            <div class="policy-item" data-categories="消费者保护,平台BNPL" data-business="BNPL" data-urgency="中" data-status="已实施" data-date="2026-03-15">
+              <div class="policy-header"><div class="tags"><span class="tag tag-urgency-medium">紧急-中</span><span class="tag tag-category">消费者保护</span><span class="tag tag-category">平台BNPL</span><span class="tag tag-status-active">已实施</span></div><div class="policy-date">2026-03-15</div></div>
+              <div class="policy-source">来源：Lazada / TikTok Shop</div>
+              <div class="policy-title">TikTok Shop 与 Lazada 在泰国上线 BNPL 准入审核，要求合作方持牌经营</div>
+              <div class="policy-desc">仅允许持有 BoT 颁发的 Nano/Pico Finance 或银行牌照的机构在站内提供 BNPL 服务，须展示牌照编号。</div>
+            </div>
+            <div class="policy-item" data-categories="国家监管" data-business="Personal Loan" data-urgency="高" data-status="已实施" data-date="2025-12-10">
+              <div class="policy-header"><div class="tags"><span class="tag tag-urgency-high">紧急-高</span><span class="tag tag-category">国家监管</span><span class="tag tag-status-active">已实施</span></div><div class="policy-date">2025-12-10</div></div>
+              <div class="policy-source">来源：Bank of Thailand</div>
+              <div class="policy-title">BoT 修订《贷款业务通知》，明确 BNPL 属于消费信贷须受利率上限约束</div>
+              <div class="policy-desc">BNPL 正式纳入消费贷款监管框架，非银行金融科技公司适用与 Personal Loan 相同的利率上限与信息披露规则。</div>
+            </div>
+            <div class="policy-item" data-categories="牌照政策" data-business="Pico Loan" data-urgency="中" data-status="已确认待实施" data-date="2025-09-30">
+              <div class="policy-header"><div class="tags"><span class="tag tag-urgency-medium">紧急-中</span><span class="tag tag-category">牌照政策</span><span class="tag tag-status-confirmed">已确认待实施</span></div><div class="policy-date">2025-09-30</div></div>
+              <div class="policy-source">来源：BoT / 泰国财政部</div>
+              <div class="policy-title">财政部发布 Pico Finance 新牌照类别实施细则</div>
+              <div class="policy-desc">Pico Finance 细分为 Pico Loan 与 Nano Finance，分别设定放贷额度上限、利率上限与资本金要求及外资持股限制。</div>
+            </div>
+            <div class="policy-item" data-categories="银行BNPL,利率上限" data-business="BNPL" data-urgency="低" data-status="已实施" data-date="2025-06-18">
+              <div class="policy-header"><div class="tags"><span class="tag tag-urgency-low">紧急-低</span><span class="tag tag-category">银行BNPL</span><span class="tag tag-category">利率上限</span><span class="tag tag-status-active">已实施</span></div><div class="policy-date">2025-06-18</div></div>
+              <div class="policy-source">来源：KBank / KTC</div>
+              <div class="policy-title">银行调整 BNPL 分期手续费，部分产品费率超过 20% APR 引发监管关注</div>
+              <div class="policy-desc">BoT 发函要求各银行自查并在 30 日内提交费率说明。</div>
+            </div>
+            </div>
+        </div>
+        <div class="footer-note">
+            <strong>追踪说明：</strong>每日 09:30 (GMT+8) 自动抓取泰国央行(BoT)、财政部、OCPB、NCB 官方渠道。示例数据仅供参考，实际监控以官方公告为准。
+        </div>
+    </div>
+</div>
+
+<!-- ============================================================ -->
+<!--  MODULE 2: GLOBAL CASH LOAN                                   -->
+<!-- ============================================================ -->
+<div class="module-panel panel-global" id="module-global">
+    <div class="header global">
+        <div class="header-inner" onclick="this.parentElement.classList.toggle('expanded')">
+            <h1>中国出海现金贷 / 消费贷全球监管追踪</h1>
+            <span class="toggle-arrow">▼</span>
+        </div>
+        <div class="header-body">
+            <div class="subtitle">
+                追踪中国出海现金贷/消费贷企业在东南亚(除泰国)、拉美、非洲、南亚、阿根廷等主要目的地的监管政策、牌照要求、合规变化、市场准入、利率上限、催收规范、数据隐私等政策动态。<br>
+                不收录：非监管类市场新闻(融资/产品发布)、加密货币/区块链监管（除非与现金贷直接相关）。
+            </div>
+            <div class="meta">
+                <span>📅 数据最后更新：<span class="last-updated-label">2026-08-05 09:30 (GMT+8)</span></span>
+                <span>🤖 自动更新：每日 09:30</span>
+                <span>🌍 覆盖：东南亚 / 拉美 / 非洲 / 南亚 / 跨市场</span>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="tabs" id="global-tabs">
+            <div class="tab active" data-tab="all">全部地区</div>
+            <div class="tab" data-tab="sea">东南亚 (ID/PH/VN)</div>
+            <div class="tab" data-tab="latam">拉美 (MX/BR/AR)</div>
+            <div class="tab" data-tab="africa">非洲 (NG/KE/EG)</div>
+            <div class="tab" data-tab="sasia">南亚 (PK/BD)</div>
+            <div class="tab" data-tab="cross">跨市场 (App审查/外汇)</div>
+        </div>
+        <div class="stats-grid" id="global-stats">
+            <div class="stat-card accent"> <div class="number stat-total">32</div> <div class="label">监控条目</div> </div>
+            <div class="stat-card high">   <div class="number stat-high">7</div>  <div class="label">紧急-高</div> </div>
+            <div class="stat-card medium"> <div class="number stat-medium">11</div><div class="label">紧急-中</div> </div>
+            <div class="stat-card low">    <div class="number stat-low">14</div> <div class="label">紧急-低</div> </div>
+            <div class="stat-card info">   <div class="number">12</div> <div class="label">国家/地区</div> </div>
+            <div class="stat-card warn">   <div class="number stat-unverified">8</div><div class="label">⚠ 未交叉认证</div> </div>
+        </div>
+        <div class="filters" id="global-filters">
+            <div class="filter-row">
+                <span class="filter-label">地区</span>
+                <div class="filter-options" data-filter="region">
+                    <span class="chip active" data-value="all">全部</span>
+                    <span class="chip" data-value="印尼">印尼 🇮🇩</span>
+                    <span class="chip" data-value="菲律宾">菲律宾 🇵🇭</span>
+                    <span class="chip" data-value="越南">越南 🇻🇳</span>
+                    <span class="chip" data-value="墨西哥">墨西哥 🇲🇽</span>
+                    <span class="chip" data-value="巴西">巴西 🇧🇷</span>
+                    <span class="chip" data-value="阿根廷">阿根廷 🇦🇷</span>
+                    <span class="chip" data-value="尼日利亚">尼日利亚 🇳🇬</span>
+                    <span class="chip" data-value="肯尼亚">肯尼亚 🇰🇪</span>
+                    <span class="chip" data-value="埃及">埃及 🇪🇬</span>
+                    <span class="chip" data-value="巴基斯坦">巴基斯坦 🇵🇰</span>
+                    <span class="chip" data-value="孟加拉">孟加拉 🇧🇩</span>
+                    <span class="chip" data-value="跨市场">跨市场 🌐</span>
+                </div>
+            </div>
+            <div class="filter-row">
+                <span class="filter-label">政策主题</span>
+                <div class="filter-options" data-filter="category">
+                    <span class="chip active" data-value="all">全部</span>
+                    <span class="chip" data-value="牌照合规">牌照/合规</span>
+                    <span class="chip" data-value="利率上限">利率上限</span>
+                    <span class="chip" data-value="催收规范">催收规范</span>
+                    <span class="chip" data-value="数据隐私">数据隐私</span>
+                    <span class="chip" data-value="市场准入">市场准入</span>
+                    <span class="chip" data-value="外汇管制">外汇管制</span>
+                    <span class="chip" data-value="App政策">App Store/Google Play</span>
+                    <span class="chip" data-value="消费者保护">消费者保护</span>
+                </div>
+            </div>
+            <div class="filter-row">
+                <span class="filter-label">紧急程度</span>
+                <div class="filter-options" data-filter="urgency">
+                    <span class="chip active" data-value="all">全部</span>
+                    <span class="chip" data-value="高">高</span>
+                    <span class="chip" data-value="中">中</span>
+                    <span class="chip" data-value="低">低</span>
+                </div>
+            </div>
+            <div class="filter-row">
+                <span class="filter-label">来源可信度</span>
+                <div class="filter-options" data-filter="verified">
+                    <span class="chip active" data-value="all">全部</span>
+                    <span class="chip" data-value="verified">✅ 3源交叉验证</span>
+                    <span class="chip" data-value="unverified">⚠ 未交叉认证</span>
+                </div>
+            </div>
+            <div class="filter-row">
+                <span class="filter-label">状态</span>
+                <div class="filter-options" data-filter="status">
+                    <span class="chip active" data-value="all">全部</span>
+                    <span class="chip" data-value="拟议/征求意见">拟议/征求意见</span>
+                    <span class="chip" data-value="已确认待实施">已确认待实施</span>
+                    <span class="chip" data-value="已实施">已实施</span>
+                    <span class="chip" data-value="发展中">发展中</span>
+                </div>
+            </div>
+            <div class="filter-row">
+                <span class="filter-label">关键词</span>
+                <div class="search-box">
+                    <input type="text" class="search-input" placeholder="搜索：OJK、SOFOM、BCRA、数字借贷、数据隐私、外汇管制 ...">
+                </div>
+            </div>
+        </div>
+        <div class="view-toggle">
+            <div class="view-buttons">
+                <button class="view-btn active" data-view="timeline">时间线视图</button>
+                <button class="view-btn" data-view="card">卡片视图</button>
+            </div>
+            <select class="sort-select">
+                <option value="newest">时间：新 → 旧</option>
+                <option value="oldest">时间：旧 → 新</option>
+                <option value="urgency">紧急程度：高 → 低</option>
+            </select>
+        </div>
+        <div class="timeline global-timeline">
+            <!-- ===== 2026-08 ===== -->
+            <div class="month-section" data-month="2026-08"><div class="month-title">2026年08月 (4 条)</div>
+
+            <div class="policy-item" data-region="印尼" data-categories="牌照合规,利率上限" data-urgency="高" data-status="已确认待实施" data-verified="verified" data-date="2026-08-03">
+              <div class="policy-header"><div class="tags"><span class="tag tag-urgency-high">紧急-高</span><span class="tag tag-region">印尼 🇮🇩</span><span class="tag tag-category">牌照合规</span><span class="tag tag-category">利率上限</span><span class="tag tag-status-confirmed">已确认待实施</span><span class="tag tag-verified">✅ 3源交叉验证</span><span class="tag tag-new">NEW</span></div><div class="policy-date">2026-08-03</div></div>
+              <div class="policy-source">
+                  <span>来源：OJK / Kontan / Reuters</span>
+                  <span class="impact-badge severe">出海影响：严重</span>
+              </div>
+              <div class="policy-title">印尼 OJK 颁布新规：数字借贷平台日利率上限降至 0.3%，并要求所有平台在 2026 年底前完成 P2P 借贷牌照升级</div>
+              <div class="policy-desc">OJK（金融服务管理局）发布 POJK 新规，将 P2P 借贷及现金贷平台日利率从 0.4% 降至 0.3%（年化约 109.5% 降至 82.1%），并要求所有运营中的数字借贷平台在 2026 年 12 月 31 日前完成正式持牌。外资持股不超过 85%，注册资本不低于 250 亿印尼盾。</div>
+            </div>
+
+            <div class="policy-item" data-region="墨西哥" data-categories="牌照合规" data-urgency="高" data-status="已实施" data-verified="verified" data-date="2026-08-02">
+              <div class="policy-header"><div class="tags"><span class="tag tag-urgency-high">紧急-高</span><span class="tag tag-region">墨西哥 🇲🇽</span><span class="tag tag-category">牌照合规</span><span class="tag tag-status-active">已实施</span><span class="tag tag-verified">✅ 3源交叉验证</span></div><div class="policy-date">2026-08-02</div></div>
+              <div class="policy-source">
+                  <span>来源：CNBV / El Economista / BNamericas</span>
+                  <span class="impact-badge severe">出海影响：严重</span>
+              </div>
+              <div class="policy-title">CNBV 收紧 SOFOM 牌照监管，要求未受监管 SOFOM(SOFOM ENR)限期补办注册，否则面临刑事追诉</div>
+              <div class="policy-desc">墨西哥银行与证券委员会(CNBV)宣布所有未受监管的 SOFOM ENR 须在 60 个工作日内向 CONDUSEF 注册并完成合规审查。未注册者将被禁止运营并可能被追究刑事责任。此举直击大量以 SOFOM ENR 模式运营的中国出海现金贷平台。</div>
+            </div>
+
+            <div class="policy-item" data-region="尼日利亚" data-categories="牌照合规,利率上限" data-urgency="中" data-status="已确认待实施" data-verified="unverified" data-date="2026-08-01">
+              <div class="policy-header"><div class="tags"><span class="tag tag-urgency-medium">紧急-中</span><span class="tag tag-region">尼日利亚 🇳🇬</span><span class="tag tag-category">牌照合规</span><span class="tag tag-category">利率上限</span><span class="tag tag-status-confirmed">已确认待实施</span><span class="tag tag-unverified">⚠ 未交叉认证</span></div><div class="policy-date">2026-08-01</div></div>
+              <div class="policy-source">
+                  <span>来源：CBN / Nairalytics</span>
+                  <span class="impact-badge moderate">出海影响：中等</span>
+              </div>
+              <div class="policy-title">尼日利亚央行(CBN)拟对数字借贷平台利率上限收紧至月息 5%，超出部分按高利贷追诉</div>
+              <div class="policy-desc">CBN 正在制定数字借贷利率上限新规，拟将数字贷款月息上限从目前无明确标准收紧至 5%（年化 60%）。同时要求所有贷款 App 必须公示 CBN 牌照编号与统一利率计算器。⚠ 目前仅有 Nairalytics 与当地媒体报道，CBN 官方尚未发布正式通知，有待交叉验证。</div>
+            </div>
+
+            <div class="policy-item" data-region="阿根廷" data-categories="市场准入,数据隐私" data-urgency="中" data-status="拟议/征求意见" data-verified="verified" data-date="2026-08-01">
+              <div class="policy-header"><div class="tags"><span class="tag tag-urgency-medium">紧急-中</span><span class="tag tag-region">阿根廷 🇦🇷</span><span class="tag tag-category">市场准入</span><span class="tag tag-category">数据隐私</span><span class="tag tag-status-proposed">拟议/征求意见</span><span class="tag tag-verified">✅ 3源交叉验证</span></div><div class="policy-date">2026-08-01</div></div>
+              <div class="policy-source">
+                  <span>来源：BCRA / La Nación / Infobae</span>
+                  <span class="impact-badge moderate">出海影响：中等</span>
+              </div>
+              <div class="policy-title">阿根廷央行(BCRA)就虚拟钱包信贷产品出台征求意见稿，要求纳入征信体系及用户数据本地化</div>
+              <div class="policy-desc">BCRA 发布 Comunicación Axxxx 征求意见稿，拟将 Mercado Pago 等虚拟钱包提供的 Prestamos/BNPL 产品纳入央行征信报告体系，并在阿根廷境内存储用户信贷数据。此政策直接影响接入虚拟钱包做信贷分销的中国出海平台。</div>
+            </div>
+            </div>
+
+            <!-- ===== 2026-07 ===== -->
+            <div class="month-section" data-month="2026-07"><div class="month-title">2026年07月 (4 条)</div>
+
+            <div class="policy-item" data-region="菲律宾" data-categories="牌照合规" data-urgency="高" data-status="已确认待实施" data-verified="verified" data-date="2026-07-25">
+              <div class="policy-header"><div class="tags"><span class="tag tag-urgency-high">紧急-高</span><span class="tag tag-region">菲律宾 🇵🇭</span><span class="tag tag-category">牌照合规</span><span class="tag tag-status-confirmed">已确认待实施</span><span class="tag tag-verified">✅ 3源交叉验证</span></div><div class="policy-date">2026-07-25</div></div>
+              <div class="policy-source">
+                  <span>来源：SEC Philippines / Philstar / BusinessWorld</span>
+                  <span class="impact-badge severe">出海影响：严重</span>
+              </div>
+              <div class="policy-title">菲律宾 SEC 要求所有未注册 OLP (Online Lending Platform) 在 9 月 30 日前完成注册，否则启动刑事调查并报告 App Store / Google Play 下架</div>
+              <div class="policy-desc">SEC 发布备忘录通知，要求所有在线贷款平台(OLP)须持有 Certificate of Authority(CA)，未注册平台将在 9 月 30 日后被刑事调查，并向 Google/Apple 发函要求下架 App。菲律宾此前已吊销逾 100 家违规 OLP 牌照。</div>
+            </div>
+
+            <div class="policy-item" data-region="巴西" data-categories="利率上限,数据隐私" data-urgency="高" data-status="已实施" data-verified="verified" data-date="2026-07-18">
+              <div class="policy-header"><div class="tags"><span class="tag tag-urgency-high">紧急-高</span><span class="tag tag-region">巴西 🇧🇷</span><span class="tag tag-category">利率上限</span><span class="tag tag-category">数据隐私</span><span class="tag tag-status-active">已实施</span><span class="tag tag-verified">✅ 3源交叉验证</span></div><div class="policy-date">2026-07-18</div></div>
+              <div class="policy-source">
+                  <span>来源：BCB / LGPD(ANPD) / Valor Econômico</span>
+                  <span class="impact-badge severe">出海影响：严重</span>
+              </div>
+              <div class="policy-title">巴西央行与数据保护局联合执法：未遵守 LGPD 的金融科技平台面临最高 2% 营收罚款</div>
+              <div class="policy-desc">巴西央行(BCB)与国家数据保护局(ANPD)签署合作协议，对未遵守 LGPD(巴西通用数据保护法)的金融科技及数字借贷平台实施联合执法。罚款最高可达公司年营收的 2%（上限 5000 万雷亚尔）。巴西同时维持个人贷款利率上限 30% 年化。</div>
+            </div>
+
+            <div class="policy-item" data-region="肯尼亚" data-categories="牌照合规,消费者保护" data-urgency="中" data-status="已实施" data-verified="verified" data-date="2026-07-12">
+              <div class="policy-header"><div class="tags"><span class="tag tag-urgency-medium">紧急-中</span><span class="tag tag-region">肯尼亚 🇰🇪</span><span class="tag tag-category">牌照合规</span><span class="tag tag-category">消费者保护</span><span class="tag tag-status-active">已实施</span><span class="tag tag-verified">✅ 3源交叉验证</span></div><div class="policy-date">2026-07-12</div></div>
+              <div class="policy-source">
+                  <span>来源：CBK / Business Daily Africa / Reuters</span>
+                  <span class="impact-badge moderate">出海影响：中等</span>
+              </div>
+              <div class="policy-title">肯尼亚央行(CBK) Digital Credit Providers Regulations 2026 生效：所有数字信贷平台须持牌且不超过 DCP 利率上限</div>
+              <div class="policy-desc">CBK 正式施行《2026 数字信贷提供商条例》要求所有 DCP(Digital Credit Provider)在 90 天内申请牌照。条例设定利率上限挂钩央行基准利率，禁止滥用手机通讯录催收，违者最高罚 500 万肯先令。</div>
+            </div>
+
+            <div class="policy-item" data-region="跨市场" data-categories="App政策" data-urgency="中" data-status="已确认待实施" data-verified="verified" data-date="2026-07-05">
+              <div class="policy-header"><div class="tags"><span class="tag tag-urgency-medium">紧急-中</span><span class="tag tag-region">跨市场 🌐</span><span class="tag tag-category">App政策</span><span class="tag tag-status-confirmed">已确认待实施</span><span class="tag tag-verified">✅ 3源交叉验证</span></div><div class="policy-date">2026-07-05</div></div>
+              <div class="policy-source">
+                  <span>来源：Google Play Policy / Apple Developer / TechCrunch</span>
+                  <span class="impact-badge severe">出海影响：严重</span>
+              </div>
+              <div class="policy-title">Google Play 更新贷款 App 政策：无牌照证明的现金贷 App 将于 2026Q4 全球下架</div>
+              <div class="policy-desc">Google 更新个人贷款 App 政策，要求所有贷款类 App 必须在 Play Console 上传目标市场的有效金融牌照证明。未能在 2026 年 11 月 1 日前提供证明的 App 将被全球下架。Apple 同步强化开发者审核，要求贷款 App 提交目���市场监管机构的合规声明。</div>
+            </div>
+            </div>
+
+            <!-- ===== 2026-06 ===== -->
+            <div class="month-section" data-month="2026-06"><div class="month-title">2026年06月 (3 条)</div>
+
+            <div class="policy-item" data-region="越南" data-categories="市场准入,牌照合规" data-urgency="高" data-status="已确认待实施" data-verified="verified" data-date="2026-06-22">
+              <div class="policy-header"><div class="tags"><span class="tag tag-urgency-high">紧急-高</span><span class="tag tag-region">越南 🇻🇳</span><span class="tag tag-category">市场准入</span><span class="tag tag-category">牌照合规</span><span class="tag tag-status-confirmed">已确认待实施</span><span class="tag tag-verified">✅ 3源交叉验证</span></div><div class="policy-date">2026-06-22</div></div>
+              <div class="policy-source">
+                  <span>来源：SBV / VNExpress / Tuoi Tre</span>
+                  <span class="impact-badge severe">出海影响：严重</span>
+              </div>
+              <div class="policy-title">越南国家银行(SBV)试点消费金融公司(finance company)外资 100% 持股新规，同时要求董事会有越南籍成员</div>
+              <div class="policy-desc">SBV 发布 Circular 更新将消费金融公司外资持股上限从 50% 调整为试点 100%允许，但要求董事会至少一名越南籍成员且 CEO 需常驻越南。此政策可能打开此前因外资限制而受阻的中国出海企业进入通道。</div>
+            </div>
+
+            <div class="policy-item" data-region="埃及" data-categories="牌照合规,外汇管制" data-urgency="中" data-status="发展中" data-verified="unverified" data-date="2026-06-15">
+              <div class="policy-header"><div class="tags"><span class="tag tag-urgency-medium">紧急-中</span><span class="tag tag-region">埃及 🇪🇬</span><span class="tag tag-category">牌照合规</span><span class="tag tag-category">外汇管制</span><span class="tag tag-status-proposed">发展中</span><span class="tag tag-unverified">⚠ 未交叉认证</span></div><div class="policy-date">2026-06-15</div></div>
+              <div class="policy-source">
+                  <span>来源：CBE / Daily News Egypt</span>
+                  <span class="impact-badge moderate">出海影响：中等</span>
+              </div>
+              <div class="policy-title">埃及央行(CBE)将数字借贷纳入沙盒监管，外资需通过本地合资持牌</div>
+              <div class="policy-desc">CBE 将数字借贷平台纳入监管沙盒，要求外资企业须与埃及本地实体合资（外资持股不超过 51%）方可申请电子支付与借贷牌照。此政策限制独立出海模式。⚠ 目前仅 CBE 与 Daily News Egypt 来源，未经 Reuters/Bloomberg 交叉验证。</div>
+            </div>
+
+            <div class="policy-item" data-region="巴基斯坦" data-categories="牌照合规,利率上限" data-urgency="中" data-status="已实施" data-verified="verified" data-date="2026-06-08">
+              <div class="policy-header"><div class="tags"><span class="tag tag-urgency-medium">紧急-中</span><span class="tag tag-region">巴基斯坦 🇵🇰</span><span class="tag tag-category">牌照合规</span><span class="tag tag-category">利率上限</span><span class="tag tag-status-active">已实施</span><span class="tag tag-verified">✅ 3源交叉验证</span></div><div class="policy-date">2026-06-08</div></div>
+              <div class="policy-source">
+                  <span>来源：SECP / Dawn / Bloomberg</span>
+                  <span class="impact-badge moderate">出海影响：中等</span>
+              </div>
+              <div class="policy-title">巴基斯坦 SECP 最终确定数字借贷框架：利率上限挂钩 KIBOR+15%，App 须接入征信局</div>
+              <div class="policy-desc">SECP（证券交易委员会）发布《数字借贷监管框架》最终版，要求非银行金融公司(NBFC)持牌经营数字借贷，年化利率上限为 KIBOR+15%（当前约 35%），App 须接入巴基斯坦征信局，禁止访问借款人通讯录。</div>
+            </div>
+            </div>
+
+            <!-- ===== 2026-05 ===== -->
+            <div class="month-section" data-month="2026-05"><div class="month-title">2026年05月 (3 条)</div>
+
+            <div class="policy-item" data-region="尼日利亚" data-categories="催收规范,数据隐私" data-urgency="高" data-status="已实施" data-verified="verified" data-date="2026-05-28">
+              <div class="policy-header"><div class="tags"><span class="tag tag-urgency-high">紧急-高</span><span class="tag tag-region">尼日利亚 🇳🇬</span><span class="tag tag-category">催收规范</span><span class="tag tag-category">数据隐私</span><span class="tag tag-status-active">已实施</span><span class="tag tag-verified">✅ 3源交叉验证</span></div><div class="policy-date">2026-05-28</div></div>
+              <div class="policy-source">
+                  <span>来源：NDPC / FCCPC / Premium Times</span>
+                  <span class="impact-badge severe">出海影响：严重</span>
+              </div>
+              <div class="policy-title">尼日利亚 NDPC 与 FCCPC 联合执法：禁止贷款 App 访问通讯录/相册，违规 App 即时下架并罚没</div>
+              <div class="policy-desc">国家数据保护委员会(NDPC)与联邦竞争与消费者保护委员会(FCCPC)联合发布执法令，要求 Google Play 下架所有未经许可访问通讯录/相册的贷款 App，并对已下架的 27 家平台开出罚单。合规贷款 App 必须展示 NDPC 数据保护合规编号。</div>
+            </div>
+
+            <div class="policy-item" data-region="跨市场" data-categories="外汇管制" data-urgency="中" data-status="拟议/征求意见" data-verified="verified" data-date="2026-05-18">
+              <div class="policy-header"><div class="tags"><span class="tag tag-urgency-medium">紧急-中</span><span class="tag tag-region">跨市场 🌐</span><span class="tag tag-category">外汇管制</span><span class="tag tag-status-proposed">拟议/征求意见</span><span class="tag tag-verified">✅ 3源交叉验证</span></div><div class="policy-date">2026-05-18</div></div>
+              <div class="policy-source">
+                  <span>来源：SAFE / 21世纪经济报道 / WSJ</span>
+                  <span class="impact-badge severe">出海影响：严重</span>
+              </div>
+              <div class="policy-title">中国外管局(SAFE)拟加强跨境信贷资金流动监测，要求出海贷款平台境外放款逐笔备案</div>
+              <div class="policy-desc">国家外汇管理局拟修订《跨境信贷业务指引》，要求中国出海贷款平台对单笔超过 50 万美元的境外放款进行逐笔备案登记，强化跨境资金流动反洗钱（AML）审查。该政策将显著增加以自有资金在境外放贷的现金贷平台合规成本。</div>
+            </div>
+
+            <div class="policy-item" data-region="孟加拉" data-categories="牌照合规" data-urgency="低" data-status="发展中" data-verified="unverified" data-date="2026-05-10">
+              <div class="policy-header"><div class="tags"><span class="tag tag-urgency-low">紧急-低</span><span class="tag tag-region">孟加拉 🇧🇩</span><span class="tag tag-category">牌照合规</span><span class="tag tag-status-proposed">发展中</span><span class="tag tag-unverified">⚠ 未交叉认证</span></div><div class="policy-date">2026-05-10</div></div>
+              <div class="policy-source">
+                  <span>来源：Bangladesh Bank / Dhaka Tribune</span>
+                  <span class="impact-badge mild">出海影响：轻微</span>
+              </div>
+              <div class="policy-title">孟加拉央行(BB)酝酿数字借贷框架，重点参照印度/印尼模式但搁置</div>
+              <div class="policy-desc">孟加拉央行(bb)正在研究建立数字借贷监管框架，初步参照印度 RBI 与印尼 OJK 模式，但由于政局影响，推进速度较慢。⚠ 目前来源有限，仅有 Dhaka Tribune 报道与央行消息人士透露，建议持续关注（低优先级）。</div>
+            </div>
+            </div>
+
+            <!-- ===== 2026-04 and earlier ===== -->
+            <div class="month-section" data-month="2026-04"><div class="month-title">2026年04月及更早 (4 条)</div>
+
+            <div class="policy-item" data-region="墨西哥" data-categories="利率上限,消费者保护" data-urgency="中" data-status="已实施" data-verified="verified" data-date="2026-04-20">
+              <div class="policy-header"><div class="tags"><span class="tag tag-urgency-medium">紧急-中</span><span class="tag tag-region">墨西哥 🇲🇽</span><span class="tag tag-category">利率上限</span><span class="tag tag-category">消费者保护</span><span class="tag tag-status-active">已实施</span><span class="tag tag-verified">✅ 3源交叉验证</span></div><div class="policy-date">2026-04-20</div></div>
+              <div class="policy-source">
+                  <span>来源：CONDUSEF / El Financiero / Bloomberg</span>
+              </div>
+              <div class="policy-title">CONDUSEF 发布贷款产品披露新规：所有消费贷产品须展示 CAT（总成本年化费率）</div>
+              <div class="policy-desc">墨西哥消费者保护机构 CONDUSEF 要求所有 SOFOM 及银行在贷款产品的营销页面和合同中明示 CAT（Costo Anual Total，总成本年化费率），类似 APR 的综合费率指标。未达标者将被暂停放贷。</div>
+            </div>
+
+            <div class="policy-item" data-region="菲律宾" data-categories="催收规范" data-urgency="中" data-status="已实施" data-verified="verified" data-date="2026-03-28">
+              <div class="policy-header"><div class="tags"><span class="tag tag-urgency-medium">紧急-中</span><span class="tag tag-region">菲律宾 🇵🇭</span><span class="tag tag-category">催收规范</span><span class="tag tag-status-active">已实施</span><span class="tag tag-verified">✅ 3源交叉验证</span></div><div class="policy-date">2026-03-28</div></div>
+              <div class="policy-source">
+                  <span>来源：NPC / SEC / Rappler</span>
+              </div>
+              <div class="policy-title">菲律宾国家隐私委员会(NPC)禁止贷款 App 分享借款人联系人名单至第三方催收</div>
+              <div class="policy-desc">NPC 明确在线贷款平台的隐私义务：不得在未获独立授权的情况下将借款人手机通讯录用于催收或分享至第三方。此政策与尼日利亚 NDPC 2026-05 执法方向一致，反映新兴市场收紧通讯录催收的全球趋势。</div>
+            </div>
+
+            <div class="policy-item" data-region="巴西" data-categories="牌照合规,市场准入" data-urgency="中" data-status="已实施" data-verified="verified" data-date="2026-02-14">
+              <div class="policy-header"><div class="tags"><span class="tag tag-urgency-medium">紧急-中</span><span class="tag tag-region">巴西 🇧🇷</span><span class="tag tag-category">牌照合规</span><span class="tag tag-category">市场准入</span><span class="tag tag-status-active">已实施</span><span class="tag tag-verified">✅ 3源交叉验证</span></div><div class="policy-date">2026-02-14</div></div>
+              <div class="policy-source">
+                  <span>来源：BCB / Reuters / Estadão</span>
+              </div>
+              <div class="policy-title">巴西央行(BCB)颁布 SCD(直接信贷协会) 及 SEP(个人借贷平台) 牌照细则</div>
+              <div class="policy-desc">BCB 正式颁布两类金融科技牌照细则：SCD（Sociedade de Crédito Direto）允许平台使用自有资金放贷；SEP（Sociedade de Empréstimo entre Pessoas）允许 P2P 借贷。两类均需在 BCB 注册并遵守 30% 年化利率上限。牌照审批周期约 6-12 个月。</div>
+            </div>
+
+            <div class="policy-item" data-region="印尼" data-categories="数据隐私" data-urgency="低" data-status="已实施" data-verified="verified" data-date="2025-11-05">
+              <div class="policy-header"><div class="tags"><span class="tag tag-urgency-low">紧急-低</span><span class="tag tag-region">印尼 🇮🇩</span><span class="tag tag-category">数据隐私</span><span class="tag tag-status-active">已实施</span><span class="tag tag-verified">✅ 3源交叉验证</span></div><div class="policy-date">2025-11-05</div></div>
+              <div class="policy-source">
+                  <span>来源：PDP Law / OJK / Jakarta Post</span>
+              </div>
+              <div class="policy-title">印尼《个人数据保护法》全面施行，金融科技平台须在 1 年内完成数据合规整改</div>
+              <div class="policy-desc">印尼 PDP Law 正式生效，数字借贷平台须获得用户明示同意方可收集使用个人数据，数据须存储在印尼境内服务器（本地化要求）。罚则：最高可达年营收的 2%。</div>
+            </div>
+            </div>
+        </div>
+        <div class="footer-note">
+            <strong>来源标准：</strong>
+            高严谨度 → 各国央���/监管机构官网 + 权威财经媒体 ≥ 3个独立来源交叉验证。<br>
+            <strong>标签说明：</strong> ✅ 3源交叉验证 = Bloomberg/Reuters/当地权威媒体等 3+ 来源确认； ⚠ 未交叉认证 = 来源有限（1-2 个媒体），有待更多独立来源验证，建议交叉核验后再决策。<br>
+            示例数据截至 2026-08-05，每日 09:30 (GMT+8) 自动更新。
+        </div>
+    </div>
+</div>
+
+<!-- ============================================================ -->
+<!--  JAVASCRIPT                                                  -->
+<!-- ============================================================ -->
+<script>
+(function() {
+    // ── Module switching ──
+    document.querySelectorAll('.module-tab').forEach(btn => {
+        btn.addEventListener('click', function() {
+            document.querySelectorAll('.module-tab').forEach(b => b.classList.remove('active'));
+            document.querySelectorAll('.module-panel').forEach(p => p.classList.remove('active'));
+            this.classList.add('active');
+            document.getElementById('module-' + this.dataset.module).classList.add('active');
+        });
+    });
+
+    // ── Generic filter logic ──
+    function bindFilters(panelSelector, options) {
+        var panel = document.querySelector(panelSelector);
+        if (!panel) return;
+
+        var tabsContainer = panel.querySelector('.tabs');
+        var filtersContainer = panel.querySelector('.filters');
+        var searchInput = panel.querySelector('.search-input');
+        var sortSelect = panel.querySelector('.sort-select');
+        var statsContainer = panel.querySelector('.stats-grid');
+        var timelineEl = panel.querySelector('.timeline');
+
+        // Tab clicks
+        if (tabsContainer) {
+            tabsContainer.querySelectorAll('.tab').forEach(t => {
+                t.addEventListener('click', function() {
+                    tabsContainer.querySelectorAll('.tab').forEach(x => x.classList.remove('active'));
+                    this.classList.add('active');
+                    runFilter();
+                });
+            });
+        }
+
+        // Chip clicks
+        if (filtersContainer) {
+            filtersContainer.querySelectorAll('.filter-options').forEach(group => {
+                group.querySelectorAll('.chip').forEach(chip => {
+                    chip.addEventListener('click', function() {
+                        group.querySelectorAll('.chip').forEach(c => c.classList.remove('active'));
+                        this.classList.add('active');
+                        runFilter();
+                    });
+                });
+            });
+        }
+
+        // Search input
+        if (searchInput) {
+            searchInput.addEventListener('input', runFilter);
+        }
+
+        // Sort select
+        if (sortSelect) {
+            sortSelect.addEventListener('change', runFilter);
+        }
+
+        // View buttons (cosmetic)
+        panel.querySelectorAll('.view-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                panel.querySelectorAll('.view-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+
+        function getActiveChipValue(filterAttr) {
+            var group = filtersContainer ? filtersContainer.querySelector('[data-filter="' + filterAttr + '"]') : null;
+            if (!group) return 'all';
+            var active = group.querySelector('.chip.active');
+            return active ? active.dataset.value : 'all';
+        }
+
+        function getActiveTab() {
+            if (!tabsContainer) return 'all';
+            var active = tabsContainer.querySelector('.tab.active');
+            return active ? active.dataset.tab : 'all';
+        }
+
+        function runFilter() {
+            var activeTab = getActiveTab();
+            var items = Array.from(timelineEl.querySelectorAll('.policy-item'));
+            var searchText = searchInput ? searchInput.value.toLowerCase() : '';
+            var sortMode = sortSelect ? sortSelect.value : 'newest';
+            var statTotal = 0, statHigh = 0, statMedium = 0, statLow = 0, statUnverified = 0;
+
+            items.forEach(function(item) {
+                var region = item.dataset.region || '';
+                var categories = item.dataset.categories || '';
+                var urgency = item.dataset.urgency || '';
+                var status = item.dataset.status || '';
+                var verified = item.dataset.verified || '';
+                var text = item.innerText.toLowerCase();
+
+                // Tab filtering
+                var tabMatch = true;
+                if (activeTab === 'sea') tabMatch = /印尼|菲律宾|越南/.test(region);
+                else if (activeTab === 'latam') tabMatch = /墨西哥|巴西|阿根廷/.test(region);
+                else if (activeTab === 'africa') tabMatch = /尼日利亚|肯尼亚|埃及/.test(region);
+                else if (activeTab === 'sasia') tabMatch = /巴基斯坦|孟加拉/.test(region);
+                else if (activeTab === 'cross') tabMatch = /跨市场/.test(region);
+
+                // For thai module, simpler tab logic
+                if (activeTab === 'bnpl') tabMatch = (item.dataset.business || '').includes('BNPL');
+                else if (activeTab === 'ploan') tabMatch = (item.dataset.business || '').includes('Personal Loan');
+                else if (activeTab === 'pico') tabMatch = (item.dataset.business || '').includes('Pico Loan') || (item.dataset.business || '').includes('Nano Finance');
+                else if (activeTab === 'license') tabMatch = categories.includes('牌照政策');
+
+                var regionFilter = getActiveChipValue('region');
+                var categoryFilter = getActiveChipValue('category');
+                var urgencyFilter = getActiveChipValue('urgency');
+                var statusFilter = getActiveChipValue('status');
+                var verifiedFilter = getActiveChipValue('verified');
+
+                var regionMatch = regionFilter === 'all' || region === regionFilter;
+                var categoryMatch = categoryFilter === 'all' || categories.includes(categoryFilter);
+                var urgencyMatch = urgencyFilter === 'all' || urgency === urgencyFilter;
+                var statusMatch = statusFilter === 'all' || status === statusFilter;
+                var verifiedMatch = verifiedFilter === 'all' || verified === verifiedFilter;
+                var searchMatch = !searchText || text.includes(searchText);
+
+                if (tabMatch && regionMatch && categoryMatch && urgencyMatch && statusMatch && verifiedMatch && searchMatch) {
+                    item.classList.remove('hidden');
+                    statTotal++;
+                    if (urgency === '高') statHigh++;
+                    else if (urgency === '中') statMedium++;
+                    else if (urgency === '低') statLow++;
+                    if (verified === 'unverified') statUnverified++;
+                } else {
+                    item.classList.add('hidden');
+                }
+            });
+
+            // Update stats
+            if (statsContainer) {
+                var totalEl = statsContainer.querySelector('.stat-total');
+                var highEl = statsContainer.querySelector('.stat-high');
+                var mediumEl = statsContainer.querySelector('.stat-medium');
+                var lowEl = statsContainer.querySelector('.stat-low');
+                var unvEl = statsContainer.querySelector('.stat-unverified');
+                if (totalEl) totalEl.textContent = statTotal;
+                if (highEl) highEl.textContent = statHigh;
+                if (mediumEl) mediumEl.textContent = statMedium;
+                if (lowEl) lowEl.textContent = statLow;
+                if (unvEl) unvEl.textContent = statUnverified;
+            }
+
+            // Sort & reorder
+            timelineEl.querySelectorAll('.month-section').forEach(function(section) {
+                var vItems = Array.from(section.querySelectorAll('.policy-item:not(.hidden)'));
+                vItems.sort(function(a, b) {
+                    var ad = a.dataset.date, bd = b.dataset.date;
+                    if (sortMode === 'newest') return bd.localeCompare(ad);
+                    if (sortMode === 'oldest') return ad.localeCompare(bd);
+                    if (sortMode === 'urgency') {
+                        var map = {'高':3,'中':2,'低':1};
+                        return (map[b.dataset.urgency] || 0) - (map[a.dataset.urgency] || 0);
+                    }
+                    return 0;
+                });
+                vItems.forEach(function(item) { section.appendChild(item); });
+
+                var title = section.querySelector('.month-title');
+                var base = title.textContent.split('(')[0].trim();
+                if (vItems.length === 0) {
+                    section.classList.add('hidden');
+                } else {
+                    section.classList.remove('hidden');
+                    title.textContent = base + ' (' + vItems.length + ' 条)';
+                }
+            });
+        }
+
+        // Initial
+        runFilter();
+    }
+
+    // Bind both modules
+    bindFilters('#module-thai');
+    bindFilters('#module-global');
+
+})();
+</script>
+</body>
+</html>
