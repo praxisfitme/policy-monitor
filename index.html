@@ -892,7 +892,8 @@ body {
     .filters-header { display: flex; }
     .filters-body {
         max-height: 0;
-        overflow: hidden;
+        overflow-y: hidden;
+        overflow-x: visible;
         padding: 0 16px;
         transition: max-height 0.35s ease, padding 0.3s ease;
     }
@@ -901,10 +902,14 @@ body {
     .filter-row { align-items: flex-start; flex-direction: column; gap: 6px; }
     .filter-label { min-width: auto; }
     .filter-options {
+        width: 100%;
+        max-width: 100%;
         overflow-x: auto;
         flex-wrap: nowrap;
         scrollbar-width: none;
         padding-bottom: 4px;
+        -webkit-overflow-scrolling: touch;
+        touch-action: pan-x;
     }
     .filter-options::-webkit-scrollbar { display: none; }
 
