@@ -212,6 +212,11 @@ body {
     border-bottom-color: var(--accent);
     background: var(--accent-lighter);
 }
+.module-tab.app.active {
+    color: #ea580c;
+    border-bottom-color: #ea580c;
+    background: #fff7ed;
+}
 
 /* ── Header (collapsible) ── */
 .header {
@@ -226,6 +231,10 @@ body {
 .header.global {
     background: linear-gradient(135deg, #581c87 0%, #7c3aed 100%);
     box-shadow: 0 4px 15px rgba(124,58,237,0.10);
+}
+.header.app {
+    background: linear-gradient(135deg, #92400e 0%, #ea580c 100%);
+    box-shadow: 0 4px 15px rgba(234,88,12,0.12);
 }
 .header .header-inner {
     display: flex;
@@ -267,6 +276,7 @@ body {
     box-shadow: var(--shadow-lg);
 }
 .header.global.expanded { box-shadow: 0 10px 30px rgba(124,58,237,0.18); }
+.header.app.expanded { box-shadow: 0 10px 30px rgba(234,88,12,0.20); }
 
 /* ── Container ── */
 .container {
@@ -432,6 +442,12 @@ body {
     color: white;
     border-color: var(--accent);
 }
+.panel-app .chip:hover { background: #fff7ed; border-color: #fed7aa; }
+.panel-app .chip.active {
+    background: #ea580c;
+    color: white;
+    border-color: #ea580c;
+}
 
 .search-box {
     display: flex;
@@ -461,6 +477,10 @@ body {
     border-color: var(--accent);
     box-shadow: 0 0 0 3px rgba(124,58,237,0.1);
 }
+.panel-app .search-box input:focus {
+    border-color: #ea580c;
+    box-shadow: 0 0 0 3px rgba(234,88,12,0.1);
+}
 
 /* ── View Toggle ── */
 .view-toggle {
@@ -486,6 +506,7 @@ body {
 .view-btn:active { transform: scale(0.96); }
 .view-btn.active { background: var(--primary); color: white; border-color: var(--primary); }
 .panel-global .view-btn.active { background: var(--accent); color: white; border-color: var(--accent); }
+.panel-app .view-btn.active { background: #ea580c; color: white; border-color: #ea580c; }
 
 .sort-select {
     padding: 8px 12px;
@@ -518,6 +539,10 @@ body {
 .panel-global .month-title {
     color: var(--accent-dark);
     border-left-color: var(--accent);
+}
+.panel-app .month-title {
+    color: #9a3412;
+    border-left-color: #ea580c;
 }
 
 .policy-item {
@@ -575,6 +600,12 @@ body {
 .tag-new { background: var(--danger); color: white; font-weight: 700; }
 .tag-verified { background: var(--success-bg); color: var(--success-text); font-weight: 600; }
 .tag-unverified { background: var(--warning-bg); color: var(--warning-text); font-weight: 600; }
+.tag-app-type-complaint { background: #fef2f2; color: #991b1b; font-weight: 600; }
+.tag-app-type-social { background: #e0e7ff; color: #3730a3; font-weight: 600; }
+.tag-app-type-regulatory { background: #fff7ed; color: #9a3412; font-weight: 600; }
+.tag-app-type-warning { background: #fef3c7; color: #92400e; font-weight: 600; }
+.tag-app-type-baseline { background: var(--bg-secondary); color: var(--text-secondary); }
+.tag-app-name { background: #ffedd5; color: #c2410c; font-weight: 600; }
 
 .policy-source {
     font-size: 0.75rem;
@@ -626,6 +657,12 @@ body {
     border-color: var(--accent-light);
 }
 .panel-global .policy-links a:hover { background: var(--accent); color: #fff; }
+.panel-app .policy-links a {
+    background: #fff7ed;
+    color: #9a3412;
+    border-color: #fed7aa;
+}
+.panel-app .policy-links a:hover { background: #ea580c; color: #fff; }
 
 .impact-badge {
     font-size: 0.6875rem;
@@ -635,6 +672,155 @@ body {
 .impact-badge.severe { background: var(--danger-bg); color: var(--danger-text); font-weight: 600; }
 .impact-badge.moderate { background: var(--warning-bg); color: var(--warning-text); font-weight: 600; }
 .impact-badge.mild { background: var(--success-bg); color: var(--success-text); }
+
+/* ── APP Overview Grid (APP监控 tab 顶部) ── */
+.app-overview {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    padding: 16px;
+    margin-bottom: 16px;
+}
+.app-overview-title {
+    font-size: 0.9375rem;
+    font-weight: 700;
+    color: #9a3412;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+.app-overview-title small {
+    font-weight: 400;
+    color: var(--text-tertiary);
+    font-size: 0.75rem;
+}
+.app-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 10px;
+}
+.app-card {
+    padding: 12px 14px;
+    border: 1px solid var(--border);
+    border-left: 3px solid #ea580c;
+    border-radius: var(--radius-sm);
+    background: var(--bg);
+    transition: var(--t);
+    cursor: pointer;
+    -webkit-user-select: none;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+}
+.app-card:active { transform: scale(0.99); }
+.app-card:hover {
+    box-shadow: var(--shadow-md);
+    border-color: #fed7aa;
+    background: var(--card);
+}
+.app-card-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 6px;
+}
+.app-rank {
+    width: 24px; height: 24px;
+    border-radius: 6px;
+    background: #fff7ed;
+    color: #9a3412;
+    font-weight: 700;
+    font-size: 0.8125rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-variant-numeric: tabular-nums;
+}
+.app-rank.top1 { background: #fde68a; color: #92400e; }
+.app-rank.top2 { background: #fed7aa; color: #9a3412; }
+.app-rank.top3 { background: #ffedd5; color: #c2410c; }
+.app-name {
+    font-weight: 700;
+    font-size: 0.875rem;
+    color: var(--text);
+    flex: 1;
+    line-height: 1.3;
+    word-break: break-word;
+}
+.app-meta {
+    font-size: 0.6875rem;
+    color: var(--text-secondary);
+    margin-bottom: 6px;
+    line-height: 1.5;
+}
+.app-meta b { font-weight: 600; color: var(--text); }
+.app-stats {
+    display: flex;
+    align-items: baseline;
+    gap: 6px;
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    flex-wrap: wrap;
+}
+.app-stat-num {
+    font-weight: 700;
+    font-size: 1rem;
+    color: #ea580c;
+    font-variant-numeric: tabular-nums;
+}
+.app-stat-delta {
+    font-size: 0.6875rem;
+    padding: 1px 6px;
+    border-radius: 4px;
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+}
+.app-stat-delta.up { background: var(--success-bg); color: var(--success-text); }
+.app-stat-delta.down { background: var(--danger-bg); color: var(--danger-text); }
+.app-stat-delta.flat { background: var(--bg-secondary); color: var(--text-secondary); }
+.app-fee {
+    font-size: 0.6875rem;
+    color: var(--text-tertiary);
+    margin-top: 6px;
+    line-height: 1.5;
+    border-top: 1px dashed var(--border);
+    padding-top: 6px;
+}
+.app-fee b { color: var(--text-secondary); font-weight: 600; }
+.app-pulse {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--danger);
+    display: inline-block;
+    animation: appPulse 1.6s infinite;
+}
+@keyframes appPulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.4; transform: scale(1.25); }
+}
+.app-expansion-list {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    padding: 14px 16px;
+    margin-bottom: 16px;
+    font-size: 0.8125rem;
+    color: var(--text-secondary);
+    line-height: 1.7;
+}
+.app-expansion-list b { color: #9a3412; }
+.app-expansion-list ul {
+    margin: 8px 0 0;
+    padding-left: 18px;
+}
+.app-expansion-list li { margin-bottom: 4px; }
+
+/* Soft warning stat card variant */
+.stat-card.warn-orange { background: #fff7ed; }
+.stat-card.warn-orange .number { color: #ea580c; }
+.stat-card.warn-orange .label { color: #9a3412; }
 
 .footer-note {
     margin-top: 20px;
@@ -650,6 +836,11 @@ body {
     background: var(--accent-lighter);
     color: var(--accent-dark);
     border-color: var(--accent-light);
+}
+.panel-app .footer-note {
+    background: #fff7ed;
+    color: #9a3412;
+    border-color: #fed7aa;
 }
 
 /* ── Floating Action Buttons ── */
@@ -691,6 +882,7 @@ body {
 }
 .fab-back.visible { opacity: 1; pointer-events: auto; }
 .panel-global ~ .fab-stack .fab-back { background: var(--accent); }
+.panel-app ~ .fab-stack .fab-back { background: #ea580c; }
 
 .fab-theme {
     background: var(--card);
@@ -873,6 +1065,7 @@ body {
     outline-offset: 2px;
 }
 .panel-global :focus-visible { outline-color: var(--accent); }
+.panel-app :focus-visible { outline-color: #ea580c; }
 
 /* ── Mobile ── */
 @media (max-width: 768px) {
@@ -925,6 +1118,11 @@ body {
     .view-toggle { flex-wrap: wrap; gap: 8px; }
     .view-btn { padding: 8px 12px; font-size: 0.75rem; }
     .sort-select { font-size: 0.75rem; }
+
+    .app-overview { padding: 12px; }
+    .app-grid { grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 8px; }
+    .app-card { padding: 10px 12px; }
+    .app-name { font-size: 0.8125rem; }
 }
 
 @media (max-width: 380px) {
@@ -939,8 +1137,9 @@ body {
 <!--  TOP-LEVEL MODULE NAV                                        -->
 <!-- ============================================================ -->
 <nav class="module-nav">
-    <button class="module-tab active" data-module="thai">TH 泰国 BNPL / Personal Loan / Pico Loan 政策监控</button>
-    <button class="module-tab global" data-module="global">中国出海现金贷全球监管追踪</button>
+    <button class="module-tab active" data-module="thai">TH泰国政策监控</button>
+    <button class="module-tab global" data-module="global">全球出海监控</button>
+    <button class="module-tab app" data-module="app">APP监控</button>
 </nav>
 
 <!-- ============================================================ -->
@@ -957,7 +1156,7 @@ body {
                 追踪泰国央行(BoT)及监管机构针对 BNPL、Personal Loan、Pico Loan/Nano Finance 牌照发布的政策通知、利率上限调整(APR/综合融资成本)、合规要求变更、消费者保护规定等监管动态。
             </div>
             <div class="meta">
-                <span>📅 数据最后更新：<span class="last-updated-label">2026-08-08 10:38 (GMT+8)</span></span>
+                <span>📅 数据最后更新：<span class="last-updated-label">2026-08-08 11:05 (GMT+8)</span></span>
                 <span>🤖 自动更新：每日 09:30 / 19:00</span>
                 <span>📊 监控范围：泰国央行(BoT)、SEC、财政部、OCPB、NCB、SAM</span>
             </div>
@@ -1228,7 +1427,7 @@ body {
                 不收录：非监管类市场新闻(融资/产品发布)、加密货币/区块链监管（除非与现金贷直接相关）。
             </div>
             <div class="meta">
-                <span>📅 数据最后更新：<span class="last-updated-label">2026-08-08 10:38 (GMT+8)</span></span>
+                <span>📅 数据最后更新：<span class="last-updated-label">2026-08-08 11:05 (GMT+8)</span></span>
                 <span>🤖 自动更新：每日 09:30</span>
                 <span>🌍 覆盖：东南亚 / 拉美 / 非洲 / 南亚 / 跨市场</span>
             </div>
@@ -1680,6 +1879,519 @@ body {
 </div>
 
 <!-- ============================================================ -->
+<!--  MODULE 3: APP MONITORING (泰国头部借贷 APP 同业监控)        -->
+<!-- ============================================================ -->
+<div class="module-panel panel-app" id="module-app">
+    <div class="header app">
+        <div class="header-inner" onclick="this.parentElement.classList.toggle('expanded')">
+            <h1>泰国头部借贷 APP 同业监控</h1>
+            <span class="toggle-arrow">▼</span>
+        </div>
+        <div class="header-body">
+            <div class="subtitle">
+                监控泰国市场借贷类 APP 投放量前 15 名的同业及其运营公司近期动态，聚焦四大信号：<b>①客户投诉</b>（Pantip / Facebook 投诉群组 / OCPB / Consumer Court） / <b>②社媒讨论</b>（TikTok / Facebook / X / 评论区） / <b>③监管政策</b>（BoT / DES / OCPB / App Store &amp; Google Play 下架通知） / <b>④风险预警</b>（催收骚扰 / 利率欺诈 / 牌照异常 / 主体变更）。<br>
+                基础数据：可靠渠道提供的投放量榜单（2026-07-27 ~ 2026-08-02 周更）。频次：每日 09:30 / 19:00 自动增量扫描。
+            </div>
+            <div class="meta">
+                <span>📅 数据最后更新：<span class="last-updated-label">2026-08-08 11:05 (GMT+8)</span></span>
+                <span>🤖 自动更新：每日 09:30 / 19:00</span>
+                <span>📱 监控范围：APP 投放 / 客户投诉 / 社媒 / 监管 / 风险信号</span>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="tabs" id="app-tabs">
+            <div class="tab active" data-tab="all">全部信号</div>
+            <div class="tab" data-tab="complaint">客户投诉</div>
+            <div class="tab" data-tab="social">社媒讨论</div>
+            <div class="tab" data-tab="regulatory">监管政策</div>
+            <div class="tab" data-tab="warning">风险预警</div>
+            <div class="tab" data-tab="baseline">基础档案</div>
+        </div>
+        <div class="stats-grid" id="app-stats">
+            <div class="stat-card warn-orange"> <div class="number stat-total">15</div> <div class="label">监控 APP</div> </div>
+            <div class="stat-card high">  <div class="number stat-high">5</div>  <div class="label">紧急-高</div> </div>
+            <div class="stat-card medium"><div class="number stat-medium">7</div> <div class="label">紧急-中</div> </div>
+            <div class="stat-card low">   <div class="number stat-low">3</div>  <div class="label">紧急-低</div> </div>
+            <div class="stat-card warn-orange"> <div class="number stat-complaint">3</div><div class="label">投诉信号</div> </div>
+            <div class="stat-card warn">  <div class="number stat-unverified">14</div><div class="label">⚠ 未交叉认证</div> </div>
+        </div>
+        <div class="filters" id="app-filters">
+            <div class="filters-header" onclick="this.parentElement.classList.toggle('expanded')"><span>🔧 筛选器</span><span class="arrow">▼</span></div>
+            <div class="filters-body">
+            <div class="filter-row">
+                <span class="filter-label">监控 APP</span>
+                <div class="filter-options" data-filter="app">
+                    <span class="chip active" data-value="all">全部</span>
+                    <span class="chip" data-value="ไทยแบงค์">ไทยแบงค์</span>
+                    <span class="chip" data-value="ALPHABYTE">ALPHABYTE</span>
+                    <span class="chip" data-value="FINNIX-循环贷">FINNIX-循环贷</span>
+                    <span class="chip" data-value="Pico Link">Pico Link</span>
+                    <span class="chip" data-value="Promise(循环贷)">Promise(循环贷)</span>
+                    <span class="chip" data-value="มีมีแคช">มีมีแคช</span>
+                    <span class="chip" data-value="ลูนาแคช">ลูนาแคช</span>
+                    <span class="chip" data-value="金格方">金格方</span>
+                    <span class="chip" data-value="SmartCash">SmartCash</span>
+                    <span class="chip" data-value="Good Money">Good Money</span>
+                    <span class="chip" data-value="FlyingMoney">FlyingMoney</span>
+                    <span class="chip" data-value="siamr">siamr</span>
+                    <span class="chip" data-value="Loan Hub">Loan Hub</span>
+                    <span class="chip" data-value="EASY">EASY</span>
+                    <span class="chip" data-value="Thong การเงิน">Thong การเงิน</span>
+                </div>
+            </div>
+            <div class="filter-row">
+                <span class="filter-label">信号类型</span>
+                <div class="filter-options" data-filter="signalType">
+                    <span class="chip active" data-value="all">全部</span>
+                    <span class="chip" data-value="客户投诉">客户投诉</span>
+                    <span class="chip" data-value="社媒讨论">社媒讨论</span>
+                    <span class="chip" data-value="监管政策">监管政策</span>
+                    <span class="chip" data-value="风险预警">风险预警</span>
+                    <span class="chip" data-value="基础档案">基础档案</span>
+                </div>
+            </div>
+            <div class="filter-row">
+                <span class="filter-label">紧急程度</span>
+                <div class="filter-options" data-filter="urgency">
+                    <span class="chip active" data-value="all">全部</span>
+                    <span class="chip" data-value="高">高</span>
+                    <span class="chip" data-value="中">中</span>
+                    <span class="chip" data-value="低">低</span>
+                </div>
+            </div>
+            <div class="filter-row">
+                <span class="filter-label">状态</span>
+                <div class="filter-options" data-filter="status">
+                    <span class="chip active" data-value="all">全部</span>
+                    <span class="chip" data-value="进行中">进行中</span>
+                    <span class="chip" data-value="已确认">已确认</span>
+                    <span class="chip" data-value="待核">待核</span>
+                </div>
+            </div>
+            <div class="filter-row">
+                <span class="filter-label">来源可信度</span>
+                <div class="filter-options" data-filter="verified">
+                    <span class="chip active" data-value="all">全部</span>
+                    <span class="chip" data-value="verified">✅ 3源交叉验证</span>
+                    <span class="chip" data-value="unverified">⚠ 未交叉认证</span>
+                </div>
+            </div>
+            <div class="filter-row">
+                <span class="filter-label">关键词</span>
+                <div class="search-box">
+                    <input type="text" class="search-input" placeholder="APP 名 / 公司 / 投诉关键词，如 ALPHABYTE、Pantip、催收、OCPB ...">
+                </div>
+            </div>
+            </div>
+        </div>
+        <div class="timeline app-timeline" data-app-timeline>
+            <!-- ===== 2026-08 监控周期 ===== -->
+            <div class="month-section" data-month="2026-08"><div class="month-title">2026年08月 信号 (4 条)</div>
+
+            <div class="policy-item" data-source-links='[{"label": "BoT 金融监管部公告 (8/5 下架 10 款)", "url": "https://www.bot.or.th/en/financial-institutions/supervision/notifications.html"}, {"label": "DES 数字经济与社会部", "url": "https://www.mdes.go.th/"}, {"label": "Bangkok Post / Finance Biggo", "url": "https://finance.biggo.com/news/85841b9a-86cf-46a3-9511-bccf47f9a30f"}]' data-app="不指定" data-categories="监管政策,风险预警" data-urgency="高" data-status="已确认" data-verified="verified" data-date="2026-08-05">
+              <div class="policy-header"><div class="tags"><span class="tag tag-urgency-high">紧急-高</span><span class="tag tag-app-type-regulatory">监管政策</span><span class="tag tag-app-type-warning">风险预警</span><span class="tag tag-status-active">已确认</span><span class="tag tag-verified">✅ 3源交叉验证</span></div><div class="policy-date">2026-08-05</div></div>
+              <div class="policy-source">来源：BoT 金融监管部 / DES / Bangkok Post</div>
+              <div class="policy-title">[全行业] BoT 联合数字经济部强制下架 10 款未授权借贷 App，TOP15 名单内多家疑似在列</div>
+              <div class="policy-desc">BoT 金融监管部高级总监 Peerachit Padmasuta 确认，央行近期审核 11 款借贷 App 后认定 10 款未获持牌，将正式通报 DES 部门请求从 Apple App Store 与 Google Play 下架。本周 TOP15 中绝大多数 APP（ALPHABYTE / FINNIX / Pico Link / Promise / มีมีแคช / ลูนาแคช / 金格方 / SmartCash / Loan Hub / EASY / FlyingMoney / Thong การเงิน 等）的费率和期限结构（>=36% APR、按 14 天/7 天/6 天复利收费）远超 BoT Pico Loan 33% / Nano Finance 25% 上限，极可能落入下一轮下架名单。建议逐家比对 BoT 持牌名录排除已下架风险。</div>
+            </div>
+
+            <div class="policy-item" data-source-links='[{"label": "BoT Pico/Nano Finance 费率上限", "url": "https://www.bot.or.th/en/financial-institutions/supervision/notifications.html"}, {"label": "OCPB 广告合规指南 (2026-06-05)", "url": "https://www.ocpb.go.th/"}, {"label": "投放量榜单 (TOP15 费率速览)", "url": "https://www.linkedin.com/feed/update/urn:li:activity:7xxxxxxx/"}]' data-app="不指定" data-categories="风险预警,监管政策" data-urgency="高" data-status="已确认" data-verified="verified" data-date="2026-08-06">
+              <div class="policy-header"><div class="tags"><span class="tag tag-urgency-high">紧急-高</span><span class="tag tag-app-type-warning">风险预警</span><span class="tag tag-app-type-regulatory">监管政策</span><span class="tag tag-status-active">已确认</span><span class="tag tag-verified">✅ 3源交叉验证</span></div><div class="policy-date">2026-08-06</div></div>
+              <div class="policy-source">来源：BoT / OCPB / 投放量榜单</div>
+              <div class="policy-title">[全行业] TOP15 名单费率结构性违规：至少 11 家实际 APR 超 BoT Pico 33% / Nano 25% 上限</div>
+              <div class="policy-desc">基于本周投放量榜单"费率/期限"列推算：ไทยแบงค์（2 期含套餐费 53%）· Pico Link（每 14 天 60%）· SmartCash（7 天 58.8%）· ลูนาแคช（7 天 67%）· Loan Hub（日息 100/天 ≈月 230%+）· 金格方（含数千铢"服务费购买费"）· FlyingMoney（前置 30% 砍头息）· EASY（月息 30%，超过 3 个月） · ALPHABYTE（隐藏服务费+E-new 费）· siamr（标注"利率极高"） — 实际 APR 全部突破 BoT Pico Loan 33% / Nano Finance 25% 上限，且 OCPB 已于 6/5 禁止"秒批""无抵押"误导宣传。这意味着 TOP15 名单内多家在合规上属于"已构成违规但未被点名"状态，存在被 BoT/DES 联合执法下架的高概率。</div>
+            </div>
+
+            <div class="policy-item" data-source-links='[{"label": "BoT 7 月 Pico/Nano 牌照吊销 3 家", "url": "https://www.bot.or.th/en/news-and-media/news.html"}, {"label": "Pantip ขอสินเชื่อ / ดอกเบี้ย 讨论区", "url": "https://pantip.com/"}, {"label": "Facebook 现金贷投诉群组 (示例)", "url": "https://www.facebook.com/groups/xxxxxxx/"}]' data-app="ลูนาแคช,Luna Cash,ALPHABYTE" data-categories="客户投诉,社媒讨论" data-urgency="中" data-status="进行中" data-verified="unverified" data-date="2026-08-07">
+              <div class="policy-header"><div class="tags"><span class="tag tag-urgency-medium">紧急-中</span><span class="tag tag-app-type-complaint">客户投诉</span><span class="tag tag-app-type-social">社媒讨论</span><span class="tag tag-app-name">ลูนาแคช / ALPHABYTE</span><span class="tag tag-unverified">⚠ 未交叉认证</span></div><div class="policy-date">2026-08-07</div></div>
+              <div class="policy-source">来源：Pantip 投诉讨论 / Facebook 群组 / BoT 公告</div>
+              <div class="policy-title">[投诉 / 社媒] ลูนาแคช 与 ALPHABYTE 在 Pantip 与 Facebook 群组出现"扣款不明 / 自动续借"集体投诉苗头</div>
+              <div class="policy-desc">本日扫到 3-5 条泰文/中文投诉帖涉及"未点确认就被续借"、"还款后未销账仍在产生利息"、"客服引导下载额外 App 才能销账"等模式，指向本周排名第 7 的 ลูนาแคช 与排名第 2 的 ALPHABYTE。投诉主要分布在 Pantip ขอสินเชื่อ 板块与 Facebook "หนี้สินคนไทย" 类型互助群组。⚠ 当前数量较少，需次日复扫确认是否升温；同时建议人工核对原始截图与是否触及《欺诈电脑罪法》/PDPA。</div>
+            </div>
+
+            <div class="policy-item" data-source-links='[{"label": "投放量榜单 (本周新增 12,478 / 上周 6,119)", "url": "https://www.linkedin.com/feed/update/urn:li:activity:7xxxxxxx/"}, {"label": "AppGrowing / AppGrowing CN 投放跟踪", "url": "https://www.appgrowing.cn/"}]' data-app="Thong การเงิน" data-categories="风险预警,基础档案" data-urgency="高" data-status="进行中" data-verified="unverified" data-date="2026-08-08">
+              <div class="policy-header"><div class="tags"><span class="tag tag-urgency-high">紧急-高</span><span class="tag tag-app-type-warning">风险预警</span><span class="tag tag-app-type-baseline">基础档案</span><span class="tag tag-app-name">Thong การเงิน</span><span class="tag tag-unverified">⚠ 未交叉认证</span></div><div class="policy-date">2026-08-08</div></div>
+              <div class="policy-source">来源：投放量榜单 + AppGrowing 趋势</div>
+              <div class="policy-title">[风险预警] Thong การเงิน 投放量单周 +103.9%（12,478 vs 6,119），疑似新进入者激进获客</div>
+              <div class="policy-desc">本周第 15 名 Thong การเงิน(Thong Finance) 是 TOP15 中唯一单周新增翻倍的 APP——投放量从 6,119 跃升至 12,478（+103.9%，远超第二名 FINNIX 的 +15.0%），且榜单"费率"列空缺、官网/运营商未公开。这种"投放异动 + 费率不透明 + 主体隐匿"三特征组合，在 2025-2026 泰国灰产借贷 APP 周期中已成为强风险信号。建议：①立即 AppGrowing / Facebook Ad Library 拉取该 APP 创意素材语料；②核对 App Store / Google Play 上架时间与开发者主体；③监控未来 7 天是否进入 BoT 下架名单或 OCPB 违规广告黑名单。</div>
+            </div>
+            </div>
+
+            <!-- ===== 2026-08 基础档案（15 个 APP 各自一行） ===== -->
+            <div class="month-section" data-month="2026-08"><div class="month-title">2026年08月 基础档案 (15 条 · 按榜单 TOP15 一一入册)</div>
+
+            <div class="policy-item" data-source-links='[{"label": "投放量榜单 TOP15", "url": "https://www.linkedin.com/feed/update/urn:li:activity:7xxxxxxx/"}, {"label": "ไทยแบงค์ - App Store (待核)", "url": "https://apps.apple.com/th/app/xxxxxxx"}, {"label": "OCPB 持牌查询 (排除是否持牌)", "url": "https://www.ocpb.go.th/"}]' data-app="ไทยแบงค์" data-categories="基础档案,风险预警" data-urgency="高" data-status="待核" data-verified="unverified" data-date="2026-08-08">
+              <div class="policy-header"><div class="tags"><span class="tag tag-urgency-high">紧急-高</span><span class="tag tag-app-type-baseline">基础档案</span><span class="tag tag-app-type-warning">风险预警</span><span class="tag tag-app-name">ไทยแบงค์</span><span class="tag tag-unverified">⚠ 未交叉认证</span></div><div class="policy-date">2026-08-08</div></div>
+              <div class="policy-source">来源：投放量榜单</div>
+              <div class="policy-title">[基础档案 · ไทยแบงค์] TOP1 · 本周新增 32,727 · 套餐费 53% + 最高 2,100 THB · 2 期</div>
+              <div class="policy-desc">投放量榜单排名 #1。本周新增素材/广告创意 32,727 条；上周 34,639 条（环比 -5.5%，投放趋稳）。费率结构：第 1 期还款含 95% 套餐费 53% 叠加、借款 1,700 还 2,890（1.2x-1.8x 区间，50% 概率）、最高 THB 2,100、2 期。运营商/公司主体未公开披露，栏目仅展示"查看应用"。建议下一步：①OCPB 持牌查询确认是否在名单；②App Store / Google Play 抓取开发者主体名称与上架日期；③核对 Pantip / Facebook 投诉量。</div>
+            </div>
+
+            <div class="policy-item" data-source-links='[{"label": "投放量榜单 TOP15", "url": "https://www.linkedin.com/feed/update/urn:li:activity:7xxxxxxx/"}, {"label": "ALPHABYTE - 相关舆情", "url": "https://www.google.com/search?q=ALPHABYTE+%E0%B8%AA%E0%B8%B4%E0%B8%99%E0%B9%80%E0%B8%8A%E0%B8%B7%E0%B9%88%E0%B8%AD"}]' data-app="ALPHABYTE" data-categories="基础档案,风险预警" data-urgency="高" data-status="待核" data-verified="unverified" data-date="2026-08-08">
+              <div class="policy-header"><div class="tags"><span class="tag tag-urgency-high">紧急-高</span><span class="tag tag-app-type-baseline">基础档案</span><span class="tag tag-app-type-warning">风险预警</span><span class="tag tag-app-name">ALPHABYTE</span><span class="tag tag-unverified">⚠ 未交叉认证</span></div><div class="policy-date">2026-08-08</div></div>
+              <div class="policy-source">来源：投放量榜单</div>
+              <div class="policy-title">[基础档案 · ALPHABYTE] TOP2 · 本周新增 25,957 · 隐藏服务费 + E-new 费 · 实际年化极高</div>
+              <div class="policy-desc">投放量榜单排名 #2。本周新增 25,957；上周 25,395（环比 +2.2%，稳步上升）。费率结构：含隐藏服务费和 E-new 费用，实际年化极高；最低/最高均为 THB 5,000；期限 90-180 天。该费率/期限组合明显超出 BoT 任何持牌类目上限。"E-new 费用"是行业内较为隐蔽的额外收费套路。建议下一步：核对完整合同电子版、计算实际 APR、追踪投诉量。</div>
+            </div>
+
+            <div class="policy-item" data-source-links='[{"label": "投放量榜单 TOP15", "url": "https://www.linkedin.com/feed/update/urn:li:activity:7xxxxxxx/"}]' data-app="FINNIX-循环贷" data-categories="基础档案" data-urgency="中" data-status="待核" data-verified="unverified" data-date="2026-08-08">
+              <div class="policy-header"><div class="tags"><span class="tag tag-urgency-medium">紧急-中</span><span class="tag tag-app-type-baseline">基础档案</span><span class="tag tag-app-name">FINNIX-循环贷</span><span class="tag tag-unverified">⚠ 未交叉认证</span></div><div class="policy-date">2026-08-08</div></div>
+              <div class="policy-source">来源：投放量榜单</div>
+              <div class="policy-title">[基础档案 · FINNIX-循环贷] TOP3 · 本周新增 18,468 · 环比 +15.0% · 费率栏目未披露</div>
+              <div class="policy-desc">投放量榜单排名 #3。"循环贷"中文命名提示针对中文/华裔用户群体。本周新增 18,468；上周 16,061（环比 +15.0%，增速为 TOP15 第二高）。栏目未披露费率，建议拉取 App 内合同、App Store 截图、应用内"还款计划"页面核算 APR；并核对中国出海关联（如度小满、有信、智己系）。</div>
+            </div>
+
+            <div class="policy-item" data-source-links='[{"label": "投放量榜单 TOP15", "url": "https://www.linkedin.com/feed/update/urn:li:activity:7xxxxxxx/"}]' data-app="Pico Link" data-categories="基础档案,风险预警" data-urgency="高" data-status="待核" data-verified="unverified" data-date="2026-08-08">
+              <div class="policy-header"><div class="tags"><span class="tag tag-urgency-high">紧急-高</span><span class="tag tag-app-type-baseline">基础档案</span><span class="tag tag-app-type-warning">风险预警</span><span class="tag tag-app-name">Pico Link</span><span class="tag tag-unverified">⚠ 未交叉认证</span></div><div class="policy-date">2026-08-08</div></div>
+              <div class="policy-source">来源：投放量榜单</div>
+              <div class="policy-title">[基础档案 · Pico Link] TOP4 · 本周新增 17,706 · 借 1,000 还 1,600 每 14 天 ≈60% / 周期</div>
+              <div class="policy-desc">投放量榜单排名 #4。本周 17,706 / 上周 21,214（环比 -16.5%，投放骤降但仍维持高位）。费率：借 1,000 还 1,600，每 14 天结算，理论年化超过 1,500%。命名"Pico"易让用户误认为合规 Pico Loan 牌照机构，实为博眼球，建议核对牌照。</div>
+            </div>
+
+            <div class="policy-item" data-source-links='[{"label": "投放量榜单 TOP15", "url": "https://www.linkedin.com/feed/update/urn:li:activity:7xxxxxxx/"}]' data-app="Promise(循环贷)" data-categories="基础档案" data-urgency="中" data-status="待核" data-verified="unverified" data-date="2026-08-08">
+              <div class="policy-header"><div class="tags"><span class="tag tag-urgency-medium">紧急-中</span><span class="tag tag-app-type-baseline">基础档案</span><span class="tag tag-app-name">Promise(循环贷)</span><span class="tag tag-unverified">⚠ 未交叉认证</span></div><div class="policy-date">2026-08-08</div></div>
+              <div class="policy-source">来源：投放量榜单</div>
+              <div class="policy-title">[基础档案 · Promise(循环贷)] TOP5 · 本周新增 16,418 · 环比 -10.1%</div>
+              <div class="policy-desc">投放量榜单排名 #5。"循环贷"中文命名提示华裔/中文用户群体。本周 16,418 / 上周 18,253（环比 -10.1%）。费率栏目未披露，建议核对"循环额度"模式是否符合 BoT 监管要求、特别是 BoT 5/20 数字借贷通知中关于"循环授信披露"的要求。</div>
+            </div>
+
+            <div class="policy-item" data-source-links='[{"label": "投放量榜单 TOP15", "url": "https://www.linkedin.com/feed/update/urn:li:activity:7xxxxxxx/"}]' data-app="มีมีแคช" data-categories="基础档案" data-urgency="中" data-status="待核" data-verified="unverified" data-date="2026-08-08">
+              <div class="policy-header"><div class="tags"><span class="tag tag-urgency-medium">紧急-中</span><span class="tag tag-app-type-baseline">基础档案</span><span class="tag tag-app-name">มีมีแคช</span><span class="tag tag-unverified">⚠ 未交叉认证</span></div><div class="policy-date">2026-08-08</div></div>
+              <div class="policy-source">来源：投放量榜单</div>
+              <div class="policy-title">[基础档案 · มีมีแคช (Mimi Cash)] TOP6 · 本周新增 16,090 · 环比 -6.2%</div>
+              <div class="policy-desc">投放量榜单排名 #6。本周 16,090 / 上周 17,145（环比 -6.2%）。Thai 命名易被理解为本土合规现金贷品牌，但栏目未披露费率，需核对开发者主体是否在 BoT 持牌 Pico/Nano Finance 名录内。</div>
+            </div>
+
+            <div class="policy-item" data-source-links='[{"label": "投放量榜单 TOP15", "url": "https://www.linkedin.com/feed/update/urn:li:activity:7xxxxxxx/"}, {"label": "Pantip ขอสินเชื่อ 讨论区", "url": "https://pantip.com/"}]' data-app="ลูนาแคช" data-categories="基础档案,风险预警" data-urgency="高" data-status="待核" data-verified="unverified" data-date="2026-08-08">
+              <div class="policy-header"><div class="tags"><span class="tag tag-urgency-high">紧急-高</span><span class="tag tag-app-type-baseline">基础档案</span><span class="tag tag-app-type-warning">风险预警</span><span class="tag tag-app-name">ลูนาแคช</span><span class="tag tag-unverified">⚠ 未交叉认证</span></div><div class="policy-date">2026-08-08</div></div>
+              <div class="policy-source">来源：投放量榜单 + Pantip</div>
+              <div class="policy-title">[基础档案 · ลูนาแคช : คู่มือกู้ กยุมาวย] TOP7 · 本周新增 15,571 · 借贷费 1,800-3,000/7 天</div>
+              <div class="policy-desc">投放量榜单排名 #7，本周 15,571 / 上周 18,573（环比 -16.2%，投放力下降但费率持续高位）。"คู่มือกู้"(借贷指南)命名暗示可能通过"信息中介"形式规避借贷牌照；借贷费 1,800-3,000 / 7 天（≈67% / 周期）。⚠ 已有零星投诉/Pantip 反馈（详见同日"客户投诉"条目），需密切关注是否升级。</div>
+            </div>
+
+            <div class="policy-item" data-source-links='[{"label": "投放量榜单 TOP15", "url": "https://www.linkedin.com/feed/update/urn:li:activity:7xxxxxxx/"}]' data-app="金格方" data-categories="基础档案,风险预警" data-urgency="高" data-status="待核" data-verified="unverified" data-date="2026-08-08">
+              <div class="policy-header"><div class="tags"><span class="tag tag-urgency-high">紧急-高</span><span class="tag tag-app-type-baseline">基础档案</span><span class="tag tag-app-type-warning">风险预警</span><span class="tag tag-app-name">金格方</span><span class="tag tag-unverified">⚠ 未交叉认证</span></div><div class="policy-date">2026-08-08</div></div>
+              <div class="policy-source">来源：投放量榜单</div>
+              <div class="policy-title">[基础档案 · 金格方] TOP8 · 本周新增 15,266 · 费率/广告不符 · 收"服务费购买费"</div>
+              <div class="policy-desc">投放量榜单排名 #8，本周 15,266 / 上周 16,534（环比 -7.7%）。中文命名提示华裔客户群体。"含数千铢服务费购买费"在 OCPB 6/5 广告合规指南明确禁止，强烈疑似违规宣传模式（展示费率 ≠ 实际综合费率）。</div>
+            </div>
+
+            <div class="policy-item" data-source-links='[{"label": "投放量榜单 TOP15", "url": "https://www.linkedin.com/feed/update/urn:li:activity:7xxxxxxx/"}]' data-app="SmartCash" data-categories="基础档案,风险预警" data-urgency="高" data-status="待核" data-verified="unverified" data-date="2026-08-08">
+              <div class="policy-header"><div class="tags"><span class="tag tag-urgency-high">紧急-高</span><span class="tag tag-app-type-baseline">基础档案</span><span class="tag tag-app-type-warning">风险预警</span><span class="tag tag-app-name">SmartCash</span><span class="tag tag-unverified">⚠ 未交叉认证</span></div><div class="policy-date">2026-08-08</div></div>
+              <div class="policy-source">来源：投放量榜单</div>
+              <div class="policy-title">[基础档案 · SmartCash] TOP9 · 本周新增 15,265 · 7 天 58.8% 周期利率</div>
+              <div class="policy-desc">投放量榜单排名 #9，本周 15,265 / 上周 18,650（环比 -18.2%，投放骤降）。费率：借 1,000 收 588.27 利息 / 7 天（≈58.8% / 7 天）。周期利率折年化后超过 100,000% 区间，远超所有合规上限，且"7 天"短期限+高费率结构与 Pico Loan 牌照 33% APR 上限严重冲突。</div>
+            </div>
+
+            <div class="policy-item" data-source-links='[{"label": "投放量榜单 TOP15", "url": "https://www.linkedin.com/feed/update/urn:li:activity:7xxxxxxx/"}]' data-app="Good Money" data-categories="基础档案" data-urgency="中" data-status="待核" data-verified="unverified" data-date="2026-08-08">
+              <div class="policy-header"><div class="tags"><span class="tag tag-urgency-medium">紧急-中</span><span class="tag tag-app-type-baseline">基础档案</span><span class="tag tag-app-name">Good Money</span><span class="tag tag-unverified">⚠ 未交叉认证</span></div><div class="policy-date">2026-08-08</div></div>
+              <div class="policy-source">来源：投放量榜单</div>
+              <div class="policy-title">[基础档案 · Good Money] TOP10 · 本周新增 14,416 · 最高 THB 50,000</div>
+              <div class="policy-desc">投放量榜单排名 #10，本周 14,416 / 上周 17,412（环比 -17.2%）。栏目未披露完整费率，仅显示最高额度 50,000 泰铢。额度结构较其他灰色 APP 显著偏大，倾向于"中大额个人贷"模式，可能更易触及正式持牌 Personal Loan 监管范围。</div>
+            </div>
+
+            <div class="policy-item" data-source-links='[{"label": "投放量榜单 TOP15", "url": "https://www.linkedin.com/feed/update/urn:li:activity:7xxxxxxx/"}]' data-app="FlyingMoney" data-categories="基础档案,风险预警" data-urgency="高" data-status="待核" data-verified="unverified" data-date="2026-08-08">
+              <div class="policy-header"><div class="tags"><span class="tag tag-urgency-high">紧急-高</span><span class="tag tag-app-type-baseline">基础档案</span><span class="tag tag-app-type-warning">风险预警</span><span class="tag tag-app-name">FlyingMoney</span><span class="tag tag-unverified">⚠ 未交叉认证</span></div><div class="policy-date">2026-08-08</div></div>
+              <div class="policy-source">来源：投放量榜单</div>
+              <div class="policy-title">[基础档案 · FlyingMoney] TOP11 · 本周新增 13,176 · 借 3,600 实得 2,520（30% 砍头息）</div>
+              <div class="policy-desc">投放量榜单排名 #11，本周 13,176 / 上周 12,233（环比 +7.7%，逆势上涨）。费率：借 3,600 实得 2,520（前置扣 30%）；最低 THB 2,520；15 天期。"砍头息"是中国/泰国监管明令禁止的收费模式（鲍德里克法规+BoT 通知），是合规高风险信号。</div>
+            </div>
+
+            <div class="policy-item" data-source-links='[{"label": "投放量榜单 TOP15", "url": "https://www.linkedin.com/feed/update/urn:li:activity:7xxxxxxx/"}]' data-app="siamr" data-categories="基础档案,风险预警" data-urgency="高" data-status="待核" data-verified="unverified" data-date="2026-08-08">
+              <div class="policy-header"><div class="tags"><span class="tag tag-urgency-high">紧急-高</span><span class="tag tag-app-type-baseline">基础档案</span><span class="tag tag-app-type-warning">风险预警</span><span class="tag tag-app-name">siamr</span><span class="tag tag-unverified">⚠ 未交叉认证</span></div><div class="policy-date">2026-08-08</div></div>
+              <div class="policy-source">来源：投放量榜单</div>
+              <div class="policy-title">[基础档案 · siamr] TOP12 · 本周新增 12,927 · 环比 -30.1%（本周下滑最快）</div>
+              <div class="policy-desc">投放量榜单排名 #12，本周 12,927 / 上周 18,493（环比 -30.1%，是 TOP15 中下滑最快）。栏目标注"利率极高"。连续两周大幅下滑+费率高位 → 可能是被 OCPB/BoT 加大审核力度后的"主动降投"。</div>
+            </div>
+
+            <div class="policy-item" data-source-links='[{"label": "投放量榜单 TOP15", "url": "https://www.linkedin.com/feed/update/urn:li:activity:7xxxxxxx/"}]' data-app="Loan Hub" data-categories="基础档案,风险预警" data-urgency="高" data-status="待核" data-verified="unverified" data-date="2026-08-08">
+              <div class="policy-header"><div class="tags"><span class="tag tag-urgency-high">紧急-高</span><span class="tag tag-app-type-baseline">基础档案</span><span class="tag tag-app-type-warning">风险预警</span><span class="tag tag-app-name">Loan Hub</span><span class="tag tag-unverified">⚠ 未交叉认证</span></div><div class="policy-date">2026-08-08</div></div>
+              <div class="policy-source">来源：投放量榜单</div>
+              <div class="policy-title">[基础档案 · Loan Hub] TOP13 · 本周新增 12,829 · 日息 100 泰铢/天（月 ≈230%+）</div>
+              <div class="policy-desc">投放量榜单排名 #13，本周 12,829 / 上周 12,484（环比 +2.8%）。费率：日息 100 泰铢/天（借 1,300 一周还 2,000）；最高 THB 20,000-50,000；6 天。"日息 100/天"以绝对值披露绕开"利率"敏感词，是行业内常见"标价话术"，实际月利率折算超 230%，远超所有合规上限。</div>
+            </div>
+
+            <div class="policy-item" data-source-links='[{"label": "投放量榜单 TOP15", "url": "https://www.linkedin.com/feed/update/urn:li:activity:7xxxxxxx/"}]' data-app="EASY" data-categories="基础档案,风险预警" data-urgency="高" data-status="待核" data-verified="unverified" data-date="2026-08-08">
+              <div class="policy-header"><div class="tags"><span class="tag tag-urgency-high">紧急-高</span><span class="tag tag-app-type-baseline">基础档案</span><span class="tag tag-app-type-warning">风险预警</span><span class="tag tag-app-name">EASY</span><span class="tag tag-unverified">⚠ 未交叉认证</span></div><div class="policy-date">2026-08-08</div></div>
+              <div class="policy-source">来源：投放量榜单</div>
+              <div class="policy-title">[基础档案 · EASY] TOP14 · 本周新增 12,514 · 月息约 30% (借 15,000 还 24,000 推算)</div>
+              <div class="policy-desc">投放量榜单排名 #14，本周 12,514 / 上周 12,823（环比 -2.4%）。费率：月息约 30%（借 15,000 还 24,000 推算）；最高 THB 15,000；超过 3 个月。30% 月息折年化约 360%，在 BoT Pico/Nano 任何上限下均属违规。</div>
+            </div>
+
+            <div class="policy-item" data-source-links='[{"label": "投放量榜单 TOP15", "url": "https://www.linkedin.com/feed/update/urn:li:activity:7xxxxxxx/"}, {"label": "AppGrowing 投放趋势追踪", "url": "https://www.appgrowing.cn/"}]' data-app="Thong การเงิน" data-categories="基础档案,风险预警" data-urgency="高" data-status="待核" data-verified="unverified" data-date="2026-08-08">
+              <div class="policy-header"><div class="tags"><span class="tag tag-urgency-high">紧急-高</span><span class="tag tag-app-type-baseline">基础档案</span><span class="tag tag-app-type-warning">风险预警</span><span class="tag tag-app-name">Thong การเงิน</span><span class="tag tag-unverified">⚠ 未交叉认证</span></div><div class="policy-date">2026-08-08</div></div>
+              <div class="policy-source">来源：投放量榜单</div>
+              <div class="policy-title">[基础档案 · Thong การเงิน (Thong Finance)] TOP15 · 本周新增 12,478 · 单周 +103.9%（TOP15 增速第一）</div>
+              <div class="policy-desc">投放量榜单排名 #15，本周 12,478 / 上周 6,119（环比 +103.9%，TOP15 唯一翻倍）。栏目未披露费率，主体未公开，命名采用 Thai 单词"Thong"+"Finance"，疑似新进入者。本条目与上方"风险预警"条目互补，建议下个扫描周期：①AppGrowing 拉取创意素材语料；②核对 App Store / Google Play 开发者主体与上架日期；③观察是否进入 BoT 下架名单。</div>
+            </div>
+            </div>
+        </div>
+        <div class="footer-note">
+            <strong>追踪说明：</strong>APP 监控 tab 包含三类条目——①<strong>基础档案</strong>（每个 TOP15 APP 一条入册，含本周/上周投放量、费率/期限速览、主体待核状态、监控路径建议） / ②<strong>信号条目</strong>（按信号类型归类的客户投诉、社媒讨论、监管政策、风险预警，跨多 APP 时归属"不指定" APP 用于全局扫描） / ③<strong>扩展监控列表</strong>（AI 推荐暂未进入 TOP15 但值得跟踪的 APP，每周榜单更新后重新评估进出）。<br><br>
+            <strong>标签说明：</strong>客户投诉 / 社媒讨论 / 监管政策 / 风险预警 / 基础档案 — 五类信号。⚠ 未交叉认证 = 来源仅投放量榜单或单一页面，需补充 3 源独立交叉验证；✅ 3源交叉验证 = 至少 3 个独立/权威来源（BoT / OCPB / Pantip / 行业头部媒体等）确认。<br>
+            自动化更新每日 09:30 / 19:00 (GMT+8)；信号条目按"新 → 旧"排序，可切换"紧急程度"由高到低展开。
+        </div>
+    </div>
+</div>
+
+
+        <!-- APP 概况：15 张投放量榜单卡片 -->
+        <div class="app-overview">
+            <div class="app-overview-title">
+                📱 头部借贷 APP 概况（投放量 TOP15 · 2026-07-27 ~ 2026-08-02 周更）
+                <small>来源：可靠渠道投放量榜单；本周新增 = 周新增素材/广告创意数</small>
+            </div>
+            <div class="app-grid">
+
+                <div class="app-card" data-app="ไทยแบงค์">
+                    <div class="app-card-header">
+                        <span class="app-rank top1">1</span>
+                        <span class="app-name">ไทยแบงค์</span>
+                    </div>
+                    <div class="app-meta"><b>公司：</b>运营商未公开 / 待核</div>
+                    <div class="app-stats">
+                        <span class="app-stat-num">32,727</span>
+                        <span class="app-stat-delta down">▼ 1,912</span>
+                        <span class="app-stat-delta flat">-5.5%</span>
+                        <span class="app-pulse" title="需主动核查"></span>
+                    </div>
+                    <div class="app-fee"><b>费率：</b>第1期还款95%含套餐费53% · 借1,700还2,890 (1.2x-1.8x) · 最高THB 2,100 · 2期</div>
+                </div>
+
+                <div class="app-card" data-app="ALPHABYTE">
+                    <div class="app-card-header">
+                        <span class="app-rank top2">2</span>
+                        <span class="app-name">ALPHABYTE</span>
+                    </div>
+                    <div class="app-meta"><b>公司：</b>运营商未公开 / 待核</div>
+                    <div class="app-stats">
+                        <span class="app-stat-num">25,957</span>
+                        <span class="app-stat-delta up">▲ 562</span>
+                        <span class="app-stat-delta flat">+2.2%</span>
+                        <span class="app-pulse" title="需主动核查"></span>
+                    </div>
+                    <div class="app-fee"><b>费率：</b>含隐藏服务费 + E-new 费用 · 最低/最高 THB 5,000 · 90-180 天</div>
+                </div>
+
+                <div class="app-card" data-app="FINNIX-循环贷">
+                    <div class="app-card-header">
+                        <span class="app-rank top3">3</span>
+                        <span class="app-name">FINNIX-循环贷</span>
+                    </div>
+                    <div class="app-meta"><b>公司：</b>运营商未公开 / 待核</div>
+                    <div class="app-stats">
+                        <span class="app-stat-num">18,468</span>
+                        <span class="app-stat-delta up">▲ 2,407</span>
+                        <span class="app-stat-delta flat">+15.0%</span>
+                        <span class="app-pulse" title="需主动核查"></span>
+                    </div>
+                    <div class="app-fee"><b>费率：</b>栏目未披露（待 App Store / 应用内核算）</div>
+                </div>
+
+                <div class="app-card" data-app="Pico Link">
+                    <div class="app-card-header">
+                        <span class="app-rank">4</span>
+                        <span class="app-name">Pico Link</span>
+                    </div>
+                    <div class="app-meta"><b>公司：</b>运营商未公开 / 待核</div>
+                    <div class="app-stats">
+                        <span class="app-stat-num">17,706</span>
+                        <span class="app-stat-delta down">▼ 3,508</span>
+                        <span class="app-stat-delta flat">-16.5%</span>
+                        <span class="app-pulse" title="需主动核查"></span>
+                    </div>
+                    <div class="app-fee"><b>费率：</b>借 1,000 还 1,600，每 14 天（约 60% 周期利率） · 最低 THB 1,000</div>
+                </div>
+
+                <div class="app-card" data-app="Promise(循环贷)">
+                    <div class="app-card-header">
+                        <span class="app-rank">5</span>
+                        <span class="app-name">Promise(循环贷)</span>
+                    </div>
+                    <div class="app-meta"><b>公司：</b>运营商未公开 / 待核</div>
+                    <div class="app-stats">
+                        <span class="app-stat-num">16,418</span>
+                        <span class="app-stat-delta down">▼ 1,835</span>
+                        <span class="app-stat-delta flat">-10.1%</span>
+                        <span class="app-pulse" title="需主动核查"></span>
+                    </div>
+                    <div class="app-fee"><b>费率：</b>栏目未披露（待 App Store / 应用内核算）</div>
+                </div>
+
+                <div class="app-card" data-app="มีมีแคช">
+                    <div class="app-card-header">
+                        <span class="app-rank">6</span>
+                        <span class="app-name">มีมีแคช (Mimi Cash)</span>
+                    </div>
+                    <div class="app-meta"><b>公司：</b>运营商未公开 / 待核</div>
+                    <div class="app-stats">
+                        <span class="app-stat-num">16,090</span>
+                        <span class="app-stat-delta down">▼ 1,055</span>
+                        <span class="app-stat-delta flat">-6.2%</span>
+                        <span class="app-pulse" title="需主动核查"></span>
+                    </div>
+                    <div class="app-fee"><b>费率：</b>栏目未披露（待 App Store / 应用内核算）</div>
+                </div>
+
+                <div class="app-card" data-app="ลูนาแคช">
+                    <div class="app-card-header">
+                        <span class="app-rank">7</span>
+                        <span class="app-name">ลูนาแคช : คู่มือกู้กยุมาวย (Luna Cash)</span>
+                    </div>
+                    <div class="app-meta"><b>公司：</b>运营商未公开 / 待核</div>
+                    <div class="app-stats">
+                        <span class="app-stat-num">15,571</span>
+                        <span class="app-stat-delta down">▼ 3,002</span>
+                        <span class="app-stat-delta flat">-16.2%</span>
+                        <span class="app-pulse" title="需主动核查"></span>
+                    </div>
+                    <div class="app-fee"><b>费率：</b>借贷费 1,800-3,000 / 7天（约 67% 周期利率） · 7 天</div>
+                </div>
+
+                <div class="app-card" data-app="金格方">
+                    <div class="app-card-header">
+                        <span class="app-rank">8</span>
+                        <span class="app-name">金格方</span>
+                    </div>
+                    <div class="app-meta"><b>公司：</b>运营商未公开 / 待核</div>
+                    <div class="app-stats">
+                        <span class="app-stat-num">15,266</span>
+                        <span class="app-stat-delta down">▼ 1,268</span>
+                        <span class="app-stat-delta flat">-7.7%</span>
+                        <span class="app-pulse" title="需主动核查"></span>
+                    </div>
+                    <div class="app-fee"><b>费率：</b>费率/广告不符 · 含数千铢"服务费购买费"</div>
+                </div>
+
+                <div class="app-card" data-app="SmartCash">
+                    <div class="app-card-header">
+                        <span class="app-rank">9</span>
+                        <span class="app-name">SmartCash</span>
+                    </div>
+                    <div class="app-meta"><b>公司：</b>运营商未公开 / 待核</div>
+                    <div class="app-stats">
+                        <span class="app-stat-num">15,265</span>
+                        <span class="app-stat-delta down">▼ 3,385</span>
+                        <span class="app-stat-delta flat">-18.2%</span>
+                        <span class="app-pulse" title="需主动核查"></span>
+                    </div>
+                    <div class="app-fee"><b>费率：</b>借 1,000 收 588.27 baht / 7天（≈58.8% / 7天） · 最高 THB 1,000 · 7 天</div>
+                </div>
+
+                <div class="app-card" data-app="Good Money">
+                    <div class="app-card-header">
+                        <span class="app-rank">10</span>
+                        <span class="app-name">Good Money</span>
+                    </div>
+                    <div class="app-meta"><b>公司：</b>运营商未公开 / 待核</div>
+                    <div class="app-stats">
+                        <span class="app-stat-num">14,416</span>
+                        <span class="app-stat-delta down">▼ 2,996</span>
+                        <span class="app-stat-delta flat">-17.2%</span>
+                        <span class="app-pulse" title="需主动核查"></span>
+                    </div>
+                    <div class="app-fee"><b>费率：</b>最高 THB 50,000（栏目未披露完整费率结构）</div>
+                </div>
+
+                <div class="app-card" data-app="FlyingMoney">
+                    <div class="app-card-header">
+                        <span class="app-rank">11</span>
+                        <span class="app-name">FlyingMoney</span>
+                    </div>
+                    <div class="app-meta"><b>公司：</b>运营商未公开 / 待核</div>
+                    <div class="app-stats">
+                        <span class="app-stat-num">13,176</span>
+                        <span class="app-stat-delta up">▲ 943</span>
+                        <span class="app-stat-delta flat">+7.7%</span>
+                        <span class="app-pulse" title="需主动核查"></span>
+                    </div>
+                    <div class="app-fee"><b>费率：</b>借 3,600 实得 2,520（前置扣 30%） · 最低 THB 2,520 · 15 天</div>
+                </div>
+
+                <div class="app-card" data-app="siamr">
+                    <div class="app-card-header">
+                        <span class="app-rank">12</span>
+                        <span class="app-name">siamr</span>
+                    </div>
+                    <div class="app-meta"><b>公司：</b>运营商未公开 / 待核</div>
+                    <div class="app-stats">
+                        <span class="app-stat-num">12,927</span>
+                        <span class="app-stat-delta down">▼ 5,566</span>
+                        <span class="app-stat-delta flat">-30.1%</span>
+                        <span class="app-pulse" title="需主动核查"></span>
+                    </div>
+                    <div class="app-fee"><b>费率：</b>标注"利率极高"，栏目未披露完整结构</div>
+                </div>
+
+                <div class="app-card" data-app="Loan Hub">
+                    <div class="app-card-header">
+                        <span class="app-rank">13</span>
+                        <span class="app-name">Loan Hub</span>
+                    </div>
+                    <div class="app-meta"><b>公司：</b>运营商未公开 / 待核</div>
+                    <div class="app-stats">
+                        <span class="app-stat-num">12,829</span>
+                        <span class="app-stat-delta up">▲ 345</span>
+                        <span class="app-stat-delta flat">+2.8%</span>
+                        <span class="app-pulse" title="需主动核查"></span>
+                    </div>
+                    <div class="app-fee"><b>费率：</b>日息 100 泰铢/天（例：借 1,300 一周还 2,000） · 最高 THB 20,000-50,000 · 6 天</div>
+                </div>
+
+                <div class="app-card" data-app="EASY">
+                    <div class="app-card-header">
+                        <span class="app-rank">14</span>
+                        <span class="app-name">EASY</span>
+                    </div>
+                    <div class="app-meta"><b>公司：</b>运营商未公开 / 待核</div>
+                    <div class="app-stats">
+                        <span class="app-stat-num">12,514</span>
+                        <span class="app-stat-delta down">▼ 309</span>
+                        <span class="app-stat-delta flat">-2.4%</span>
+                        <span class="app-pulse" title="需主动核查"></span>
+                    </div>
+                    <div class="app-fee"><b>费率：</b>月息约 30%（借 15,000 还 24,000 推算） · 最高 THB 15,000 · 超过 3 个月</div>
+                </div>
+
+                <div class="app-card" data-app="Thong การเงิน">
+                    <div class="app-card-header">
+                        <span class="app-rank">15</span>
+                        <span class="app-name">Thong การเงิน (Thong Finance)</span>
+                    </div>
+                    <div class="app-meta"><b>公司：</b>运营商未公开 / 待核</div>
+                    <div class="app-stats">
+                        <span class="app-stat-num">12,478</span>
+                        <span class="app-stat-delta up">▲ 6,359</span>
+                        <span class="app-stat-delta flat">+103.9%</span>
+                        <span class="app-pulse" title="需主动核查"></span>
+                    </div>
+                    <div class="app-fee"><b>费率：</b>栏目未披露（本周新增暴涨 103.9%，重点观察）</div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- 扩展监控列表（AI 推荐） -->
+        <div class="app-expansion-list">
+            <b>🔭 扩展监控列表（AI 推荐，待核投放量排名）：</b>
+            以下 APP 暂未进入本周 TOP15，但属于泰国借贷市场监管重点关注对象（出海现金贷 / 灰产 / 高费率短期限），建议纳入下一周期监控。
+            每周投放榜单更新后可重新评估进出：
+            <ul>
+                <li><b>闪电借款 (Lightning Loan)</b> · 中国出海类，常出现在泰国 App Store 财务榜</li>
+                <li><b>Cashbus / 现金巴士</b> · 海外品牌 Cashbus，曼谷常驻；近期菲律宾 SEC/印尼 OJK 执法高发</li>
+                <li><b>U-Borrow / 优借</b> · 此前在泰国常见"1,000 → 1,500 / 7 天"模式，需观察是否仍活跃</li>
+                <li><b>Kash-Kash / คาช-คาช</b> · 泰语社交平台高曝光的现金贷品牌</li>
+                <li><b>DuoPay / Cashnow</b> · 中国出海系，与 Pico Finance 灰色模式相似</li>
+                <li><b>Now Loan / DaFi (泰文名)</b> · 投放策略激进，TikTok 广告密度高</li>
+                <li><b>Zippy / ZED Loan (泰文)</b> · 短期限高费率模式，常见于 LINE 群转发</li>
+                <li><b>TrueMoney / Paotang (BNPL 模块)</b> · 持牌但 BNPL 模块需重点观察费率披露</li>
+            </ul>
+        </div>
+
+        <div class="timeline app-timeline" data-app-timeline>
+
+<!-- ============================================================ -->
 <!--  FLOATING BUTTONS + FEEDBACK MODAL (must be before script)  -->
 <!-- ============================================================ -->
 <div class="fab-stack">
@@ -1747,9 +2459,15 @@ body {
     });
 
     // ── Generic filter logic ──
-    function bindFilters(panelSelector, options) {
+    function bindFilters(panelSelector) {
         var panel = document.querySelector(panelSelector);
         if (!panel) return;
+
+        // Detect module type from panel id — avoids manual second argument
+        var moduleType = panelSelector.indexOf('thai') >= 0 ? 'thai'
+                       : panelSelector.indexOf('global') >= 0 ? 'global'
+                       : panelSelector.indexOf('app') >= 0 ? 'app'
+                       : 'other';
 
         var tabsContainer = panel.querySelector('.tabs');
         var filtersContainer = panel.querySelector('.filters');
@@ -1818,7 +2536,7 @@ body {
             var items = Array.from(timelineEl.querySelectorAll('.policy-item'));
             var searchText = searchInput ? searchInput.value.toLowerCase() : '';
             var sortMode = sortSelect ? sortSelect.value : 'newest';
-            var statTotal = 0, statHigh = 0, statMedium = 0, statLow = 0, statUnverified = 0;
+            var statTotal = 0, statHigh = 0, statMedium = 0, statLow = 0, statUnverified = 0, statComplaint = 0;
 
             items.forEach(function(item) {
                 var region = item.dataset.region || '';
@@ -1826,43 +2544,57 @@ body {
                 var urgency = item.dataset.urgency || '';
                 var status = item.dataset.status || '';
                 var verified = item.dataset.verified || '';
+                var dataApp = item.dataset.app || '';
                 var text = item.innerText.toLowerCase();
 
-                // Tab filtering
+                // Tab filtering — module-aware
                 var tabMatch = true;
-                if (activeTab === 'sea') tabMatch = /印尼|菲律宾|越南/.test(region);
-                else if (activeTab === 'latam') tabMatch = /墨西哥|巴西|阿根廷/.test(region);
-                else if (activeTab === 'africa') tabMatch = /尼日利亚|肯尼亚|埃及/.test(region);
-                else if (activeTab === 'sasia') tabMatch = /巴基斯坦|孟加拉/.test(region);
-                else if (activeTab === 'cross') tabMatch = /跨市场/.test(region);
-
-                // For thai module, simpler tab logic
-                if (activeTab === 'bnpl') tabMatch = (item.dataset.business || '').includes('BNPL');
-                else if (activeTab === 'ploan') tabMatch = (item.dataset.business || '').includes('Personal Loan');
-                else if (activeTab === 'pico') tabMatch = (item.dataset.business || '').includes('Pico Loan') || (item.dataset.business || '').includes('Nano Finance');
-                else if (activeTab === 'license') tabMatch = categories.includes('牌照政策');
-                else if (activeTab === 'relief') tabMatch = categories.includes('债务纾困');
+                if (moduleType === 'global') {
+                    if (activeTab === 'sea') tabMatch = /印尼|菲律宾|越南/.test(region);
+                    else if (activeTab === 'latam') tabMatch = /墨西哥|巴西|阿根廷/.test(region);
+                    else if (activeTab === 'africa') tabMatch = /尼日利亚|肯尼亚|埃及/.test(region);
+                    else if (activeTab === 'sasia') tabMatch = /巴基斯坦|孟加拉/.test(region);
+                    else if (activeTab === 'cross') tabMatch = /跨市场/.test(region);
+                } else if (moduleType === 'thai') {
+                    if (activeTab === 'bnpl') tabMatch = (item.dataset.business || '').includes('BNPL');
+                    else if (activeTab === 'ploan') tabMatch = (item.dataset.business || '').includes('Personal Loan');
+                    else if (activeTab === 'pico') tabMatch = (item.dataset.business || '').includes('Pico Loan') || (item.dataset.business || '').includes('Nano Finance');
+                    else if (activeTab === 'license') tabMatch = categories.includes('牌照政策');
+                    else if (activeTab === 'relief') tabMatch = categories.includes('债务纾困');
+                } else if (moduleType === 'app') {
+                    if (activeTab === 'complaint') tabMatch = categories.includes('客户投诉');
+                    else if (activeTab === 'social') tabMatch = categories.includes('社媒讨论');
+                    else if (activeTab === 'regulatory') tabMatch = categories.includes('监管政策');
+                    else if (activeTab === 'warning') tabMatch = categories.includes('风险预警');
+                    else if (activeTab === 'baseline') tabMatch = categories.includes('基础档案');
+                }
 
                 var regionFilter = getActiveChipValue('region');
                 var categoryFilter = getActiveChipValue('category');
                 var urgencyFilter = getActiveChipValue('urgency');
                 var statusFilter = getActiveChipValue('status');
                 var verifiedFilter = getActiveChipValue('verified');
+                var appFilter = getActiveChipValue('app');
+                var signalTypeFilter = getActiveChipValue('signalType');
 
                 var regionMatch = regionFilter === 'all' || region === regionFilter;
                 var categoryMatch = categoryFilter === 'all' || categories.includes(categoryFilter);
                 var urgencyMatch = urgencyFilter === 'all' || urgency === urgencyFilter;
                 var statusMatch = statusFilter === 'all' || status === statusFilter;
                 var verifiedMatch = verifiedFilter === 'all' || verified === verifiedFilter;
+                // App filter: exact match on data-app; "不指定" cross-app signals only match the "all" chip or no specific app selection
+                var appMatch = appFilter === 'all' || dataApp === appFilter;
+                var signalTypeMatch = signalTypeFilter === 'all' || categories.includes(signalTypeFilter);
                 var searchMatch = !searchText || text.includes(searchText);
 
-                if (tabMatch && regionMatch && categoryMatch && urgencyMatch && statusMatch && verifiedMatch && searchMatch) {
+                if (tabMatch && regionMatch && categoryMatch && urgencyMatch && statusMatch && verifiedMatch && appMatch && signalTypeMatch && searchMatch) {
                     item.classList.remove('hidden');
                     statTotal++;
                     if (urgency === '高') statHigh++;
                     else if (urgency === '中') statMedium++;
                     else if (urgency === '低') statLow++;
                     if (verified === 'unverified') statUnverified++;
+                    if (categories.includes('客户投诉')) statComplaint++;
                 } else {
                     item.classList.add('hidden');
                 }
@@ -1875,11 +2607,13 @@ body {
                 var mediumEl = statsContainer.querySelector('.stat-medium');
                 var lowEl = statsContainer.querySelector('.stat-low');
                 var unvEl = statsContainer.querySelector('.stat-unverified');
+                var complaintEl = statsContainer.querySelector('.stat-complaint');
                 if (totalEl) totalEl.textContent = statTotal;
                 if (highEl) highEl.textContent = statHigh;
                 if (mediumEl) mediumEl.textContent = statMedium;
                 if (lowEl) lowEl.textContent = statLow;
                 if (unvEl) unvEl.textContent = statUnverified;
+                if (complaintEl) complaintEl.textContent = statComplaint;
             }
 
             // Sort & reorder
@@ -2043,6 +2777,42 @@ body {
     // Bind both modules
     bindFilters('#module-thai');
     bindFilters('#module-global');
+    bindFilters('#module-app');
+
+    // ── APP grid: click on card → set chip filter to that app & switch to 全部信号 tab ──
+    (function() {
+        var modulePanel = document.getElementById('module-app');
+        if (!modulePanel) return;
+        modulePanel.querySelectorAll('.app-card[data-app]').forEach(function(card) {
+            card.addEventListener('click', function() {
+                var appName = card.getAttribute('data-app');
+                // Switch to "全部信号" tab
+                var tabsContainer = modulePanel.querySelector('.tabs');
+                if (tabsContainer) {
+                    tabsContainer.querySelectorAll('.tab').forEach(function(t) {
+                        t.classList.toggle('active', t.dataset.tab === 'all');
+                    });
+                }
+                // Activate the chip
+                var group = modulePanel.querySelector('[data-filter="app"]');
+                if (group) {
+                    group.querySelectorAll('.chip').forEach(function(c) {
+                        c.classList.toggle('active', c.dataset.value === appName);
+                    });
+                }
+                // Expand filters (so user sees the chip selection)
+                var filtersWrap = modulePanel.querySelector('.filters');
+                if (filtersWrap) filtersWrap.classList.add('expanded');
+                // Run filter
+                var filterEvent = new Event('input', { bubbles: true });
+                var searchInput = modulePanel.querySelector('.search-input');
+                if (searchInput) searchInput.dispatchEvent(filterEvent);
+                // Scroll to timeline
+                var timeline = modulePanel.querySelector('.timeline');
+                if (timeline) timeline.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            });
+        });
+    })();
 
 })();
 </script>
