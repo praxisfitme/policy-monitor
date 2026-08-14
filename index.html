@@ -145,7 +145,7 @@
 /* Smooth theme transition */
 html { transition: background-color 0.3s ease; }
 body, .header, .module-nav, .stat-card, .tab, .policy-item, .timeline,
-.filter-row select, .search-box input, .sort-select, .view-btn, .footer-note {
+.filter-row select, .search-box input, .sort-select, .expand-btn, .footer-note {
     transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
@@ -489,8 +489,7 @@ body {
     align-items: center;
     margin-bottom: 14px;
 }
-.view-buttons { display: flex; gap: 6px; }
-.view-btn {
+.expand-btn {
     padding: 8px 14px;
     border-radius: var(--radius-sm);
     font-size: 0.8125rem;
@@ -503,10 +502,12 @@ body {
     user-select: none;
     transition: var(--t);
 }
-.view-btn:active { transform: scale(0.96); }
-.view-btn.active { background: var(--primary); color: white; border-color: var(--primary); }
-.panel-global .view-btn.active { background: var(--accent); color: white; border-color: var(--accent); }
-.panel-app .view-btn.active { background: #ea580c; color: white; border-color: #ea580c; }
+.expand-btn:hover { border-color: var(--primary); color: var(--text); }
+.panel-global .expand-btn:hover { border-color: var(--accent); }
+.panel-app .expand-btn:hover { border-color: #ea580c; }
+.expand-btn:active { transform: scale(0.96); }
+/* collapse all descriptions toggle */
+.timeline.collapsed .policy-desc { display: none; }
 
 .sort-select {
     padding: 8px 12px;
@@ -1116,7 +1117,7 @@ body {
     .policy-desc { font-size: 0.8125rem; }
 
     .view-toggle { flex-wrap: wrap; gap: 8px; }
-    .view-btn { padding: 8px 12px; font-size: 0.75rem; }
+    .expand-btn { padding: 8px 12px; font-size: 0.75rem; }
     .sort-select { font-size: 0.75rem; }
 
     .app-overview { padding: 12px; }
@@ -1156,7 +1157,7 @@ body {
                 追踪泰国央行(BoT)及监管机构针对 BNPL、Personal Loan、Pico Loan/Nano Finance 牌照发布的政策通知、利率上限调整(APR/综合融资成本)、合规要求变更、消费者保护规定等监管动态。
             </div>
             <div class="meta">
-                <span>📅 数据最后更新：<span class="last-updated-label">2026-08-14 09:30 (GMT+8)</span></span>
+                <span>📅 数据最后更新：<span class="last-updated-label">2026-08-14 09:51 (GMT+8)</span></span>
                 <span>🤖 自动更新：每日 09:30 / 19:00</span>
                 <span>📊 监控范围：泰国央行(BoT)、SEC、财政部、OCPB、NCB、SAM</span>
             </div>
@@ -1234,10 +1235,7 @@ body {
             </div>
         </div>
         <div class="view-toggle">
-            <div class="view-buttons">
-                <button class="view-btn active" data-view="timeline">时间线视图</button>
-                <button class="view-btn" data-view="card">卡片视图</button>
-            </div>
+            <button class="expand-btn" type="button">全部收起</button>
             <select class="sort-select">
                 <option value="newest">时间：新 → 旧</option>
                 <option value="oldest">时间：旧 → 新</option>
@@ -1447,7 +1445,7 @@ body {
                 不收录：非监管类市场新闻(融资/产品发布)、加密货币/区块链监管（除非与现金贷直接相关）。
             </div>
             <div class="meta">
-                <span>📅 数据最后更新：<span class="last-updated-label">2026-08-14 09:30 (GMT+8)</span></span>
+                <span>📅 数据最后更新：<span class="last-updated-label">2026-08-14 09:51 (GMT+8)</span></span>
                 <span>🤖 自动更新：每日 09:30</span>
                 <span>🌍 覆盖：东南亚 / 拉美 / 非洲 / 南亚 / 跨市场</span>
             </div>
@@ -1542,10 +1540,7 @@ body {
             </div>
         </div>
         <div class="view-toggle">
-            <div class="view-buttons">
-                <button class="view-btn active" data-view="timeline">时间线视图</button>
-                <button class="view-btn" data-view="card">卡片视图</button>
-            </div>
+            <button class="expand-btn" type="button">全部收起</button>
             <select class="sort-select">
                 <option value="newest">时间：新 → 旧</option>
                 <option value="oldest">时间：旧 → 新</option>
@@ -1970,10 +1965,10 @@ body {
             </div>
         </div>
         <div class="footer-note">
-            <strong>🔔 本次更新 (2026-08-14 09:30)：</strong>
-            新增 1 条（全球模块 / 阿根廷）。保守刷新：TH 模块无新增 BNPL/Personal Loan/Pico Loan/Nano Finance 监管政策（BoT/MOF/OCPB/NCB 24-48h 内无新发布/生效）。全球 8 月新增 <b>①阿根廷 BCRA 8/13 放宽银行美元贷款（上限 = 美元存款 15%）</b>，属信贷环境/外汇管制双重信号，Caputo 8/13 发布会 + BCRA 8/13 表态同步，4 源交叉验证。其余 11 个目的地（印尼 OJK / 菲律宾 SEC / 越南 SBV / 墨西哥 CNBV-CONDUSEF / 巴西 BCB / 尼日利亚 CBN-FCCPC / 肯尼亚 CBK / 埃及 CBE / 巴基斯坦 SECP / 孟加拉 BB / 跨市场 Google Play-SAFE）过去 ~15 小时（08-13 18:55 → 08-14 09:30 GMT+8）无新增借贷牌照/利率上限/催收规范/数字借贷监管政策。越南 SBV PM 8/13 会议强调"实质性降息"已由 08-12 入库的 SBV 7125/NHNN-TD 条目覆盖；SAFE 国内外汇贷款新规（10/1 施行）由 08-01 条目覆盖；南非 VASP/中东 Tether 审计/韩国加密转账新规（8/11）均与借贷无直接关联，不纳入。TH stat-total 38 不变；Global stat-total 39→40 / stat-medium 22→23 / 8 月 18→19 条；APP stat-total 20 不变。
+            <strong>🔔 本次更新 (2026-08-14 09:51)：</strong>
+            新增 1 条（全球模块 / 阿根廷）。保守刷新：TH 模块无新增 BNPL/Personal Loan/Pico Loan/Nano Finance 监管政策（BoT/MOF/OCPB/NCB 24-48h 内无新发布/生效）。全球 8 月新增 <b>①阿根廷 BCRA 8/13 放宽银行美元贷款（上限 = 美元存款 15%）</b>，属信贷环境/外汇管制双重信号，Caputo 8/13 发布会 + BCRA 8/13 表态同步，4 源交叉验证。其余 11 个目的地（印尼 OJK / 菲律宾 SEC / 越南 SBV / 墨西哥 CNBV-CONDUSEF / 巴西 BCB / 尼日利亚 CBN-FCCPC / 肯尼亚 CBK / 埃及 CBE / 巴基斯坦 SECP / 孟加拉 BB / 跨市场 Google Play-SAFE）过去 ~21 小时（08-13 18:55 → 08-14 09:51 GMT+8）无新增借贷牌照/利率上限/催收规范/数字借贷监管政策。越南 SBV PM 8/13 会议强调"实质性降息"已由 08-12 入库的 SBV 7125/NHNN-TD 条目覆盖；SAFE 国内外汇贷款新规（10/1 施行）由 08-01 条目覆盖；南非 VASP/中东 Tether 审计/韩国加密转账新规（8/11）均与借贷无直接关联，不纳入。TH stat-total 38 不变；Global stat-total 39→40 / stat-medium 22→23 / 8 月 18→19 条；APP stat-total 20 不变。
             <strong>标签说明：</strong> ✅ 3源交叉验证 = Bloomberg/Reuters/当地权威媒体等 3+ 来源确认； ⚠ 未交叉认证 = 来源有限（1-2 个媒体），有待更多独立来源验证，建议交叉核验后再决策。<br>
-            示例数据截至 2026-08-13，每日 09:30 / 19:00 (GMT+8) 自动更新。
+            示例数据截至 2026-08-14，每日 09:30 / 19:00 (GMT+8) 自动更新。
         </div>
     </div>
 </div>
@@ -1993,7 +1988,7 @@ body {
                 基础数据：可靠渠道提供的投放量榜单（2026-07-27 ~ 2026-08-02 周更）。频次：每日 09:30 / 19:00 自动增量扫描。
             </div>
             <div class="meta">
-                <span>📅 数据最后更新：<span class="last-updated-label">2026-08-14 09:30 (GMT+8)</span></span>
+                <span>📅 数据最后更新：<span class="last-updated-label">2026-08-14 09:51 (GMT+8)</span></span>
                 <span>🤖 自动更新：每日 09:30 / 19:00</span>
                 <span>📱 监控范围：APP 投放 / 客户投诉 / 社媒 / 监管 / 风险信号</span>
             </div>
@@ -2290,8 +2285,8 @@ body {
         </div>
         <div class="footer-note">
             <strong>追踪说明：</strong>APP 监控 tab 包含三类条目——①<strong>基础档案</strong>（每个 TOP15 APP 一条入册，含本周/上周投放量、费率/期限速览、主体待核状态、监控路径建议；GP 异动 App 补充建档） / ②<strong>信号条目</strong>（按信号类型归类的客户投诉、社媒讨论、监管政策、风险预警，跨多 APP 时归属"不指定" APP 用于全局扫描） / ③<strong>扩展监控列表</strong>（AI 推荐暂未进入 TOP15 但值得跟踪的 APP，每周榜单更新后重新评估进出）。<br>
-            <strong>🔔 本次更新 (2026-08-10 11:15)：</strong>
-            新增 4 条排名异动信号（MoneyThunder ↑41 / PAYPAYA ↑31 / Siam DL ↑44 / A money ↓13），新增 5 条 GP 榜单基础档案（MoneyThunder / PAYPAYA / Siam DL / A money / AEON THAI）。8 月信号从 4 条增至 8 条；基础档案从 15 条增至 20 条。
+            <strong>🔔 本次更新 (2026-08-14 09:51)：</strong>
+            19:00 全量更新自动化触发，覆盖 APP 模块扫描（narku TH 投放榜单 / Pantip 投诉 / 知乎中文社媒 / 黑猫投诉）。本模块最近一次实质更新为 2026-08-10 11:15（新增 4 条排名异动信号 + 5 条 GP 基础档案）。本次结论：无新增已验证信号 — narku 最新 TH 投放快照仍为 2026-08-10（archives/2318）；知乎/Pantip/黑猫投诉未出现新的泰国借贷 App 投诉/投放/社群反馈信号；MTC（Muang Thai Capital）BoT กล่าวโทษ 事件为 2025-08-05（佛历 2568），非新事件。8 月信号维持 8 条；基础档案维持 20 条。
             <strong>标签说明：</strong>客户投诉 / 社媒讨论 / 监管政策 / 风险预警 / 基础档案 — 五类信号。⚠ 未交叉认证 = 来源仅投放量榜单或单一页面，需补充 3 源独立交叉验证；✅ 3源交叉验证 = 至少 3 个独立/权威来源（BoT / OCPB / Pantip / 行业头部媒体等）确认。<br>
             自动化更新每日 09:30 / 19:00 (GMT+8)；信号条目按"新 → 旧"排序，可切换"紧急程度"由高到低展开。
         </div>
@@ -2673,13 +2668,14 @@ body {
             sortSelect.addEventListener('change', runFilter);
         }
 
-        // View buttons (cosmetic)
-        panel.querySelectorAll('.view-btn').forEach(btn => {
-            btn.addEventListener('click', function() {
-                panel.querySelectorAll('.view-btn').forEach(b => b.classList.remove('active'));
-                this.classList.add('active');
+        // Expand / collapse all descriptions
+        var expandBtn = panel.querySelector('.expand-btn');
+        if (expandBtn && timelineEl) {
+            expandBtn.addEventListener('click', function() {
+                var collapsed = timelineEl.classList.toggle('collapsed');
+                expandBtn.textContent = collapsed ? '全部展开' : '全部收起';
             });
-        });
+        }
 
         function getActiveChipValue(filterAttr) {
             var group = filtersContainer ? filtersContainer.querySelector('[data-filter="' + filterAttr + '"]') : null;
