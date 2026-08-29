@@ -18,6 +18,32 @@
 <link rel="canonical" href="https://praxisfit.me/stock-dash/">
 <style>
 :root {
+  --bg-primary: #ffffff;
+  --bg-secondary: #f6f8fa;
+  --bg-tertiary: #eaeef2;
+  --bg-card: #ffffff;
+  --border: #d0d7de;
+  --text-primary: #1f2328;
+  --text-secondary: #656d76;
+  --text-muted: #6e7781;
+  --gain: #1a7f37;
+  --gain-bg: rgba(26,127,55,0.08);
+  --loss: #cf222e;
+  --loss-bg: rgba(207,34,46,0.08);
+  --neutral: #9a6700;
+  --accent: #0969da;
+  --accent-bg: rgba(9,105,218,0.08);
+  --gold: #9a6700;
+  --gold-bg: rgba(154,103,0,0.08);
+  --tab-active: #0969da;
+  --font-mono: 'SF Mono', 'Cascadia Code', 'Fira Code', 'Consolas', monospace;
+  --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans SC', sans-serif;
+  --radius: 8px;
+  --radius-sm: 4px;
+}
+
+/* Dark theme */
+[data-theme="dark"] {
   --bg-primary: #0d1117;
   --bg-secondary: #161b22;
   --bg-tertiary: #21262d;
@@ -36,11 +62,11 @@
   --gold: #e3b341;
   --gold-bg: rgba(227,179,65,0.1);
   --tab-active: #58a6ff;
-  --font-mono: 'SF Mono', 'Cascadia Code', 'Fira Code', 'Consolas', monospace;
-  --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans SC', sans-serif;
-  --radius: 8px;
-  --radius-sm: 4px;
 }
+[data-theme="dark"] ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); }
+[data-theme="dark"] ::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.2); }
+[data-theme="dark"] tr:nth-child(even) td { background: rgba(255,255,255,0.02); }
+
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 body {
   font-family: var(--font-sans);
@@ -187,7 +213,7 @@ td {
   border-bottom: 1px solid var(--border);
   white-space: nowrap;
 }
-tr:hover td { background: rgba(255,255,255,0.02); }
+tr:hover td { background: rgba(0,0,0,0.02); }
 .num { font-family: var(--font-mono); text-align: right; }
 .num.up { color: var(--gain); }
 .num.down { color: var(--loss); }
