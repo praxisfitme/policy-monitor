@@ -14,14 +14,36 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Monitor Center — 监控中枢">
     <meta name="twitter:description" content="跨境支付情报·泰国政策监管·股市盯盘看板 统一入口">
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🦉</text></svg>">
-    <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🦉</text></svg>">
+    <link rel="icon" href="/icon-512.png" type="image/png">
+    <link rel="apple-touch-icon" href="/icon-512.png">
     <link rel="canonical" href="https://praxisfit.me/">
-    <link rel="manifest" href="data:application/manifest+json;charset=utf-8,%7B%22name%22%3A%22Monitor%20Center%22%2C%22short_name%22%3A%22Monitor%22%2C%22start_url%22%3A%22%2F%22%2C%22display%22%3A%22standalone%22%2C%22background_color%22%3A%22%230b0f1a%22%2C%22theme_color%22%3A%22%232563eb%22%2C%22icons%22%5B%7B%22src%22%3A%22data%3Aimage%2Fsvg%2Bxml%2C%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20viewBox%3D'0%200%20100'%3E%3Ctext%20y%3D'.9em'%20font-size%3D'90'%3E%F0%9F%A6%89%3C%2Ftext%3E%3C%2Fsvg%3E%22%2C%22sizes%22%3A%22512x512%22%2C%22type%22%3A%22image%2Fsvg%2Bxml%22%7D%5D%7D">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Monitor">
+    <meta name="theme-color" content="#0b0f1a">
     <style>
         *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
         :root {
+            --bg-deep: #f8fafc;
+            --bg-card: #ffffff;
+            --bg-card-hover: #f1f5f9;
+            --border: #e2e8f0;
+            --border-hover: #cbd5e1;
+            --text-primary: #0f172a;
+            --text-secondary: #475569;
+            --text-muted: #64748b;
+            --accent-blue: #2563eb;
+            --accent-purple: #7c3aed;
+            --accent-emerald: #059669;
+            --glow-blue: rgba(37, 99, 235, 0.06);
+            --glow-purple: rgba(124, 58, 237, 0.06);
+            --glow-emerald: rgba(5, 150, 105, 0.06);
+        }
+
+        /* Dark theme */
+        [data-theme="dark"] {
             --bg-deep: #0b0f1a;
             --bg-card: #111827;
             --bg-card-hover: #1a2332;
@@ -38,6 +60,7 @@
             --glow-emerald: rgba(16, 185, 129, 0.12);
         }
 
+        html { transition: background-color 0.3s ease; }
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
             background: var(--bg-deep);
@@ -54,11 +77,18 @@
             position: fixed;
             inset: 0;
             background:
-                linear-gradient(rgba(59, 130, 246, 0.03) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(59, 130, 246, 0.03) 1px, transparent 1px);
+                linear-gradient(rgba(37, 99, 235, 0.04) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(37, 99, 235, 0.04) 1px, transparent 1px);
             background-size: 60px 60px;
             pointer-events: none;
             z-index: 0;
+        }
+
+        [data-theme="dark"] body::before {
+            background:
+                linear-gradient(rgba(59, 130, 246, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(59, 130, 246, 0.03) 1px, transparent 1px);
+            background-size: 60px 60px;
         }
 
         /* Compact header */
@@ -109,11 +139,17 @@
         .header h1 {
             font-size: 1.5rem;
             font-weight: 700;
-            background: linear-gradient(135deg, #e2e8f0 0%, #94a3b8 50%, #e2e8f0 100%);
+            background: linear-gradient(135deg, #0f172a 0%, #475569 50%, #0f172a 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
             line-height: 1.2;
+        }
+        [data-theme="dark"] .header h1 {
+            background: linear-gradient(135deg, #e2e8f0 0%, #94a3b8 50%, #e2e8f0 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         .header p {
@@ -167,7 +203,16 @@
             border-color: var(--border-hover);
             background: var(--bg-card-hover);
             transform: translateY(-2px);
+            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.08);
+        }
+        [data-theme="dark"] .card:hover {
             box-shadow: 0 12px 28px rgba(0, 0, 0, 0.25);
+        }
+        [data-theme="dark"] .card-arrow {
+            background: rgba(255, 255, 255, 0.04);
+        }
+        [data-theme="dark"] .card:hover .card-arrow {
+            background: rgba(255, 255, 255, 0.08);
         }
 
         .card:hover::before { opacity: 1; }
@@ -239,7 +284,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            background: rgba(255, 255, 255, 0.04);
+            background: rgba(0, 0, 0, 0.04);
             border-radius: 8px;
             color: var(--text-muted);
             transition: all 0.2s ease;
@@ -248,7 +293,7 @@
         }
 
         .card:hover .card-arrow {
-            background: rgba(255, 255, 255, 0.08);
+            background: rgba(0, 0, 0, 0.06);
             color: var(--text-primary);
             transform: translateX(3px);
         }
@@ -312,12 +357,15 @@
             min-width: 20px;
             height: 20px;
             padding: 0 5px;
-            background: rgba(255, 255, 255, 0.06);
+            background: rgba(0, 0, 0, 0.04);
             border: 1px solid var(--border);
             border-radius: 4px;
             font-family: inherit;
             font-size: 10px;
             color: var(--text-secondary);
+        }
+        [data-theme="dark"] kbd {
+            background: rgba(255, 255, 255, 0.06);
         }
 
         /* Animations */
@@ -354,6 +402,143 @@
                 animation-duration: 0.01ms !important;
                 transition-duration: 0.01ms !important;
             }
+        }
+
+        /* ══ Floating Components ══ */
+        .fab-stack {
+            position: fixed;
+            right: 20px;
+            bottom: 24px;
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            align-items: center;
+        }
+        .fab {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+            -webkit-user-select: none;
+            user-select: none;
+            -webkit-tap-highlight-color: transparent;
+            touch-action: manipulation;
+            z-index: 9999;
+        }
+        .fab:active { transform: scale(0.88); }
+        .fab-back {
+            background: var(--accent-blue);
+            color: white;
+            opacity: 0;
+            pointer-events: none;
+        }
+        .fab-back.visible { opacity: 1; pointer-events: auto; }
+        .fab-theme {
+            background: var(--bg-card);
+            color: var(--text-primary);
+            border: 1px solid var(--border);
+        }
+        .fab-theme:active { transform: scale(0.88) rotate(180deg); }
+        .fab-feedback {
+            background: var(--bg-card);
+            color: var(--text-primary);
+            border: 1px solid var(--border);
+        }
+        .feedback-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.5);
+            z-index: 200;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.25s ease;
+            -webkit-backdrop-filter: blur(2px);
+            backdrop-filter: blur(2px);
+        }
+        .feedback-overlay.visible { opacity: 1; pointer-events: auto; }
+        .feedback-modal {
+            background: var(--bg-card);
+            border-radius: 16px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+            max-width: 460px;
+            width: 100%;
+            padding: 24px 20px;
+            transform: scale(0.92) translateY(20px);
+            transition: transform 0.25s ease;
+            border: 1px solid var(--border);
+        }
+        [data-theme="dark"] .feedback-modal { box-shadow: 0 20px 60px rgba(0,0,0,0.5); }
+        .feedback-overlay.visible .feedback-modal { transform: scale(1) translateY(0); }
+        .feedback-modal h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 6px; color: var(--text-primary); }
+        .feedback-modal .feedback-hint { font-size: 0.8125rem; color: var(--text-secondary); margin-bottom: 14px; line-height: 1.6; }
+        .feedback-modal textarea {
+            width: 100%;
+            min-height: 120px;
+            padding: 12px 14px;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            font-size: 0.875rem;
+            font-family: inherit;
+            resize: vertical;
+            outline: none;
+            background: var(--bg-deep);
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+        .feedback-modal textarea:focus { border-color: var(--accent-blue); box-shadow: 0 0 0 3px rgba(37,99,235,0.1); }
+        .feedback-modal textarea::placeholder { color: var(--text-muted); }
+        .feedback-modal .feedback-actions { display: flex; gap: 10px; margin-top: 16px; flex-wrap: wrap; }
+        .feedback-btn {
+            flex: 1;
+            min-width: 130px;
+            padding: 12px 16px;
+            border-radius: 8px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            cursor: pointer;
+            border: none;
+            transition: all 0.2s;
+            min-height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            text-decoration: none;
+        }
+        .feedback-btn:active { transform: scale(0.96); }
+        .feedback-btn-primary { background: var(--accent-blue); color: white; }
+        .feedback-btn-secondary { background: var(--bg-card-hover); color: var(--text-primary); border: 1px solid var(--border); }
+        .feedback-btn-close { background: transparent; color: var(--text-secondary); border: 1px solid var(--border); flex: 0 0 auto; min-width: 44px; }
+        .feedback-modal .feedback-note { margin-top: 12px; font-size: 0.75rem; color: var(--text-muted); line-height: 1.5; }
+        .feedback-modal .feedback-type { display: flex; gap: 8px; margin-bottom: 12px; }
+        .feedback-type-btn {
+            padding: 8px 14px;
+            border-radius: 100px;
+            font-size: 0.8125rem;
+            font-weight: 500;
+            cursor: pointer;
+            border: 1px solid var(--border);
+            background: var(--bg-deep);
+            color: var(--text-secondary);
+            transition: all 0.2s;
+        }
+        .feedback-type-btn.active { background: var(--accent-blue); color: white; border-color: var(--accent-blue); }
+        @media (max-width: 640px) {
+            .fab-stack { right: 16px; gap: 8px; }
+            .feedback-modal { padding: 20px 16px; }
+            .feedback-btn { min-width: 100px; font-size: 0.8125rem; }
         }
     </style>
 </head>
@@ -442,6 +627,114 @@
                 case '3': links[2]?.click(); break;
             }
         });
+
+    // ── Back to Top ──
+    var backBtn = document.querySelector('.fab-back');
+    if (backBtn) {
+        backBtn.addEventListener('click', function() { window.scrollTo({ top: 0, behavior: 'smooth' }); });
+        var scrollTicking = false;
+        window.addEventListener('scroll', function() {
+            if (!scrollTicking) {
+                window.requestAnimationFrame(function() {
+                    if (window.scrollY > 300) backBtn.classList.add('visible');
+                    else backBtn.classList.remove('visible');
+                    scrollTicking = false;
+                });
+                scrollTicking = true;
+            }
+        }, { passive: true });
+    }
+
+    // ── Theme Toggle ──
+    var themeBtn = document.querySelector('.fab-theme');
+    var saved = localStorage.getItem('portal-theme') || '';
+    var prefDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    var theme = saved || (prefDark ? 'dark' : 'light');
+    function applyTheme(t) {
+        if (t === 'dark') {
+            document.documentElement.setAttribute('data-theme', 'dark');
+            themeBtn.textContent = '☀️';
+            themeBtn.setAttribute('aria-label', '切换浅色模式');
+            themeBtn.setAttribute('title', '切换浅色模式');
+            var m = document.querySelector('meta[name="theme-color"]');
+            if (m) m.setAttribute('content', '#0b0f1a');
+        } else {
+            document.documentElement.removeAttribute('data-theme');
+            themeBtn.textContent = '🌙';
+            themeBtn.setAttribute('aria-label', '切换深色模式');
+            themeBtn.setAttribute('title', '切换深色/浅色模式');
+            var m = document.querySelector('meta[name="theme-color"]');
+            if (m) m.setAttribute('content', '#f8fafc');
+        }
+    }
+    applyTheme(theme);
+    if (themeBtn) {
+        themeBtn.addEventListener('click', function() {
+            var isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+            var n = isDark ? 'light' : 'dark';
+            applyTheme(n);
+            localStorage.setItem('portal-theme', n);
+        });
+    }
+
+    // ── Feedback Modal ──
+    var fbBtn = document.querySelector('.fab-feedback');
+    var fbOverlay = document.getElementById('feedbackOverlay');
+    var fbClose = document.getElementById('feedbackClose');
+    var fbText = document.getElementById('feedbackText');
+    var fbGithub = document.getElementById('feedbackGithub');
+    var fbEmail = document.getElementById('feedbackEmail');
+    var fbTypes = document.querySelectorAll('.feedback-type-btn');
+    var fbType = 'bug';
+
+    fbTypes.forEach(function(b) { b.addEventListener('click', function() {
+        fbTypes.forEach(function(x) { x.classList.remove('active'); });
+        this.classList.add('active'); fbType = this.dataset.type; updateLinks();
+    }); });
+
+    function updateLinks() {
+        var t = fbText ? fbText.value.trim() || '(未填写)' : '';
+        var label = {bug:'报告错误',suggestion:'功能建议',content:'内容补充'}[fbType]||'反馈';
+        var enc = encodeURIComponent('['+label+'] '+t);
+        var body = encodeURIComponent('['+label+'] '+t+'\n\n---\n来源: praxisfit.me\n时间: '+new Date().toISOString());
+        if (fbGithub) fbGithub.href = 'https://github.com/praxisfitme/monitor-center/issues/new?title='+enc+'&body='+body;
+        if (fbEmail) fbEmail.href = 'mailto:victor8989@qq.com?subject='+enc+'&body='+body;
+    }
+
+    if (fbBtn) fbBtn.addEventListener('click', function() { fbOverlay.classList.add('visible'); setTimeout(function(){if(fbText)fbText.focus();},300); });
+    if (fbClose) fbClose.addEventListener('click', function() { fbOverlay.classList.remove('visible'); });
+    fbOverlay.addEventListener('click', function(e) { if (e.target === fbOverlay) fbOverlay.classList.remove('visible'); });
+    document.addEventListener('keydown', function(e) { if (e.key === 'Escape' && fbOverlay.classList.contains('visible')) fbOverlay.classList.remove('visible'); });
+    if (fbText) fbText.addEventListener('input', updateLinks);
+    updateLinks();
+
     </script>
+
+    <!-- Floating Components -->
+    <div class="fab-stack">
+        <button class="fab fab-feedback" aria-label="反馈与建议" title="反馈与建议">💬</button>
+        <button class="fab fab-theme" aria-label="切换深色模式" title="切换深色/浅色模式">🌙</button>
+        <button class="fab fab-back" aria-label="回到顶部" title="回到顶部">↑</button>
+    </div>
+
+    <div class="feedback-overlay" id="feedbackOverlay">
+        <div class="feedback-modal" role="dialog" aria-labelledby="feedbackTitle">
+            <h3 id="feedbackTitle">📋 反馈与建议</h3>
+            <p class="feedback-hint">发现错误或有改进建议？请告诉我们，您的反馈会让这个面板更好。</p>
+            <div class="feedback-type">
+                <button class="feedback-type-btn active" data-type="bug">🐛 报告错误</button>
+                <button class="feedback-type-btn" data-type="suggestion">💡 功能建议</button>
+                <button class="feedback-type-btn" data-type="content">📝 内容补充</button>
+            </div>
+            <textarea id="feedbackText" placeholder="请描述您遇到的问题或建议……&#10;&#10;例如：页面显示异常 / 希望增加新的监控内容 / 链接打不开等"></textarea>
+            <div class="feedback-actions">
+                <a class="feedback-btn feedback-btn-primary" id="feedbackGithub" href="#" target="_blank" rel="noopener">🔗 GitHub Issue</a>
+                <a class="feedback-btn feedback-btn-secondary" id="feedbackEmail" href="#">📧 邮件反馈</a>
+                <button class="feedback-btn feedback-btn-close" id="feedbackClose" aria-label="关闭">✕</button>
+            </div>
+            <p class="feedback-note">💡 GitHub Issue 会直接通知仓库管理员；邮件反馈将打开您的邮件应用。</p>
+        </div>
+    </div>
+
 </body>
 </html>
