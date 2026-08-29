@@ -618,6 +618,7 @@
     </footer>
 
     <script>
+    document.addEventListener('DOMContentLoaded', function() {
         document.addEventListener('keydown', (e) => {
             if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
             const links = document.querySelectorAll('.card');
@@ -708,6 +709,7 @@
     if (fbText) fbText.addEventListener('input', updateLinks);
     updateLinks();
 
+    }); // end DOMContentLoaded
     </script>
 
     <!-- Floating Components -->
