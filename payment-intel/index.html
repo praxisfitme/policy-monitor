@@ -1,0 +1,2336 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>中国出海跨境支付情报监控</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+--bg:#070A14;--bg2:#0D1225;--glass:rgba(255,255,255,.06);--glass-hover:rgba(255,255,255,.1);
+--border:rgba(255,255,255,.08);--border-hover:rgba(255,255,255,.15);
+--primary:#7C5CFF;--accent:#69E7FF;--success:#62FAD3;--warn:#FFB86C;--danger:#FF6B8A;
+--text:#F7FAFF;--text2:#9AA7C7;--text3:#6B7A99;
+--font:'Inter','SF Pro Display','PingFang SC','Microsoft YaHei',system-ui,sans-serif;
+--radius:12px;--radius-sm:8px;--radius-lg:16px;
+}
+html{font-size:15px;scroll-behavior:smooth}
+body{font-family:var(--font);background:var(--bg);color:var(--text);line-height:1.6;min-height:100vh;overflow-x:hidden}
+body::before{content:'';position:fixed;top:-50%;left:-50%;width:200%;height:200%;background:radial-gradient(ellipse at 30% 20%,rgba(124,92,255,.08) 0%,transparent 50%),radial-gradient(ellipse at 70% 80%,rgba(105,231,255,.05) 0%,transparent 50%);pointer-events:none;z-index:0}
+a{color:var(--accent);text-decoration:none;transition:color .2s}
+a:hover{color:#fff}
+
+/* Header */
+.header{position:sticky;top:0;z-index:100;backdrop-filter:blur(20px);background:rgba(7,10,20,.9);border-bottom:1px solid var(--border);padding:.75rem 1rem}
+.header-inner{max-width:1400px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:.75rem;flex-wrap:wrap}
+.logo{display:flex;align-items:center;gap:.6rem}
+.logo-icon{width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,var(--primary),var(--accent));display:flex;align-items:center;justify-content:center;font-size:1rem}
+.logo h1{font-size:.95rem;font-weight:700;letter-spacing:-.02em}
+.logo .subtitle{font-size:.68rem;color:var(--text3);font-weight:400}
+.update-time{font-size:.68rem;color:var(--text3);background:var(--glass);padding:.3rem .65rem;border-radius:20px;border:1px solid var(--border)}
+
+/* Tabs */
+.tabs{position:sticky;top:52px;z-index:99;backdrop-filter:blur(20px);background:rgba(7,10,20,.88);border-bottom:1px solid var(--border)}
+.tabs-inner{max-width:1400px;margin:0 auto;display:flex;gap:0;padding:0 1rem;overflow-x:auto;-webkit-overflow-scrolling:touch}
+.tab-btn{flex-shrink:0;padding:.85rem 1.5rem;font-size:.85rem;font-weight:600;color:var(--text3);background:none;border:none;border-bottom:2px solid transparent;cursor:pointer;transition:all .2s;white-space:nowrap;font-family:var(--font)}
+.tab-btn:hover{color:var(--text2)}
+.tab-btn.active{color:var(--accent);border-bottom-color:var(--accent)}
+.tab-btn .tab-icon{margin-right:.4rem;font-size:.9rem}
+
+/* Filters */
+.filters{max-width:1400px;margin:1rem auto .75rem;padding:0 1rem;display:flex;gap:.75rem;flex-wrap:wrap;align-items:center}
+.filter-group{display:flex;align-items:center;gap:.4rem}
+.filter-label{font-size:.7rem;color:var(--text3);text-transform:uppercase;letter-spacing:.05em;white-space:nowrap}
+.filter-tags{display:flex;gap:.35rem;flex-wrap:wrap}
+.filter-tag{font-size:.68rem;padding:.25rem .55rem;border-radius:20px;background:var(--glass);border:1px solid var(--border);color:var(--text2);cursor:pointer;transition:all .2s;white-space:nowrap}
+.filter-tag:hover,.filter-tag.active{background:rgba(124,92,255,.2);border-color:var(--primary);color:var(--text)}
+
+/* Main */
+main{max-width:1400px;margin:0 auto;padding:0 1rem 4rem;position:relative;z-index:1}
+.tab-panel{display:none}
+.tab-panel.active{display:block}
+
+/* KPI Cards */
+.kpi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:.75rem;margin-bottom:1.5rem}
+.kpi-card{background:var(--glass);border:1px solid var(--border);border-radius:var(--radius);padding:1rem;transition:all .3s}
+.kpi-card:hover{border-color:var(--border-hover);background:var(--glass-hover)}
+.kpi-label{font-size:.68rem;color:var(--text3);text-transform:uppercase;letter-spacing:.06em;margin-bottom:.4rem}
+.kpi-value{font-size:1.5rem;font-weight:800;letter-spacing:-.03em;background:linear-gradient(135deg,var(--text),var(--accent));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.kpi-sub{font-size:.68rem;color:var(--text2);margin-top:.25rem}
+
+/* Section */
+.section{margin-bottom:2rem}
+.section-header{display:flex;align-items:center;gap:.6rem;margin-bottom:1rem;padding-bottom:.6rem;border-bottom:1px solid var(--border)}
+.section-icon{width:26px;height:26px;border-radius:var(--radius-sm);display:flex;align-items:center;justify-content:center;font-size:.85rem}
+.section-icon.policy{background:rgba(124,92,255,.15)}
+.section-icon.brand{background:rgba(105,231,255,.15)}
+.section-icon.market{background:rgba(98,250,211,.15)}
+.section-icon.crypto{background:rgba(255,107,138,.15)}
+.section-icon.timeline{background:rgba(255,184,108,.15)}
+.section-title{font-size:.92rem;font-weight:700;letter-spacing:-.01em}
+.section-count{font-size:.65rem;color:var(--text3);background:var(--glass);padding:.15rem .45rem;border-radius:10px;border:1px solid var(--border)}
+
+/* Cards Grid */
+.cards-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:.75rem}
+.card{background:var(--glass);border:1px solid var(--border);border-radius:var(--radius);padding:1rem;transition:all .3s;position:relative;overflow:hidden}
+.card:hover{border-color:var(--border-hover);transform:translateY(-2px);box-shadow:0 8px 32px rgba(0,0,0,.3)}
+.card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;opacity:0;transition:opacity .3s}
+.card:hover::before{opacity:1}
+.card[data-type="policy"]::before{background:linear-gradient(90deg,var(--primary),var(--accent))}
+.card[data-type="brand"]::before{background:linear-gradient(90deg,var(--accent),var(--success))}
+.card[data-type="crypto"]::before{background:linear-gradient(90deg,var(--danger),var(--warn))}
+
+.card-meta{display:flex;align-items:center;gap:.4rem;margin-bottom:.6rem;flex-wrap:wrap}
+.card-tag{font-size:.65rem;padding:.15rem .4rem;border-radius:4px;font-weight:600;letter-spacing:.02em}
+.tag-policy{background:rgba(124,92,255,.15);color:#B8A4FF}
+.tag-brand{background:rgba(105,231,255,.15);color:#69E7FF}
+.tag-crypto{background:rgba(255,107,138,.12);color:#FF6B8A}
+.tag-region{background:rgba(255,184,108,.12);color:#FFB86C}
+.card-date{font-size:.65rem;color:var(--text3);margin-left:auto}
+.card-title{font-size:.85rem;font-weight:600;margin-bottom:.4rem;line-height:1.4}
+.card-body{font-size:.78rem;color:var(--text2);line-height:1.6}
+.card-body strong{color:var(--text);font-weight:600}
+.card-footer{margin-top:.6rem;display:flex;align-items:center;gap:.4rem;flex-wrap:wrap}
+.card-source{font-size:.65rem;color:var(--text3)}
+.card-source a{color:var(--accent);font-size:.65rem}
+.card-company{font-size:.62rem;padding:.12rem .35rem;border-radius:3px;background:rgba(255,255,255,.05);color:var(--text2);border:1px solid var(--border)}
+
+/* Impact Badge */
+.impact{display:inline-flex;align-items:center;gap:.2rem;font-size:.65rem;font-weight:600;padding:.12rem .4rem;border-radius:4px}
+.impact-high{background:rgba(255,107,138,.12);color:#FF6B8A}
+.impact-mid{background:rgba(255,184,108,.12);color:#FFB86C}
+.impact-low{background:rgba(98,250,211,.12);color:#62FAD3}
+
+/* Company Profile */
+.company-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:.75rem;margin-bottom:1.5rem}
+.company-card{background:var(--glass);border:1px solid var(--border);border-radius:var(--radius);padding:1.1rem;transition:all .3s}
+.company-card:hover{border-color:var(--border-hover);background:var(--glass-hover)}
+.company-name{font-size:.88rem;font-weight:700;margin-bottom:.2rem}
+.company-type{font-size:.68rem;color:var(--text3);margin-bottom:.6rem}
+.company-stats{display:flex;flex-direction:column;gap:.35rem}
+.company-stat{display:flex;justify-content:space-between;align-items:center;font-size:.75rem}
+.company-stat-label{color:var(--text3)}
+.company-stat-value{color:var(--text);font-weight:600}
+.company-pros-cons{margin-top:.75rem;padding-top:.6rem;border-top:1px solid var(--border)}
+.pros-label{font-size:.68rem;color:var(--success);font-weight:600;margin-bottom:.3rem}
+.cons-label{font-size:.68rem;color:var(--danger);font-weight:600;margin-bottom:.3rem;margin-top:.4rem}
+.pros-list,.cons-list{font-size:.72rem;color:var(--text2);line-height:1.5;padding-left:.8rem}
+.pros-list li,.cons-list li{margin-bottom:.15rem}
+
+/* Table */
+.data-table{width:100%;border-collapse:collapse;font-size:.78rem}
+.data-table th{text-align:left;padding:.6rem .75rem;font-size:.68rem;color:var(--text3);text-transform:uppercase;letter-spacing:.05em;border-bottom:1px solid var(--border);font-weight:600}
+.data-table td{padding:.6rem .75rem;border-bottom:1px solid var(--border);color:var(--text2);vertical-align:top}
+.data-table tr:hover td{background:var(--glass)}
+.data-table .num{text-align:right;font-variant-numeric:tabular-nums;font-weight:600;color:var(--text)}
+
+/* Timeline */
+.timeline{position:relative;padding-left:1.75rem}
+.timeline::before{content:'';position:absolute;left:6px;top:0;bottom:0;width:2px;background:linear-gradient(180deg,var(--primary),var(--accent),var(--success));opacity:.3}
+.timeline-item{position:relative;margin-bottom:1.25rem;padding-left:.75rem}
+.timeline-item::before{content:'';position:absolute;left:-1.35rem;top:.4rem;width:8px;height:8px;border-radius:50%;background:var(--primary);border:2px solid var(--bg);box-shadow:0 0 8px rgba(124,92,255,.4)}
+.timeline-date{font-size:.68rem;color:var(--text3);margin-bottom:.2rem}
+.timeline-content{font-size:.8rem;color:var(--text2);line-height:1.55}
+.timeline-content strong{color:var(--text)}
+
+/* No Results */
+.no-results{text-align:center;padding:2.5rem;color:var(--text3);font-size:.85rem;display:none}
+
+/* Footer */
+.footer{max-width:1400px;margin:0 auto;padding:1.5rem 1rem;text-align:center;font-size:.68rem;color:var(--text3);border-top:1px solid var(--border)}
+
+/* Responsive */
+@media(max-width:768px){
+.header{padding:.6rem .75rem}
+.logo h1{font-size:.82rem}
+.logo .subtitle{display:none}
+.tabs-inner{padding:0 .5rem}
+.tab-btn{padding:.7rem 1rem;font-size:.78rem}
+.filters{padding:0 .75rem}
+main{padding:0 .75rem 3rem}
+.kpi-grid{grid-template-columns:repeat(2,1fr);gap:.6rem}
+.cards-grid{grid-template-columns:1fr}
+.company-grid{grid-template-columns:1fr}
+.kpi-value{font-size:1.25rem}
+.data-table{font-size:.72rem}
+.data-table th,.data-table td{padding:.5rem .6rem}
+}
+@media(max-width:480px){
+.kpi-grid{grid-template-columns:1fr}
+.header-inner{flex-direction:column;align-items:flex-start}
+.filter-tags{gap:.25rem}
+.filter-tag{font-size:.62rem;padding:.2rem .45rem}
+}
+
+/* Print */
+@media print{
+body{background:#fff;color:#111}
+.header,.tabs{position:static;backdrop-filter:none;background:#fff;border-bottom:2px solid #333}
+.tab-panel{display:block !important}
+.card,.kpi-card,.company-card{border:1px solid #ddd;background:#f9f9f9;box-shadow:none}
+.card::before{display:none}
+.filter-tag{border:1px solid #ccc;color:#333}
+a{color:#0066cc}
+}
+
+/* Scrollbar */
+::-webkit-scrollbar{width:5px;height:5px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:rgba(255,255,255,.1);border-radius:3px}
+::-webkit-scrollbar-thumb:hover{background:rgba(255,255,255,.2)}
+
+/* Hidden utility */
+.hidden{display:none !important}
+</style>
+</head>
+<body>
+
+<header class="header">
+<div class="header-inner">
+<div class="logo">
+<div class="logo-icon">🌐</div>
+<div>
+<h1>中国出海跨境支付 · 情报监控</h1>
+<div class="subtitle">Cross-border Payment Intelligence Dashboard</div>
+</div>
+</div>
+<div class="update-time">最后更新：2026-08-28 19:30 CST</div>
+</div>
+</header>
+
+<nav class="tabs">
+<div class="tabs-inner">
+<button class="tab-btn active" data-tab="policy"><span class="tab-icon">📜</span>政策监控</button>
+<button class="tab-btn" data-tab="market"><span class="tab-icon">📊</span>大盘数据</button>
+<button class="tab-btn" data-tab="company"><span class="tab-icon">🏢</span>公司信息</button>
+</div>
+</nav>
+
+<main>
+<!-- ============ TAB 1: 政策监控 ============ -->
+<div class="tab-panel active" id="panel-policy">
+
+<div class="filters">
+<div class="filter-group">
+<span class="filter-label">地区</span>
+<div class="filter-tags" id="policyRegionFilter">
+<span class="filter-tag active" data-region="all">全部</span>
+<span class="filter-tag" data-region="中国">中国</span>
+<span class="filter-tag" data-region="东南亚">东南亚</span>
+<span class="filter-tag" data-region="欧洲">欧洲</span>
+<span class="filter-tag" data-region="北美">北美</span>
+<span class="filter-tag" data-region="中东">中东</span>
+<span class="filter-tag" data-region="拉美">拉美</span>
+<span class="filter-tag" data-region="非洲">非洲</span>
+<span class="filter-tag" data-region="全球">全球</span>
+</div>
+</div>
+<div class="filter-group">
+<span class="filter-label">类型</span>
+<div class="filter-tags" id="policyTypeFilter">
+<span class="filter-tag active" data-ptype="all">全部</span>
+<span class="filter-tag" data-ptype="policy">传统政策</span>
+<span class="filter-tag" data-ptype="crypto">Crypto/Web3</span>
+</div>
+</div>
+</div>
+
+<!-- 传统政策法规 -->
+<section class="section" id="policySection">
+<div class="section-header">
+<div class="section-icon policy">📜</div>
+<h2 class="section-title">政策法规动态</h2>
+<span class="section-count" id="policyCount">42条</span>
+</div>
+<div class="cards-grid" id="policyCards">
+
+<div class="card" data-type="policy" data-region="中国">
+<div class="card-meta">
+<span class="card-tag tag-policy">政策</span>
+<span class="card-tag tag-region">中国</span>
+<span class="impact impact-high">⬆ 高影响</span>
+<span class="card-date">2026-08-28</span>
+</div>
+<div class="card-title">CIPS覆盖192个国家和地区，大额支付系统10月17日起延长运行时间</div>
+<div class="card-body">央行8月28日披露最新数据：人民币跨境支付系统（CIPS）已覆盖<strong>192个国家和地区</strong>，截至2026年6月底共有直接参与者210家、间接参与者1619家，通过<strong>5200余家银行机构</strong>提供服务。重大升级：自2026年10月17日起，大额支付系统运行时间从"5×21+12小时"延长至<strong>"5×22.5+13.5小时"</strong>，从技术层面提升全球支付网络互操作性。支付清算协会将扩大接入钱包数量和受理网络范围。</div>
+<div class="card-footer"><span class="card-company">CIPS</span><span class="card-company">人民币国际化</span><span class="card-company">大额支付系统</span></div>
+</div>
+
+<div class="card" data-type="policy" data-region="中国">
+<div class="card-meta">
+<span class="card-tag tag-policy">政策</span>
+<span class="card-tag tag-region">中国</span>
+<span class="impact impact-mid">⬆ 中影响</span>
+<span class="card-date">2026-08-28</span>
+</div>
+<div class="card-title">外汇局公布7月数据：结汇18097亿元/售汇16856亿元，顺差持续</div>
+<div class="card-body">国家外汇管理局8月28日公布数据：2026年7月银行<strong>结汇18097亿元（$2663亿）</strong>，售汇16856亿元（$2480亿），顺差1241亿元。1-7月累计结汇126020亿元，售汇106048亿元。7月银行代客涉外收入<strong>58837亿元（$8656亿）</strong>，对外付款54770亿元（$8058亿）。外汇市场运行平稳。</div>
+<div class="card-footer"><span class="card-company">外汇管理</span><span class="card-company">结售汇</span><span class="card-company">国际收支</span></div>
+</div>
+
+<div class="card" data-type="policy" data-region="全球">
+<div class="card-meta">
+<span class="card-tag tag-policy">政策</span>
+<span class="card-tag tag-region">全球</span>
+<span class="impact impact-mid">⬆ 中影响</span>
+<span class="card-date">2026-08-28</span>
+</div>
+<div class="card-title">跨境二维码统一网关扩容：近50个境外钱包接入，财付通/PayPal/ShopeePay/MoMo等</div>
+<div class="card-body">第十五届中国支付清算论坛最新披露：财付通已推动<strong>近50个境外电子钱包</strong>接入跨境二维码统一网关，包括WeChat Pay HK、美国PayPal、东南亚Shopee Pay、韩国HanaPay、越南MoMo与Zalopay等。银联已在印尼、尼泊尔、越南、巴西等多市场落地双边二维码合作，并开拓多边合作试点。银联董事长董俊峰强调<strong>"互操作性"</strong>是跨境支付核心：降低摩擦、公平接入、规模效应。</div>
+<div class="card-footer"><span class="card-company">二维码互联</span><span class="card-company">银联</span><span class="card-company">财付通</span></div>
+</div>
+
+<div class="card" data-type="policy" data-region="中国">
+<div class="card-meta">
+<span class="card-tag tag-policy">政策</span>
+<span class="card-tag tag-region">中国</span>
+<span class="impact impact-low">⬆ 背景</span>
+<span class="card-date">2026-08-27</span>
+</div>
+<div class="card-title">新疆自贸试验区ODI异地外汇登记试点：跨境投资便利化新政</div>
+<div class="card-body">国家外汇管理局新疆分局印发《中国（新疆）自由贸易试验区银行办理境外投资（ODI）异地外汇登记试点实施细则》。允许在自贸试验区内银行直接办理异地ODI外汇登记，简化跨境投资流程，促进新疆对中亚及周边地区的跨境投资便利化。</div>
+<div class="card-footer"><span class="card-company">外汇管理</span><span class="card-company">新疆自贸区</span><span class="card-company">ODI</span></div>
+</div>
+
+
+<div class="card" data-type="policy" data-region="中国">
+<div class="card-meta">
+<span class="card-tag tag-policy">政策</span>
+<span class="card-tag tag-region">中国</span>
+<span class="impact impact-high">⬆ 高影响</span>
+<span class="card-date">2026-08-27</span>
+</div>
+<div class="card-title">央行副行长陆磊出席第十五届中国支付清算论坛：跨境支付基础设施全面升级</div>
+<div class="card-body">央行副行长陆磊8月27日在论坛上披露多项跨境支付进展：<strong>内地与香港跨境支付通稳健运行</strong>，与阿联酋等国家和地区支付基础设施互联互通有序推进；<strong>跨境二维码统一网关上线"内包外用"业务</strong>，实现跨境零售支付双向开放；<strong>数币达(CBETS)跨境结算综合服务平台上线</strong>，搭建数字人民币跨境清算通道。同时要求落实<strong>《智能体支付应用自律公约》</strong>，推动AI支付生态规范发展。</div>
+<div class="card-footer"><span class="card-company">央行</span><span class="card-company">跨境支付通</span><span class="card-company">数币达CBETS</span></div>
+</div>
+
+<div class="card" data-type="policy" data-region="中国">
+<div class="card-meta">
+<span class="card-tag tag-policy">政策</span>
+<span class="card-tag tag-region">中国</span>
+<span class="impact impact-high">⬆ 高影响</span>
+<span class="card-date">2026-08-24</span>
+</div>
+<div class="card-title">中国支付清算协会发布《智能体支付应用自律公约》，首部AI支付行业规则</div>
+<div class="card-body">8月24日，中国支付清算协会印发<strong>《智能体支付应用自律公约》</strong>，自发布之日起实施。这是国内首部针对AI智能体支付的行业自律规则。公约定义智能体支付应用为：利用大模型等AI技术，在用户授权下，使用智能体与电子商务等服务交互、<strong>发起和执行支付指令</strong>。背景：银联已联合15家银行推出AI智能体银行卡，微信支付发布AI支付Skill技能包，支付宝已完成<strong>3亿笔AI智能体支付</strong>。预计2030年全球AI智能体促成消费交易规模达<strong>$5万亿</strong>。</div>
+<div class="card-footer"><span class="card-company">支付清算协会</span><span class="card-company">AI智能体</span><span class="card-company">自律公约</span></div>
+</div>
+
+<div class="card" data-type="policy" data-region="中国">
+<div class="card-meta">
+<span class="card-tag tag-policy">政策</span>
+<span class="card-tag tag-region">中国</span>
+<span class="impact impact-high">⬆ 高影响</span>
+<span class="card-date">2026-08-27</span>
+</div>
+<div class="card-title">澳门mBridge首日23笔跨境交易落地，开通至阿联酋通道，中国石油完成首笔</div>
+<div class="card-body">澳门正式成为mBridge第六个成员。首日11家获准银行中3家"上桥"完成<strong>23笔跨境交易，总金额近13亿澳门元</strong>，涵盖贸易结算、跨境汇款。中国石油协作下，澳门中银完成首笔"货币桥"跨境交易（港澳间<strong>逾2000万元人民币</strong>），并开通澳门至阿联酋方向支付——<strong>人民币直接进入中东市场新通道</strong>。mBridge实现秒级到账，无需中间行介入。后续将拓展至贸易融资、资金管理与跨境电商结算场景。</div>
+<div class="card-footer"><span class="card-company">mBridge</span><span class="card-company">数字人民币</span><span class="card-company">澳门</span><span class="card-company">中东</span></div>
+</div>
+
+<div class="card" data-type="policy" data-region="中国">
+<div class="card-meta">
+<span class="card-tag tag-policy">政策</span>
+<span class="card-tag tag-region">中国</span>
+<span class="impact impact-low">⬆ 背景</span>
+<span class="card-date">2026-08-27</span>
+</div>
+<div class="card-title">深圳APEC支付保障：4.1万外卡商户、40+境外钱包、外卡交易同比+68%</div>
+<div class="card-body">深圳以APEC会议为契机深化全域支付示范区建设。全市可受理外卡商户达<strong>4.1万户</strong>，支持PayPal、Liquidpay等<strong>40余个境外电子钱包</strong>在深扫码支付。上半年外卡交易笔数同比<strong>增长68%</strong>。数字人民币硬钱包实现香港八达通、外卡等多渠道充值，覆盖近4万个商户。离境退税商店超2500家，"即买即退"商圈达15个，退税商品销售额超10亿元同比增1.3倍。</div>
+<div class="card-footer"><span class="card-company">深圳</span><span class="card-company">APEC</span><span class="card-company">外卡受理</span></div>
+</div>
+
+
+<div class="card" data-type="policy" data-region="全球">
+<div class="card-meta">
+<span class="card-tag tag-policy">政策</span>
+<span class="card-tag tag-region">全球</span>
+<span class="impact impact-high">⬆ 高影响</span>
+<span class="card-date">2026-08-25</span>
+</div>
+<div class="card-title">美国对伊朗启动"经济D-Day"制裁，覆盖数字资产等5大领域，跨境支付二级制裁风险升级</div>
+<div class="card-body">美财长贝森特宣布全球制裁行动，制裁范围扩大至<strong>航空、数字资产、黄金、航运、科技</strong>5大领域，约60个实体/个人/船只上名单。贝森特威胁"任何协助伊朗洗钱的实体将被踢出美元体系"。<strong>关键信号：未制裁中国大型金融机构</strong>，但中小结算渠道、兑换机构、影子银行成为下一批目标。涉及伊朗通道的跨境支付合规风险显著上升。</div>
+<div class="card-footer"><span class="card-company">OFAC</span><span class="card-company">二级制裁</span><span class="card-company">数字资产</span></div>
+</div>
+<div class="card" data-type="policy" data-region="全球">
+<div class="card-meta">
+<span class="card-tag tag-policy">政策</span>
+<span class="card-tag tag-region">全球</span>
+<span class="impact impact-high">⬆ 高影响</span>
+<span class="card-date">2026-08-26</span>
+</div>
+<div class="card-title">日本金融厅取消稳定币100万日元交易上限，组建专项监管部门</div>
+<div class="card-body">日本FSA正式取消部分运营商（第二类资金转账机构）稳定币<strong>100万日元（约$6700）交易上限</strong>，打通跨境支付、资金管理、交易结算等大额场景应用壁垒。同步宣布：8月7日已组建<strong>加密货币与稳定币专项部门</strong>，简化审批流程；建立海外稳定币合规入境通道，符合本地要求的境外发行商（如Circle/Tether）可合法进入日本市场。过渡期监管预计12-18个月。<a href="https://m.mpaypass.com.cn/news/202608/25093500.html" target="_blank" rel="noopener noreferrer" class="card-source">移动支付网</a></div>
+<div class="card-footer"><span class="card-company">FSA日本</span><span class="card-company">稳定币监管</span><span class="card-company">跨境支付</span></div>
+</div>
+
+<div class="card" data-type="policy" data-region="全球">
+<div class="card-meta">
+<span class="card-tag tag-policy">政策</span>
+<span class="card-tag tag-region">全球</span>
+<span class="impact impact-mid">⬆ 中影响</span>
+<span class="card-date">2026-08-26</span>
+</div>
+<div class="card-title">新韩金融×Visa战略合作，共建韩国稳定币金融基础设施</div>
+<div class="card-body">新韩金融集团与Visa签署战略合作协议，<strong>共建韩国稳定币金融基础设施</strong>。合作覆盖稳定币发行、结算、支付全链路，是亚洲稳定币从"规则制定"进入"实际落地"的又一标志性事件。</div>
+<div class="card-footer"><span class="card-company">Visa</span><span class="card-company">新韩金融</span><span class="card-company">韩国稳定币</span></div>
+</div>
+
+<div class="card" data-type="policy" data-region="中国">
+<div class="card-meta">
+<span class="card-tag tag-policy">政策</span>
+<span class="card-tag tag-region">中国</span>
+<span class="impact impact-mid">⬆ 中影响</span>
+<span class="card-date">2026-08-26</span>
+</div>
+<div class="card-title">银联国际×韩国BC卡/Naver Pay三方合作，优化外籍访韩支付体验</div>
+<div class="card-body">银联国际与韩国BC卡、Naver Pay在首尔达成合作，打通<strong>客源渠道、商户受理、支付平台</strong>三大核心资源，联合打造适配外籍访韩人群的专属移动支付服务平台。跨境支付互联互通持续推进。</div>
+<div class="card-footer"><span class="card-company">银联国际</span><span class="card-company">Naver Pay</span><span class="card-company">韩国</span></div>
+</div>
+
+<div class="card" data-type="policy" data-region="全球">
+<div class="card-meta">
+<span class="card-tag tag-policy">政策</span>
+<span class="card-tag tag-region">全球</span>
+<span class="impact impact-low">⬆ 背景</span>
+<span class="card-date">2026-08-26</span>
+</div>
+<div class="card-title">Swift：7月人民币全球支付占比保持3.1%，贸易融资达8%</div>
+<div class="card-body">Swift最新数据显示，2026年7月人民币在全球支付中占比<strong>稳定在3.1%</strong>，排名第五。更值得关注的是：<strong>贸易融资占比达8%</strong>，跨境收支中人民币占比达52.9%。CIPS年处理180万亿元 vs SWIFT份额3.1%——人民币实际跨境使用规模远超SWIFT统计反映的水平。</div>
+<div class="card-footer"><span class="card-company">Swift</span><span class="card-company">人民币国际化</span><span class="card-company">贸易融资</span></div>
+</div>
+
+<div class="card" data-type="policy" data-region="中国">
+<div class="card-meta">
+<span class="card-tag tag-policy">政策</span>
+<span class="card-tag tag-region">中国</span>
+<span class="impact impact-low">⬆ 背景</span>
+<span class="card-date">2026-08-26</span>
+</div>
+<div class="card-title">西联汇款微信小程序上线，澳大利亚用户可微信汇款至中国境内</div>
+<div class="card-body">西联汇款正式推出微信小程序，<strong>澳大利亚用户可通过微信直接向中国境内汇款</strong>。跨境汇款渠道进一步数字化、便捷化，对接微信支付生态。</div>
+<div class="card-footer"><span class="card-company">西联汇款</span><span class="card-company">微信</span><span class="card-company">跨境汇款</span></div>
+</div>
+
+
+
+<div class="card" data-type="policy" data-region="中国">
+<div class="card-meta">
+<span class="card-tag tag-policy">政策</span>
+<span class="card-tag tag-region">中国</span>
+<span class="impact impact-high">⬆ 高影响</span>
+<span class="card-date">2026-08-25</span>
+</div>
+<div class="card-title">央行/外汇局跨国公司本外币一体化资金池新规完整版发布，9月14日施行</div>
+<div class="card-body">央行+外汇局联合发布通知完整版，<strong>9月14日起施行</strong>。核心要点：国内资金主账户可集中办理经常项目/直接投资/外债/境外放款项下结售汇；资本项目收入支付可在银行直接办理，无需逐笔真实性证明材料；新增负面清单管理；合作银行需建立监测评估机制，强化反洗钱义务。存量业务须按新规调整。</div>
+<div class="card-footer"><span class="card-company">外汇管理</span><span class="card-company">资金池</span><span class="card-company">跨国公司</span></div>
+</div>
+
+<div class="card" data-type="policy" data-region="中国">
+<div class="card-meta">
+<span class="card-tag tag-policy">政策</span>
+<span class="card-tag tag-region">中国</span>
+<span class="impact impact-mid">⬆ 中影响</span>
+<span class="card-date">2026-08-25</span>
+</div>
+<div class="card-title">CIPS最新数据：直接参与者210家/间接1619家/覆盖130国，中东人民币结算突破41%</div>
+<div class="card-body">截至2026年6月末，CIPS直接参与者210家、间接参与者1619家，覆盖全球<strong>130个国家和地区</strong>。4月2日单日交易额首破<strong>1.22万亿元</strong>，跨境支付缩短至6-9秒。更关键信号：2026年3月中东对华原油人民币结算占比突破41%，人民币首次超越欧元成为第二大结算货币。沙特阿美对华原油45%已用人民币结算。</div>
+<div class="card-footer"><span class="card-company">CIPS</span><span class="card-company">人民币国际化</span><span class="card-company">石油人民币</span></div>
+</div>
+
+<div class="card" data-type="policy" data-region="欧洲">
+<div class="card-meta">
+<span class="card-tag tag-policy">政策</span>
+<span class="card-tag tag-region">欧洲</span>
+<span class="impact impact-mid">⬆ 中影响</span>
+<span class="card-date">2026-08-25</span>
+</div>
+<div class="card-title">英国FCA+BoE推进全面加密监管框架，交易所需完整FCA授权</div>
+<div class="card-body">英国正从"轻触式监管"转向<strong>全面监管</strong>。交易所、托管、交易平台需获FCA完整授权（而非AML注册）。稳定币发行方需满足储备、透明度、运营要求，部分储备须存放央行无息账户或高质量国债。Circle和Tether正评估合规策略。最终规则预计2026年内发布。</div>
+<div class="card-footer"><span class="card-company">FCA</span><span class="card-company">BoE</span><span class="card-company">英国加密监管</span></div>
+</div>
+
+
+<div class="card" data-type="policy" data-region="欧洲">
+<div class="card-meta">
+<span class="card-tag tag-policy">政策</span>
+<span class="card-tag tag-region">欧洲</span>
+<span class="impact impact-high">⬆ 高影响</span>
+<span class="card-date">2026-08-24</span>
+</div>
+<div class="card-title">欧盟委员会启动MiCA定向审查：86问覆盖稳定币利息禁令/Staking/DeFi</div>
+<div class="card-body">欧盟委员会5月20日发布MiCA定向咨询文件，<strong>86个编号问题分4大板块</strong>。核心议题：是否取消稳定币利息禁令(Art.40/50)、是否为Staking建立独立规则、是否将加密借贷纳入监管范围、交易所是否更容易/更难为非欧盟流动性提供准入。咨询截止延至<strong>9月30日</strong>。Commission暗示方向是"简化、减少或完全移除"行政负担。</div>
+<div class="card-footer"><span class="card-company">MiCA</span><span class="card-company">ESMA</span><span class="card-company">Staking</span></div>
+</div>
+
+<div class="card" data-type="policy" data-region="北美">
+<div class="card-meta">
+<span class="card-tag tag-policy">政策</span>
+<span class="card-tag tag-region">北美</span>
+<span class="impact impact-high">⬆ 高影响</span>
+<span class="card-date">2026-08-24</span>
+</div>
+<div class="card-title">OCC确认11月发布GENIUS Act最终规则，2027.1.18框架正式生效</div>
+<div class="card-body">OCC署理署长Jonathan Gould在怀俄明SALT会议上确认：<strong>11月前完成最终规则</strong>，新年伊始即可处理牌照申请。376页拟议框架覆盖发行、储备、赎回、托管、监管、退出全生命周期。OCC数字资产审批量较上届政府增长<strong>8倍</strong>，18个月处理40份新银行牌照申请，13份数字资产申请在审（含Payward、Revolut、EDX Trust）。</div>
+<div class="card-footer"><span class="card-company">OCC</span><span class="card-company">GENIUS Act</span><span class="card-company">稳定币牌照</span></div>
+</div>
+
+<div class="card" data-type="policy" data-region="中国">
+<div class="card-meta">
+<span class="card-tag tag-policy">政策</span>
+<span class="card-tag tag-region">中国</span>
+<span class="impact impact-mid">⬆ 中影响</span>
+<span class="card-date">2026-08-24</span>
+</div>
+<div class="card-title">数字人民币运营机构扩容至30家，跨境交易量显著放大</div>
+<div class="card-body">央行工作会议明确推进人民币跨境支付系统建设与<strong>数字人民币跨境基础设施</strong>完善。平安银行落地首笔代理模式多边央行数字货币桥(mBridge)跨境汇款。运营机构从最初几家扩容至30家，江苏省上半年新增交易金额同比大幅提升。mBridge已转由五家参与央行(中国/港/泰/阿联酋/沙特)共同管理。</div>
+<div class="card-footer"><span class="card-company">数字人民币</span><span class="card-company">mBridge</span><span class="card-company">人民币国际化</span></div>
+</div>
+
+<div class="card" data-type="policy" data-region="中国">
+<div class="card-meta">
+<span class="card-tag tag-policy">政策</span>
+<span class="card-tag tag-region">中国</span>
+<span class="impact impact-mid">⬆ 中影响</span>
+<span class="card-date">2026-08-21</span>
+</div>
+<div class="card-title">20号胶期货跨境交割首批落地：期货市场跨境实物交割机制全流程打通</div>
+<div class="card-body">上海期货交易所子公司上海国际能源交易中心20号胶首次跨境交割完成，首批600吨离岸货物在<strong>泰国林查班港</strong>交付。外汇局上海分局明确离岸货物外汇管理要求，填补期货跨境实物交割监管制度空白，助力人民币国际化与大宗商品定价影响力。</div>
+<div class="card-footer"><span class="card-company">外汇管理</span><span class="card-company">期货跨境交割</span><span class="card-company">人民币国际化</span></div>
+</div>
+
+<div class="card" data-type="policy" data-region="欧洲">
+<div class="card-meta">
+<span class="card-tag tag-policy">政策</span>
+<span class="card-tag tag-region">欧洲</span>
+<span class="impact impact-high">⬆ 高影响</span>
+<span class="card-date">2026-08-23</span>
+</div>
+<div class="card-title">MiCA稳定币托管锁局：23家EMT发行方仅9家获CASP授权，Circle/Société Générale主导</div>
+<div class="card-body">ESMA数据显示，欧洲经济区23家电子货币代币发行方中仅<strong>9家同时获得CASP授权</strong>，大多数发行方无法为客户托管自有代币，B2B服务严重受限。Circle(USDC)和Société Générale-Forge(EURC)成为明确赢家，14家发行方被迫寻求第三方合作。MiCA合规慢速推进导致市场碎片化持续。</div>
+<div class="card-footer"><span class="card-company">MiCA</span><span class="card-company">ESMA</span><span class="card-company">USDC</span></div>
+</div>
+
+<div class="card" data-type="policy" data-region="全球">
+<div class="card-meta">
+<span class="card-tag tag-policy">政策</span>
+<span class="card-tag tag-region">全球</span>
+<span class="impact impact-high">⬆ 高影响</span>
+<span class="card-date">2026-08-23</span>
+</div>
+<div class="card-title">GENIUS Act实施细则：2028.7.18后离岸稳定币无法通过美国交易所销售</div>
+<div class="card-body">美国财政部进一步明确GENIUS Act第3条规则：<strong>2028年7月18日起</strong>，数字资产服务商不得向美国用户销售无牌发行方的稳定币。交易所成为新"边境"——KYC/地理定位/代币上架审核将成为合规前线。Tether已推出联邦监管USA₮，同时推进USDT的GENIUS合规路径。自托管钱包和P2P转账不受影响。</div>
+<div class="card-footer"><span class="card-company">GENIUS Act</span><span class="card-company">Tether</span><span class="card-company">USDT</span></div>
+</div>
+
+<div class="card" data-type="policy" data-region="拉美">
+<div class="card-meta">
+<span class="card-tag tag-policy">政策</span>
+<span class="card-tag tag-region">拉美</span>
+<span class="impact impact-high">⬆ 高影响</span>
+<span class="card-date">2026-08-15生效</span>
+</div>
+<div class="card-title">墨西哥50美元以下跨境包裹关税从19%飙升至33.5%</div>
+<div class="card-body">墨西哥财政部新规生效，对非自贸协定国家（含中国）进口包裹统一征收<strong>33.5%关税</strong>，叠加16%增值税+20%所得税，综合税负破69.5%。此前50美元以下小包基本免税。出海卖家成本结构剧变，海外仓备货模式加速普及。</div>
+<div class="card-footer"><span class="card-company">墨西哥</span><span class="card-company">关税</span><span class="card-company">跨境电商</span></div>
+</div>
+
+<div class="card" data-type="policy" data-region="中国">
+<div class="card-meta">
+<span class="card-tag tag-policy">政策</span>
+<span class="card-tag tag-region">中国</span>
+<span class="impact impact-mid">⬆ 中影响</span>
+<span class="card-date">2026-08-20</span>
+</div>
+<div class="card-title">贵州跨境贸易高水平开放试点正式落地：首日2595万美元</div>
+<div class="card-body">贵州省跨境贸易高水平开放试点在贵阳、遵义、铜仁三地正式落地。首日8家试点银行为42家企业办理便利化业务136笔，金额<strong>2595.22万美元</strong>。涵盖便利外汇资金收付、涉外员工薪酬用汇等举措，9家县域企业同步参与。</div>
+<div class="card-footer"><span class="card-company">外汇管理</span><span class="card-company">贵州</span></div>
+</div>
+
+<div class="card" data-type="policy" data-region="拉美">
+<div class="card-meta">
+<span class="card-tag tag-policy">政策</span>
+<span class="card-tag tag-region">拉美</span>
+<span class="impact impact-mid">⬆ 中影响</span>
+<span class="card-date">2026-08-01生效</span>
+</div>
+<div class="card-title">巴西Split Payment分账支付强制全量B2C交易</div>
+<div class="card-body">巴西8月1日起Split Payment强制全量B2C交易，消费者付款瞬间税款直接划拨税务局，<strong>卖家失去税款账期支配权</strong>。对跨境卖家现金流管理产生重大影响，需重新设计定价和资金回笼策略。</div>
+<div class="card-footer"><span class="card-company">巴西</span><span class="card-company">税务合规</span></div>
+</div>
+
+<div class="card" data-type="policy" data-region="中国">
+<div class="card-meta">
+<span class="card-tag tag-policy">政策</span>
+<span class="card-tag tag-region">中国</span>
+<span class="card-tag tag-region">东南亚</span>
+<span class="impact impact-mid">⬆ 中影响</span>
+<span class="card-date">2026-08-21</span>
+</div>
+<div class="card-title">跨境二维码统一网关：ShopeePay接入中国"外包内用"支付网络</div>
+<div class="card-body">东南亚最大电子钱包之一ShopeePay与国内跨境支付平台合作，首期面向<strong>新加坡、泰国</strong>用户开放"外包内用"服务。得益于"跨境二维码统一网关"建设，中国跨境支付进入<strong>"统一接口时代"</strong>，不同国家二维码支付系统互联互通。菲律宾、越南、马来西亚将分阶段接入。</div>
+<div class="card-footer"><span class="card-company">二维码互联</span><span class="card-company">ShopeePay</span></div>
+</div>
+
+<div class="card" data-type="policy" data-region="中国">
+<div class="card-meta">
+<span class="card-tag tag-policy">政策</span>
+<span class="card-tag tag-region">中国</span>
+<span class="impact impact-mid">⬆ 中影响</span>
+<span class="card-date">2026-08-18</span>
+</div>
+<div class="card-title">天津跨境贸易高水平开放试点：首月业务规模超8.6亿美元</div>
+<div class="card-body">天津8月1日启动跨境贸易高水平开放试点，推出7大便利化举措。首周突破5亿美元，截至8/14超<strong>8.6亿美元</strong>，惠及205家优质外贸企业。单笔业务时长缩短80%，轧差结算范围扩大至关联交易多种场景。</div>
+<div class="card-footer"><span class="card-company">外汇管理</span><span class="card-company">天津</span></div>
+</div>
+
+<div class="card" data-type="policy" data-region="全球">
+<div class="card-meta">
+<span class="card-tag tag-policy">政策</span>
+<span class="card-tag tag-region">全球</span>
+<span class="impact impact-mid">⬆ 中影响</span>
+<span class="card-date">2026-08-18</span>
+</div>
+<div class="card-title">外汇局7月数据：跨境收支1.7万亿美元同比+20%</div>
+<div class="card-body">7月企业个人非银行部门跨境收支合计<strong>1.7万亿美元</strong>，同比增长20%。跨境资金净流入598亿美元，银行结售汇顺差183亿美元。外汇市场交易量4.3万亿美元，同比+8%。</div>
+<div class="card-footer"><span class="card-company">外汇管理</span><span class="card-company">国际收支</span></div>
+</div>
+
+<div class="card" data-type="policy" data-region="非洲">
+<div class="card-meta">
+<span class="card-tag tag-policy">政策</span>
+<span class="card-tag tag-region">非洲</span>
+<span class="impact impact-low">⬆ 背景</span>
+<span class="card-date">2026-08-16</span>
+</div>
+<div class="card-title">利比亚央行与人民银行达成CIPS接入协议</div>
+<div class="card-body">利比亚央行与中国人民银行达成协议，连接利比亚商业银行至<strong>CIPS系统</strong>，实现人民币跨境直接转账，绕过美元通道和第三方中介。非洲国家正加速接入人民币清算网络。</div>
+<div class="card-footer"><span class="card-company">CIPS</span><span class="card-company">利比亚</span></div>
+</div>
+
+
+<div class="card" data-type="policy" data-region="中国">
+<div class="card-meta">
+<span class="card-tag tag-policy">政策</span>
+<span class="card-tag tag-region">中国</span>
+<span class="impact impact-high">⬆ 高影响</span>
+<span class="card-date">2026-08-14</span>
+</div>
+<div class="card-title">央行发布"十五五"规划：完善多层次人民币跨境支付体系</div>
+<div class="card-body">央行印发《"十五五"改革发展规划》，将跨境支付表述从"多渠道"升级为<strong>"多层次"</strong>。覆盖CIPS批发清算、零售支付、支付系统互联、数字人民币跨境交易等不同功能层级的分工和连接。</div>
+<div class="card-footer"><span class="card-company">CIPS</span><span class="card-company">人民币国际化</span></div>
+</div>
+
+<div class="card" data-type="policy" data-region="中国">
+<div class="card-meta">
+<span class="card-tag tag-policy">政策</span>
+<span class="card-tag tag-region">中国</span>
+<span class="impact impact-high">⬆ 高影响</span>
+<span class="card-date">2026-08-14</span>
+</div>
+<div class="card-title">跨国公司本外币跨境资金集中运营新规（9月14日施行）</div>
+<div class="card-body">央行+外汇局联合发布通知，将试点政策<strong>推广至全国</strong>。降低中小规模跨国公司建池门槛，自贸区进一步降低。允许同一账户管理本外币资金，简化备案登记流程。</div>
+<div class="card-footer"><span class="card-company">外汇管理</span><span class="card-company">资金池</span></div>
+</div>
+
+<div class="card" data-type="policy" data-region="中国">
+<div class="card-meta">
+<span class="card-tag tag-policy">政策</span>
+<span class="card-tag tag-region">中国</span>
+<span class="impact impact-mid">⬆ 中影响</span>
+<span class="card-date">2026-08-18</span>
+</div>
+<div class="card-title">国内外汇贷款管理新规（10月1日施行）</div>
+<div class="card-body">外汇局发布通知，完善国内外汇贷款专用账户管理。明确出口背景外汇贷款可划入结算账户，强化真实性审核义务，规范融资租赁外币结算。</div>
+<div class="card-footer"><span class="card-company">外汇管理</span></div>
+</div>
+
+<div class="card" data-type="policy" data-region="中国">
+<div class="card-meta">
+<span class="card-tag tag-policy">政策</span>
+<span class="card-tag tag-region">中国</span>
+<span class="card-tag tag-region">欧洲</span>
+<span class="impact impact-mid">⬆ 中影响</span>
+<span class="card-date">2026-08-10</span>
+</div>
+<div class="card-title">德意志银行获授权担任法兰克福人民币清算行</div>
+<div class="card-body">德银成为<strong>首家获此资质的欧洲本土银行</strong>。人民币在欧洲大陆清算布局重要一步，链接中欧实体经济与金融市场。同期非洲连下两城，清算行全球布局加速。</div>
+<div class="card-footer"><span class="card-company">CIPS</span><span class="card-company">人民币清算行</span></div>
+</div>
+
+<div class="card" data-type="policy" data-region="东南亚">
+<div class="card-meta">
+<span class="card-tag tag-policy">政策</span>
+<span class="card-tag tag-region">东南亚</span>
+<span class="impact impact-mid">⬆ 中影响</span>
+<span class="card-date">2026-06</span>
+</div>
+<div class="card-title">中国与印尼启动跨境二维码支付</div>
+<div class="card-body">两国央行举行跨境二维码支付实施启动活动。从测试到实施推进，是<strong>"系统连系统"</strong>互联模式的典型案例，连接两国支付基础设施。</div>
+<div class="card-footer"><span class="card-company">二维码互联</span><span class="card-company">印尼</span></div>
+</div>
+
+<div class="card" data-type="policy" data-region="东南亚">
+<div class="card-meta">
+<span class="card-tag tag-policy">政策</span>
+<span class="card-tag tag-region">东南亚</span>
+<span class="impact impact-mid">⬆ 中影响</span>
+<span class="card-date">2026-09-19</span>
+</div>
+<div class="card-title">越南允许外国信贷机构通过越南账户进行国际支付</div>
+<div class="card-body">越南国家银行发布新规，自9月19日起外国信贷机构可通过越南账户进行国际支付和汇款。越南银行须指导客户、核查交易单据，遵守外汇管理及反洗钱规定。</div>
+<div class="card-footer"><span class="card-company">越南</span><span class="card-company">支付牌照</span></div>
+</div>
+
+<div class="card" data-type="policy" data-region="欧洲">
+<div class="card-meta">
+<span class="card-tag tag-policy">政策</span>
+<span class="card-tag tag-region">欧洲</span>
+<span class="impact impact-mid">⬆ 中影响</span>
+<span class="card-date">2026-07</span>
+</div>
+<div class="card-title">欧盟PSD3已达成协议，尚未正式生效</div>
+<div class="card-body">PSD3（支付服务指令第三版）已在欧盟层面达成政治协议，但<strong>尚未进入适用期</strong>。企业需关注最终文本和实施时间表。MiCA法规已生效，为加密资产支付提供统一监管框架。</div>
+<div class="card-footer"><span class="card-company">PSD3</span><span class="card-company">MiCA</span></div>
+</div>
+
+<div class="card" data-type="policy" data-region="北美">
+<div class="card-meta">
+<span class="card-tag tag-policy">政策</span>
+<span class="card-tag tag-region">北美</span>
+<span class="impact impact-high">⬆ 高影响</span>
+<span class="card-date">2026-03</span>
+</div>
+<div class="card-title">加拿大FINTRAC大规模执法：Q1撤销50个MSB注册</div>
+<div class="card-body">加拿大FINTRAC在2026年Q1<strong>撤销50个MSB注册</strong>，3月24日单日撤销23个。主要原因：未回应信息请求、合规计划薄弱、未提交可疑交易报告。新立法已获皇家批准，执法力度大幅升级。</div>
+<div class="card-footer"><span class="card-company">MSB</span><span class="card-company">FINTRAC</span></div>
+</div>
+
+<div class="card" data-type="policy" data-region="北美">
+<div class="card-meta">
+<span class="card-tag tag-policy">政策</span>
+<span class="card-tag tag-region">北美</span>
+<span class="impact impact-mid">⬆ 中影响</span>
+<span class="card-date">2026</span>
+</div>
+<div class="card-title">美国MSB牌照监管趋严，非持牌机构平均罚款$127万</div>
+<div class="card-body">FinCEN 2026年Q1数据显示，2025年非持牌经营机构平均罚款$127万，未合规申报企业牌照驳回率68%。各州牌照要求差异大，合规成本持续上升。</div>
+<div class="card-footer"><span class="card-company">MSB</span><span class="card-company">FinCEN</span></div>
+</div>
+
+<div class="card" data-type="policy" data-region="全球">
+<div class="card-meta">
+<span class="card-tag tag-policy">政策</span>
+<span class="card-tag tag-region">全球</span>
+<span class="impact impact-low">⬆ 背景</span>
+<span class="card-date">2026</span>
+</div>
+<div class="card-title">离岸实质要求全面收紧：BVI/开曼/塞舌尔</div>
+<div class="card-body">2026年方向明确：<strong>存在必须是真实的</strong>。塞舌尔终结纯挂名董事合规，BVI实益所有权申报截止2026.1.1，开曼强化透明度报告。离岸与"无实质"之间的差距正在关闭。</div>
+<div class="card-footer"><span class="card-company">离岸合规</span></div>
+</div>
+
+<div class="card" data-type="policy" data-region="全球">
+<div class="card-meta">
+<span class="card-tag tag-policy">政策</span>
+<span class="card-tag tag-region">全球</span>
+<span class="impact impact-low">⬆ 背景</span>
+<span class="card-date">2026</span>
+</div>
+<div class="card-title">毛里求斯PIS牌照税收优惠延期</div>
+<div class="card-body">毛里求斯FSC确认将部分免税制度扩展至符合实质要求的PIS牌照持有人。PIS牌照最低资本MUR 200万（约$4.5万），是<strong>全球最具成本效益的支付牌照之一</strong>。</div>
+<div class="card-footer"><span class="card-company">PIS</span><span class="card-company">毛里求斯</span></div>
+</div>
+
+<div class="card" data-type="policy" data-region="中国">
+<div class="card-meta">
+<span class="card-tag tag-policy">政策</span>
+<span class="card-tag tag-region">中国</span>
+<span class="impact impact-mid">⬆ 中影响</span>
+<span class="card-date">2025-06-22</span>
+</div>
+<div class="card-title">内地与香港"跨境支付通"正式上线</div>
+<div class="card-body">连接内地网上支付跨行清算系统与香港"转数快"。两地居民可通过手机号码或账户号码进行<strong>即时小额跨境汇款</strong>，实现"秒级到账"。是"系统连系统"互联的标志性事件。</div>
+<div class="card-footer"><span class="card-company">跨境支付通</span><span class="card-company">香港</span></div>
+</div>
+
+</div>
+</section>
+
+<!-- Crypto / Web3 监管 -->
+<section class="section" id="cryptoSection">
+<div class="section-header">
+<div class="section-icon crypto">🔗</div>
+<h2 class="section-title">Crypto / Web3.0 监管动态</h2>
+<span class="section-count" id="cryptoCount">27条</span>
+</div>
+<div class="cards-grid" id="cryptoCards">
+
+<div class="card" data-type="crypto" data-region="中东">
+<div class="card-meta">
+<span class="card-tag tag-crypto">Crypto</span>
+<span class="card-tag tag-region">中东</span>
+<span class="impact impact-high">⬆ 高影响</span>
+<span class="card-date">2026-08-26</span>
+</div>
+<div class="card-title">Circle × LuLuFin：USDC跨境汇款结算成本降25-30%，结算量增40%</div>
+<div class="card-body">Circle发布案例研究：LuLu Financial Holdings通过采用<strong>USDC和Circle Mint</strong>用于GCC/MENA/APAC地区汇款流，跨境结算成本下降<strong>25%-30%</strong>，结算量增长40%，受益人<strong>1分钟内到账</strong>。核心机制：用Circle Mint将美元1:1铸造为USDC，通过链上转账绕过传统代理行时间窗口限制，实现24/7结算。LuLuFin正评估CCTP跨链转移协议和Circle钱包基础设施。</div>
+<div class="card-footer"><span class="card-company">Circle</span><span class="card-company">USDC</span><span class="card-company">LuLuFin</span><span class="card-company">跨境汇款</span></div>
+</div>
+
+<div class="card" data-type="crypto" data-region="全球">
+<div class="card-meta">
+<span class="card-tag tag-crypto">Crypto</span>
+<span class="card-tag tag-region">全球</span>
+<span class="impact impact-mid">⬆ 中影响</span>
+<span class="card-date">2026-08-26</span>
+</div>
+<div class="card-title">TrustLinq × Thunes：稳定币到银行转账覆盖190国、80种货币</div>
+<div class="card-body">TrustLinq集成Thunes全球支付网络，实现<strong>稳定币到银行账户的直接转账</strong>，覆盖190个国家和80种货币，绕过传统交易所和出入金通道。这是稳定币从"交易工具"向"支付基础设施"转型的又一标志。</div>
+<div class="card-footer"><span class="card-company">TrustLinq</span><span class="card-company">Thunes</span><span class="card-company">稳定币支付</span></div>
+</div>
+
+<div class="card" data-type="crypto" data-region="全球">
+<div class="card-meta">
+<span class="card-tag tag-crypto">Crypto</span>
+<span class="card-tag tag-region">全球</span>
+<span class="impact impact-mid">⬆ 中影响</span>
+<span class="card-date">2026-08-26</span>
+</div>
+<div class="card-title">Abound选择Monad区块链，支撑$5亿汇款超级应用扩张</div>
+<div class="card-body">汇款平台Abound选择<strong>Monad区块链</strong>作为技术底座，支撑其<strong>$5亿规模</strong>的汇款超级应用扩张计划。将引入多币种钱包和AI驱动的金融服务，面向全球NRI（非居民印度人）群体。区块链基础设施在跨境汇款领域的实际应用加速。</div>
+<div class="card-footer"><span class="card-company">Abound</span><span class="card-company">Monad</span><span class="card-company">汇款</span></div>
+</div>
+
+
+<div class="card" data-type="crypto" data-region="欧洲">
+<div class="card-meta">
+<span class="card-tag tag-crypto">Crypto</span>
+<span class="card-tag tag-region">欧洲</span>
+<span class="impact impact-high">⬆ 高影响</span>
+<span class="card-date">2026-08-26</span>
+</div>
+<div class="card-title">Revolut推出欧元稳定币EURR，打破美元垄断布局欧系加密通道</div>
+<div class="card-body">金融科技巨头Revolut正式推出首款欧元稳定币<strong>EURR</strong>，首批覆盖丹麦、波兰、葡萄牙约<strong>200万用户</strong>。由Stripe旗下Bridge发行（Bridge Building S.A.卢森堡实体，8月7日获MiCA授权，第42家MiCA合规发行方）。EURR锚定1欧元恒定价值，先在以太坊上线，法币交易<strong>零费用零滑点</strong>。同步推进：Revolut将在<strong>8月31日后在EEA和瑞士下架Tether USDt</strong>。Revolut称正通过"独立监管路径"开发其他币种稳定币。欧洲央行行长曾公开表示需布局欧元稳定币，规避数字化美元化带来的<strong>货币主权流失风险</strong>。</div>
+<div class="card-footer"><span class="card-company">Revolut</span><span class="card-company">Bridge(Stripe)</span><span class="card-company">MiCA</span><span class="card-company">EURR</span></div>
+</div>
+
+<div class="card" data-type="crypto" data-region="全球">
+<div class="card-meta">
+<span class="card-tag tag-crypto">Crypto</span>
+<span class="card-tag tag-region">全球</span>
+<span class="impact impact-high">⬆ 高影响</span>
+<span class="card-date">2026-08-26</span>
+</div>
+<div class="card-title">日本43家企业启动代币化存款跨行结算试点，政府推进股债实时结算</div>
+<div class="card-body">由GMO Aozora Net Bank牵头，联合NEC旗下Abeam Consulting和DCP，<strong>43家机构</strong>（含理索纳银行、商工中金、横滨银行等）启动<strong>代币化存款银行间结算试点</strong>，属日本金融厅FinTech Proof of Concept Hub支持项目。目标构建<strong>低成本、24/7即时结算基础设施</strong>，计划FY2027商业化。同步推进：金融厅/财务省/日银今夏组建検討会，规划<strong>区块链网络实现国债和股票实时结算</strong>（目前T+2/T+1），2027初出整备方案。日本7月已通过加密资产法修正案（约105种加密资产将归类为金融商品，2027年起适用约20%分离课税）。Mizuho/MUFG/SMBC三大行也在开发稳定币试点。</div>
+<div class="card-footer"><span class="card-company">日本金融厅</span><span class="card-company">GMO Aozora</span><span class="card-company">代币化存款</span><span class="card-company">DLT结算</span></div>
+</div>
+
+<div class="card" data-type="crypto" data-region="中国">
+<div class="card-meta">
+<span class="card-tag tag-crypto">Crypto</span>
+<span class="card-tag tag-region">中国</span>
+<span class="impact impact-mid">⬆ 中影响</span>
+<span class="card-date">2026-08-27</span>
+</div>
+<div class="card-title">WeChat Pay HK入选香港金管局GenA.I.沙盒++，探索AI智能体支付基建</div>
+<div class="card-body">WeChat Pay HK两项AI创新案例入选第一期<strong>GenA.I.沙盒++</strong>（36个入选用例/30家金融机构/27家技术伙伴）。三大方向：<strong>AI智能体支付基建</strong>（构建连接用户端与商户端AI Agent的支付生态）、<strong>移动支付AI智能体</strong>、<strong>AI反诈骗</strong>（与腾讯云合作）。金管局总裁余伟文：代理式AI潜力将创造新机遇。同期：支付宝已完成3亿笔AI智能体支付，银联联合15家银行推出AI智能体银行卡。2030年全球AI Agent促成消费交易规模预计达$5万亿。</div>
+<div class="card-footer"><span class="card-company">WeChat Pay HK</span><span class="card-company">HKMA</span><span class="card-company">AI Agent</span><span class="card-company">腾讯云</span></div>
+</div>
+
+
+<div class="card" data-type="crypto" data-region="北美">
+<div class="card-meta">
+<span class="card-tag tag-crypto">Crypto</span>
+<span class="card-tag tag-region">北美</span>
+<span class="impact impact-high">⬆ 高影响</span>
+<span class="card-date">2026-08-25</span>
+</div>
+<div class="card-title">Blockchain Association支持GENIUS Act规则，建议CIP义务限于一级市场</div>
+<div class="card-body">美国区块链协会提交意见信，支持财政部等五部门联合提出的GENIUS Act稳定币规则。核心立场：<strong>CIP客户身份识别义务应限于发行方直接对客户的一级市场交易</strong>，P2P二级市场不纳入。呼吁明确"账户""客户""数字资产服务商"定义，避免重复合规要求。建议协调CIP规则与AML规则生效日期。</div>
+<div class="card-footer"><span class="card-company">Blockchain Association</span><span class="card-company">GENIUS Act</span><span class="card-company">CIP</span></div>
+</div>
+<div class="card" data-type="crypto" data-region="全球">
+<div class="card-meta">
+<span class="card-tag tag-crypto">Crypto</span>
+<span class="card-tag tag-region">全球</span>
+<span class="impact impact-mid">⬆ 中影响</span>
+<span class="card-date">2026-08-26</span>
+</div>
+<div class="card-title">Shard Labs×StoreHub成立合资企业，聚焦东南亚商户稳定币支付</div>
+<div class="card-body">加密支付基础设施公司Shard Labs与东南亚POS龙头StoreHub成立合资企业，<strong>将稳定币支付能力嵌入东南亚实体商户</strong>。东南亚稳定币应用从线上电商向线下实体加速渗透。</div>
+<div class="card-footer"><span class="card-company">Shard Labs</span><span class="card-company">StoreHub</span><span class="card-company">东南亚</span></div>
+</div>
+
+<div class="card" data-type="crypto" data-region="全球">
+<div class="card-meta">
+<span class="card-tag tag-crypto">Crypto</span>
+<span class="card-tag tag-region">全球</span>
+<span class="impact impact-mid">⬆ 中影响</span>
+<span class="card-date">2026-08-26</span>
+</div>
+<div class="card-title">日本稳定币监管升级：交易限额取消+税务简化+海外发行商准入</div>
+<div class="card-body">FSA推进一揽子改革：<strong>取消100万日元上限</strong>（第二类资金转账机构）；简化信托型稳定币交易税务流程（取消每次持有人变更的税务申报）；目标2027财年制度化。JPYC资金转账模型仍有100万日元限制，但JPYSC信托型模型无此限制——市场关注两类模型趋同。这是亚洲稳定币监管最激进的放松信号之一。</div>
+<div class="card-footer"><span class="card-company">FSA日本</span><span class="card-company">JPYC</span><span class="card-company">税务改革</span></div>
+</div>
+
+
+
+<div class="card" data-type="crypto" data-region="全球">
+<div class="card-meta">
+<span class="card-tag tag-crypto">Crypto</span>
+<span class="card-tag tag-region">全球</span>
+<span class="impact impact-high">⬆ 高影响</span>
+<span class="card-date">2026-08-25</span>
+</div>
+<div class="card-title">亚洲成全球稳定币支付"试验田"：香港首发2牌照/新加坡列4家大型机构/亚洲流量$12.5T</div>
+<div class="card-body">亚洲稳定币监管从"规则制定"进入<strong>"实际落地"</strong>阶段。香港已发首批2张稳定币牌照(Anchorpoint/HSBC)；新加坡MAS将Circle/Coinbase/BitGo/Anchorage列为大型支付机构；日本8/3生效Travel Rule扩展。亚洲2025年稳定币流量达<strong>$12.5万亿</strong>，B2B月流量从<$1亿→$30亿+。香港Reap年处理约$60亿稳定币卡支付。<a href="https://www.cryptopolitan.com/asia-testing-ground-stablecoin-payment-rails/" target="_blank" rel="noopener noreferrer" class="card-source">Cryptopolitan</a></div>
+<div class="card-footer"><span class="card-company">MAS</span><span class="card-company">HKMA</span><span class="card-company">FSA日本</span></div>
+</div>
+
+<div class="card" data-type="crypto" data-region="全球">
+<div class="card-meta">
+<span class="card-tag tag-crypto">Crypto</span>
+<span class="card-tag tag-region">全球</span>
+<span class="impact impact-mid">⬆ 中影响</span>
+<span class="card-date">2026-08-25</span>
+</div>
+<div class="card-title">GENIUS Act "交易所即边境"规则进一步清晰：2028大限下USDT面临合规or退出抉择</div>
+<div class="card-body">NBTC分析指出，GENIUS Act将交易所变成稳定币的"新边境"。2028.7.18后，<strong>数字资产服务商不得向美国用户销售无牌发行方稳定币</strong>。规则覆盖范围极广：广告、同意出售、甚至帮客户绕过地理定位均算违规。自托管/P2P不受影响。Tether面临抉择：为USDT申请"合格外国发行方"资质，或引导美国用户转向联邦监管的USA₮。智能合约可能需要具备<strong>冻结/烧毁功能</strong>以满足合规。<a href="https://news.nbtc.finance/treasury-just-put-a-deadline-on-offshore-stablecoins-access-to-us-customers/" target="_blank" rel="noopener noreferrer" class="card-source">NBTC</a></div>
+<div class="card-footer"><span class="card-company">GENIUS Act</span><span class="card-company">Tether</span><span class="card-company">USDT</span></div>
+</div>
+
+
+<div class="card" data-type="crypto" data-region="北美">
+<div class="card-meta">
+<span class="card-tag tag-crypto">Crypto</span>
+<span class="card-tag tag-region">北美</span>
+<span class="impact impact-high">⬆ 高影响</span>
+<span class="card-date">2026-08-24</span>
+</div>
+<div class="card-title">GENIUS Act时间表再明确：OCC 11月最终规则 → 2027.1.18框架生效</div>
+<div class="card-body">OCC署理署长Gould确认11月发布最终规则后，<strong>监管框架将于2027年1月18日或最终规则发布后120天（以先到者为准）生效</strong>。财政部8月17日配套发布管辖权认定规则——定义何时视为"在美国境内发行/销售"稳定币。外国发行方须对买家所在地进行"合理尽职调查"。违规发行罚款上限$100万/次+5年监禁。</div>
+<div class="card-footer"><span class="card-company">GENIUS Act</span><span class="card-company">OCC</span><span class="card-company">财政部</span></div>
+</div>
+
+<div class="card" data-type="crypto" data-region="中国">
+<div class="card-meta">
+<span class="card-tag tag-crypto">Crypto</span>
+<span class="card-tag tag-region">中国</span>
+<span class="impact impact-mid">⬆ 中影响</span>
+<span class="card-date">2026-08-24</span>
+</div>
+<div class="card-title">数字人民币跨境基础设施加速：mBridge五央行共管 + 30家运营机构</div>
+<div class="card-body">BIS退出后，mBridge转由中国/港/泰/阿联酋/沙特五家央行共同管理。银行端面临"一套系统五套合规"的全新挑战——<strong>跨境e-CNY岗位人才全球紧缺</strong>，高端合规/资金岗位年薪$40-65万，搜索周期超6个月。广东自贸区推动e-CNY向跨境贸易融资和离岸银行延伸。</div>
+<div class="card-footer"><span class="card-company">mBridge</span><span class="card-company">数字人民币</span><span class="card-company">人才紧缺</span></div>
+</div>
+
+<div class="card" data-type="crypto" data-region="全球">
+<div class="card-meta">
+<span class="card-tag tag-crypto">Crypto</span>
+<span class="card-tag tag-region">全球</span>
+<span class="impact impact-mid">⬆ 中影响</span>
+<span class="card-date">2026-08-23</span>
+</div>
+<div class="card-title">全球美元稳定币总市值$2869亿：USDT $1830亿 / USDC $733亿 / USD1 $269亿</div>
+<div class="card-body">截至8月23日，美元稳定币赛道238个币种，总市值<strong>$2869亿</strong>。USDT($1830亿)、USDC($733亿)、USD1($269亿)位居前三。GENIUS Act实施推进下，Tether已推出联邦监管的USA₮并推进USDT合规；Circle凭OCC最终批准的国家信托银行牌照占据美国合规高地。</div>
+<div class="card-footer"><span class="card-company">USDT</span><span class="card-company">USDC</span><span class="card-company">USD1</span></div>
+</div>
+
+<div class="card" data-type="crypto" data-region="全球">
+<div class="card-meta">
+<span class="card-tag tag-crypto">Crypto</span>
+<span class="card-tag tag-region">全球</span>
+<span class="impact impact-high">⬆ 高影响</span>
+<span class="card-date">2026-08-22</span>
+</div>
+<div class="card-title">HashKey与万通保险完成港元稳定币HKDAP首个真实交易</div>
+<div class="card-body">HashKey Exchange与万通保险完成香港首个受监管港元稳定币HKDAP的真实交易，推进<strong>保险支付场景</strong>应用。传统保费支付需2-3个工作日结算，HKDAP链上支付近乎实时到账。万通保险计划成为香港首批支持HKDAP支付保费的保险公司。</div>
+<div class="card-footer"><span class="card-company">HKDAP</span><span class="card-company">HashKey</span><span class="card-company">碇点金融科技</span></div>
+</div>
+
+<div class="card" data-type="crypto" data-region="全球">
+<div class="card-meta">
+<span class="card-tag tag-crypto">Crypto</span>
+<span class="card-tag tag-region">全球</span>
+<span class="impact impact-mid">⬆ 中影响</span>
+<span class="card-date">2026-08-16</span>
+</div>
+<div class="card-title">稳定币最大应用场景非跨境：国内转账占62.6%，亚太主导</div>
+<div class="card-body">Allium数据覆盖$152亿可识别链上转账：<strong>国内转账占62.6%</strong>（$95亿），73%资金留在同区域内。亚太占全球发送量41%、国内交易41.6%，印尼出现频率最高。跨境汇款只是稳定币需求的"一部分"，国内支付结算规模更大。</div>
+<div class="card-footer"><span class="card-company">Allium</span><span class="card-company">稳定币数据</span></div>
+</div>
+
+<div class="card" data-type="crypto" data-region="北美">
+<div class="card-meta">
+<span class="card-tag tag-crypto">Crypto</span>
+<span class="card-tag tag-region">北美</span>
+<span class="impact impact-high">⬆ 高影响</span>
+<span class="card-date">2026-08-18</span>
+</div>
+<div class="card-title">美国财政部发布GENIUS Act实施细则NPRM，设2027/2028两道合规红线</div>
+<div class="card-body">财政部就GENIUS Act第3条发布拟议规则通知(NPRM)，公众评议截止10月19日。关键时间节点：<strong>2027.1.18</strong>起发行方须持联邦/州牌照；<strong>2028.7.18</strong>起严禁向美国用户销售无牌稳定币。OCC目标11月发布最终规则。</div>
+<div class="card-footer"><span class="card-company">GENIUS Act</span><span class="card-company">OCC</span><span class="card-company">FinCEN</span></div>
+</div>
+
+<div class="card" data-type="crypto" data-region="北美">
+<div class="card-meta">
+<span class="card-tag tag-crypto">Crypto</span>
+<span class="card-tag tag-region">北美</span>
+<span class="impact impact-high">⬆ 高影响</span>
+<span class="card-date">2026-08-19</span>
+</div>
+<div class="card-title">SEC/CFTC联合规则：稳定币定调"支付工具"，禁止类存款利息</div>
+<div class="card-body">美国监管首次明确稳定币发行方<strong>不得向持有者支付被动利息</strong>，活动型奖励(交易返利/质押)保留。稳定币被正式定调为支付工具而非理财资产，旨在切断"影子银行"通道、防止虹吸银行存款。</div>
+<div class="card-footer"><span class="card-company">SEC</span><span class="card-company">CFTC</span><span class="card-company">稳定币监管</span></div>
+</div>
+
+<div class="card" data-type="crypto" data-region="北美">
+<div class="card-meta">
+<span class="card-tag tag-crypto">Crypto</span>
+<span class="card-tag tag-region">北美</span>
+<span class="impact impact-mid">⬆ 中影响</span>
+<span class="card-date">2026-08-14</span>
+</div>
+<div class="card-title">OCC条件批准World Liberty Financial设立信托银行发行USD1稳定币</div>
+<div class="card-body">OCC批准World Liberty Financial建立<strong>World Liberty Trust Company</strong>，计划发行和管理USD1稳定币。OCC数字资产相关审批量较上届政府增长8倍，Circle/Ripple/Paxos/BitGo等均已获条件批准。</div>
+<div class="card-footer"><span class="card-company">OCC</span><span class="card-company">USD1</span></div>
+</div>
+
+<div class="card" data-type="crypto" data-region="全球">
+<div class="card-meta">
+<span class="card-tag tag-crypto">Crypto</span>
+<span class="card-tag tag-region">全球</span>
+<span class="impact impact-mid">⬆ 中影响</span>
+<span class="card-date">2026-08-19</span>
+</div>
+<div class="card-title">FASB提议将稳定币视为现金等价物 + 奥地利FMA开出MiCA首张罚单</div>
+<div class="card-body">48小时内三大监管信号：FASB提议稳定币按<strong>现金等价物</strong>入账；奥地利FMA开出MiCA框架下首张罚单；Citi/Visa等加速建设稳定币托管与结算基础设施。稳定币合规从"可选"变"必修"。</div>
+<div class="card-footer"><span class="card-company">FASB</span><span class="card-company">MiCA</span><span class="card-company">FMA</span></div>
+</div>
+
+
+<div class="card" data-type="crypto" data-region="全球">
+<div class="card-meta">
+<span class="card-tag tag-crypto">Crypto</span>
+<span class="card-tag tag-region">全球</span>
+<span class="impact impact-high">⬆ 高影响</span>
+<span class="card-date">2026-07</span>
+</div>
+<div class="card-title">全球稳定币"防火墙"成型：美英欧港同步立法</div>
+<div class="card-body">美国GENIUS法案确立联邦稳定币框架（1:1国债背书）；英国FCA将法币稳定币纳入FSMA监管，10月25日生效；欧盟MiCA导致多家交易所下架USDT欧盟交易对；香港《稳定币条例》已批准2家银行支持发行方。<strong>稳定币正从加密市场工具变为可监管的支付轨道。</strong><a href="https://news.nbtc.finance/governments-are-quietly-building-a-global-stablecoin-firewall/" target="_blank" rel="noopener noreferrer" class="card-source">NBTC</a></div>
+<div class="card-footer"><span class="card-company">GENIUS Act</span><span class="card-company">MiCA</span><span class="card-company">HK稳定币条例</span></div>
+</div>
+
+<div class="card" data-type="crypto" data-region="拉美">
+<div class="card-meta">
+<span class="card-tag tag-crypto">Crypto</span>
+<span class="card-tag tag-region">拉美</span>
+<span class="impact impact-high">⬆ 高影响</span>
+<span class="card-date">2026-10-01生效</span>
+</div>
+<div class="card-title">巴西央行禁止稳定币用于跨境支付结算（Resolution 561）</div>
+<div class="card-body">巴西成为<strong>首个明确禁止稳定币用于跨境结算的G20央行</strong>。受监管的eFX机构不得使用稳定币、比特币等虚拟资产结算跨境支付的离岸端。违规者面临处罚。此前90%的巴西加密流量与稳定币相关，BCB认为这威胁货币主权和Pix/Drex国内支付基础设施。<a href="https://www.spark.money/research/brazil-stablecoin-cross-border-ban" target="_blank" rel="noopener noreferrer" class="card-source">Spark Money</a></div>
+<div class="card-footer"><span class="card-company">BCB</span><span class="card-company">稳定币禁令</span><span class="card-company">拉美</span></div>
+</div>
+
+<div class="card" data-type="crypto" data-region="中国">
+<div class="card-meta">
+<span class="card-tag tag-crypto">Crypto</span>
+<span class="card-tag tag-region">中国</span>
+<span class="impact impact-high">⬆ 高影响</span>
+<span class="card-date">2026-08</span>
+</div>
+<div class="card-title">中国八部门重申：虚拟货币相关业务一律严格禁止</div>
+<div class="card-body">央行等八部门2026年2月及8月多次重申：境内虚拟货币相关业务属非法金融活动。跨境业务严管——境外机构不得向境内提供虚拟货币服务，境内主体不得在境外发行虚拟货币或发行挂钩人民币的稳定币。<strong>RWA代币化也纳入监管。</strong><a href="https://cj.sina.com.cn/articles/view/7879849379/1d5acf5a3068091cr0" target="_blank" rel="noopener noreferrer" class="card-source">新浪财经</a></div>
+<div class="card-footer"><span class="card-company">央行</span><span class="card-company">虚拟货币禁令</span></div>
+</div>
+
+<div class="card" data-type="crypto" data-region="全球">
+<div class="card-meta">
+<span class="card-tag tag-crypto">Crypto</span>
+<span class="card-tag tag-region">全球</span>
+<span class="impact impact-mid">⬆ 中影响</span>
+<span class="card-date">2026-08-05</span>
+</div>
+<div class="card-title">Web3支付从叙事驱动转向基础设施落地</div>
+<div class="card-body">稳定币链上结算规模首超Visa+Mastercard合计交易量。90%受访机构已对稳定币采取行动，49%金融机构已在支付中使用。<strong>Stripe收购BVNK连接链上支付与法币通道，Visa与Bridge合作稳定币消费卡，Mastercard推出Agent Pay。</strong><a href="https://m.marsbit.co/newsdetail/20260805184210432767.html" target="_blank" rel="noopener noreferrer" class="card-source">MarsBit</a></div>
+<div class="card-footer"><span class="card-company">Stripe</span><span class="card-company">Visa</span><span class="card-company">Mastercard</span></div>
+</div>
+
+<div class="card" data-type="crypto" data-region="全球">
+<div class="card-meta">
+<span class="card-tag tag-crypto">Crypto</span>
+<span class="card-tag tag-region">全球</span>
+<span class="impact impact-mid">⬆ 中影响</span>
+<span class="card-date">2026</span>
+</div>
+<div class="card-title">稳定币用于跨境B2B：首要价值是速度而非低成本</div>
+<div class="card-body">Fireblocks调研显示：机构采用稳定币首要价值是<strong>更快结算（48%）</strong>，其次透明度（36%）、集成支付流（33%）、改善流动性管理（33%），低成本仅排第五（30%）。拉美、非洲、东南亚高通胀国家用户对美元计价储值更敏感。</div>
+<div class="card-footer"><span class="card-company">Fireblocks</span><span class="card-company">B2B结算</span></div>
+</div>
+
+<div class="card" data-type="crypto" data-region="欧洲">
+<div class="card-meta">
+<span class="card-tag tag-crypto">Crypto</span>
+<span class="card-tag tag-region">欧洲</span>
+<span class="impact impact-mid">⬆ 中影响</span>
+<span class="card-date">2026-07</span>
+</div>
+<div class="card-title">MiCA实际效果：USDT在欧盟交易量下降，USDC份额上升</div>
+<div class="card-body">研究发现MiCA在最高暴露市场，USDC市场份额变化0.82个标准差，相对交易量增加0.54。<strong>监管可在"入口"层面产生影响</strong>，而无需干预整个网络。欧盟委员会正评估MiCA，公众咨询至2026年8月31日。</div>
+<div class="card-footer"><span class="card-company">MiCA</span><span class="card-company">USDT</span><span class="card-company">USDC</span></div>
+</div>
+
+<div class="card" data-type="crypto" data-region="全球">
+<div class="card-meta">
+<span class="card-tag tag-crypto">Crypto</span>
+<span class="card-tag tag-region">全球</span>
+<span class="impact impact-low">⬆ 背景</span>
+<span class="card-date">2026</span>
+</div>
+<div class="card-title">稳定币结算的真实成本：链上仅0.4%，出入金才是大头</div>
+<div class="card-body">意大利央行测试200笔USDC转账，覆盖10条走廊。成本区间0.30%-8.96%，执行时间从20分钟到2个工作日。<strong>区块链部分仅贡献约0.4%的费用</strong>，大部分摩擦在出入金（on/off ramp）环节。</div>
+<div class="card-footer"><span class="card-company">Banca d'Italia</span><span class="card-company">出入金成本</span></div>
+</div>
+
+</div>
+</section>
+
+<!-- 时间线 -->
+<section class="section" id="timelineSection">
+<div class="section-header">
+<div class="section-icon timeline">📅</div>
+<h2 class="section-title">近期重要事件时间线</h2>
+</div>
+<div class="timeline">
+<div class="timeline-item">
+<div class="timeline-date">2026-08-28</div>
+<div class="timeline-content"><strong>CIPS覆盖192国</strong>：直接210+间接1619参与者，5200+银行机构；<strong>大额支付系统10/17起延长运行时间</strong>至5×22.5+13.5小时<br><strong>外汇局7月数据</strong>：结汇18097亿/售汇16856亿，涉外收入$8656亿<br><strong>跨境二维码网关扩容</strong>：近50个境外钱包接入</div>
+</div>
+<div class="timeline-item">
+<div class="timeline-date">2026-08-26</div>
+<div class="timeline-content"><strong>Circle × LuLuFin</strong>：USDC跨境汇款结算成本降25-30%，结算量增40%，1分钟到账<br><strong>TrustLinq × Thunes</strong>：稳定币到银行转账覆盖190国80种货币<br><strong>Abound选择Monad</strong>：$5亿汇款超级应用</div>
+</div>
+<div class="timeline-item">
+<div class="timeline-date">2026-08-27</div>
+<div class="timeline-content"><strong>央行陆磊披露跨境支付多项进展</strong>：跨境二维码统一网关"内包外用"上线、数币达CBETS平台上线、《智能体支付应用自律公约》发布</div>
+</div>
+<div class="timeline-item">
+<div class="timeline-date">2026-08-27</div>
+<div class="timeline-content"><strong>澳门mBridge首日23笔交易落地</strong>，开通至阿联酋通道，人民币直接进入中东市场</div>
+</div>
+<div class="timeline-item">
+<div class="timeline-date">2026-08-26</div>
+<div class="timeline-content"><strong>Revolut推出欧元稳定币EURR</strong>（Stripe旗下Bridge发行），8/31后下架USDt；<strong>日本43家企业启动代币化存款跨行结算试点</strong></div>
+</div>
+<div class="timeline-item">
+<div class="timeline-date">2026-08-26</div>
+<div class="timeline-content"><strong>KPMG Pulse of Fintech H1 2026</strong>：全球支付投资$442亿超2025全年，空中云汇$3.2亿为亚太最大交易</div>
+</div>
+<div class="timeline-item">
+<div class="timeline-date">2026-08-27</div>
+<div class="timeline-content"><strong>星展银行×Stripe战略合作</strong>，联合研发AI智能体交易功能，深耕亚洲跨境支付</div>
+</div>
+<div class="timeline-item">
+<div class="timeline-date">2026-08-27</div>
+<div class="timeline-content"><strong>HKMA发布GenA.I.沙盒++名单</strong>，WeChat Pay HK入选探索AI智能体支付基建</div>
+</div>
+
+
+
+<div class="timeline-item">
+<div class="timeline-date">2026-08-26</div>
+<div class="timeline-content"><strong>日本FSA取消稳定币100万日元上限</strong>，组建专项监管部门，开放海外发行商准入<br><strong>拉卡拉终止赴港IPO</strong>，H1跨境支付交易规模543亿(+46%)<br><strong>新韩金融×Visa共建韩国稳定币基础设施</strong><br><strong>空中云汇$4300万投资UAE</strong>，获央行原则性批准<br><strong>空中云汇发布AgentOS</strong>+稳定币战略，进入自主金融赛道<br><strong>小商品城/义支付H1跨境交易25.1亿美元</strong>，落地数字人民币跨境电商方案<br><strong>PingPong×TikTok Shop</strong>深耕亚太多城联动</div>
+</div>
+<div class="timeline-item">
+<div class="timeline-date">2026-08-25</div>
+<div class="timeline-content"><strong>美对伊"经济D-Day"制裁</strong>：覆盖数字资产等5大领域，60+目标，未制裁中国大行<br><strong>亚洲稳定币监管落地</strong>：香港发首批2牌照，新加坡列4家大型机构，亚洲流量$12.5T<br><strong>PhotonPay发布拉美支付白皮书</strong>，深耕新兴市场基础设施<br><strong>PingPong×中行推"全球本币收款方案"</strong>，支持20+小币种</div>
+</div>
+<div class="timeline-item">
+<div class="timeline-date">2026-08-24</div>
+<div class="timeline-content"><strong>SHEIN港股全球发售</strong>：估值约$270亿，9月1日挂牌，基石投资者含腾讯/博裕/Tiger Global<br><strong>OCC确认GENIUS Act 11月最终规则</strong>，2027.1.18框架生效<br><strong>蚂蚁国际×中银香港战略合作</strong>：Alipay+东南亚结算+万里汇企业服务</div>
+</div>
+<div class="timeline-item">
+<div class="timeline-date">2026-08-24</div>
+<div class="timeline-content"><strong>MiCA定向审查启动</strong>：86问覆盖稳定币利息禁令/Staking/DeFi，咨询截止9.30<br><strong>寻汇接入美客多SPN</strong>，扩大拉美电商生态覆盖<br><strong>数字人民币运营机构扩至30家</strong>，mBridge五央行共管</div>
+</div>
+<div class="timeline-item">
+<div class="timeline-date">2026-08-23</div>
+<div class="timeline-content"><strong>GENIUS Act细则升级</strong>：2028.7.18后离岸稳定币禁止通过美国交易所销售；<strong>MiCA托管锁局</strong>：23家EMT发行方仅9家获CASP授权，Circle/SG-Forge主导</div>
+</div>
+<div class="timeline-item">
+<div class="timeline-date">2026-08-23</div>
+<div class="timeline-content"><strong>暗涌Waves万字报道</strong>：揭示跨境支付"影子世界"生态，连连/PingPong/寻汇/空中云汇全景扫描</div>
+</div>
+<div class="timeline-item">
+<div class="timeline-date">2026-08-21</div>
+<div class="timeline-content"><strong>20号胶期货跨境交割首批落地</strong>：泰国林查班港交付，期货市场跨境实物交割机制全流程打通</div>
+</div>
+<div class="timeline-item">
+<div class="timeline-date">2026-08-22</div>
+<div class="timeline-content"><strong>HKDAP首个真实交易</strong>：HashKey×万通保险完成港元稳定币保险支付场景验证</div>
+</div>
+<div class="timeline-item">
+<div class="timeline-date">2026-08-21</div>
+<div class="timeline-content"><strong>XTransfer入选Power 50</strong>：中国跨境支付领域唯一入选The Payments Power 50 2026</div>
+</div>
+<div class="timeline-item">
+<div class="timeline-date">2026-08-20</div>
+<div class="timeline-content"><strong>贵州跨境贸易开放试点落地</strong>：首日8家银行42家企业，业务2595万美元</div>
+</div>
+<div class="timeline-item">
+<div class="timeline-date">2026-08-18</div>
+<div class="timeline-content"><strong>PhotonPay拉美白皮书</strong>：稳定币成下一代结算层，定位"多轨金融操作系统"</div>
+</div>
+<div class="timeline-item">
+<div class="timeline-date">2026-08-15</div>
+<div class="timeline-content"><strong>墨西哥关税暴涨</strong>：50美元以下跨境包裹关税从19%飙升至33.5%</div>
+</div>
+<div class="timeline-item">
+<div class="timeline-date">2026-10-01</div>
+<div class="timeline-content"><strong>巴西稳定币禁令生效</strong>：Resolution 561禁止eFX机构使用稳定币结算跨境支付</div>
+</div>
+<div class="timeline-item">
+<div class="timeline-date">2026-08-19</div>
+<div class="timeline-content"><strong>Stripe拟收购PayPal</strong>：$530亿估值，合并后年处理$3.7T，支付格局或重塑</div>
+</div>
+<div class="timeline-item">
+<div class="timeline-date">2026-08-19</div>
+<div class="timeline-content"><strong>人民币清算行全球布局</strong>：德银获授权法兰克福清算行，非洲连下两城</div>
+</div>
+<div class="timeline-item">
+<div class="timeline-date">2026-08-16</div>
+<div class="timeline-content"><strong>XTransfer未来外贸大会</strong>：公布B2B全球份额5.1%，连接171家银行</div>
+</div>
+<div class="timeline-item">
+<div class="timeline-date">2026-08-14</div>
+<div class="timeline-content"><strong>央行+外汇局</strong>：跨国公司本外币资金集中运营新规（9.14施行）+ 十五五规划"多层次"跨境支付</div>
+</div>
+<div class="timeline-item">
+<div class="timeline-date">2026-08-14</div>
+<div class="timeline-content"><strong>连连"星小汇"</strong>上线：AI Agent外汇管理助手</div>
+</div>
+<div class="timeline-item">
+<div class="timeline-date">2026-08-13</div>
+<div class="timeline-content"><strong>渣打碇点金融</strong>推出港元稳定币HKDAP，首阶段仅对机构开放</div>
+</div>
+<div class="timeline-item">
+<div class="timeline-date">2026-08-07</div>
+<div class="timeline-content"><strong>全球稳定币防火墙</strong>：美英欧港四地同步立法，稳定币进入可监管支付轨道时代</div>
+</div>
+<div class="timeline-item">
+<div class="timeline-date">2026-07-31</div>
+<div class="timeline-content"><strong>连连×Visa</strong>：完成大中华区首笔B2B智能体真实支付 | 连连获评跨境支付综合能力TOP1</div>
+</div>
+<div class="timeline-item">
+<div class="timeline-date">2026-06</div>
+<div class="timeline-content"><strong>空中云汇</strong>推出Airi全域一键结账 | <strong>中国-印尼</strong>启动跨境二维码支付</div>
+</div>
+<div class="timeline-item">
+<div class="timeline-date">2026-04</div>
+<div class="timeline-content"><strong>XTransfer递表港交所</strong>，阿里、高榕等参投</div>
+</div>
+<div class="timeline-item">
+<div class="timeline-date">2026-03</div>
+<div class="timeline-content"><strong>加拿大FINTRAC</strong> Q1撤销50个MSB注册 | <strong>PingPong</strong>推出数娱收单方案</div>
+</div>
+</div>
+</section>
+
+<div class="no-results" id="noResultsPolicy">没有找到匹配的政策条目。请调整筛选条件。</div>
+</div>
+
+<!-- ============ TAB 2: 大盘数据 ============ -->
+<div class="tab-panel" id="panel-market">
+
+<!-- KPI -->
+<div class="kpi-grid">
+<div class="kpi-card">
+<div class="kpi-label">全球跨境支付流量 (2025)</div>
+<div class="kpi-value">$208T</div>
+<div class="kpi-sub">跨境电子支付规模预计2026年超$15T</div>
+</div>
+<div class="kpi-card">
+<div class="kpi-label">CIPS 参与者 (2026Q2)</div>
+<div class="kpi-value">1,829</div>
+<div class="kpi-sub">直接210 + 间接1,619 | 覆盖192国 | 10/17起延长运行时间</div>
+</div>
+<div class="kpi-card">
+<div class="kpi-label">B2B APAC市场规模</div>
+<div class="kpi-value">$907亿</div>
+<div class="kpi-sub">占全球B2B支付流量38%，居各地区首位</div>
+</div>
+<div class="kpi-card">
+<div class="kpi-label">游戏出海收入 (2026H1)</div>
+<div class="kpi-value">$123.7亿</div>
+<div class="kpi-sub">同比+30.22%，近6年最大增幅</div>
+</div>
+</div>
+
+<!-- 费率大盘 -->
+<section class="section">
+<div class="section-header">
+<div class="section-icon market">💱</div>
+<h2 class="section-title">结汇汇率与费率区间</h2>
+</div>
+<div style="overflow-x:auto;border-radius:var(--radius);border:1px solid var(--border)">
+<table class="data-table">
+<thead>
+<tr>
+<th>平台</th>
+<th>结汇费率</th>
+<th>收单费率</th>
+<th>到账速度</th>
+<th>核心优势</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>连连数字</strong></td>
+<td class="num">0.3%-0.7%</td>
+<td class="num">按平台</td>
+<td>人民币5分钟，最快2秒</td>
+<td>68牌照、AI原生、智能体商务</td>
+</tr>
+<tr>
+<td><strong>空中云汇</strong></td>
+<td class="num">0.5%-1.0%</td>
+<td class="num">按场景</td>
+<td>90%当日，50%即时</td>
+<td>嵌入式金融、LockFX锁汇</td>
+</tr>
+<tr>
+<td><strong>XTransfer</strong></td>
+<td class="num">0.3%-0.5%</td>
+<td class="num">本地收款</td>
+<td>本地货币直付</td>
+<td>B2B全球第一、60国本地账户</td>
+</tr>
+<tr>
+<td><strong>PingPong</strong></td>
+<td class="num">0.5%-1.0%</td>
+<td class="num">2.9%-3.4%</td>
+<td>按场景</td>
+<td>数娱收单、内嵌式收银台</td>
+</tr>
+<tr>
+<td><strong>万里汇</strong></td>
+<td class="num">0.4%-1.2%</td>
+<td class="num">按场景</td>
+<td>1-2工作日</td>
+<td>蚂蚁体系、B2B外贸核心</td>
+</tr>
+<tr>
+<td><strong>PayPal</strong></td>
+<td class="num">较高</td>
+<td class="num">3.4%+$0.30</td>
+<td>即时</td>
+<td>74%用户偏好、品牌信任</td>
+</tr>
+<tr>
+<td><strong>PhotonPay光子易</strong></td>
+<td class="num">不公开</td>
+<td class="num">按场景</td>
+<td>稳定币即时/法币T+0</td>
+<td>稳定币+法币双通道、虚拟卡</td>
+</tr>
+<tr>
+<td><strong>寻汇</strong></td>
+<td class="num">竞争力定价</td>
+<td class="num">按场景</td>
+<td>快速到账</td>
+<td>AI驱动、智能体开户</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+
+<!-- 品牌动态 -->
+<section class="section">
+<div class="section-header">
+<div class="section-icon brand">🏢</div>
+<h2 class="section-title">品牌动态与产品更新</h2>
+<span class="section-count" id="brandCount">41条</span>
+</div>
+<div class="cards-grid" id="brandCards">
+
+<div class="card" data-type="brand" data-company="万里汇" data-region="全球">
+<div class="card-meta">
+<span class="card-tag tag-brand">品牌</span>
+<span class="card-tag tag-region">全球</span>
+<span class="impact impact-high">⬆ 高影响</span>
+<span class="card-date">2026-08-27</span>
+</div>
+<div class="card-title">万里汇外贸收款"霸屏"全国上线，数娱商户H1增长超100%</div>
+<div class="card-body">万里汇（WorldFirst）8月27日宣布外贸收款业务<strong>全国震撼上线</strong>。H1数娱出海商户数同比增长超<strong>100%</strong>，交易量同比增长超<strong>200%</strong>。短剧出海企业可通过万里汇快捷合规支付外籍演员薪酬，手续费大幅降低。万里汇与Antom构成蚂蚁国际全球账户服务：<strong>前端Antom收单+后端万里汇B2B资金流转</strong>，已服务爱奇艺、泡泡玛特、原神等。</div>
+<div class="card-footer"><span class="card-company">万里汇</span><span class="card-company">WorldFirst</span><span class="card-company">蚂蚁国际</span></div>
+</div>
+
+<div class="card" data-type="brand" data-company="Stripe" data-region="全球">
+<div class="card-meta">
+<span class="card-tag tag-brand">品牌</span>
+<span class="card-tag tag-region">全球</span>
+<span class="impact impact-mid">⬆ 中影响</span>
+<span class="card-date">2026-08-25</span>
+</div>
+<div class="card-title">Stripe新加坡10周年：推出Managed Payments和Treasury，营收增长17.8%</div>
+<div class="card-body">Stripe庆祝进入新加坡10周年，宣布推出<strong>Managed Payments和Treasury</strong>工具，支持企业在195个国家销售。同步大幅扩展基础设施。最新财报显示<strong>营收同比增长17.8%</strong>。Stripe正从支付处理器全面转型为全球贸易金融操作系统。</div>
+<div class="card-footer"><span class="card-company">Stripe</span><span class="card-company">新加坡</span><span class="card-company">Managed Payments</span></div>
+</div>
+
+<div class="card" data-type="brand" data-company="XTransfer" data-region="全球">
+<div class="card-meta">
+<span class="card-tag tag-brand">品牌</span>
+<span class="card-tag tag-region">全球</span>
+<span class="impact impact-mid">⬆ 中影响</span>
+<span class="card-date">2026-08-28</span>
+</div>
+<div class="card-title">XTransfer × BBVA/法兴银行战略合作：深化欧洲B2B跨境支付网络</div>
+<div class="card-body">XTransfer在Money20/20 Europe 2026（阿姆斯特丹）宣布与<strong>BBVA和法国兴业银行</strong>达成战略合作，深化X-Net统一B2B跨境结算网络。聚焦：扩展本地货币收款、改善FX转换可靠性、加强受监管结算连接。目标解决中小企业在新兴市场面临的碎片化收款选项、费用不透明、结算周期长等痛点。2025年TPV超$600亿，截至3月底约89.7万注册客户。</div>
+<div class="card-footer"><span class="card-company">XTransfer</span><span class="card-company">BBVA</span><span class="card-company">Société Générale</span></div>
+</div>
+
+<div class="card" data-type="brand" data-company="空中云汇" data-region="中东">
+<div class="card-meta">
+<span class="card-tag tag-brand">品牌</span>
+<span class="card-tag tag-region">中东</span>
+<span class="impact impact-high">⬆ 高影响</span>
+<span class="card-date">2026-08-25</span>
+</div>
+<div class="card-title">空中云汇$4300万投资UAE，加速EMEA五年扩张计划</div>
+<div class="card-body">Airwallex宣布向UAE投资<strong>$4300万</strong>，启动为期5年的EMEA区域扩张计划，打造AI原生金融平台。此前已获阿联酋央行原则性批准。同步推出新货币功能帮助企业削减FX成本。这是空中云汇继H轮$3.2亿融资后的又一重大战略动作。</div>
+<div class="card-footer"><span class="card-company">Airwallex</span><span class="card-company">UAE</span><span class="card-company">EMEA</span></div>
+</div>
+
+
+<div class="card" data-type="brand" data-company="空中云汇" data-region="全球">
+<div class="card-meta">
+<span class="card-tag tag-brand">品牌</span>
+<span class="card-tag tag-region">全球</span>
+<span class="impact impact-high">⬆ 高影响</span>
+<span class="card-date">2026-08-26</span>
+</div>
+<div class="card-title">KPMG：空中云汇H轮$3.2亿为2026 H1亚太区最大支付交易</div>
+<div class="card-body">KPMG Pulse of Fintech H1 2026报告确认，空中云汇（Airwallex）H轮<strong>$3.2亿融资</strong>为亚太地区支付领域最大单笔交易。报告同时显示：2026 H1全球支付领域投资<strong>$442亿</strong>（超2025全年$202亿），但交易量仅168笔创多年新低——行业进入<strong>"巨头整合"阶段</strong>。Global Payments $243亿收购Worldpay为最大单笔交易。</div>
+<div class="card-footer"><span class="card-company">KPMG</span><span class="card-company">Airwallex</span><span class="card-company">PitchBook</span></div>
+</div>
+
+<div class="card" data-type="brand" data-company="Stripe" data-region="全球">
+<div class="card-meta">
+<span class="card-tag tag-brand">品牌</span>
+<span class="card-tag tag-region">全球</span>
+<span class="impact impact-high">⬆ 高影响</span>
+<span class="card-date">2026-08-27</span>
+</div>
+<div class="card-title">星展银行×Stripe战略合作：加速亚洲AI智能体与跨境支付</div>
+<div class="card-body">8月27日，星展银行（DBS）与Stripe达成战略合作，聚焦亚洲市场。整合星展综合银行服务+Stripe可编程金融底座，帮助企业<strong>跨市场收款、资金调拨、资金管理</strong>全流程高效运转。联合研发<strong>AI智能体交易功能</strong>。关键数据：亚洲跨境支付预计2033年达<strong>$24万亿</strong>（占全球36%，较2025年$13.5万亿翻倍）。Stripe正从"交易执行者"升级为"交易决策者"——已推出Agentic Commerce Suite，2030年AI Agent促成消费交易规模预计达$5万亿。</div>
+<div class="card-footer"><span class="card-company">DBS星展</span><span class="card-company">Stripe</span><span class="card-company">AI Agent</span><span class="card-company">跨境支付</span></div>
+</div>
+
+<div class="card" data-type="brand" data-company="Stripe" data-region="全球">
+<div class="card-meta">
+<span class="card-tag tag-brand">品牌</span>
+<span class="card-tag tag-region">全球</span>
+<span class="impact impact-mid">⬆ 中影响</span>
+<span class="card-date">2026-08-26</span>
+</div>
+<div class="card-title">Revolut EURR稳定币由Stripe旗下Bridge发行，稳定币基础设施赛道加速</div>
+<div class="card-body">Revolut欧元稳定币EURR的发行方为<strong>Stripe 2024年收购的稳定币平台Bridge</strong>（Bridge Building S.A.卢森堡实体）。Bridge 8月7日获MiCA授权，19天后即支持EURR上线——<strong>MiCA合规发行基础设施</strong>正成为稳定币赛道的核心能力。Mastercard也在H1 2026期间宣布收购稳定币基础设施公司。KPMG指出：数字资产投资正从交易平台转向<strong>支付、资金管理、B2B结算和跨境汇款</strong>。</div>
+<div class="card-footer"><span class="card-company">Bridge</span><span class="card-company">Stripe</span><span class="card-company">稳定币基础设施</span></div>
+</div>
+
+
+<div class="card" data-type="brand" data-company="空中云汇" data-region="全球">
+<div class="card-meta">
+<span class="card-tag tag-brand">品牌</span>
+<span class="card-tag tag-region">全球</span>
+<span class="impact impact-high">⬆ 高影响</span>
+<span class="card-date">2026-08-26</span>
+</div>
+<div class="card-title">KPMG：空中云汇H轮$3.2亿为2026 H1亚太区最大支付交易</div>
+<div class="card-body">KPMG Pulse of Fintech H1 2026报告确认，空中云汇（Airwallex）H轮<strong>$3.2亿融资</strong>为亚太地区支付领域最大单笔交易。报告同时显示：2026 H1全球支付领域投资<strong>$442亿</strong>（超2025全年$202亿），但交易量仅168笔创多年新低——行业进入<strong>"巨头整合"阶段</strong>。Global Payments $243亿收购Worldpay为最大单笔交易。</div>
+<div class="card-footer"><span class="card-company">KPMG</span><span class="card-company">Airwallex</span><span class="card-company">PitchBook</span></div>
+</div>
+
+<div class="card" data-type="brand" data-company="Stripe" data-region="全球">
+<div class="card-meta">
+<span class="card-tag tag-brand">品牌</span>
+<span class="card-tag tag-region">全球</span>
+<span class="impact impact-high">⬆ 高影响</span>
+<span class="card-date">2026-08-27</span>
+</div>
+<div class="card-title">星展银行×Stripe战略合作：加速亚洲AI智能体与跨境支付</div>
+<div class="card-body">8月27日，星展银行（DBS）与Stripe达成战略合作，聚焦亚洲市场。整合星展综合银行服务+Stripe可编程金融底座，帮助企业<strong>跨市场收款、资金调拨、资金管理</strong>全流程高效运转。联合研发<strong>AI智能体交易功能</strong>。关键数据：亚洲跨境支付预计2033年达<strong>$24万亿</strong>（占全球36%，较2025年$13.5万亿翻倍）。Stripe正从"交易执行者"升级为"交易决策者"——已推出Agentic Commerce Suite，2030年AI Agent促成消费交易规模预计达$5万亿。</div>
+<div class="card-footer"><span class="card-company">DBS星展</span><span class="card-company">Stripe</span><span class="card-company">AI Agent</span><span class="card-company">跨境支付</span></div>
+</div>
+
+<div class="card" data-type="brand" data-company="Stripe" data-region="全球">
+<div class="card-meta">
+<span class="card-tag tag-brand">品牌</span>
+<span class="card-tag tag-region">全球</span>
+<span class="impact impact-mid">⬆ 中影响</span>
+<span class="card-date">2026-08-26</span>
+</div>
+<div class="card-title">Revolut EURR稳定币由Stripe旗下Bridge发行，稳定币基础设施赛道加速</div>
+<div class="card-body">Revolut欧元稳定币EURR的发行方为<strong>Stripe 2024年收购的稳定币平台Bridge</strong>（Bridge Building S.A.卢森堡实体）。Bridge 8月7日获MiCA授权，19天后即支持EURR上线——<strong>MiCA合规发行基础设施</strong>正成为稳定币赛道的核心能力。Mastercard也在H1 2026期间宣布收购稳定币基础设施公司。KPMG指出：数字资产投资正从交易平台转向<strong>支付、资金管理、B2B结算和跨境汇款</strong>。</div>
+<div class="card-footer"><span class="card-company">Bridge</span><span class="card-company">Stripe</span><span class="card-company">稳定币基础设施</span></div>
+</div>
+
+
+<div class="card" data-type="brand" data-company="PhotonPay" data-region="拉美">
+<div class="card-meta">
+<span class="card-tag tag-brand">品牌</span>
+<span class="card-tag tag-region">拉美</span>
+<span class="impact impact-mid">⬆ 中影响</span>
+<span class="card-date">2026-08-25</span>
+</div>
+<div class="card-title">PhotonPay光子易正式发布《2026新兴市场地区支付报告：拉美篇》白皮书</div>
+<div class="card-body">美通社发布，聚焦<strong>拉美支付市场发展趋势与基础设施演进</strong>。这是PhotonPay继B轮数千万美元融资后的又一重大发布，持续深耕新兴市场支付基础设施定位。此前8/18版拉美白皮书已指出稳定币成下一代机构级结算层。</div>
+</div>
+
+<div class="card" data-type="brand" data-company="PingPong" data-region="全球">
+<div class="card-meta">
+<span class="card-tag tag-brand">品牌</span>
+<span class="card-tag tag-region">全球</span>
+<span class="impact impact-mid">⬆ 中影响</span>
+<span class="card-date">2026-08-25</span>
+</div>
+<div class="card-title">PingPong×中国银行推出"一站式全球本币收款方案"，支持20+小币种</div>
+<div class="card-body">PingPong与中国银行浙江省分行合作发布<strong>"一站式全球本币收款方案"</strong>，支持20余种新兴市场小币种本地收款并直接结汇为人民币，帮助出口企业解决小币种结算难题。同时与Visa合作推出B2B全球企业支付解决方案，覆盖<strong>170+国家/25+货币</strong>，已在英国/欧盟/香港上线。</div>
+</div>
+
+<div class="card" data-type="brand" data-company="PingPong" data-region="全球">
+<div class="card-meta">
+<span class="card-tag tag-brand">品牌</span>
+<span class="card-tag tag-region">全球</span>
+<span class="card-date">2026-08-25</span>
+</div>
+<div class="card-title">PingPong密集发布AI风控专利集群，入选国家级独角兽+胡润全球榜</div>
+<div class="card-body">8月以来PingPong密集发布多项发明专利：日志脱敏(8/25授权)、名称实体识别模型(8/14)、风控策略模型(8/7)、风险状态挖掘(8/4)等，AI风控从规则引擎向<strong>深度学习</strong>演进。同时入选2026年<strong>国家级独角兽企业</strong>+胡润全球独角兽第1118位，IPO辅导进行中（第26期）。</div>
+</div>
+
+<div class="card" data-type="brand" data-company="Mesta" data-region="全球">
+<div class="card-meta">
+<span class="card-tag tag-brand">品牌</span>
+<span class="card-tag tag-region">全球</span>
+<span class="card-date">2026-08-25</span>
+</div>
+<div class="card-title">Mesta推出白标客户门户，法币+稳定币双轨支付基础设施</div>
+<div class="card-body">Mesta发布White-Labeled Customer Portal，允许企业以自有品牌部署跨境支付前端。21个月处理<strong>$20亿交易量</strong>，30000+跨境交易，覆盖100+国家/40+支付货币。Circle Ventures/Paxos等投资。嵌入式金融赛道新玩家，定位"不可见基础设施"。</div>
+</div>
+
+
+<div class="card" data-type="brand" data-company="连连数字" data-region="全球">
+<div class="card-meta">
+<span class="card-tag tag-brand">品牌</span>
+<span class="card-tag tag-region">全球</span>
+<span class="impact impact-mid">⬆ 中影响</span>
+<span class="card-date">2026-08-24</span>
+</div>
+<div class="card-title">连连数字H1详解：AI战略三线并进，Agent Wallet+LianLian Fabric+Open API Skill</div>
+<div class="card-body">中报深度披露AI布局：<strong>Agent Wallet智付底座</strong>（面向AI产品公司/Web3/大企业）、<strong>LianLian Fabric企业级平台</strong>（整合Agent/知识库/工作流）、<strong>Open API Skill</strong>（支付API封装为AI编程工具可调用Skill）。"连连智枢"统一接入300+AI模型。增值服务收入1.64亿(+83.2%)，虚拟银行卡业务持续放量。68项牌照+1330万客户。</div>
+</div>
+
+<div class="card" data-type="brand" data-company="寻汇" data-region="拉美">
+<div class="card-meta">
+<span class="card-tag tag-brand">品牌</span>
+<span class="card-tag tag-region">拉美</span>
+<span class="card-date">2026-08-24</span>
+</div>
+<div class="card-title">寻汇Sunrate接入美客多(Mercado Libre)SPN，为拉美中国卖家提供收付方案</div>
+<div class="card-body">寻汇正式接入<strong>美客多(Mercado Libre)SPN服务商网络</strong>，为出海拉美的中国卖家提供跨境收款、结汇及付款解决方案。拉美市场是跨境支付增长最快的区域之一，寻汇借此扩大在拉美电商生态的覆盖。此前寻汇已发布AI驱动新品牌战略，连续三年入选FXC Intelligence跨境支付百强。</div>
+</div>
+
+<div class="card" data-type="brand" data-company="蚂蚁国际" data-region="全球">
+<div class="card-meta">
+<span class="card-tag tag-brand">品牌</span>
+<span class="card-tag tag-region">全球</span>
+<span class="impact impact-mid">⬆ 中影响</span>
+<span class="card-date">2026-08-24</span>
+</div>
+<div class="card-title">蚂蚁国际×中银香港达成战略合作：Alipay+东南亚结算+万里汇企业服务</div>
+<div class="card-body">蚂蚁国际与中银香港在三大领域深度合作：①中银香港为<strong>Alipay+提供东南亚跨境支付</strong>账户及银行结算服务；②AlipayHK与中银香港将推出联合营销活动；③万里汇与中银香港合作优化中小企业金融服务。Alipay+生态网络已覆盖全球50个移动支付伙伴和<strong>超20亿个人用户</strong>。</div>
+</div>
+
+<div class="card" data-type="brand" data-company="PhotonPay" data-region="全球">
+<div class="card-meta">
+<span class="card-tag tag-brand">品牌</span>
+<span class="card-tag tag-region">全球</span>
+<span class="card-date">2026-08-24</span>
+</div>
+<div class="card-title">PhotonPay获双项全球大奖：稳定币金融操作系统定位获行业认可</div>
+<div class="card-body">PhotonPay光子易连获两项全球金融科技大奖，<strong>"加密轨道上的安静金融科技革命"</strong>定位获行业认可。核心差异化：唯一法币+稳定币双原生通道，覆盖200+国家/地区，17个本地收款币种覆盖43个国家。B轮融资后进入加速期，拉美白皮书+游戏白皮书双线输出内容营销。</div>
+</div>
+
+<div class="card" data-type="brand" data-company="跨境生态" data-region="全球">
+<div class="card-meta">
+<span class="card-tag tag-brand">品牌</span>
+<span class="card-tag tag-region">全球</span>
+<span class="impact impact-high">⬆ 高影响</span>
+<span class="card-date">2026-08-24</span>
+</div>
+<div class="card-title">SHEIN今日启动港股全球发售：估值约$270亿，9月1日挂牌</div>
+<div class="card-body">SHEIN(00625.HK)正式开启招股，发售价47.6-49.5港元，按中位数计募资净额约<strong>131亿港元</strong>。基石投资者：博裕/腾讯/Tiger Global/General Atlantic/景林/泰康/瑞银新加坡。2025年收入$418亿，净利$20.6亿，活跃用户2.73亿。作为跨境支付最大客户之一，SHEIN上市将直接影响Airwallex/连连等平台交易量。存货周转36天 vs 传统快时尚90-120天。</div>
+</div>
+
+<div class="card" data-type="brand" data-company="PingPong" data-region="欧洲">
+<div class="card-meta">
+<span class="card-tag tag-brand">品牌</span>
+<span class="card-tag tag-region">欧洲</span>
+<span class="impact impact-low">⬇ 风险</span>
+<span class="card-date">2026-07-23</span>
+</div>
+<div class="card-title">PingPong欧洲持牌主体因反洗钱合规漏洞被罚1.2万欧元</div>
+<div class="card-body">PingPong欧洲持牌实体因反洗钱(AML)合规漏洞被监管机构处以<strong>€1.2万罚款</strong>。金额虽不大，但信号意义值得关注——在欧洲MiCA+PSD3双重监管趋严背景下，跨境支付机构的AML合规持续受到各国监管高频审查。PingPong正推进A股IPO（第二十六期辅导进展中）。同期密集发布AI风控相关专利。</div>
+</div>
+
+<div class="card" data-type="brand" data-company="空中云汇" data-region="全球">
+<div class="card-meta">
+<span class="card-tag tag-brand">品牌</span>
+<span class="card-tag tag-region">全球</span>
+<span class="card-date">2026-08-23</span>
+</div>
+<div class="card-title">空中云汇入选2026年国家级独角兽企业，暗涌Waves深度报道跨境支付"影子世界"</div>
+<div class="card-body">Airwallex深圳主体入选<strong>2026年国家级独角兽企业</strong>（长城战略咨询发布）。同日，「暗涌Waves」发布万字深度报道《全球化中的"影子世界"》，以空中云汇、连连、PingPong、寻汇等为样本，揭示跨境支付基础设施如何在技术与政策的三角博弈中从工具走向生态。文章指出支付公司正从"单一支付"向"综合金融生态+全球化合规能力"演化。</div>
+</div>
+
+<div class="card" data-type="brand" data-company="PingPong" data-region="全球">
+<div class="card-meta">
+<span class="card-tag tag-brand">品牌</span>
+<span class="card-tag tag-region">全球</span>
+<span class="card-date">2026-08-14</span>
+</div>
+<div class="card-title">PingPong 8月密集发布AI风控专利：名称实体识别+风控策略模型</div>
+<div class="card-body">PingPong在8月7日至14日连续公布<strong>3项发明专利</strong>，覆盖名称实体识别模型训练、风控策略模型训练、风险状态挖掘。结合7月底发布的交易监测专利，PingPong在AI驱动合规与反洗钱领域持续加码。专利布局方向：从传统规则引擎向深度学习风控演进。</div>
+</div>
+
+<div class="card" data-type="brand" data-company="XTransfer" data-region="全球">
+<div class="card-meta">
+<span class="card-tag tag-brand">品牌</span>
+<span class="card-tag tag-region">全球</span>
+<span class="card-date">2026-08-21</span>
+</div>
+<div class="card-title">XTransfer入选The Payments Power 50 2026，中国跨境支付唯一</div>
+<div class="card-body">XTransfer成为<strong>中国跨境支付领域唯一入选</strong>The Payments Power 50 2026的企业。该榜单由国际权威组织The Power 50发布，覆盖全球支付行业最具影响力的40家公司+10位行业领袖。</div>
+</div>
+
+<div class="card" data-type="brand" data-company="PhotonPay" data-region="全球">
+<div class="card-meta">
+<span class="card-tag tag-brand">品牌</span>
+<span class="card-tag tag-region">全球</span>
+<span class="card-date">2026-08-18</span>
+</div>
+<div class="card-title">PhotonPay发布拉美支付基础设施白皮书：稳定币成下一代结算层</div>
+<div class="card-body">报告《The Next Payment Infrastructure in LATAM》指出：巴西Pix/墨西哥SPEI等本地即时支付成熟，但全球互联仍碎片化。<strong>稳定币(USDC/USDT)正成为拉美机构级结算主通道</strong>，提供24/7流动性和近即时结算。PhotonPay定位"多轨金融操作系统"。</div>
+</div>
+
+<div class="card" data-type="brand" data-company="PingPong" data-region="全球">
+<div class="card-meta">
+<span class="card-tag tag-brand">品牌</span>
+<span class="card-tag tag-region">全球</span>
+<span class="card-date">2026-08-04</span>
+</div>
+<div class="card-title">PingPong推进A股上市：第二十六期辅导进展披露</div>
+<div class="card-body">中信证券担任辅导机构，金杜律所+安永华明参与。当前仍需解决：部分租赁房屋未备案、独立董事占比不足1/3、<strong>须从有限责任公司改制为股份有限公司</strong>。累计处理交易规模$3000亿，60+张金融牌照。</div>
+</div>
+
+<div class="card" data-type="brand" data-company="连连数字" data-region="全球">
+<div class="card-meta">
+<span class="card-tag tag-brand">品牌</span>
+<span class="card-tag tag-region">全球</span>
+<span class="card-date">2026-08-10</span>
+</div>
+<div class="card-title">连连率先打通OTTO"收扣同卡"：中国卖家免开德国账户</div>
+<div class="card-body">OTTO平台资金服务关键升级——仅需一张卡即可完成平台回款与费用代扣，<strong>免去双卡切换和德国开户要求</strong>。OTTO德区活跃客户1260万、全球4200万，正向东欧西欧扩招。</div>
+</div>
+
+<div class="card" data-type="brand" data-company="连连数字" data-region="全球">
+<div class="card-meta">
+<span class="card-tag tag-brand">品牌</span>
+<span class="card-tag tag-region">全球</span>
+<span class="card-date">2026-08-20</span>
+</div>
+<div class="card-title">连连数字2026H1：收入8.76亿元(+11.9%)，经调整经营利润+147.3%</div>
+<div class="card-body">全球支付TPV达<strong>2499亿元</strong>(+25.9%)，净利润1094万元。AI原生战略产品化落地：推出Agent Wallet智付底座、LianLian Fabric企业级平台。与Visa完成首笔AI智能体B2B交易。新获加拿大MSB、迪拜DFSA牌照。</div>
+</div>
+
+<div class="card" data-type="brand" data-company="空中云汇" data-region="全球">
+<div class="card-meta">
+<span class="card-tag tag-brand">品牌</span>
+<span class="card-tag tag-region">全球</span>
+<span class="card-date">2026-08-13</span>
+</div>
+<div class="card-title">空中云汇H轮3.2亿美元，估值110亿美元，年化交易量2870亿美元</div>
+<div class="card-body">年化营收13亿美元(+74%)，年化交易量2870亿美元(+120%)。服务超<strong>67.6万企业客户</strong>，90%收入来自多产品使用客户。牌照增至87项。打通东南亚四国ShopeePay+SPayLater。</div>
+</div>
+
+<div class="card" data-type="brand" data-company="XTransfer" data-region="全球">
+<div class="card-meta">
+<span class="card-tag tag-brand">品牌</span>
+<span class="card-tag tag-region">全球</span>
+<span class="card-date">2026-08-19</span>
+</div>
+<div class="card-title">XTransfer Summit 26：TradePilot AI模型嵌入72个AI Agent</div>
+<div class="card-body">全球首个B2B跨境贸易支付垂直AI模型，<strong>98.5%交易自动审核</strong>，欺诈率低至0.003%。2025年TPV 605亿美元。本地账户覆盖约60国，连接170+金融机构，服务超100万企业客户。</div>
+</div>
+
+<div class="card" data-type="brand" data-company="PingPong" data-region="全球">
+<div class="card-meta">
+<span class="card-tag tag-brand">品牌</span>
+<span class="card-tag tag-region">全球</span>
+<span class="card-date">2026-08</span>
+</div>
+<div class="card-title">PingPong：与中国银行联合发布"一站式全球本币收款方案"</div>
+<div class="card-body">聚焦非洲、拉美新兴市场小币种结算难题。牌照增至<strong>70+项</strong>，支持20余种小币种本地收款。此前推出航旅业一站式全球支付方案，与全球GDS三巨头之一Sabre达成战略合作。累计处理交易规模3000亿美元。</div>
+</div>
+
+<div class="card" data-type="brand" data-company="PhotonPay" data-region="全球">
+<div class="card-meta">
+<span class="card-tag tag-brand">品牌</span>
+<span class="card-tag tag-region">全球</span>
+<span class="card-date">2026-01</span>
+</div>
+<div class="card-title">PhotonPay光子易完成B轮数千万美元融资，IDG资本领投</div>
+<div class="card-body">投资方包括IDG资本、高瓴创投、光速全球、Enlight Capital、Shoprazza。2025年入选国家级高新技术企业，获Global AI百强榜认可。全球超10个分支机构，121名员工。</div>
+</div>
+
+
+<div class="card" data-type="brand" data-company="连连数字" data-region="全球">
+<div class="card-meta">
+<span class="card-tag tag-brand">品牌</span>
+<span class="card-tag tag-region">全球</span>
+<span class="card-date">2026-08-14</span>
+</div>
+<div class="card-title">连连推出AI智能外汇助手"星小汇"</div>
+<div class="card-body">以AI Agent能力整合行情查询、交易执行、账户管理等外汇服务，通过自然语言交互实现<strong>"一句话完成换汇操作"</strong>。覆盖即期、远期、委托换汇等场景。</div>
+</div>
+
+<div class="card" data-type="brand" data-company="连连数字" data-region="全球">
+<div class="card-meta">
+<span class="card-tag tag-brand">品牌</span>
+<span class="card-tag tag-region">全球</span>
+<span class="card-date">2026-07-31</span>
+</div>
+<div class="card-title">连连携手Visa：完成大中华区首笔B2B智能体真实支付</div>
+<div class="card-body">AI智能体LoopXPay在单一工作流内自主完成<strong>从供应商寻源、比价、下单到支付</strong>的全流程。已注册至Visa可信智能体名录。</div>
+</div>
+
+<div class="card" data-type="brand" data-company="连连数字" data-region="全球">
+<div class="card-meta">
+<span class="card-tag tag-brand">品牌</span>
+<span class="card-tag tag-region">全球</span>
+<span class="card-date">2026-07-31</span>
+</div>
+<div class="card-title">连连获评博通分析跨境支付综合能力TOP1</div>
+<div class="card-body">涵盖4大一级维度+23项二级指标。连连依托<strong>68项牌照</strong>、180+电商平台、1330万+客户的深度服务能力。</div>
+</div>
+
+<div class="card" data-type="brand" data-company="PingPong" data-region="北美">
+<div class="card-meta">
+<span class="card-tag tag-brand">品牌</span>
+<span class="card-tag tag-region">北美</span>
+<span class="card-date">2026-03</span>
+</div>
+<div class="card-title">PingPong推出全球数娱收单方案：内嵌式收银台</div>
+<div class="card-body">面向出海北美游戏厂商，覆盖90%以上美国本地玩家。核心思路<strong>"不跳转"</strong>，可降低10%-15%用户流失，头部厂商支付成功率提升5.3%。</div>
+</div>
+
+<div class="card" data-type="brand" data-company="空中云汇" data-region="全球">
+<div class="card-meta">
+<span class="card-tag tag-brand">品牌</span>
+<span class="card-tag tag-region">全球</span>
+<span class="card-date">2026-06</span>
+</div>
+<div class="card-title">空中云汇推出全域一键结账产品Airi</div>
+<div class="card-body">用户一次绑定支付信息后，在所有接入Airi的平台都可<strong>一键完成付款</strong>。商家接入后结账速度提升3倍，转化率最高提升14%。头部游戏厂商拒付申诉成功率从0升至78%。</div>
+</div>
+
+<div class="card" data-type="brand" data-company="蚂蚁国际" data-region="全球">
+<div class="card-meta">
+<span class="card-tag tag-brand">品牌</span>
+<span class="card-tag tag-region">全球</span>
+<span class="card-date">2026H1</span>
+</div>
+<div class="card-title">蚂蚁国际Antom：中国数娱商户交易额同比增长八成</div>
+<div class="card-body">通过Antom主攻跨境收单，推出<strong>Antom Shield智能风控</strong>，实现每笔交易100%实时风控扫描与毫秒级决策。全球账户服务被超半数中国大中型游戏厂商采用。</div>
+</div>
+
+<div class="card" data-type="brand" data-company="XTransfer" data-region="全球">
+<div class="card-meta">
+<span class="card-tag tag-brand">品牌</span>
+<span class="card-tag tag-region">全球</span>
+<span class="card-date">2026-08-16</span>
+</div>
+<div class="card-title">XTransfer：B2B跨境支付全球份额5.1%，居全球首位</div>
+<div class="card-body">服务100万企业客户，连接171家金融机构。本地收款覆盖近60国，支持30+本地货币。<strong>每100元中国出口，2元经XTransfer结算。</strong></div>
+</div>
+
+<div class="card" data-type="brand" data-company="XTransfer" data-region="全球">
+<div class="card-meta">
+<span class="card-tag tag-brand">品牌</span>
+<span class="card-tag tag-region">全球</span>
+<span class="card-date">2026-08-15</span>
+</div>
+<div class="card-title">XTransfer全球客户超80万，月处理量破$120亿</div>
+<div class="card-body">海外企业客户占47%。亚非拉平均收款金额同比增长106%，<strong>非洲超270%</strong>，拉美94%，东盟82%。</div>
+</div>
+
+<div class="card" data-type="brand" data-company="XTransfer" data-region="全球">
+<div class="card-meta">
+<span class="card-tag tag-brand">品牌</span>
+<span class="card-tag tag-region">全球</span>
+<span class="card-date">2026-04</span>
+</div>
+<div class="card-title">XTransfer递表港交所，阿里、高榕等参投</div>
+<div class="card-body">B2B跨境支付平台XTransfer递表港交所。已完成D轮融资，投资方包括D1 Capital、Telstra Ventures、招商创投、eWTP Capital、高榕资本等。</div>
+</div>
+
+<div class="card" data-type="brand" data-company="寻汇" data-region="全球">
+<div class="card-meta">
+<span class="card-tag tag-brand">品牌</span>
+<span class="card-tag tag-region">全球</span>
+<span class="card-date">2026-07-06</span>
+</div>
+<div class="card-title">寻汇Sunrate发布新品牌战略，发力AI驱动跨境支付</div>
+<div class="card-body">连续三年入选FXC Intelligence跨境支付百强。上线智能开户引导系统，<strong>跨境支付进入智能体驱动阶段</strong>。</div>
+</div>
+
+<div class="card" data-type="brand" data-company="PhotonPay" data-region="全球">
+<div class="card-meta">
+<span class="card-tag tag-brand">品牌</span>
+<span class="card-tag tag-region">全球</span>
+<span class="card-date">2026</span>
+</div>
+<div class="card-title">PhotonPay发布《2026年游戏全球经营白皮书》</div>
+<div class="card-body">Newzoo数据：<strong>47%用户因支付失败/方式受限放弃购买</strong>，44%因隐藏费用/价格不透明中止支付。</div>
+</div>
+
+<div class="card" data-type="brand" data-company="PayPal" data-region="全球">
+<div class="card-meta">
+<span class="card-tag tag-brand">品牌</span>
+<span class="card-tag tag-region">全球</span>
+<span class="impact impact-high">⬆ 高影响</span>
+<span class="card-date">2026-08-19</span>
+</div>
+<div class="card-title">Stripe-Advent拟收购PayPal：合计年处理$3.7T，跨境卖家费率或迎变</div>
+<div class="card-body">Stripe与Advent International拟以约$530亿估值收购PayPal。合并后年处理<strong>$3.7万亿</strong>支付量。跨境卖家或面临：费率可能降0.3-0.8%，但竞争减少或导致12-24月内提价0.2-0.5%。建议立即审计支付通道组合，分散至Adyen/Wise等。</div>
+</div>
+
+<div class="card" data-type="brand" data-company="PayPal" data-region="全球">
+<div class="card-meta">
+<span class="card-tag tag-brand">品牌</span>
+<span class="card-tag tag-region">全球</span>
+<span class="card-date">2026</span>
+</div>
+<div class="card-title">PayPal：74%用户更可能在有PayPal的网站购物</div>
+<div class="card-body">PayPal钱包可带来<strong>46%的结账转化率提升</strong>。游戏及数字商品已成为全球消费者通过PayPal购买中国商品的前五大热门品类之一。</div>
+</div>
+
+<div class="card" data-type="brand" data-company="万里汇" data-region="全球">
+<div class="card-meta">
+<span class="card-tag tag-brand">品牌</span>
+<span class="card-tag tag-region">全球</span>
+<span class="card-date">2026</span>
+</div>
+<div class="card-title">万里汇(WorldFirst)：蚂蚁国际旗下B2B外贸收款核心</div>
+<div class="card-body">主攻B2B外贸收款和结汇，与Antom形成<strong>C端游戏内购到B端生态方</strong>全覆盖。全球账户服务被众多AI应用企业、短剧平台采用。</div>
+</div>
+
+<div class="card" data-type="brand" data-company="空中云汇" data-region="全球">
+<div class="card-meta">
+<span class="card-tag tag-brand">品牌</span>
+<span class="card-tag tag-region">全球</span>
+<span class="card-date">2026</span>
+</div>
+<div class="card-title">空中云汇：85+牌照，27个办事处，覆盖70+国家</div>
+<div class="card-body">Airwallex已建立自有"虚拟"全球银行网络，90%交易当日到账，约50%即时结算。支持20+货币本地银行详情，本地支付覆盖120+国家，全球触达200+国家。</div>
+</div>
+
+</div>
+</section>
+
+<div class="no-results" id="noResultsMarket">没有找到匹配的条目。请调整筛选条件。</div>
+</div>
+
+<!-- ============ TAB 3: 公司信息 ============ -->
+<div class="tab-panel" id="panel-company">
+
+<section class="section">
+<div class="section-header">
+<div class="section-icon market">📊</div>
+<h2 class="section-title">竞争格局与品牌矩阵</h2>
+</div>
+
+<div class="company-grid">
+
+<div class="company-card">
+<div class="company-name">连连数字 LianLian</div>
+<div class="company-type">港交所上市 · 全牌照跨境支付</div>
+<div class="company-stats">
+<div class="company-stat"><span class="company-stat-label">全球牌照</span><span class="company-stat-value">68项</span></div>
+<div class="company-stat"><span class="company-stat-label">服务客户</span><span class="company-stat-value">1,330万+</span></div>
+<div class="company-stat"><span class="company-stat-label">支持货币</span><span class="company-stat-value">140+</span></div>
+<div class="company-stat"><span class="company-stat-label">电商平台</span><span class="company-stat-value">180+</span></div>
+<div class="company-stat"><span class="company-stat-label">2026H1收入</span><span class="company-stat-value">8.76亿元(+11.9%)</span></div>
+<div class="company-stat"><span class="company-stat-label">H1 TPV</span><span class="company-stat-value">2,499亿元(+25.9%)</span></div>
+</div>
+<div class="company-pros-cons">
+<div class="pros-label">✅ 优势</div>
+<ul class="pros-list">
+<li>牌照覆盖最广（68项），合规壁垒高</li>
+<li>AI原生战略领先，智能体商务已落地（Visa合作）</li>
+<li>到账速度极快（人民币5分钟/最快2秒）</li>
+<li>博通分析跨境支付综合能力TOP1</li>
+</ul>
+<div class="cons-label">❌ 劣势</div>
+<ul class="cons-list">
+<li>费率无显著优势，更适合B2B大额贸易</li>
+<li>收单费率按平台浮动，透明度一般</li>
+</ul>
+</div>
+</div>
+
+<div class="company-card">
+<div class="company-name">XTransfer</div>
+<div class="company-type">B2B跨境支付 · 全球份额第一</div>
+<div class="company-stats">
+<div class="company-stat"><span class="company-stat-label">全球份额(TPV)</span><span class="company-stat-value">5.1%</span></div>
+<div class="company-stat"><span class="company-stat-label">企业客户</span><span class="company-stat-value">100万+</span></div>
+<div class="company-stat"><span class="company-stat-label">连接银行</span><span class="company-stat-value">171家</span></div>
+<div class="company-stat"><span class="company-stat-label">月处理量</span><span class="company-stat-value">$120亿+</span></div>
+<div class="company-stat"><span class="company-stat-label">2025 TPV</span><span class="company-stat-value">$605亿</span></div>
+<div class="company-stat"><span class="company-stat-label">结汇费率</span><span class="company-stat-value">0.3%-0.5%</span></div>
+</div>
+<div class="company-pros-cons">
+<div class="pros-label">✅ 优势</div>
+<ul class="pros-list">
+<li>B2B全球份额第一，"每100元中国出口2元经XT结算"</li>
+<li>0开户/入账管理费，大额收付无上限</li>
+<li>60国本地账户，本地币种实时入账</li>
+<li>新兴市场增速惊人（非洲+270%，拉美+94%）</li>
+<li>退税配套完善，货贸/货代/贸易均可收款</li>
+</ul>
+<div class="cons-label">❌ 劣势</div>
+<ul class="cons-list">
+<li>B2C电商适配弱，无广告VCC</li>
+<li>港交所IPO进行中，信息披露期</li>
+</ul>
+</div>
+</div>
+
+<div class="company-card">
+<div class="company-name">空中云汇 Airwallex</div>
+<div class="company-type">全球金融操作系统 · 嵌入式金融</div>
+<div class="company-stats">
+<div class="company-stat"><span class="company-stat-label">全球牌照</span><span class="company-stat-value">87项</span></div>
+<div class="company-stat"><span class="company-stat-label">办事处</span><span class="company-stat-value">27个</span></div>
+<div class="company-stat"><span class="company-stat-label">估值/融资</span><span class="company-stat-value">$110亿(H轮$3.2亿)</span></div>
+<div class="company-stat"><span class="company-stat-label">FX加成</span><span class="company-stat-value">0.5%-1.0%</span></div>
+<div class="company-stat"><span class="company-stat-label">收单费率</span><span class="company-stat-value">2.8%+0.30</span></div>
+</div>
+<div class="company-pros-cons">
+<div class="pros-label">✅ 优势</div>
+<ul class="pros-list">
+<li>API-first架构，嵌入式金融能力强</li>
+<li>新户优惠力度大，企业付款功能强</li>
+<li>90%当日到账，50%即时结算</li>
+<li>LockFX锁汇工具，汇率风险可控</li>
+<li>全球多币种账户+企业卡，费用管理完善</li>
+</ul>
+<div class="cons-label">❌ 劣势</div>
+<ul class="cons-list">
+<li>单纯跨境收款单价一般</li>
+<li>入门套餐有最低量要求，小用户不友好</li>
+<li>客户支持体系不如Wise/Payoneer成熟</li>
+</ul>
+</div>
+</div>
+
+<div class="company-card">
+<div class="company-name">PingPong</div>
+<div class="company-type">跨境电商+数娱支付</div>
+<div class="company-stats">
+<div class="company-stat"><span class="company-stat-label">全球牌照</span><span class="company-stat-value">70+项</span></div>
+<div class="company-stat"><span class="company-stat-label">累计处理量</span><span class="company-stat-value">$3,000亿</span></div>
+<div class="company-stat"><span class="company-stat-label">美国覆盖</span><span class="company-stat-value">90%+本地玩家</span></div>
+<div class="company-stat"><span class="company-stat-label">收单费率</span><span class="company-stat-value">2.9%-3.4%</span></div>
+<div class="company-stat"><span class="company-stat-label">结汇费率</span><span class="company-stat-value">0.5%-1.0%</span></div>
+</div>
+<div class="company-pros-cons">
+<div class="pros-label">✅ 优势</div>
+<ul class="pros-list">
+<li>数娱收单差异化明显，内嵌式收银台降低流失10-15%</li>
+<li>游戏支付成功率提升5.3%</li>
+<li>电商平台卖家服务成熟</li>
+</ul>
+<div class="cons-label">❌ 劣势</div>
+<ul class="cons-list">
+<li>收单费率偏高（2.9%-3.4%）</li>
+<li>牌照数量不及连连/空中云汇</li>
+<li>B2B能力相对弱</li>
+</ul>
+</div>
+</div>
+
+<div class="company-card">
+<div class="company-name">蚂蚁国际 Antom + 万里汇</div>
+<div class="company-type">Antom跨境收单 + WorldFirst B2B外贸</div>
+<div class="company-stats">
+<div class="company-stat"><span class="company-stat-label">数娱交易额增速</span><span class="company-stat-value">同比+80%</span></div>
+<div class="company-stat"><span class="company-stat-label">风控能力</span><span class="company-stat-value">100%实时扫描</span></div>
+<div class="company-stat"><span class="company-stat-label">万里汇结汇费率</span><span class="company-stat-value">0.4%-1.2%</span></div>
+<div class="company-stat"><span class="company-stat-label">游戏厂商覆盖</span><span class="company-stat-value">半数以上大中型</span></div>
+</div>
+<div class="company-pros-cons">
+<div class="pros-label">✅ 优势</div>
+<ul class="pros-list">
+<li>蚂蚁生态闭环：C端Antom收单+B端万里汇B2B</li>
+<li>风控技术领先（Antom Shield毫秒级决策）</li>
+<li>数娱交易额同比+80%，游戏厂商渗透率高</li>
+<li>万里汇开户门槛低，全程线上</li>
+</ul>
+<div class="cons-label">❌ 劣势</div>
+<ul class="cons-list">
+<li>万里汇费率区间较宽（0.4%-1.2%），大客户议价空间小</li>
+<li>品牌独立认知弱于连连/XTransfer</li>
+</ul>
+</div>
+</div>
+
+<div class="company-card">
+<div class="company-name">PhotonPay 光子易</div>
+<div class="company-type">稳定币原生支付基础设施 · 法币+Crypto双通道</div>
+<div class="company-stats">
+<div class="company-stat"><span class="company-stat-label">全球牌照</span><span class="company-stat-value">11张/8个司法管辖区</span></div>
+<div class="company-stat"><span class="company-stat-label">服务客户</span><span class="company-stat-value">20万+</span></div>
+<div class="company-stat"><span class="company-stat-label">覆盖国家</span><span class="company-stat-value">200+</span></div>
+<div class="company-stat"><span class="company-stat-label">支持币种</span><span class="company-stat-value">60+法币+稳定币</span></div>
+<div class="company-stat"><span class="company-stat-label">区块链网络</span><span class="company-stat-value">7条(ETH/SOL/Polygon等)</span></div>
+<div class="company-stat"><span class="company-stat-label">费率</span><span class="company-stat-value">不公开(需商务沟通)</span></div>
+</div>
+<div class="company-pros-cons">
+<div class="pros-label">✅ 优势</div>
+<ul class="pros-list">
+<li>唯一法币+稳定币双原生通道，USDC/USDT覆盖7条链</li>
+<li>虚拟卡无限量发行，PCI-DSS Level 1，广告投放神器(Meta/Google/TikTok)</li>
+<li>四模块嵌入式金融API(Account/Wallet/Payouts/Issuing)，平台方可集成</li>
+<li>HK SFC 1/4/9号牌照+迪拜DFSA+英国FCA+美国FinCEN，合规覆盖独特</li>
+<li>7×24换汇，"所见即所得"零滑点，支持预约锁汇+AI委托换汇</li>
+<li>Mastercard授权发卡机构，支持Apple Pay/Google Pay</li>
+</ul>
+<div class="cons-label">❌ 劣势</div>
+<ul class="cons-list">
+<li>费率不公开，需商务沟通才能获取，透明度不足</li>
+<li>本地账户覆盖深度不及XTransfer(11国 vs 60国)</li>
+<li>不提供人民币直接付款至中国供应商功能</li>
+<li>规模较小(20万客户)，品牌认知度不及连连/空中云汇</li>
+</ul>
+</div>
+</div>
+
+<div class="company-card">
+<div class="company-name">寻汇 Sunrate</div>
+<div class="company-type">AI驱动跨境支付 · 沙特阿美/软银投资</div>
+<div class="company-stats">
+<div class="company-stat"><span class="company-stat-label">FXC排名</span><span class="company-stat-value">连续3年百强</span></div>
+<div class="company-stat"><span class="company-stat-label">投资方</span><span class="company-stat-value">沙特阿美/软银</span></div>
+<div class="company-stat"><span class="company-stat-label">结汇费率</span><span class="company-stat-value">竞争力定价</span></div>
+</div>
+<div class="company-pros-cons">
+<div class="pros-label">✅ 优势</div>
+<ul class="pros-list">
+<li>AI驱动+智能体开户，技术前瞻性高</li>
+<li>沙特阿美/软银背书，中东资源强</li>
+<li>FXC百强连续3年入选</li>
+</ul>
+<div class="cons-label">❌ 劣势</div>
+<ul class="cons-list">
+<li>规模不及连连/XTransfer</li>
+<li>具体费率透明度不足</li>
+<li>品牌知名度在中小外贸企业中偏低</li>
+</ul>
+</div>
+</div>
+
+</div>
+</section>
+
+<!-- 详细费率对比 -->
+<section class="section">
+<div class="section-header">
+<div class="section-icon market">💱</div>
+<h2 class="section-title">费率与功能详细对比</h2>
+</div>
+<div style="overflow-x:auto;border-radius:var(--radius);border:1px solid var(--border)">
+<table class="data-table">
+<thead>
+<tr>
+<th>维度</th>
+<th>连连</th>
+<th>XTransfer</th>
+<th>空中云汇</th>
+<th>PingPong</th>
+<th>万里汇</th>
+<th>光子易</th>
+<th>寻汇</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>结汇费率</strong></td>
+<td class="num">0.3%-0.7%</td>
+<td class="num">0.3%-0.5%</td>
+<td class="num">0.5%-1.0%</td>
+<td class="num">0.5%-1.0%</td>
+<td class="num">0.4%-1.2%</td>
+<td class="num">不公开</td>
+<td class="num">竞争力定价</td>
+</tr>
+<tr>
+<td><strong>收单费率</strong></td>
+<td>按平台浮动</td>
+<td>本地收款无中转</td>
+<td>2.8%+$0.30</td>
+<td>2.9%-3.4%</td>
+<td>按场景</td>
+<td>按场景(法币+稳定币)</td>
+<td>按场景</td>
+</tr>
+<tr>
+<td><strong>到账速度</strong></td>
+<td>5分钟/最快2秒</td>
+<td>本地实时+T+0结汇</td>
+<td>90%当日/50%即时</td>
+<td>按场景</td>
+<td>1-2工作日</td>
+<td>稳定币即时/法币T+0</td>
+<td>快速到账</td>
+</tr>
+<tr>
+<td><strong>牌照数</strong></td>
+<td class="num">68</td>
+<td>多张核心牌照</td>
+<td class="num">85+</td>
+<td>多张</td>
+<td>MSO(港)+多张</td>
+<td class="num">11张/8个管辖区</td>
+<td>多张</td>
+</tr>
+<tr>
+<td><strong>核心客群</strong></td>
+<td>电商+外贸全场景</td>
+<td>B2B外贸/工厂/货代</td>
+<td>独立站/全球化企业</td>
+<td>数娱+跨境电商</td>
+<td>B2B外贸收款</td>
+<td>数字广告/平台/Web3企业</td>
+<td>AI驱动型外贸</td>
+</tr>
+<tr>
+<td><strong>核心差异</strong></td>
+<td>AI原生+智能体商务</td>
+<td>B2B份额全球第一</td>
+<td>嵌入式金融API</td>
+<td>数娱内嵌收银台</td>
+<td>蚂蚁生态闭环</td>
+<td>法币+稳定币双原生</td>
+<td>中东资源+AI开户</td>
+</tr>
+<tr>
+<td><strong>开户费</strong></td>
+<td>免费</td>
+<td>免费</td>
+<td>免费</td>
+<td>免费</td>
+<td>免费</td>
+<td>免费</td>
+<td>免费</td>
+</tr>
+<tr>
+<td><strong>IPO状态</strong></td>
+<td>港交所已上市</td>
+<td>港交所递表中</td>
+<td>未上市</td>
+<td>未上市</td>
+<td>蚂蚁旗下</td>
+<td>未上市</td>
+<td>未上市</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+
+<!-- 适用场景 -->
+<section class="section">
+<div class="section-header">
+<div class="section-icon brand">🎯</div>
+<h2 class="section-title">适用场景速查</h2>
+</div>
+<div style="overflow-x:auto;border-radius:var(--radius);border:1px solid var(--border)">
+<table class="data-table">
+<thead>
+<tr>
+<th>场景</th>
+<th>推荐平台</th>
+<th>原因</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>亚马逊卖家</strong></td>
+<td>连连 / PingPong</td>
+<td>电商平台对接成熟，合规提现</td>
+</tr>
+<tr>
+<td><strong>B2B大额外贸</strong></td>
+<td>XTransfer / 连连</td>
+<td>大额无上限，本地收款省中间行费用</td>
+</tr>
+<tr>
+<td><strong>独立站收款</strong></td>
+<td>空中云汇 / PingPong</td>
+<td>API嵌入式收银台，转化率高</td>
+</tr>
+<tr>
+<td><strong>游戏出海</strong></td>
+<td>蚂蚁Antom / PingPong</td>
+<td>内嵌支付+智能风控，覆盖本地支付方式</td>
+</tr>
+<tr>
+<td><strong>新兴市场(非洲/拉美)</strong></td>
+<td>XTransfer</td>
+<td>非洲+270%增速，60国本地账户</td>
+</tr>
+<tr>
+<td><strong>数字广告投放</strong></td>
+<td>PhotonPay光子易</td>
+<td>无限量虚拟卡+Apple/Google Pay，Meta/Google/TikTok专用优化</td>
+</tr>
+<tr>
+<td><strong>Web3/稳定币结算</strong></td>
+<td>PhotonPay光子易</td>
+<td>唯一法币+稳定币双原生，USDC/USDT覆盖7条链，MPC无密钥托管</td>
+</tr>
+<tr>
+<td><strong>平台嵌入式金融</strong></td>
+<td>PhotonPay光子易 / 空中云汇</td>
+<td>四模块API(Account/Wallet/Payouts/Issuing)，平台方可集成</td>
+</tr>
+<tr>
+<td><strong>中东市场</strong></td>
+<td>寻汇 / 空中云汇 / 光子易</td>
+<td>沙特阿美投资背书 / 全球牌照覆盖 / DFSA牌照</td>
+</tr>
+<tr>
+<td><strong>出口退税</strong></td>
+<td>XTransfer / 连连</td>
+<td>退税配套完善，合规链路完整</td>
+</tr>
+<tr>
+<td><strong>多币种企业费用管理</strong></td>
+<td>空中云汇</td>
+<td>多币种账户+企业卡+批量付款</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</div>
+
+</main>
+
+<footer class="footer">
+<p>数据来源：中国人民银行、国家外汇管理局、中国支付清算协会、香港金管局、中国经营报、网经社、FXC Intelligence、支付之家网、Zitadelle、NBTC、Spark Money、MarsBit、Federal Register、CoinDesk、深圳商报、Allium、ChainCatcher、ESMA、US Financial Times、暗涌Waves、企查查、央视新闻、The Block、Cryptopolitan、Bancoli、美通社、Blockchain Association、21世纪经济报道、移动支付网、36氪、KPMG、Market Research Future、Cointelegraph、The Asset、FF News、CryptoNews、ECNS、各公司官网</p>
+<p style="margin-top:.4rem">⚠️ 本页面仅供情报参考，不构成任何投资或商业决策建议。数据截至2026年8月28日。</p>
+</footer>
+
+<script>
+// Tab switching
+const tabBtns = document.querySelectorAll('.tab-btn');
+const tabPanels = document.querySelectorAll('.tab-panel');
+
+tabBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+        tabBtns.forEach(b => b.classList.remove('active'));
+        tabPanels.forEach(p => p.classList.remove('active'));
+        btn.classList.add('active');
+        document.getElementById('panel-' + btn.dataset.tab).classList.add('active');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+});
+
+// Policy tab filters
+const policyRegionTags = document.querySelectorAll('#policyRegionFilter .filter-tag');
+const policyTypeTags = document.querySelectorAll('#policyTypeFilter .filter-tag');
+const policyCards = document.querySelectorAll('#policyCards .card');
+const cryptoCards = document.querySelectorAll('#cryptoCards .card');
+const policySection = document.getElementById('policySection');
+const cryptoSection = document.getElementById('cryptoSection');
+const noResultsPolicy = document.getElementById('noResultsPolicy');
+
+let activePolicyRegion = 'all';
+let activePolicyType = 'all';
+
+function applyPolicyFilters() {
+    let visiblePolicy = 0, visibleCrypto = 0;
+
+    policyCards.forEach(card => {
+        const region = card.dataset.region;
+        const matchRegion = activePolicyRegion === 'all' || region === activePolicyRegion || region === '全球';
+        const matchType = activePolicyType === 'all' || activePolicyType === 'policy';
+        if (matchRegion && matchType) {
+            card.classList.remove('hidden');
+            visiblePolicy++;
+        } else {
+            card.classList.add('hidden');
+        }
+    });
+
+    cryptoCards.forEach(card => {
+        const region = card.dataset.region;
+        const matchRegion = activePolicyRegion === 'all' || region === activePolicyRegion || region === '全球';
+        const matchType = activePolicyType === 'all' || activePolicyType === 'crypto';
+        if (matchRegion && matchType) {
+            card.classList.remove('hidden');
+            visibleCrypto++;
+        } else {
+            card.classList.add('hidden');
+        }
+    });
+
+    document.getElementById('policyCount').textContent = visiblePolicy + '条';
+    document.getElementById('cryptoCount').textContent = visibleCrypto + '条';
+
+    policySection.style.display = (activePolicyType === 'crypto' || visiblePolicy === 0) ? 'none' : '';
+    cryptoSection.style.display = (activePolicyType === 'policy' || visibleCrypto === 0) ? 'none' : '';
+    noResultsPolicy.style.display = (visiblePolicy + visibleCrypto === 0) ? '' : 'none';
+}
+
+policyRegionTags.forEach(tag => {
+    tag.addEventListener('click', () => {
+        policyRegionTags.forEach(t => t.classList.remove('active'));
+        tag.classList.add('active');
+        activePolicyRegion = tag.dataset.region;
+        applyPolicyFilters();
+    });
+});
+
+policyTypeTags.forEach(tag => {
+    tag.addEventListener('click', () => {
+        policyTypeTags.forEach(t => t.classList.remove('active'));
+        tag.classList.add('active');
+        activePolicyType = tag.dataset.ptype;
+        applyPolicyFilters();
+    });
+});
+
+// Brand filter on market tab
+const brandCards = document.querySelectorAll('#brandCards .card');
+</script>
+</body>
+</html>
