@@ -181,7 +181,157 @@ a{color:#0066cc}
 
 /* Hidden utility */
 .hidden{display:none !important}
-</style>
+
+/* ══ Floating Components (injected) ══ */
+.fab-stack {
+    position: fixed;
+    right: 20px;
+    bottom: 24px;
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+}
+.fab {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.3);
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    -webkit-user-select: none;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+    z-index: 9999;
+}
+.fab:active { transform: scale(0.88); }
+.fab-back {
+    background: var(--accent-blue, var(--accent, #3b82f6));
+    color: white;
+    opacity: 0;
+    pointer-events: none;
+}
+.fab-back.visible { opacity: 1; pointer-events: auto; }
+.fab-theme {
+    background: var(--bg-card, #111827);
+    color: var(--text-primary, #e2e8f0);
+    border: 1px solid var(--border, #1e293b);
+}
+.fab-theme:active { transform: scale(0.88) rotate(180deg); }
+.fab-feedback {
+    background: var(--bg-card, #111827);
+    color: var(--text-primary, #e2e8f0);
+    border: 1px solid var(--border, #1e293b);
+    position: relative;
+}
+.fab-feedback .fab-badge {
+    position: absolute;
+    top: -2px;
+    right: -2px;
+    width: 10px;
+    height: 10px;
+    background: #f43f5e;
+    border-radius: 50%;
+    border: 2px solid var(--bg-card, #111827);
+}
+.feedback-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.5);
+    z-index: 10000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s ease;
+    -webkit-backdrop-filter: blur(2px);
+    backdrop-filter: blur(2px);
+}
+.feedback-overlay.visible { opacity: 1; pointer-events: auto; }
+.feedback-modal {
+    background: var(--bg-card, #111827);
+    border-radius: 12px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+    max-width: 460px;
+    width: 100%;
+    padding: 24px 20px;
+    transform: scale(0.92) translateY(20px);
+    transition: transform 0.25s ease;
+    border: 1px solid var(--border, #1e293b);
+    color: var(--text-primary, #e2e8f0);
+}
+.feedback-overlay.visible .feedback-modal { transform: scale(1) translateY(0); }
+.feedback-modal h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 6px; }
+.feedback-modal .feedback-hint { font-size: 0.8125rem; color: var(--text-secondary, #94a3b8); margin-bottom: 14px; line-height: 1.6; }
+.feedback-modal textarea {
+    width: 100%;
+    min-height: 120px;
+    padding: 12px 14px;
+    border: 1px solid var(--border, #1e293b);
+    border-radius: 8px;
+    font-size: 0.875rem;
+    font-family: inherit;
+    resize: vertical;
+    outline: none;
+    background: var(--bg-card-hover, var(--bg-secondary, #1a2332));
+    color: var(--text-primary, #e2e8f0);
+    line-height: 1.6;
+    box-sizing: border-box;
+}
+.feedback-modal textarea:focus { border-color: var(--accent-blue, var(--accent, #3b82f6)); box-shadow: 0 0 0 3px rgba(59,130,246,0.15); }
+.feedback-modal textarea::placeholder { color: var(--text-muted, #64748b); }
+.feedback-modal .feedback-actions { display: flex; gap: 10px; margin-top: 16px; flex-wrap: wrap; }
+.feedback-btn {
+    flex: 1;
+    min-width: 120px;
+    padding: 12px 16px;
+    border-radius: 8px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    cursor: pointer;
+    border: none;
+    transition: all 0.2s ease;
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    text-decoration: none;
+}
+.feedback-btn:active { transform: scale(0.96); }
+.feedback-btn-primary { background: var(--accent-blue, var(--accent, #3b82f6)); color: white; }
+.feedback-btn-secondary { background: var(--bg-card-hover, var(--bg-secondary, #1a2332)); color: var(--text-primary, #e2e8f0); border: 1px solid var(--border, #1e293b); }
+.feedback-btn-close { background: transparent; color: var(--text-secondary, #94a3b8); border: 1px solid var(--border, #1e293b); flex: 0 0 auto; min-width: 44px; }
+.feedback-modal .feedback-note { margin-top: 12px; font-size: 0.75rem; color: var(--text-muted, #64748b); line-height: 1.5; }
+.feedback-modal .feedback-type { display: flex; gap: 8px; margin-bottom: 12px; }
+.feedback-type-btn {
+    padding: 8px 14px;
+    border-radius: 100px;
+    font-size: 0.8125rem;
+    font-weight: 500;
+    cursor: pointer;
+    border: 1px solid var(--border, #1e293b);
+    background: var(--bg-card-hover, var(--bg-secondary, #1a2332));
+    color: var(--text-secondary, #94a3b8);
+    transition: all 0.2s ease;
+}
+.feedback-type-btn.active { background: var(--accent-blue, var(--accent, #3b82f6)); color: white; border-color: var(--accent-blue, var(--accent, #3b82f6)); }
+@media (max-width: 768px) {
+    .fab-stack { right: 16px; gap: 8px; }
+    .feedback-modal { padding: 20px 16px; }
+    .feedback-btn { min-width: 100px; font-size: 0.8125rem; }
+}
+
+    </style>
 </head>
 <body>
 
@@ -2332,5 +2482,93 @@ policyTypeTags.forEach(tag => {
 // Brand filter on market tab
 const brandCards = document.querySelectorAll('#brandCards .card');
 </script>
+
+<!-- Floating Components (injected) -->
+<div class="fab-stack">
+    <button class="fab fab-feedback" aria-label="反馈与建议" title="反馈与建议">💬</button>
+    <button class="fab fab-theme" aria-label="切换深色模式" title="切换深色/浅色模式">🌙</button>
+    <button class="fab fab-back" aria-label="回到顶部" title="回到顶部">↑</button>
+</div>
+<div class="feedback-overlay" id="feedbackOverlay">
+    <div class="feedback-modal" role="dialog" aria-labelledby="feedbackTitle">
+        <h3 id="feedbackTitle">📋 反馈与建议</h3>
+        <p class="feedback-hint">发现错误或有改进建议？请告诉我们，您的反馈会让这个面板更好。</p>
+        <div class="feedback-type">
+            <button class="feedback-type-btn active" data-type="bug">🐛 报告错误</button>
+            <button class="feedback-type-btn" data-type="suggestion">💡 功能建议</button>
+            <button class="feedback-type-btn" data-type="content">📝 内容补充</button>
+        </div>
+        <textarea id="feedbackText" placeholder="请描述您遇到的问题或建议……"></textarea>
+        <div class="feedback-actions">
+            <a class="feedback-btn feedback-btn-primary" id="feedbackGithub" href="#" target="_blank" rel="noopener">🔗 GitHub Issue</a>
+            <a class="feedback-btn feedback-btn-secondary" id="feedbackEmail" href="#">📧 邮件反馈</a>
+            <button class="feedback-btn feedback-btn-close" id="feedbackClose" aria-label="关闭">✕</button>
+        </div>
+        <p class="feedback-note">💡 GitHub Issue 会直接通知仓库管理员；邮件反馈将打开您的邮件应用。</p>
+    </div>
+</div>
+
+
+<script>
+// ── Floating Components (injected) ──
+(function() {
+    var backBtn = document.querySelector('.fab-back');
+    if (backBtn) {
+        var ticking = false;
+        window.addEventListener('scroll', function() {
+            if (!ticking) {
+                window.requestAnimationFrame(function() {
+                    backBtn.classList.toggle('visible', window.scrollY > 400);
+                    ticking = false;
+                });
+                ticking = true;
+            }
+        }, { passive: true });
+        backBtn.addEventListener('click', function() { window.scrollTo({ top: 0, behavior: 'smooth' }); });
+    }
+    var themeBtn = document.querySelector('.fab-theme');
+    if (themeBtn) {
+        var saved = localStorage.getItem('monitor-theme') || '';
+        var prefDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+        var theme = saved || (prefDark ? 'dark' : 'light');
+        function apply(t) {
+            if (t === 'dark') { document.documentElement.setAttribute('data-theme','dark'); themeBtn.textContent='☀️'; }
+            else { document.documentElement.removeAttribute('data-theme'); themeBtn.textContent='🌙'; }
+        }
+        apply(theme);
+        themeBtn.addEventListener('click', function() {
+            var isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+            var n = isDark ? 'light' : 'dark'; apply(n); localStorage.setItem('monitor-theme', n);
+        });
+    }
+    var fbBtn = document.querySelector('.fab-feedback');
+    var fbOverlay = document.getElementById('feedbackOverlay');
+    var fbClose = document.getElementById('feedbackClose');
+    var fbText = document.getElementById('feedbackText');
+    var fbGithub = document.getElementById('feedbackGithub');
+    var fbEmail = document.getElementById('feedbackEmail');
+    var fbTypes = document.querySelectorAll('.feedback-type-btn');
+    var fbType = 'bug';
+    fbTypes.forEach(function(b) { b.addEventListener('click', function() {
+        fbTypes.forEach(function(x) { x.classList.remove('active'); });
+        this.classList.add('active'); fbType = this.dataset.type; updateLinks();
+    }); });
+    function updateLinks() {
+        var t = fbText ? fbText.value.trim() || '(未填写)' : '';
+        var label = {bug:'报告错误',suggestion:'功能建议',content:'内容补充'}[fbType]||'反馈';
+        var enc = encodeURIComponent('['+label+'] '+t);
+        var body = encodeURIComponent('['+label+'] '+t+'\n\n---\n来源: praxisfit.me\n时间: '+new Date().toISOString());
+        if (fbGithub) fbGithub.href = 'https://github.com/praxisfitme/policy-monitor/issues/new?title='+enc+'&body='+body;
+        if (fbEmail) fbEmail.href = 'mailto:victor8989@qq.com?subject='+enc+'&body='+body;
+    }
+    if (fbBtn) fbBtn.addEventListener('click', function() { fbOverlay.classList.add('visible'); setTimeout(function(){if(fbText)fbText.focus();},300); });
+    if (fbClose) fbClose.addEventListener('click', function() { fbOverlay.classList.remove('visible'); });
+    if (fbOverlay) fbOverlay.addEventListener('click', function(e) { if (e.target===fbOverlay) fbOverlay.classList.remove('visible'); });
+    document.addEventListener('keydown', function(e) { if (e.key==='Escape' && fbOverlay && fbOverlay.classList.contains('visible')) fbOverlay.classList.remove('visible'); });
+    if (fbText) fbText.addEventListener('input', updateLinks);
+    updateLinks();
+})();
+</script>
+
 </body>
 </html>
