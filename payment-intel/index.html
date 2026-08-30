@@ -453,4 +453,59 @@ btn.addEventListener('click',()=>{
 document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
 document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));
 btn.classList.add('active');
-document.getElementById(
+document.getElementById(btn.dataset.tab).classList.add('active');
+});
+});
+document.querySelectorAll('a[href^="#"]').forEach(a=>{
+a.addEventListener('click',e=>{
+const t=document.querySelector(a.getAttribute('href'));
+if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth'})}
+});
+});
+</script>
+
+<style>
+/* Floating Action Buttons */
+.fab-stack{position:fixed;right:1.2rem;bottom:1.2rem;display:flex;flex-direction:column;gap:.7rem;z-index:9999}
+.fab{width:2.8rem;height:2.8rem;border-radius:50%;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:1.2rem;box-shadow:0 4px 12px rgba(0,0,0,.25);transition:all .2s ease;text-decoration:none}
+.fab:hover{transform:scale(1.1);box-shadow:0 6px 16px rgba(0,0,0,.35)}
+.fab:active{transform:scale(.92)}
+.fab-back{background:#6366f1;color:#fff}
+.fab-theme{background:#10b981;color:#fff}
+.fab-feedback{background:#f59e0b;color:#fff}
+.fab-portal{background:var(--bg-card,#fff);color:var(--text-primary,#333);border:1px solid var(--border,#e5e7eb);text-decoration:none}
+.fab-portal:active{transform:scale(.88)}
+/* Light theme support */
+@media(prefers-color-scheme:light){
+.fab-back{background:#4f46e5}
+.fab-theme{background:#059669}
+.fab-feedback{background:#d97706}
+}
+html.light .fab-back{background:#4f46e5}
+html.light .fab-theme{background:#059669}
+html.light .fab-feedback{background:#d97706}
+</style>
+
+<div class="fab-stack">
+<a class="fab fab-portal" href="/" aria-label="返回监控中枢" title="返回监控中枢">🏠</a>
+<button class="fab fab-feedback" aria-label="反馈建议" title="反馈建议" onclick="alert('请通过邮件联系：minerva-owl@coze.email')">💬</button>
+<button class="fab fab-theme" aria-label="切换主题" title="切换主题" onclick="document.documentElement.classList.toggle('light');localStorage.setItem('theme',document.documentElement.classList.contains('light')?'light':'dark')">🌙</button>
+<button class="fab fab-back" aria-label="回到顶部" title="回到顶部" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+// Theme initialization
+if(localStorage.getItem('theme')==='light'){document.documentElement.classList.add('light')}
+// Theme toggle icon
+const themeBtn=document.querySelector('.fab-theme');
+if(themeBtn){
+const updateIcon=()=>{themeBtn.textContent=document.documentElement.classList.contains('light')?'☀️':'🌙'};
+updateIcon();
+const observer=new MutationObserver(updateIcon);
+observer.observe(document.documentElement,{attributes:true,attributeFilter:['class']});
+}
+});
+</script>
+</body>
+</html>
