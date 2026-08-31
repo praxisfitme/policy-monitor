@@ -832,6 +832,123 @@ body {
 }
 .app-expansion-list li { margin-bottom: 4px; }
 
+/* ── Ad Ranking Table (竞品投放排行榜) ── */
+.ad-ranking-section {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    padding: 16px;
+    margin-bottom: 16px;
+}
+.ad-ranking-title {
+    font-size: 0.9375rem;
+    font-weight: 700;
+    color: #7c3aed;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+.ad-ranking-title small {
+    font-weight: 400;
+    color: var(--text-tertiary);
+    font-size: 0.75rem;
+}
+.ranking-table-wrapper {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    margin-bottom: 12px;
+}
+.ranking-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.8125rem;
+    min-width: 600px;
+}
+.ranking-table th {
+    background: var(--bg-secondary);
+    color: var(--text-primary);
+    font-weight: 600;
+    text-align: left;
+    padding: 10px 12px;
+    border-bottom: 2px solid var(--border);
+    white-space: nowrap;
+    font-size: 0.75rem;
+}
+.ranking-table td {
+    padding: 10px 12px;
+    border-bottom: 1px solid var(--border);
+    vertical-align: middle;
+}
+.ranking-table tr:hover td {
+    background: var(--bg-secondary);
+}
+.ranking-table .rank-cell {
+    font-weight: 700;
+    color: #7c3aed;
+    font-variant-numeric: tabular-nums;
+    width: 40px;
+}
+.ranking-table .rank-cell.top1 { color: #dc2626; }
+.ranking-table .rank-cell.top2 { color: #ea580c; }
+.ranking-table .rank-cell.top3 { color: #d97706; }
+.ranking-table .app-name-cell {
+    font-weight: 600;
+    color: var(--text-primary);
+}
+.ranking-table .company-cell {
+    font-size: 0.75rem;
+    color: var(--text-tertiary);
+    max-width: 150px;
+}
+.ranking-table .store-rank {
+    font-weight: 600;
+    color: #059669;
+    font-variant-numeric: tabular-nums;
+}
+.ranking-table .download-cell {
+    font-weight: 600;
+    color: var(--text-primary);
+    font-variant-numeric: tabular-nums;
+}
+.ad-activity-badge {
+    display: inline-block;
+    padding: 3px 8px;
+    border-radius: 12px;
+    font-size: 0.6875rem;
+    font-weight: 600;
+}
+.ad-activity-badge.high { background: #fef2f2; color: #dc2626; }
+.ad-activity-badge.medium { background: #fff7ed; color: #ea580c; }
+.ad-activity-badge.low { background: #f0fdf4; color: #16a34a; }
+.trend-cell {
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+.trend-cell.up { color: #dc2626; }
+.trend-cell.down { color: #16a34a; }
+.trend-cell.stable { color: var(--text-tertiary); }
+.ad-alert-box {
+    background: #fef3c7;
+    border: 1px solid #fbbf24;
+    border-radius: var(--radius-sm);
+    padding: 12px 14px;
+    font-size: 0.8125rem;
+    color: #92400e;
+    line-height: 1.6;
+}
+.ad-alert-box b { color: #78350f; }
+.ad-alert-box ul {
+    margin: 8px 0 0;
+    padding-left: 18px;
+}
+.ad-alert-box li { margin-bottom: 4px; }
+@media (max-width: 640px) {
+    .ranking-table { font-size: 0.75rem; }
+    .ranking-table th, .ranking-table td { padding: 8px 10px; }
+}
+
 /* Soft warning stat card variant */
 .stat-card.warn-orange { background: #fff7ed; }
 .stat-card.warn-orange .number { color: #ea580c; }
@@ -2850,6 +2967,177 @@ body {
                     <div class="app-fee"><b>费率：</b>栏目未披露（本周新增暴涨 103.9%，重点观察）</div>
                 </div>
 
+            </div>
+        </div>
+
+        <!-- 竞品投放排行榜 -->
+        <div class="ad-ranking-section">
+            <div class="ad-ranking-title">
+                📊 竞品投放排行榜（周更 · 数据来源：App Store / Sensor Tower / 广告素材监测）
+                <small>更新时间：2026-08-30 · 覆盖 App Store Finance 分类 + 广告投放活跃度</small>
+            </div>
+            
+            <div class="ranking-table-wrapper">
+                <table class="ranking-table">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>APP名称</th>
+                            <th>运营商</th>
+                            <th>App Store<br>Finance排名</th>
+                            <th>月下载量</th>
+                            <th>投放活跃度</th>
+                            <th>7日趋势</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="rank-cell top1">1</td>
+                            <td class="app-name-cell">ไทยแบงค์</td>
+                            <td class="company-cell">运营商未公开</td>
+                            <td class="store-rank">—</td>
+                            <td class="download-cell">—</td>
+                            <td><span class="ad-activity-badge high">高频</span></td>
+                            <td class="trend-cell down">▼ -5.5%</td>
+                        </tr>
+                        <tr>
+                            <td class="rank-cell top2">2</td>
+                            <td class="app-name-cell">ALPHABYTE</td>
+                            <td class="company-cell">运营商未公开</td>
+                            <td class="store-rank">—</td>
+                            <td class="download-cell">—</td>
+                            <td><span class="ad-activity-badge high">高频</span></td>
+                            <td class="trend-cell up">▲ +2.2%</td>
+                        </tr>
+                        <tr>
+                            <td class="rank-cell top3">3</td>
+                            <td class="app-name-cell">FINNIX</td>
+                            <td class="company-cell">MONIX Co., Ltd. (SCBX)</td>
+                            <td class="store-rank">#14</td>
+                            <td class="download-cell">—</td>
+                            <td><span class="ad-activity-badge high">高频</span></td>
+                            <td class="trend-cell up">▲ +15.0%</td>
+                        </tr>
+                        <tr>
+                            <td class="rank-cell">4</td>
+                            <td class="app-name-cell">Pico Link</td>
+                            <td class="company-cell">运营商未公开</td>
+                            <td class="store-rank">—</td>
+                            <td class="download-cell">—</td>
+                            <td><span class="ad-activity-badge medium">中频</span></td>
+                            <td class="trend-cell down">▼ -16.5%</td>
+                        </tr>
+                        <tr>
+                            <td class="rank-cell">5</td>
+                            <td class="app-name-cell">Promise</td>
+                            <td class="company-cell">Promise Thailand</td>
+                            <td class="store-rank">#24</td>
+                            <td class="download-cell">40K</td>
+                            <td><span class="ad-activity-badge medium">中频</span></td>
+                            <td class="trend-cell down">▼ -10.1%</td>
+                        </tr>
+                        <tr>
+                            <td class="rank-cell">6</td>
+                            <td class="app-name-cell">มีมีแคช (Mimi Cash)</td>
+                            <td class="company-cell">运营商未公开</td>
+                            <td class="store-rank">—</td>
+                            <td class="download-cell">—</td>
+                            <td><span class="ad-activity-badge medium">中频</span></td>
+                            <td class="trend-cell down">▼ -6.2%</td>
+                        </tr>
+                        <tr>
+                            <td class="rank-cell">7</td>
+                            <td class="app-name-cell">ลูนาแคช (Luna Cash)</td>
+                            <td class="company-cell">运营商未公开</td>
+                            <td class="store-rank">—</td>
+                            <td class="download-cell">—</td>
+                            <td><span class="ad-activity-badge medium">中频</span></td>
+                            <td class="trend-cell stable">—</td>
+                        </tr>
+                        <tr>
+                            <td class="rank-cell">8</td>
+                            <td class="app-name-cell">金格方</td>
+                            <td class="company-cell">运营商未公开</td>
+                            <td class="store-rank">—</td>
+                            <td class="download-cell">—</td>
+                            <td><span class="ad-activity-badge medium">中频</span></td>
+                            <td class="trend-cell stable">—</td>
+                        </tr>
+                        <tr>
+                            <td class="rank-cell">9</td>
+                            <td class="app-name-cell">SmartCash</td>
+                            <td class="company-cell">运营商未公开</td>
+                            <td class="store-rank">—</td>
+                            <td class="download-cell">—</td>
+                            <td><span class="ad-activity-badge low">低频</span></td>
+                            <td class="trend-cell stable">—</td>
+                        </tr>
+                        <tr>
+                            <td class="rank-cell">10</td>
+                            <td class="app-name-cell">MoneyThunder</td>
+                            <td class="company-cell">Abacus Digital (SCBX)</td>
+                            <td class="store-rank">#22</td>
+                            <td class="download-cell">—</td>
+                            <td><span class="ad-activity-badge medium">中频</span></td>
+                            <td class="trend-cell stable">—</td>
+                        </tr>
+                        <tr>
+                            <td class="rank-cell">11</td>
+                            <td class="app-name-cell">Paypaya</td>
+                            <td class="company-cell">Akulaku X Company</td>
+                            <td class="store-rank">#25</td>
+                            <td class="download-cell">—</td>
+                            <td><span class="ad-activity-badge medium">中频</span></td>
+                            <td class="trend-cell stable">—</td>
+                        </tr>
+                        <tr>
+                            <td class="rank-cell">12</td>
+                            <td class="app-name-cell">EASYสินเชื่อ</td>
+                            <td class="company-cell">NICE PICO Company</td>
+                            <td class="store-rank">#28</td>
+                            <td class="download-cell">—</td>
+                            <td><span class="ad-activity-badge low">低频</span></td>
+                            <td class="trend-cell stable">—</td>
+                        </tr>
+                        <tr>
+                            <td class="rank-cell">13</td>
+                            <td class="app-name-cell">Thong การเงิน</td>
+                            <td class="company-cell">运营商未公开</td>
+                            <td class="store-rank">—</td>
+                            <td class="download-cell">—</td>
+                            <td><span class="ad-activity-badge high">高频</span></td>
+                            <td class="trend-cell up">▲ +103.9%</td>
+                        </tr>
+                        <tr>
+                            <td class="rank-cell">14</td>
+                            <td class="app-name-cell">Rabbit Cash</td>
+                            <td class="company-cell">Rabbit Cash Co., Ltd.</td>
+                            <td class="store-rank">#13</td>
+                            <td class="download-cell">—</td>
+                            <td><span class="ad-activity-badge low">低频</span></td>
+                            <td class="trend-cell stable">—</td>
+                        </tr>
+                        <tr>
+                            <td class="rank-cell">15</td>
+                            <td class="app-name-cell">CLICX Bank</td>
+                            <td class="company-cell">CLICX BANK PCL</td>
+                            <td class="store-rank">#3</td>
+                            <td class="download-cell">—</td>
+                            <td><span class="ad-activity-badge low">低频</span></td>
+                            <td class="trend-cell stable">—</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="ad-alert-box">
+                <b>⚠️ 本周投放异动预警（环比 |±30%|）</b>
+                <ul>
+                    <li><b>Thong การเงิน</b>：投放量暴涨 <b>+103.9%</b>（上周 6,119 → 本周 12,478），费率/主体不透明，典型灰产信号，建议重点监控</li>
+                    <li><b>FINNIX</b>：投放量 +15.0%，配合反非法借贷广告campaign（线上KOL+线下广告牌翻新），品牌攻势明显</li>
+                    <li><b>Pico Link</b>：投放量 -16.5%，连续两周下滑，需关注是否调整策略或面临监管压力</li>
+                    <li><b>ไทยแบงค์</b>：投放量 -5.5%，仍居高频投放区，但排名首位优势收窄</li>
+                </ul>
             </div>
         </div>
 
