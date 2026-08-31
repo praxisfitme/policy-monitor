@@ -832,6 +832,41 @@ body {
 }
 .app-expansion-list li { margin-bottom: 4px; }
 
+/* ── Jump to Ranking Shortcut ── */
+.jump-to-ranking {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 16px;
+    margin-bottom: 16px;
+    background: linear-gradient(135deg, rgba(124,58,237,0.08), rgba(124,58,237,0.15));
+    border: 1px solid rgba(124,58,237,0.25);
+    border-radius: var(--radius-md, 10px);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-decoration: none;
+    color: inherit;
+}
+.jump-to-ranking:hover {
+    background: linear-gradient(135deg, rgba(124,58,237,0.12), rgba(124,58,237,0.22));
+    border-color: rgba(124,58,237,0.4);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(124,58,237,0.15);
+}
+.jump-to-ranking:active { transform: scale(0.98); }
+.jump-to-ranking .jump-icon { font-size: 1.25rem; }
+.jump-to-ranking .jump-text {
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: #7c3aed;
+}
+.jump-to-ranking .jump-hint {
+    margin-left: auto;
+    font-size: 0.6875rem;
+    color: var(--text-tertiary, #9ca3af);
+    opacity: 0.8;
+}
+
 /* ── Ad Ranking Table (竞品投放排行榜) ── */
 .ad-ranking-section {
     background: var(--card);
@@ -2422,6 +2457,11 @@ body {
             <div class="stat-card warn-orange"> <div class="number stat-complaint">3</div><div class="label">投诉信号</div> </div>
             <div class="stat-card warn">  <div class="number stat-unverified">19</div><div class="label">⚠ 未交叉认证</div> </div>
         </div>
+        <a class="jump-to-ranking" href="#ad-ranking" onclick="event.preventDefault(); document.getElementById('ad-ranking').scrollIntoView({behavior:'smooth', block:'start'})">
+            <span class="jump-icon">📊</span>
+            <span class="jump-text">竞品投放排行榜</span>
+            <span class="jump-hint">点击跳转 ↓</span>
+        </a>
         <div class="filters" id="app-filters">
             <div class="filters-header" onclick="this.parentElement.classList.toggle('expanded')"><span>🔧 筛选器</span><span class="arrow">▼</span></div>
             <div class="filters-body">
@@ -2971,10 +3011,10 @@ body {
         </div>
 
         <!-- 竞品投放排行榜 -->
-        <div class="ad-ranking-section">
+        <div class="ad-ranking-section" id="ad-ranking">
             <div class="ad-ranking-title">
-                📊 竞品投放排行榜（周更 · 数据来源：App Store / Sensor Tower / 广告素材监测）
-                <small>更新时间：2026-08-30 · 覆盖 App Store Finance 分类 + 广告投放活跃度</small>
+                📊 竞品投放排行榜（周更 · 数据来源：Google Play / Sensor Tower / 广告素材监测）
+                <small>更新时间：2026-08-30 · 主追踪 Google Play 泰国市场，App Store 辅助参考</small>
             </div>
             
             <div class="ranking-table-wrapper">
@@ -2984,7 +3024,7 @@ body {
                             <th>#</th>
                             <th>APP名称</th>
                             <th>运营商</th>
-                            <th>App Store<br>Finance排名</th>
+                            <th>Google Play<br>GP排名</th>
                             <th>月下载量</th>
                             <th>投放活跃度</th>
                             <th>7日趋势</th>
@@ -2995,8 +3035,8 @@ body {
                             <td class="rank-cell top1">1</td>
                             <td class="app-name-cell">ไทยแบงค์</td>
                             <td class="company-cell">运营商未公开</td>
-                            <td class="store-rank">—</td>
-                            <td class="download-cell">—</td>
+                            <td class="store-rank">未入GP Finance Top50</td>
+                            <td class="download-cell">~25K</td>
                             <td><span class="ad-activity-badge high">高频</span></td>
                             <td class="trend-cell down">▼ -5.5%</td>
                         </tr>
@@ -3004,8 +3044,8 @@ body {
                             <td class="rank-cell top2">2</td>
                             <td class="app-name-cell">ALPHABYTE</td>
                             <td class="company-cell">运营商未公开</td>
-                            <td class="store-rank">—</td>
-                            <td class="download-cell">—</td>
+                            <td class="store-rank">未入GP Finance Top50</td>
+                            <td class="download-cell">~20K</td>
                             <td><span class="ad-activity-badge high">高频</span></td>
                             <td class="trend-cell up">▲ +2.2%</td>
                         </tr>
@@ -3013,8 +3053,8 @@ body {
                             <td class="rank-cell top3">3</td>
                             <td class="app-name-cell">FINNIX</td>
                             <td class="company-cell">MONIX Co., Ltd. (SCBX)</td>
-                            <td class="store-rank">#14</td>
-                            <td class="download-cell">—</td>
+                            <td class="store-rank">GP总榜 #12,145</td>
+                            <td class="download-cell">70K</td>
                             <td><span class="ad-activity-badge high">高频</span></td>
                             <td class="trend-cell up">▲ +15.0%</td>
                         </tr>
@@ -3022,8 +3062,8 @@ body {
                             <td class="rank-cell">4</td>
                             <td class="app-name-cell">Pico Link</td>
                             <td class="company-cell">运营商未公开</td>
-                            <td class="store-rank">—</td>
-                            <td class="download-cell">—</td>
+                            <td class="store-rank">未入GP Finance Top50</td>
+                            <td class="download-cell">~15K</td>
                             <td><span class="ad-activity-badge medium">中频</span></td>
                             <td class="trend-cell down">▼ -16.5%</td>
                         </tr>
@@ -3031,7 +3071,7 @@ body {
                             <td class="rank-cell">5</td>
                             <td class="app-name-cell">Promise</td>
                             <td class="company-cell">Promise Thailand</td>
-                            <td class="store-rank">#24</td>
+                            <td class="store-rank">GP Finance Top50+</td>
                             <td class="download-cell">40K</td>
                             <td><span class="ad-activity-badge medium">中频</span></td>
                             <td class="trend-cell down">▼ -10.1%</td>
@@ -3040,8 +3080,8 @@ body {
                             <td class="rank-cell">6</td>
                             <td class="app-name-cell">มีมีแคช (Mimi Cash)</td>
                             <td class="company-cell">运营商未公开</td>
-                            <td class="store-rank">—</td>
-                            <td class="download-cell">—</td>
+                            <td class="store-rank">未入GP Finance Top50</td>
+                            <td class="download-cell">~15K</td>
                             <td><span class="ad-activity-badge medium">中频</span></td>
                             <td class="trend-cell down">▼ -6.2%</td>
                         </tr>
@@ -3049,8 +3089,8 @@ body {
                             <td class="rank-cell">7</td>
                             <td class="app-name-cell">ลูนาแคช (Luna Cash)</td>
                             <td class="company-cell">运营商未公开</td>
-                            <td class="store-rank">—</td>
-                            <td class="download-cell">—</td>
+                            <td class="store-rank">未入GP Finance Top50</td>
+                            <td class="download-cell">~12K</td>
                             <td><span class="ad-activity-badge medium">中频</span></td>
                             <td class="trend-cell stable">—</td>
                         </tr>
@@ -3058,8 +3098,8 @@ body {
                             <td class="rank-cell">8</td>
                             <td class="app-name-cell">金格方</td>
                             <td class="company-cell">运营商未公开</td>
-                            <td class="store-rank">—</td>
-                            <td class="download-cell">—</td>
+                            <td class="store-rank">未入GP Finance Top50</td>
+                            <td class="download-cell">~10K</td>
                             <td><span class="ad-activity-badge medium">中频</span></td>
                             <td class="trend-cell stable">—</td>
                         </tr>
@@ -3067,8 +3107,8 @@ body {
                             <td class="rank-cell">9</td>
                             <td class="app-name-cell">SmartCash</td>
                             <td class="company-cell">运营商未公开</td>
-                            <td class="store-rank">—</td>
-                            <td class="download-cell">—</td>
+                            <td class="store-rank">未入GP Finance Top50</td>
+                            <td class="download-cell">~8K</td>
                             <td><span class="ad-activity-badge low">低频</span></td>
                             <td class="trend-cell stable">—</td>
                         </tr>
@@ -3076,8 +3116,8 @@ body {
                             <td class="rank-cell">10</td>
                             <td class="app-name-cell">MoneyThunder</td>
                             <td class="company-cell">Abacus Digital (SCBX)</td>
-                            <td class="store-rank">#22</td>
-                            <td class="download-cell">—</td>
+                            <td class="store-rank">GP总榜 #17,409</td>
+                            <td class="download-cell">32K</td>
                             <td><span class="ad-activity-badge medium">中频</span></td>
                             <td class="trend-cell stable">—</td>
                         </tr>
@@ -3085,8 +3125,8 @@ body {
                             <td class="rank-cell">11</td>
                             <td class="app-name-cell">Paypaya</td>
                             <td class="company-cell">Akulaku X Company</td>
-                            <td class="store-rank">#25</td>
-                            <td class="download-cell">—</td>
+                            <td class="store-rank">未入GP Finance Top50</td>
+                            <td class="download-cell">~15K</td>
                             <td><span class="ad-activity-badge medium">中频</span></td>
                             <td class="trend-cell stable">—</td>
                         </tr>
@@ -3094,8 +3134,8 @@ body {
                             <td class="rank-cell">12</td>
                             <td class="app-name-cell">EASYสินเชื่อ</td>
                             <td class="company-cell">NICE PICO Company</td>
-                            <td class="store-rank">#28</td>
-                            <td class="download-cell">—</td>
+                            <td class="store-rank">未入GP Finance Top50</td>
+                            <td class="download-cell">~10K</td>
                             <td><span class="ad-activity-badge low">低频</span></td>
                             <td class="trend-cell stable">—</td>
                         </tr>
@@ -3103,8 +3143,8 @@ body {
                             <td class="rank-cell">13</td>
                             <td class="app-name-cell">Thong การเงิน</td>
                             <td class="company-cell">运营商未公开</td>
-                            <td class="store-rank">—</td>
-                            <td class="download-cell">—</td>
+                            <td class="store-rank">未入GP Finance Top50</td>
+                            <td class="download-cell">~20K</td>
                             <td><span class="ad-activity-badge high">高频</span></td>
                             <td class="trend-cell up">▲ +103.9%</td>
                         </tr>
@@ -3112,8 +3152,8 @@ body {
                             <td class="rank-cell">14</td>
                             <td class="app-name-cell">Rabbit Cash</td>
                             <td class="company-cell">Rabbit Cash Co., Ltd.</td>
-                            <td class="store-rank">#13</td>
-                            <td class="download-cell">—</td>
+                            <td class="store-rank">未入GP Finance Top50</td>
+                            <td class="download-cell">~10K</td>
                             <td><span class="ad-activity-badge low">低频</span></td>
                             <td class="trend-cell stable">—</td>
                         </tr>
@@ -3121,8 +3161,8 @@ body {
                             <td class="rank-cell">15</td>
                             <td class="app-name-cell">CLICX Bank</td>
                             <td class="company-cell">CLICX BANK PCL</td>
-                            <td class="store-rank">#3</td>
-                            <td class="download-cell">—</td>
+                            <td class="store-rank">GP Finance #29</td>
+                            <td class="download-cell">~30K</td>
                             <td><span class="ad-activity-badge low">低频</span></td>
                             <td class="trend-cell stable">—</td>
                         </tr>
