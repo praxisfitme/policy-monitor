@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>跨境支付情报监控 — 2026.08.30</title>
+<title>跨境支付情报监控 — 2026.09.01</title>
 <meta property="og:title" content="跨境支付情报监控">
 <meta property="og:description" content="全球跨境支付政策法规、Crypto监管动态、头部品牌战略与市场数据">
 <meta property="og:type" content="website">
@@ -109,162 +109,16 @@ a{color:#333}
 .tab-panel{display:block !important}
 }
 
-/* ══ Floating Components (injected) ══ */
-.fab-stack {
-    position: fixed;
-    right: 20px;
-    bottom: 24px;
-    z-index: 9999;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    align-items: center;
-}
-.fab {
-    width: 44px;
-    height: 44px;
-    border-radius: 50%;
-    border: none;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.2rem;
-    box-shadow: 0 4px 16px rgba(0,0,0,0.3);
-    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-    -webkit-user-select: none;
-    user-select: none;
-    -webkit-tap-highlight-color: transparent;
-    touch-action: manipulation;
-    z-index: 9999;
-}
-.fab:active { transform: scale(0.88); }
-.fab-portal {
-            background: var(--bg-card, #fff);
-            color: var(--text-primary, #333);
-            border: 1px solid var(--border, #e5e7eb);
-            text-decoration: none;
-        }
-        .fab-portal:active { transform: scale(0.88); }
-        .fab-back {
-    background: var(--accent-blue, var(--accent, #3b82f6));
-    color: white;
-    opacity: 0;
-    pointer-events: none;
-}
-.fab-back.visible { opacity: 1; pointer-events: auto; }
-.fab-theme {
-    background: var(--bg-card, #111827);
-    color: var(--text-primary, #e2e8f0);
-    border: 1px solid var(--border, #1e293b);
-}
-.fab-theme:active { transform: scale(0.88) rotate(180deg); }
-.fab-feedback {
-    background: var(--bg-card, #111827);
-    color: var(--text-primary, #e2e8f0);
-    border: 1px solid var(--border, #1e293b);
-    position: relative;
-}
-.fab-feedback .fab-badge {
-    position: absolute;
-    top: -2px;
-    right: -2px;
-    width: 10px;
-    height: 10px;
-    background: #f43f5e;
-    border-radius: 50%;
-    border: 2px solid var(--bg-card, #111827);
-}
-.feedback-overlay {
-    position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,0.5);
-    z-index: 10000;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.25s ease;
-    -webkit-backdrop-filter: blur(2px);
-    backdrop-filter: blur(2px);
-}
-.feedback-overlay.visible { opacity: 1; pointer-events: auto; }
-.feedback-modal {
-    background: var(--bg-card, #111827);
-    border-radius: 12px;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.4);
-    max-width: 460px;
-    width: 100%;
-    padding: 24px 20px;
-    transform: scale(0.92) translateY(20px);
-    transition: transform 0.25s ease;
-    border: 1px solid var(--border, #1e293b);
-    color: var(--text-primary, #e2e8f0);
-}
-.feedback-overlay.visible .feedback-modal { transform: scale(1) translateY(0); }
-.feedback-modal h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 6px; }
-.feedback-modal .feedback-hint { font-size: 0.8125rem; color: var(--text-secondary, #94a3b8); margin-bottom: 14px; line-height: 1.6; }
-.feedback-modal textarea {
-    width: 100%;
-    min-height: 120px;
-    padding: 12px 14px;
-    border: 1px solid var(--border, #1e293b);
-    border-radius: 8px;
-    font-size: 0.875rem;
-    font-family: inherit;
-    resize: vertical;
-    outline: none;
-    background: var(--bg-card-hover, var(--bg-secondary, #1a2332));
-    color: var(--text-primary, #e2e8f0);
-    line-height: 1.6;
-    box-sizing: border-box;
-}
-.feedback-modal textarea:focus { border-color: var(--accent-blue, var(--accent, #3b82f6)); box-shadow: 0 0 0 3px rgba(59,130,246,0.15); }
-.feedback-modal textarea::placeholder { color: var(--text-muted, #64748b); }
-.feedback-modal .feedback-actions { display: flex; gap: 10px; margin-top: 16px; flex-wrap: wrap; }
-.feedback-btn {
-    flex: 1;
-    min-width: 120px;
-    padding: 12px 16px;
-    border-radius: 8px;
-    font-size: 0.875rem;
-    font-weight: 600;
-    cursor: pointer;
-    border: none;
-    transition: all 0.2s ease;
-    min-height: 44px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 6px;
-    text-decoration: none;
-}
-.feedback-btn:active { transform: scale(0.96); }
-.feedback-btn-primary { background: var(--accent-blue, var(--accent, #3b82f6)); color: white; }
-.feedback-btn-secondary { background: var(--bg-card-hover, var(--bg-secondary, #1a2332)); color: var(--text-primary, #e2e8f0); border: 1px solid var(--border, #1e293b); }
-.feedback-btn-close { background: transparent; color: var(--text-secondary, #94a3b8); border: 1px solid var(--border, #1e293b); flex: 0 0 auto; min-width: 44px; }
-.feedback-modal .feedback-note { margin-top: 12px; font-size: 0.75rem; color: var(--text-muted, #64748b); line-height: 1.5; }
-.feedback-modal .feedback-type { display: flex; gap: 8px; margin-bottom: 12px; }
-.feedback-type-btn {
-    padding: 8px 14px;
-    border-radius: 100px;
-    font-size: 0.8125rem;
-    font-weight: 500;
-    cursor: pointer;
-    border: 1px solid var(--border, #1e293b);
-    background: var(--bg-card-hover, var(--bg-secondary, #1a2332));
-    color: var(--text-secondary, #94a3b8);
-    transition: all 0.2s ease;
-}
-.feedback-type-btn.active { background: var(--accent-blue, var(--accent, #3b82f6)); color: white; border-color: var(--accent-blue, var(--accent, #3b82f6)); }
-@media (max-width: 768px) {
-    .fab-stack { right: 16px; gap: 8px; }
-    .feedback-modal { padding: 20px 16px; }
-    .feedback-btn { min-width: 100px; font-size: 0.8125rem; }
-}
-
+/* Floating Action Buttons */
+.fab-stack { position: fixed; bottom: 28px; right: 28px; display: flex; flex-direction: column-reverse; gap: 12px; z-index: 1000; }
+.fab { width: 48px; height: 48px; border-radius: 50%; border: none; cursor: pointer; font-size: 20px; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 14px rgba(0,0,0,0.25); transition: transform 0.2s, box-shadow 0.2s; }
+.fab:hover { transform: scale(1.1); box-shadow: 0 6px 20px rgba(0,0,0,0.35); }
+.fab:active { transform: scale(0.9); }
+.fab-portal { background: var(--bg-card, #fff); color: var(--text-primary, #333); border: 1px solid var(--border, #e5e7eb); text-decoration: none; }
+.fab-portal:active { transform: scale(0.88); }
+.fab-feedback { background: rgba(26,26,46,0.85); color: #fff; backdrop-filter: blur(10px); }
+.fab-theme { background: rgba(26,26,46,0.85); color: #fbbf24; backdrop-filter: blur(10px); }
+.fab-top { background: rgba(26,26,46,0.85); color: #fff; backdrop-filter: blur(10px); }
 </style>
 </head>
 <body>
@@ -277,7 +131,7 @@ a{color:#333}
 <span class="subtitle">Cross-Border Payment Intelligence</span>
 </div>
 </div>
-<span class="update-time">🕐 2026.08.30 19:25 UTC+8 · Daily Brief</span>
+<span class="update-time">🕐 2026.09.01 19:17 UTC+8 · Daily Brief</span>
 </div>
 </header>
 
@@ -297,9 +151,9 @@ a{color:#333}
 
 <div class="kpi-grid">
 <div class="kpi-card">
-<div class="kpi-label">CIPS 直接参与者</div>
-<div class="kpi-value">210家</div>
-<div class="kpi-sub">间接1619家 · 覆盖191国</div>
+<div class="kpi-label">全球跨境支付规模</div>
+<div class="kpi-value">$208万亿</div>
+<div class="kpi-sub">2025年 · 同比+6.9%</div>
 </div>
 <div class="kpi-card">
 <div class="kpi-label">全球稳定币市值</div>
@@ -322,9 +176,9 @@ a{color:#333}
 <div class="kpi-sub">同比+20% · 顺差183亿$</div>
 </div>
 <div class="kpi-card">
-<div class="kpi-label">Revolut 全球用户</div>
-<div class="kpi-value">8000万+</div>
-<div class="kpi-sub">推出EURR欧元稳定币</div>
+<div class="kpi-label">Airwallex 估值</div>
+<div class="kpi-value">$110亿</div>
+<div class="kpi-sub">H轮$3.2亿 · 拟年底前IPO</div>
 </div>
 </div>
 
@@ -332,7 +186,7 @@ a{color:#333}
 <div class="section-header">
 <div class="section-icon insight">⚡</div>
 <h2 class="section-title">今日关键信号</h2>
-<span class="section-count">5条</span>
+<span class="section-count">8条</span>
 </div>
 <div class="highlight-bar">
 <div class="highlight-item">
@@ -360,6 +214,21 @@ a{color:#333}
 <div class="highlight-title">多国加密新规集中落地</div>
 <div class="highlight-desc">俄罗斯限制散户仅可交易BTC/ETH/USDT（年限$3600）；越南加密资产处罚新规生效；Revolut下架USDT</div>
 </div>
+<div class="highlight-item">
+<div class="highlight-date">2026.09.01</div>
+<div class="highlight-title">9月外贸新规集中生效：电子单证+消费税+海关三箭齐发</div>
+<div class="highlight-desc">电子单证应用规定正式施行，锂电池2%消费税落地，海关检疫处理新规执行。覆盖"交易凭证→产品成本→通关交付→跨境资金"全链路</div>
+</div>
+<div class="highlight-item">
+<div class="highlight-date">2026.09.01</div>
+<div class="highlight-title">连连数字中期业绩：H1营收8.8亿，调整后利润翻倍</div>
+<div class="highlight-desc">全球TPV 2499亿元+25.9%，持牌扩至68张（新增加拿大+迪拜），增值服务收入+83.2%，Agent Wallet开启Agentic Payment</div>
+</div>
+<div class="highlight-item">
+<div class="highlight-date">2026.08.31</div>
+<div class="highlight-title">央行陆磊：全球跨境支付208万亿美元，大额支付系统10月延时</div>
+<div class="highlight-desc">第十五届支付清算论坛定调：10月17日起大额支付系统延长至5*22.5+13.5小时，RTGS全球延时趋势，FPS多边互联加速</div>
+</div>
 </div>
 </section>
 </div>
@@ -370,7 +239,7 @@ a{color:#333}
 <div class="section-header">
 <div class="section-icon policy">🏛️</div>
 <h2 class="section-title">政策法规</h2>
-<span class="section-count">8条</span>
+<span class="section-count">11条</span>
 </div>
 <div class="cards-grid">
 <div class="card" data-type="policy">
@@ -421,6 +290,24 @@ a{color:#333}
 <div class="card-desc">央行"十五五"规划从"多渠道"升级为"多层次"表述，对应CIPS金融市场结算、快速支付系统互联、二维码跨境连接及数字人民币跨境基础设施四个层级。CIPS直接参与者突破200家至210家。</div>
 <div class="card-source">来源：<a href="http://www.zfzj.cn/tag/cips" target="_blank" rel="noopener noreferrer">支付之家网</a> · 2026.08.11</div>
 </div>
+<div class="card" data-type="policy">
+<span class="card-tag tag-hot">🔥 9月新规</span>
+<div class="card-title">9月1日起多项外贸新规集中生效</div>
+<div class="card-desc">三项新规同步落地：①《促进和规范电子单证应用规定》正式施行，覆盖货物贸易、物流、金融电子单证，鼓励金融机构探索跨境支付创新；②锂电池等电池产品按2%征收消费税（2027.9调至4%），钠离子/固态电池免税；③海关进出境动植物检疫处理及卫生处理新规执行。覆盖"交易凭证→产品成本→通关交付→跨境资金"全链路。</div>
+<div class="card-source">来源：<a href="http://m.toutiao.com/group/7680497738819093034/" target="_blank" rel="noopener noreferrer">易运盈</a> · 2026.09.01</div>
+</div>
+<div class="card" data-type="policy">
+<span class="card-tag tag-new">🆕 基建</span>
+<div class="card-title">中国大额支付系统10月17日起延长运行时间</div>
+<div class="card-desc">央行副行长陆磊在第十五届支付清算论坛宣布：自2026年10月17日起，中国大额支付系统(HVPS)运行时间由"5*21+12小时"延长至"5*22.5+13.5小时"，顺应全球RTGS系统普遍延长运营时间的趋势。同时FPS双边/多边互联加速，API趋于普及。</div>
+<div class="card-source">来源：<a href="https://finance.caixin.com/m/2026-08-31/102480090.html" target="_blank" rel="noopener noreferrer">财新网</a> · 2026.08.31</div>
+</div>
+<div class="card" data-type="policy">
+<span class="card-tag tag-new">🆕 指引</span>
+<div class="card-title">《离岸人民币外汇业务指引》发布施行</div>
+<div class="card-desc">中国外汇交易中心修订发布新版《离岸人民币外汇业务指引》，替代原自贸区人民币外汇交易业务指引，根据最新政策和市场发展需要完善离岸人民币外汇交易制度框架。</div>
+<div class="card-source">来源：<a href="https://www.cls.cn/detail/2470725" target="_blank" rel="noopener noreferrer">财联社</a> · 2026.09.01</div>
+</div>
 </div>
 </section>
 </div>
@@ -431,7 +318,7 @@ a{color:#333}
 <div class="section-header">
 <div class="section-icon crypto">🔗</div>
 <h2 class="section-title">Crypto / Web3</h2>
-<span class="section-count">8条</span>
+<span class="section-count">9条</span>
 </div>
 <div class="cards-grid">
 <div class="card" data-type="crypto">
@@ -482,6 +369,12 @@ a{color:#333}
 <div class="card-desc">CRS 2.0 + CARF加密资产申报框架从"看账户"走向"找主人"。香港修订条例2026.3刊宪，拟2027.1生效；BVI/开曼2026.1起执行。2028年起CARF全面实施。合规原生(born compliant)成为数字资产第一条标准。</div>
 <div class="card-source">来源：<a href="http://m.toutiao.com/group/7679674899987792403/" target="_blank" rel="noopener noreferrer">瑞喆出海</a> · 2026.08.30</div>
 </div>
+<div class="card" data-type="crypto">
+<span class="card-tag tag-new">🆕 合规</span>
+<div class="card-title">Circle MiCA-PSD2双重许可冲突引发行业警告</div>
+<div class="card-desc">欧盟稳定币发行商面临MiCA+PSD2双重牌照要求，最低资本翻倍至€25万。Circle EU政策负责人警告此举违背MiCA统一监管初衷，可能导致服务商退出欧盟市场或缩减运营范围。叠加9月1日多国加密新规集中落地（俄罗斯限制散户交易、越南处罚新规），全球稳定币合规环境进入深水区。</div>
+<div class="card-source">来源：<a href="https://coinstats.app/news/279009b7e2e795c355a470af1c66ba238417622c5281632d0a54149357c5c5ed_Circle-Exec-Says-EU-Risks-Regulatory-Own-Goal-Amid-MiCAPSD2-Clash/" target="_blank" rel="noopener noreferrer">BeInCrypto</a> · 2026.08.28</div>
+</div>
 </div>
 </section>
 </div>
@@ -492,7 +385,7 @@ a{color:#333}
 <div class="section-header">
 <div class="section-icon brand">🏢</div>
 <h2 class="section-title">品牌动态</h2>
-<span class="section-count">8条</span>
+<span class="section-count">14条</span>
 </div>
 <div class="cards-grid">
 <div class="card" data-type="brand">
@@ -543,6 +436,42 @@ a{color:#333}
 <div class="card-desc">据Bloomberg报道，TikTok拟将支付服务扩展至私信对话中的资金转账，从电商支付走向社交支付。若落地将进一步模糊社交与金融的边界。</div>
 <div class="card-source">来源：<a href="https://fintechnews.sg/payments/" target="_blank" rel="noopener noreferrer">Fintech News SG</a> · 2026.08.19</div>
 </div>
+<div class="card" data-type="brand">
+<span class="card-tag tag-hot">🔥 财报</span>
+<div class="card-title">连连数字(2598.HK)中期业绩：H1营收8.8亿，调整后利润翻倍</div>
+<div class="card-desc">全球TPV达2499亿元(+25.9%)，收入8.76亿(+11.9%)，毛利率51.9%。调整后经营利润1.56亿(+147.3%)。增值服务收入+83.2%至1.64亿。全球持牌扩至68张（新增加拿大MSB+迪拜3D牌照）。推出Agent Wallet智能支付基础设施，Agentic Payment从技术验证进入实部署。回购4000万股回馈股东超HK$2.5亿。</div>
+<div class="card-source">来源：<a href="https://www.lanciareporter.com/2026/09/01/lianlian-digitech-announces-2026-interim-results-with-h1-revenue-reaching-rmb-880-million/" target="_blank" rel="noopener noreferrer">Lianciareporter</a> · 2026.09.01</div>
+</div>
+<div class="card" data-type="brand">
+<span class="card-tag tag-hot">🔥 IPO</span>
+<div class="card-title">Airwallex空中云汇：计划2026年底前完成IPO准备</div>
+<div class="card-desc">联合创始人Lucy Liu确认IPO准备时间线，但表示"并非最佳上市时机"。关键数据：年化收入$13亿(+74% YoY)，年化交易量$2870亿(+120%+)，服务67.5万+企业，87项全球牌照，H轮$3.2亿后估值$110亿。同时布局AI自主金融和Agentic Commerce，推出Latitude 37计划投资10家澳洲AI创企。</div>
+<div class="card-source">来源：<a href="https://www.coindesk.cc/airwallex-plans-to-be-ipo-ready-by-end-of-2026-says-president-107864.html" target="_blank" rel="noopener noreferrer">CoinDesk</a> · 2026.08.31</div>
+</div>
+<div class="card" data-type="brand">
+<span class="card-tag tag-hot">🔥 融资</span>
+<div class="card-title">蚂蚁国际完成约12亿美元A轮融资</div>
+<div class="card-desc">蚂蚁集团、阿里巴巴参与投资。蚂蚁国际发布"鹰序TST"大模型2.0版，AI金融预测能力升级。万里汇数娱商户上半年增长超100%，全球账户服务被超半数中国大中型游戏厂商采用。AI驱动跨境信贷余额同比增逾60%。</div>
+<div class="card-source">来源：<a href="https://www.qcc.com/creport/5ca5b18d511a7a7f143df572e9936ed2.html" target="_blank" rel="noopener noreferrer">企查查</a> · 2026.07.21</div>
+</div>
+<div class="card" data-type="brand">
+<span class="card-tag tag-new">🆕 牌照</span>
+<div class="card-title">XTransfer收购安信汇支付(ChinaPay前身)续展成功</div>
+<div class="card-desc">XTransfer运营主体上海夺畅2025年1月控股的安信汇支付（前身银联在线ChinaPay）顺利换发长期牌照。XTransfer去年交易额605.16亿美元，三年复合增速80.2%，累计服务客户超100万。同期，连连银通支付牌照续展被中止审查，原因是控股股东吕钟霖约1860万股被司法冻结（占总股本1.65%）。</div>
+<div class="card-source">来源：<a href="http://m.toutiao.com/group/7679023426430714414/" target="_blank" rel="noopener noreferrer">新浪财经</a> · 2026.08.28</div>
+</div>
+<div class="card" data-type="brand">
+<span class="card-tag tag-new">🆕 AI</span>
+<div class="card-title">寻汇SUNRATE上线AI Compliance Agent</div>
+<div class="card-desc">2026年6月上线Sunrate.AI Compliance Agent，采用多智能体动态协同架构，将AI能力嵌入跨境业务全链路合规审核。本地收款覆盖阿联酋、墨西哥、新加坡、印尼、菲律宾、泰国及非洲多国。全球多币种账号支持16个币种，付款支持130+币种。</div>
+<div class="card-source">来源：<a href="http://economy.enorth.com.cn/system/2026/09/01/059716304.shtml" target="_blank" rel="noopener noreferrer">北方网</a> · 2026.09.01</div>
+</div>
+<div class="card" data-type="brand">
+<span class="card-tag tag-watch">⚠️ 出清</span>
+<div class="card-title">支付牌照出清加速：摩宝不予续展，年内3张注销</div>
+<div class="card-desc">成都摩宝成为新条例下首家被正式拒发长期牌照的机构（罚没2942万+注册资本不达标+股权悬空）。2026上半年罚没总额超2.3亿，6笔千万级罚单。联动优势（字节系）续展中止，股权变更审批两年未果。支付行业从"牌照保值"进入"合规淘汰赛"。</div>
+<div class="card-source">来源：<a href="http://m.toutiao.com/group/7679023426430714414/" target="_blank" rel="noopener noreferrer">新浪财经</a> · 2026.08.28</div>
+</div>
 </div>
 </section>
 </div>
@@ -553,7 +482,7 @@ a{color:#333}
 <div class="section-header">
 <div class="section-icon market">📈</div>
 <h2 class="section-title">市场数据</h2>
-<span class="section-count">7条</span>
+<span class="section-count">10条</span>
 </div>
 <div class="cards-grid">
 <div class="card" data-type="market">
@@ -598,149 +527,27 @@ a{color:#333}
 <div class="card-desc">ShopeePay新加坡和泰国用户现可在中国扫描银联码支付。微信支付也已接入柬埔寨KHQR。跨境QR支付互联加速，正在形成亚洲范围内的"扫码自由行"网络。</div>
 <div class="card-source">来源：<a href="https://fintechnews.sg/payments/" target="_blank" rel="noopener noreferrer">Fintech News SG</a> · 2026.08.20</div>
 </div>
+<div class="card" data-type="market">
+<span class="card-tag tag-hot">🔥 规模</span>
+<div class="card-title">全球跨境支付总规模208万亿美元(+6.9%)</div>
+<div class="card-desc">央行副行长陆磊在第十五届支付清算论坛披露：2025年全球跨境支付总规模达208万亿美元，同比增6.9%。体系分化重组趋势明显：RTGS普遍延长运营时间，FPS多边互联成为重要趋势，API普及打通系统间数据壁垒。跨境支付不只是资金清算通道，更是金融双向开放底层基础设施。</div>
+<div class="card-source">来源：<a href="https://finance.caixin.com/m/2026-08-31/102480090.html" target="_blank" rel="noopener noreferrer">财新网</a> · 2026.08.31</div>
+</div>
+<div class="card" data-type="market">
+<span class="card-tag tag-data">📊 里程碑</span>
+<div class="card-title">港交所：全球首只离岸人民币国债期货上市</div>
+<div class="card-desc">2026年8月3日，港交所推出全球首只离岸人民币国债期货（5年期），全部用人民币计价、交易、结算。境外机构持有中国国债规模突破3.2万亿元。为人民币资产池扩容提供新的风险管理工具。</div>
+<div class="card-source">来源：<a href="http://m.toutiao.com/group/7679018710350201407/" target="_blank" rel="noopener noreferrer">头条财经</a> · 2026.08.28</div>
+</div>
+<div class="card" data-type="market">
+<span class="card-tag tag-data">📊 熊猫债</span>
+<div class="card-title">熊猫债2026年前7月发行1957亿元创同期新高</div>
+<div class="card-desc">截至8月21日累计发行2099.75亿元，同比增七成以上。外资发行人占比首次过半，发行主体从主权国家到跨国企业。上半年加权平均发行利率仅1.85%。人民币国际化从"贸易结算货币"向"投资融资货币"纵深推进。</div>
+<div class="card-source">来源：<a href="http://m.toutiao.com/group/7679018710350201407/" target="_blank" rel="noopener noreferrer">头条财经</a> · 2026.08.28</div>
+</div>
 </div>
 </section>
 </div>
-
-<!-- ========== 中国跨境支付品牌图谱 ========== -->
-<section class="section" style="margin-top:1.5rem">
-<div class="section-header">
-<div class="section-icon brand">🇨🇳</div>
-<h2 class="section-title">中国跨境支付品牌图谱</h2>
-<span class="section-count">18家</span>
-</div>
-<p style="font-size:.75rem;color:var(--text2);margin:0 0 1rem;line-height:1.6">中国出海跨境支付赛道主要玩家概览，涵盖跨境电商收款、B2B外贸结算、全球资金管理等核心场景。2025年中国跨境支付市场规模约3.7万亿元，预计2030年超20万亿元。</p>
-<div class="cards-grid">
-
-<div class="card" data-type="brand">
-<span class="card-tag tag-hot">🔥 港股上市</span>
-<div class="card-title">连连数字 LianLian Global</div>
-<div class="card-desc">港股2598.HK。国内跨境电商收款头部企业，69张全球支付牌照，覆盖200+国家，支持6大卡组+100+本地支付方式，直连180+电商平台。Visa/Mastercard主会员，"悟空"智能风控资损率<0.000001%。</div>
-<div class="card-source">来源：<a href="https://www.lianlianpay.com" target="_blank" rel="noopener noreferrer">官网</a> · 2026</div>
-</div>
-
-<div class="card" data-type="brand">
-<span class="card-tag tag-hot">🦄 独角兽</span>
-<div class="card-title">PingPong</div>
-<div class="card-desc">全球60+张支付牌照，覆盖欧美、东南亚、中东等核心贸易区。跨境电商收款第一梯队，支持亚马逊、速卖通等主流平台。非洲本地钱包功能领先，深度服务出海民企。</div>
-<div class="card-source">来源：<a href="https://www.pingpongx.com" target="_blank" rel="noopener noreferrer">官网</a> · 2026</div>
-</div>
-
-<div class="card" data-type="brand">
-<span class="card-tag tag-hot">🐜 蚂蚁系</span>
-<div class="card-title">万里汇 WorldFirst</div>
-<div class="card-desc">蚂蚁国际全资子公司。跨境电商收款主力工具，亚马逊/速卖通主流收款通道。背靠Alipay+全球网络，2019年被蚂蚁金服收购后加速全球化。</div>
-<div class="card-source">来源：<a href="https://www.worldfirst.com" target="_blank" rel="noopener noreferrer">官网</a> · 2026</div>
-</div>
-
-<div class="card" data-type="brand">
-<span class="card-tag tag-hot">🦄 独角兽</span>
-<div class="card-title">空中云汇 Airwallex</div>
-<div class="card-desc">企业跨境B2B收付+全球多币种账户龙头。适合出海企业资金管理，支持70+币种，覆盖150+国家。总部位于墨尔本，创始团队来自墨尔本大学华人。</div>
-<div class="card-source">来源：<a href="https://www.airwallex.com" target="_blank" rel="noopener noreferrer">官网</a> · 2026</div>
-</div>
-
-<div class="card" data-type="brand">
-<span class="card-tag tag-data">📊 B2B龙头</span>
-<div class="card-title">XTransfer</div>
-<div class="card-desc">外贸B2B中小企业跨境结算龙头。服务89万+客户，2025年交易额605亿美元。与BBVA、法国兴业银行战略合作，深耕新兴市场。2026年获马来西亚央行A类牌照。</div>
-<div class="card-source">来源：<a href="https://www.xtransfer.cn" target="_blank" rel="noopener noreferrer">官网</a> · 2026</div>
-</div>
-
-<div class="card" data-type="brand">
-<span class="card-tag tag-hot">🔥 新锐</span>
-<div class="card-title">光子易 PhotonPay</div>
-<div class="card-desc">全球跨境支付综合服务商，主打安全合规。多国持牌，覆盖全球支付网络。近年快速崛起，为出海企业提供收单、付款、换汇一站式解决方案。</div>
-<div class="card-source">来源：<a href="https://www.photonpay.com" target="_blank" rel="noopener noreferrer">官网</a> · 2026</div>
-</div>
-
-<div class="card" data-type="brand">
-<span class="card-tag tag-data">📊 多边持牌</span>
-<div class="card-title">结行国际 CoGoLinks</div>
-<div class="card-desc">结行科技集团旗下跨境支付品牌，多边持牌架构（中国大陆/香港/美国/阿联酋/新加坡）。2026年获新加坡MPI牌照，打通近20个币种结算，覆盖100+国家。</div>
-<div class="card-source">来源：<a href="https://www.cogolinks.com" target="_blank" rel="noopener noreferrer">官网</a> · 2026</div>
-</div>
-
-<div class="card" data-type="brand">
-<span class="card-tag tag-data">📊 多币种</span>
-<div class="card-title">艾贝盈 iPayLinks</div>
-<div class="card-desc">2015年成立，服务20万+企业。多币种账户体系支持原币收款、延时换汇，适合拉美/非洲等高波动市场。持有新加坡MPI/香港MSO/英国FCA/美国MSB牌照。PCI-DSS Level1认证。</div>
-<div class="card-source">来源：<a href="https://www.ipaylinks.com" target="_blank" rel="noopener noreferrer">官网</a> · 2026</div>
-</div>
-
-<div class="card" data-type="brand">
-<span class="card-tag tag-hot">🐧 腾讯系</span>
-<div class="card-title">腾讯智汇鹅 TenPay Global</div>
-<div class="card-desc">腾讯旗下跨境支付平台。依托微信支付/支付宝生态优势，为中小民企出海提供零售支付解决方案，适配跨境电商、旅游消费等高频小额场景。</div>
-<div class="card-source">来源：<a href="https://global.tenpay.com" target="_blank" rel="noopener noreferrer">官网</a> · 2026</div>
-</div>
-
-<div class="card" data-type="brand">
-<span class="card-tag tag-data">📊 A股上市</span>
-<div class="card-title">拉卡拉 Lacar</div>
-<div class="card-desc">A股300773。国内领先第三方支付机构，入选CNBC"2026全球顶尖金融科技公司"。跨境人民币支付资格，覆盖129国。Visa/Mastercard/运通/JCB/Discover/银联国际六大卡组收单资质。</div>
-<div class="card-source">来源：<a href="https://www.lakala.com" target="_blank" rel="noopener noreferrer">官网</a> · 2026.07</div>
-</div>
-
-<div class="card" data-type="brand">
-<span class="card-tag tag-data">📊 A股双牌照</span>
-<div class="card-title">联动优势 UMP</div>
-<div class="card-desc">海联金汇(002537)子公司。A股稀缺跨境人民币+跨境外汇双牌照标的，对接CIPS系统。深耕跨境贸易结算，银行合作网络广泛。</div>
-<div class="card-source">来源：<a href="https://www.umpay.com" target="_blank" rel="noopener noreferrer">官网</a> · 2026</div>
-</div>
-
-<div class="card" data-type="brand">
-<span class="card-tag tag-hot">🏪 场景特色</span>
-<div class="card-title">义支付 Yiwu Pay</div>
-<div class="card-desc">小商品城(600415)旗下。依托义乌全球最大小商品批发市场场景，专注B2B小商品跨境支付。市场采购贸易方式下的特色跨境结算通道，增长迅猛。</div>
-<div class="card-source">来源：<a href="https://www.ywupay.com" target="_blank" rel="noopener noreferrer">官网</a> · 2026</div>
-</div>
-
-<div class="card" data-type="brand">
-<span class="card-tag tag-data">📊 老牌</span>
-<div class="card-title">汇付天下 Huifu</div>
-<div class="card-desc">港股1806.HK。国内第三方支付老牌企业，拥有跨境外汇支付资质。为跨境电商、航空、教育等行业提供支付解决方案，近年转型数字化经营服务商。</div>
-<div class="card-source">来源：<a href="https://www.huifu.com" target="_blank" rel="noopener noreferrer">官网</a> · 2026</div>
-</div>
-
-<div class="card" data-type="brand">
-<span class="card-tag tag-data">📊 生态型</span>
-<div class="card-title">支付宝 Alipay+</div>
-<div class="card-desc">蚂蚁集团旗下跨境支付品牌。Alipay+连接全球37个+电子钱包扫码支付，覆盖160+国家/地区。Nihao China App服务境外人士在华支付，支持14种语言。</div>
-<div class="card-source">来源：<a href="https://www.alipay.com" target="_blank" rel="noopener noreferrer">官网</a> · 2026</div>
-</div>
-
-<div class="card" data-type="brand">
-<span class="card-tag tag-data">📊 生态型</span>
-<div class="card-title">微信支付 WeChat Pay</div>
-<div class="card-desc">腾讯旗下。境外扫码支付覆盖广泛，已接入柬埔寨KHQR等多国本地QR网络。出境游/跨境电商零售场景优势突出，与全球本地钱包互联互通。</div>
-<div class="card-source">来源：<a href="https://pay.weixin.qq.com" target="_blank" rel="noopener noreferrer">官网</a> · 2026</div>
-</div>
-
-<div class="card" data-type="brand">
-<span class="card-tag tag-hot">🏦 银行系</span>
-<div class="card-title">中国银行 BOC</div>
-<div class="card-desc">国内商业银行跨境金融绝对龙头。海外网点最多，国际贸易结算/外币汇兑/CIPS主力参与行。主攻大额B2B跨境结算，与第三方支付机构形成差异化互补。</div>
-<div class="card-source">来源：<a href="https://www.boc.cn" target="_blank" rel="noopener noreferrer">官网</a> · 2026</div>
-</div>
-
-<div class="card" data-type="brand">
-<span class="card-tag tag-data">📊 外贸基建</span>
-<div class="card-title">易宝支付 YeePay</div>
-<div class="card-desc">国内老牌第三方支付，跨境外汇支付试点资质。深耕航空/教育/货物贸易等垂直场景，为跨境商户提供收单、结算、换汇一体化服务。</div>
-<div class="card-source">来源：<a href="https://www.yeepay.com" target="_blank" rel="noopener noreferrer">官网</a> · 2026</div>
-</div>
-
-<div class="card" data-type="brand">
-<span class="card-tag tag-data">📊 CIPS生态</span>
-<div class="card-title">通联支付 Allinpay</div>
-<div class="card-desc">首批跨境人民币支付资格企业。深度参与CIPS生态建设，为跨境贸易提供人民币结算基础设施。与银联/网联双通道对接，机构级跨境支付服务商。</div>
-<div class="card-source">来源：<a href="https://www.allinpay.com" target="_blank" rel="noopener noreferrer">官网</a> · 2026</div>
-</div>
-
-</div>
-<p style="font-size:.65rem;color:var(--text3);margin-top:.75rem;line-height:1.5">💡 数据说明：以上品牌按市场影响力排列，涵盖跨境电商收款、B2B外贸结算、钱包生态、银行系四大类别。牌照数量及业务范围以各公司最新公开信息为准。</p>
-</section>
 </main>
 
 <footer class="footer">
@@ -772,92 +579,23 @@ if(el){e.preventDefault();el.scrollIntoView({behavior:'smooth'});}
 })();
 </script>
 
-<!-- Floating Components (injected) -->
 <div class="fab-stack">
-    <a class="fab fab-portal" href="/" aria-label="返回监控中枢" title="返回监控中枢">🏠</a>
-    <button class="fab fab-feedback" aria-label="反馈与建议" title="反馈与建议">💬</button>
-    <button class="fab fab-theme" aria-label="切换深色模式" title="切换深色/浅色模式">🌙</button>
-    <button class="fab fab-back" aria-label="回到顶部" title="回到顶部">↑</button>
+  <button class="fab fab-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="回顶部" title="回顶部">↑</button>
+  <button class="fab fab-theme" id="fabTheme" aria-label="切换主题" title="切换主题">🌙</button>
+  <a class="fab fab-feedback" href="https://wj.qq.com/s2/26567856/9784/" target="_blank" rel="noopener noreferrer" aria-label="反馈" title="反馈">💬</a>
+  <a class="fab fab-portal" href="/" aria-label="返回监控中枢" title="返回监控中枢">🏠</a>
 </div>
-<div class="feedback-overlay" id="feedbackOverlay">
-    <div class="feedback-modal" role="dialog" aria-labelledby="feedbackTitle">
-        <h3 id="feedbackTitle">📋 反馈与建议</h3>
-        <p class="feedback-hint">发现错误或有改进建议？请告诉我们，您的反馈会让这个面板更好。</p>
-        <div class="feedback-type">
-            <button class="feedback-type-btn active" data-type="bug">🐛 报告错误</button>
-            <button class="feedback-type-btn" data-type="suggestion">💡 功能建议</button>
-            <button class="feedback-type-btn" data-type="content">📝 内容补充</button>
-        </div>
-        <textarea id="feedbackText" placeholder="请描述您遇到的问题或建议……"></textarea>
-        <div class="feedback-actions">
-            <a class="feedback-btn feedback-btn-primary" id="feedbackGithub" href="#" target="_blank" rel="noopener">🔗 GitHub Issue</a>
-            <a class="feedback-btn feedback-btn-secondary" id="feedbackEmail" href="#">📧 邮件反馈</a>
-            <button class="feedback-btn feedback-btn-close" id="feedbackClose" aria-label="关闭">✕</button>
-        </div>
-        <p class="feedback-note">💡 GitHub Issue 会直接通知仓库管理员；邮件反馈将打开您的邮件应用。</p>
-    </div>
-</div>
-
 <script>
-// ── Floating Components (injected) ──
-(function() {
-    var backBtn = document.querySelector('.fab-back');
-    if (backBtn) {
-        var ticking = false;
-        window.addEventListener('scroll', function() {
-            if (!ticking) {
-                window.requestAnimationFrame(function() {
-                    backBtn.classList.toggle('visible', window.scrollY > 400);
-                    ticking = false;
-                });
-                ticking = true;
-            }
-        }, { passive: true });
-        backBtn.addEventListener('click', function() { window.scrollTo({ top: 0, behavior: 'smooth' }); });
-    }
-    var themeBtn = document.querySelector('.fab-theme');
-    if (themeBtn) {
-        var saved = localStorage.getItem('monitor-theme') || '';
-        var prefDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-        var theme = saved || (prefDark ? 'dark' : 'light');
-        function apply(t) {
-            if (t === 'dark') { document.documentElement.setAttribute('data-theme','dark'); themeBtn.textContent='☀️'; }
-            else { document.documentElement.removeAttribute('data-theme'); themeBtn.textContent='🌙'; }
-        }
-        apply(theme);
-        themeBtn.addEventListener('click', function() {
-            var isDark = document.documentElement.getAttribute('data-theme') === 'dark';
-            var n = isDark ? 'light' : 'dark'; apply(n); localStorage.setItem('monitor-theme', n);
-        });
-    }
-    var fbBtn = document.querySelector('.fab-feedback');
-    var fbOverlay = document.getElementById('feedbackOverlay');
-    var fbClose = document.getElementById('feedbackClose');
-    var fbText = document.getElementById('feedbackText');
-    var fbGithub = document.getElementById('feedbackGithub');
-    var fbEmail = document.getElementById('feedbackEmail');
-    var fbTypes = document.querySelectorAll('.feedback-type-btn');
-    var fbType = 'bug';
-    fbTypes.forEach(function(b) { b.addEventListener('click', function() {
-        fbTypes.forEach(function(x) { x.classList.remove('active'); });
-        this.classList.add('active'); fbType = this.dataset.type; updateLinks();
-    }); });
-    function updateLinks() {
-        var t = fbText ? fbText.value.trim() || '(未填写)' : '';
-        var label = {bug:'报告错误',suggestion:'功能建议',content:'内容补充'}[fbType]||'反馈';
-        var enc = encodeURIComponent('['+label+'] '+t);
-        var body = encodeURIComponent('['+label+'] '+t+'\n\n---\n来源: praxisfit.me/payment-intel\n时间: '+new Date().toISOString());
-        if (fbGithub) fbGithub.href = 'https://github.com/praxisfitme/policy-monitor/issues/new?title='+enc+'&body='+body;
-        if (fbEmail) fbEmail.href = 'mailto:victor8989@qq.com?subject='+enc+'&body='+body;
-    }
-    if (fbBtn) fbBtn.addEventListener('click', function() { fbOverlay.classList.add('visible'); setTimeout(function(){if(fbText)fbText.focus();},300); });
-    if (fbClose) fbClose.addEventListener('click', function() { fbOverlay.classList.remove('visible'); });
-    if (fbOverlay) fbOverlay.addEventListener('click', function(e) { if (e.target === fbOverlay) fbOverlay.classList.remove('visible'); });
-    if (fbText) fbText.addEventListener('input', updateLinks);
-    document.addEventListener('keydown', function(e) { if (e.key === 'Escape' && fbOverlay.classList.contains('visible')) fbOverlay.classList.remove('visible'); });
-    updateLinks();
-})();
+document.addEventListener('DOMContentLoaded', function() {
+  const themeBtn = document.getElementById('fabTheme');
+  const body = document.body;
+  if (themeBtn) {
+    themeBtn.addEventListener('click', function() {
+      body.setAttribute('data-theme', body.getAttribute('data-theme') === 'light' ? 'dark' : 'light');
+      themeBtn.textContent = body.getAttribute('data-theme') === 'light' ? '☀️' : '🌙';
+    });
+  }
+});
 </script>
-
 </body>
 </html>
