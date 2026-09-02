@@ -3,47 +3,20 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>每日盯盘看板 | 2026-08-27</title>
-<meta name="description" content="A股·港股·美股每日盯盘看板，覆盖基金、宏观指标、市场情绪与关键新闻。">
-<meta property="og:title" content="股市盯盘看板 — A股·港股·美股">
-<meta property="og:description" content="A股·港股·美股每日盯盘看板，覆盖基金、宏观指标、市场情绪与关键新闻。">
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://praxisfit.me/stock-dash/">
-<meta property="og:locale" content="zh_CN">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="股市盯盘看板 — A股·港股·美股">
-<meta name="twitter:description" content="A股·港股·美股每日盯盘看板，覆盖基金、宏观指标、市场情绪与关键新闻。">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📈</text></svg>">
-<link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📈</text></svg>">
-<link rel="canonical" href="https://praxisfit.me/stock-dash/">
+<title>每日盯盘看板 | 2026-09-01</title>
+    <meta property="og:title" content="股市盯盘看板">
+    <meta property="og:description" content="A股·港股·美股三市行情，基金净值、宏观指标、市场情绪与关键财经新闻">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://praxisfit.me/stock-dash/">
+    <meta property="og:locale" content="zh_CN">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="股市盯盘看板">
+    <meta name="twitter:description" content="A股·港股·美股三市行情，基金净值、宏观指标、市场情绪与关键财经新闻">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🦉</text></svg>">
+    <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🦉</text></svg>">
+    <link rel="canonical" href="https://praxisfit.me/stock-dash/">
 <style>
 :root {
-  --bg-primary: #ffffff;
-  --bg-secondary: #f6f8fa;
-  --bg-tertiary: #eaeef2;
-  --bg-card: #ffffff;
-  --border: #d0d7de;
-  --text-primary: #1f2328;
-  --text-secondary: #656d76;
-  --text-muted: #6e7781;
-  --gain: #1a7f37;
-  --gain-bg: rgba(26,127,55,0.08);
-  --loss: #cf222e;
-  --loss-bg: rgba(207,34,46,0.08);
-  --neutral: #9a6700;
-  --accent: #0969da;
-  --accent-bg: rgba(9,105,218,0.08);
-  --gold: #9a6700;
-  --gold-bg: rgba(154,103,0,0.08);
-  --tab-active: #0969da;
-  --font-mono: 'SF Mono', 'Cascadia Code', 'Fira Code', 'Consolas', monospace;
-  --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans SC', sans-serif;
-  --radius: 8px;
-  --radius-sm: 4px;
-}
-
-/* Dark theme */
-[data-theme="dark"] {
   --bg-primary: #0d1117;
   --bg-secondary: #161b22;
   --bg-tertiary: #21262d;
@@ -62,11 +35,11 @@
   --gold: #e3b341;
   --gold-bg: rgba(227,179,65,0.1);
   --tab-active: #58a6ff;
+  --font-mono: 'SF Mono', 'Cascadia Code', 'Fira Code', 'Consolas', monospace;
+  --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans SC', sans-serif;
+  --radius: 8px;
+  --radius-sm: 4px;
 }
-[data-theme="dark"] ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); }
-[data-theme="dark"] ::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.2); }
-[data-theme="dark"] tr:nth-child(even) td { background: rgba(255,255,255,0.02); }
-
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 body {
   font-family: var(--font-sans);
@@ -213,7 +186,7 @@ td {
   border-bottom: 1px solid var(--border);
   white-space: nowrap;
 }
-tr:hover td { background: rgba(0,0,0,0.02); }
+tr:hover td { background: rgba(255,255,255,0.02); }
 .num { font-family: var(--font-mono); text-align: right; }
 .num.up { color: var(--gain); }
 .num.down { color: var(--loss); }
@@ -373,8 +346,7 @@ a:hover { text-decoration: underline; }
   .tab-content { display: block !important; page-break-inside: avoid; }
   .tab-content::before { content: attr(data-print-title); display: block; font-size: 1.2rem; font-weight: 700; margin: 20px 0 10px; border-bottom: 2px solid #333; padding-bottom: 8px; }
 }
-
-/* ══ Floating Components (injected) ══ */
+/* ── Floating Components ── */
 .fab-stack {
     position: fixed;
     right: 20px;
@@ -405,29 +377,29 @@ a:hover { text-decoration: underline; }
 }
 .fab:active { transform: scale(0.88); }
 .fab-portal {
-            background: var(--bg-card, #fff);
-            color: var(--text-primary, #333);
-            border: 1px solid var(--border, #e5e7eb);
-            text-decoration: none;
-        }
-        .fab-portal:active { transform: scale(0.88); }
-        .fab-back {
-    background: var(--accent-blue, var(--accent, #3b82f6));
+    background: var(--bg-card, #fff);
+    color: var(--text-primary, #333);
+    border: 1px solid var(--border, #e5e7eb);
+    text-decoration: none;
+}
+.fab-portal:active { transform: scale(0.88); }
+.fab-back {
+    background: var(--accent, #58a6ff);
     color: white;
     opacity: 0;
     pointer-events: none;
 }
 .fab-back.visible { opacity: 1; pointer-events: auto; }
 .fab-theme {
-    background: var(--bg-card, #111827);
-    color: var(--text-primary, #e2e8f0);
-    border: 1px solid var(--border, #1e293b);
+    background: var(--bg-secondary, #161b22);
+    color: var(--text-primary, #e6edf3);
+    border: 1px solid var(--border, #30363d);
 }
 .fab-theme:active { transform: scale(0.88) rotate(180deg); }
 .fab-feedback {
-    background: var(--bg-card, #111827);
-    color: var(--text-primary, #e2e8f0);
-    border: 1px solid var(--border, #1e293b);
+    background: var(--bg-secondary, #161b22);
+    color: var(--text-primary, #e6edf3);
+    border: 1px solid var(--border, #30363d);
     position: relative;
 }
 .fab-feedback .fab-badge {
@@ -438,7 +410,7 @@ a:hover { text-decoration: underline; }
     height: 10px;
     background: #f43f5e;
     border-radius: 50%;
-    border: 2px solid var(--bg-card, #111827);
+    border: 2px solid var(--bg-secondary, #161b22);
 }
 .feedback-overlay {
     position: fixed;
@@ -457,7 +429,7 @@ a:hover { text-decoration: underline; }
 }
 .feedback-overlay.visible { opacity: 1; pointer-events: auto; }
 .feedback-modal {
-    background: var(--bg-card, #111827);
+    background: var(--bg-card, #1c2128);
     border-radius: 12px;
     box-shadow: 0 20px 40px rgba(0,0,0,0.4);
     max-width: 460px;
@@ -465,29 +437,29 @@ a:hover { text-decoration: underline; }
     padding: 24px 20px;
     transform: scale(0.92) translateY(20px);
     transition: transform 0.25s ease;
-    border: 1px solid var(--border, #1e293b);
-    color: var(--text-primary, #e2e8f0);
+    border: 1px solid var(--border, #30363d);
+    color: var(--text-primary, #e6edf3);
 }
 .feedback-overlay.visible .feedback-modal { transform: scale(1) translateY(0); }
 .feedback-modal h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 6px; }
-.feedback-modal .feedback-hint { font-size: 0.8125rem; color: var(--text-secondary, #94a3b8); margin-bottom: 14px; line-height: 1.6; }
+.feedback-modal .feedback-hint { font-size: 0.8125rem; color: var(--text-secondary, #8b949e); margin-bottom: 14px; line-height: 1.6; }
 .feedback-modal textarea {
     width: 100%;
     min-height: 120px;
     padding: 12px 14px;
-    border: 1px solid var(--border, #1e293b);
+    border: 1px solid var(--border, #30363d);
     border-radius: 8px;
     font-size: 0.875rem;
     font-family: inherit;
     resize: vertical;
     outline: none;
-    background: var(--bg-card-hover, var(--bg-secondary, #1a2332));
-    color: var(--text-primary, #e2e8f0);
+    background: var(--bg-tertiary, #21262d);
+    color: var(--text-primary, #e6edf3);
     line-height: 1.6;
     box-sizing: border-box;
 }
-.feedback-modal textarea:focus { border-color: var(--accent-blue, var(--accent, #3b82f6)); box-shadow: 0 0 0 3px rgba(59,130,246,0.15); }
-.feedback-modal textarea::placeholder { color: var(--text-muted, #64748b); }
+.feedback-modal textarea:focus { border-color: var(--accent, #58a6ff); box-shadow: 0 0 0 3px rgba(88,166,255,0.15); }
+.feedback-modal textarea::placeholder { color: var(--text-muted, #6e7681); }
 .feedback-modal .feedback-actions { display: flex; gap: 10px; margin-top: 16px; flex-wrap: wrap; }
 .feedback-btn {
     flex: 1;
@@ -507,10 +479,10 @@ a:hover { text-decoration: underline; }
     text-decoration: none;
 }
 .feedback-btn:active { transform: scale(0.96); }
-.feedback-btn-primary { background: var(--accent-blue, var(--accent, #3b82f6)); color: white; }
-.feedback-btn-secondary { background: var(--bg-card-hover, var(--bg-secondary, #1a2332)); color: var(--text-primary, #e2e8f0); border: 1px solid var(--border, #1e293b); }
-.feedback-btn-close { background: transparent; color: var(--text-secondary, #94a3b8); border: 1px solid var(--border, #1e293b); flex: 0 0 auto; min-width: 44px; }
-.feedback-modal .feedback-note { margin-top: 12px; font-size: 0.75rem; color: var(--text-muted, #64748b); line-height: 1.5; }
+.feedback-btn-primary { background: var(--accent, #58a6ff); color: white; }
+.feedback-btn-secondary { background: var(--bg-tertiary, #21262d); color: var(--text-primary, #e6edf3); border: 1px solid var(--border, #30363d); }
+.feedback-btn-close { background: transparent; color: var(--text-secondary, #8b949e); border: 1px solid var(--border, #30363d); flex: 0 0 auto; min-width: 44px; }
+.feedback-modal .feedback-note { margin-top: 12px; font-size: 0.75rem; color: var(--text-muted, #6e7681); line-height: 1.5; }
 .feedback-modal .feedback-type { display: flex; gap: 8px; margin-bottom: 12px; }
 .feedback-type-btn {
     padding: 8px 14px;
@@ -518,19 +490,18 @@ a:hover { text-decoration: underline; }
     font-size: 0.8125rem;
     font-weight: 500;
     cursor: pointer;
-    border: 1px solid var(--border, #1e293b);
-    background: var(--bg-card-hover, var(--bg-secondary, #1a2332));
-    color: var(--text-secondary, #94a3b8);
+    border: 1px solid var(--border, #30363d);
+    background: var(--bg-tertiary, #21262d);
+    color: var(--text-secondary, #8b949e);
     transition: all 0.2s ease;
 }
-.feedback-type-btn.active { background: var(--accent-blue, var(--accent, #3b82f6)); color: white; border-color: var(--accent-blue, var(--accent, #3b82f6)); }
+.feedback-type-btn.active { background: var(--accent, #58a6ff); color: white; border-color: var(--accent, #58a6ff); }
 @media (max-width: 768px) {
     .fab-stack { right: 16px; gap: 8px; }
     .feedback-modal { padding: 20px 16px; }
     .feedback-btn { min-width: 100px; font-size: 0.8125rem; }
 }
-
-    </style>
+</style>
 </head>
 <body>
 
@@ -538,61 +509,61 @@ a:hover { text-decoration: underline; }
   <div class="header-inner">
     <div class="header-top">
       <h1>📊 每日盯盘看板</h1>
-      <span class="header-date">2026年8月27日 周四 · A股收盘/美股盘中</span>
+      <span class="header-date">2026年9月1日 周二 · A股收盘/美股盘中/港股收盘</span>
       <span class="header-tag tag-closed">A股已收盘</span>
-      <span class="header-tag tag-trading">美股交易中</span>
+      <span class="header-tag tag-trading">美股盘中</span>
       <span class="header-tag tag-closed">港股已收盘</span>
     </div>
     <div class="summary-bar">
       <div class="summary-item">
         <div class="summary-label">上证指数</div>
-        <div class="summary-value">~3,918</div>
-        <div class="summary-change up">+0.16% 低开高走</div>
+        <div class="summary-value">3,980</div>
+        <div class="summary-change down">-0.16% 沪强深弱</div>
       </div>
       <div class="summary-item">
         <div class="summary-label">创业板指</div>
-        <div class="summary-value">~3,469</div>
-        <div class="summary-change up">+0.44% 盘中</div>
+        <div class="summary-value">3,393</div>
+        <div class="summary-change down">-1.32% 科技暴跌</div>
       </div>
       <div class="summary-item">
         <div class="summary-label">标普500</div>
-        <div class="summary-value">7,730.99</div>
-        <div class="summary-change up">+0.72% 8/27收盘</div>
+        <div class="summary-value">~7,632</div>
+        <div class="summary-change down">-0.70% 债市崩盘</div>
       </div>
       <div class="summary-item">
         <div class="summary-label">纳指</div>
-        <div class="summary-value">26,541</div>
-        <div class="summary-change up">+1.57% 8/27收盘</div>
+        <div class="summary-value">~26,034</div>
+        <div class="summary-change down">-1.27% 科技血洗</div>
       </div>
       <div class="summary-item">
-        <div class="summary-label">费城半导体</div>
-        <div class="summary-value">—</div>
-        <div class="summary-change up">+2.33% 8/27收盘</div>
-      </div>
-      <div class="summary-item">
-        <div class="summary-label">NVDA</div>
-        <div class="summary-value">$227.98</div>
-        <div class="summary-change up">收盘+8.74% 市值+$4420亿</div>
-      </div>
-      <div class="summary-item">
-        <div class="summary-label">现货黄金</div>
-        <div class="summary-value" style="color:var(--gold)">$4,614</div>
-        <div class="summary-change up">+0.5% 守住$4,600</div>
-      </div>
-      <div class="summary-item">
-        <div class="summary-label">LME铜</div>
-        <div class="summary-value">$14,324</div>
-        <div class="summary-change up">创历史新高!</div>
+        <div class="summary-label">科创50</div>
+        <div class="summary-value">1,648</div>
+        <div class="summary-change down">-2.19% 半导体流出121亿</div>
       </div>
       <div class="summary-item">
         <div class="summary-label">WTI原油</div>
-        <div class="summary-value">$83.53</div>
-        <div class="summary-change up">+1.58% 地缘升温</div>
+        <div class="summary-value">$87.92</div>
+        <div class="summary-change down">+2.5% 油轮遇袭暴涨</div>
+      </div>
+      <div class="summary-item">
+        <div class="summary-label">布伦特原油</div>
+        <div class="summary-value">$92.24</div>
+        <div class="summary-change down">+4.3% 逼近$93</div>
+      </div>
+      <div class="summary-item">
+        <div class="summary-label" style="color:var(--gold)">现货黄金</div>
+        <div class="summary-value" style="color:var(--gold)">$4,429</div>
+        <div class="summary-change up">-1.17% 继续回落</div>
       </div>
       <div class="summary-item">
         <div class="summary-label">10Y美债</div>
-        <div class="summary-value">4.67%</div>
-        <div class="summary-change up">+3bp 收益率走高</div>
+        <div class="summary-value">4.79%</div>
+        <div class="summary-change down">20个月新高！</div>
+      </div>
+      <div class="summary-item">
+        <div class="summary-label">苹果换帅</div>
+        <div class="summary-value">特努斯</div>
+        <div class="summary-change flat">9/9发布会首秀</div>
       </div>
     </div>
   </div>
@@ -612,37 +583,37 @@ a:hover { text-decoration: underline; }
 <!-- ===== A股 ===== -->
 <section class="tab-content active" id="a-share" data-print-title="A股盯盘" role="tabpanel">
   <div class="conclusion">
-    <strong>8/27收盘：英伟达财报引爆AI硬件总攻！科技放量主升，沪指逼近4000！</strong><br>
-    沪指+1.13%（3,956.57）逼近4000前高，创业板+1.71%，科创50+3.80%，科创200+3.57%。两市成交<strong>2.14万亿</strong>放量3191亿！电子+4.31%领涨全市场，存储芯片/HBM涨停潮，芯片概念获近500亿主力资金净流入。<strong>3,389股上涨，1,942股下跌</strong>——普涨格局！中芯国际利润+94%翻倍、长江存储IPO获受理、大普微签$5.15亿SSD大单。
+    <strong>9/1收盘：沪强深弱！科技→价值大切换！沪指-0.16%守住3980，科创50暴跌2.19%！</strong><br>
+    沪指-0.16%（3,979.89），深成指-1.02%（13,872），创业板-1.32%（3,393），科创50<strong>-2.19%（1,647.53）</strong>。两市成交<strong>2.03万亿</strong>缩量976亿。<strong>3,384涨/2,035跌</strong>——指数跌但个股普涨，结构性偏暖。半导体<strong>-121亿</strong>主力净流出，元件-70亿。银行/消费/农业逆势走强：中行/建行/成都银行/江苏银行创历史新高，芒果超媒+20%涨停（AI短剧），古井贡酒涨停（消费政策）。
   </div>
 
   <div class="section">
-    <div class="section-title"><span class="icon">📈</span> 8/27 A股收盘</div>
+    <div class="section-title"><span class="icon">📈</span> 9/1 A股收盘</div>
     <div class="table-wrap">
       <table>
         <thead><tr><th>指数</th><th class="num">收盘</th><th class="num">涨跌幅</th><th>备注</th></tr></thead>
         <tbody>
-          <tr><td>上证指数</td><td class="num">3,956.57</td><td class="num up">+1.13%</td><td>逼近4000前高！</td></tr>
-          <tr><td>深证成指</td><td class="num">14,048.88</td><td class="num up">+1.50%</td><td>科技主线拉升</td></tr>
-          <tr><td>创业板指</td><td class="num">3,473.35</td><td class="num up">+1.71%</td><td>成长修复</td></tr>
-          <tr><td>科创50</td><td class="num">~1,680</td><td class="num up">+3.80%</td><td>连续3日上涨，领涨全市场</td></tr>
-          <tr><td>科创200</td><td class="num">1,555.27</td><td class="num up">+3.57%</td><td>小盘成长弹性拉满</td></tr>
+          <tr><td>上证指数</td><td class="num">3,979.89</td><td class="num down">-0.16%</td><td>银行护盘守3980</td></tr>
+          <tr><td>深证成指</td><td class="num">13,872.38</td><td class="num down">-1.02%</td><td>科技拖累</td></tr>
+          <tr><td>创业板指</td><td class="num">3,393.43</td><td class="num down">-1.32%</td><td>成长板块承压</td></tr>
+          <tr><td>科创50</td><td class="num">1,647.53</td><td class="num down">-2.19%</td><td>半导体/PCB暴跌</td></tr>
+          <tr><td>北证50</td><td class="num">1,079.59</td><td class="num up">+1.34%</td><td>小盘题材活跃</td></tr>
         </tbody>
       </table>
     </div>
-    <p style="font-size:0.75rem;color:var(--text-muted);margin-top:4px;">两市成交2.14万亿（放量3191亿），3389涨/1942跌——普涨格局</p>
+    <p style="font-size:0.75rem;color:var(--text-muted);margin-top:4px;">两市成交2.03万亿（缩量976亿），3384涨/2035跌，涨停89/跌停3——指数与个股背离的结构性行情</p>
   </div>
 
   <div class="section">
-    <div class="section-title"><span class="icon">🔥</span> 今日板块——"AI硬件总攻，科技全面主升"</div>
+    <div class="section-title"><span class="icon">🔥</span> 今日板块——"科技→价值大切换，消费/银行/农业全面接棒"</div>
     <div class="sector-list">
-      <span class="sector-tag sector-up">💾 电子板块 +4.31% 领涨！461/493成份股收涨，4只20CM涨停</span>
-      <span class="sector-tag sector-up">📡 通信板块 +3.39% 6G政策+NVDA传导，5只涨停</span>
-      <span class="sector-tag sector-up">📀 存储/HBM 涨停潮！大普微$5.15亿SSD大单+NVDA确认算力加速</span>
-      <span class="sector-tag sector-up">🔧 半导体设备 大基金加持，光刻机/材料/模拟芯片同步冲高</span>
-      <span class="sector-tag sector-up">💻 PCB/覆铜板 沪电股份等龙头涨停，AI硬件上游共振</span>
-      <span class="sector-tag sector-down">📉 银行 -1.04%</span>
-      <span class="sector-tag sector-down">📉 电力设备 -0.71%</span>
+      <span class="sector-tag sector-down">💾 半导体 -121亿主力流出 PCB/存储/元件暴跌</span>
+      <span class="sector-tag sector-down">🔋 电池 -30.7亿 消费电子 -28.7亿 小金属 -23.5亿</span>
+      <span class="sector-tag sector-up">📺 AI短剧 芒果超媒+20%涨停 欢瑞世纪/中广天择涨停</span>
+      <span class="sector-tag sector-up">🏦 银行 中行/建行/成都银行/江苏银行创历史新高</span>
+      <span class="sector-tag sector-up">🛒 大消费 古井贡酒/茂业商业/国芳集团/西安饮食涨停</span>
+      <span class="sector-tag sector-up">🌾 农业 万向德农6连板 新赛股份4连板 隆平高科涨停</span>
+      <span class="sector-tag sector-up">⚡ 电力 +14.6亿净流入 中国广核+2%+ 防御价值凸显</span>
     </div>
   </div>
 
@@ -652,250 +623,181 @@ a:hover { text-decoration: underline; }
       <table>
         <thead><tr><th>方向</th><th>板块</th><th class="num">净流入</th><th>备注</th></tr></thead>
         <tbody>
-          <tr><td style="color:var(--gain)">流入</td><td>电子</td><td class="num up">+427亿</td><td>芯片概念近500亿主力净流入</td></tr>
-          <tr><td style="color:var(--gain)">流入</td><td>通信</td><td class="num up">+150亿</td><td>6G+NVDA双重催化</td></tr>
-          <tr><td style="color:var(--gain)">流入</td><td>机械设备</td><td class="num up">+119亿</td><td>半导体设备+AI硬件</td></tr>
-          <tr><td style="color:var(--loss)">流出</td><td>银行</td><td class="num down">-39亿</td><td>防御板块失血</td></tr>
-          <tr><td style="color:var(--loss)">流出</td><td>电力设备</td><td class="num down">-26亿</td><td>资金转向科技</td></tr>
+          <tr><td style="color:var(--loss)">流出</td><td>半导体</td><td class="num down">-121亿</td><td>PCB/存储/元件全面暴跌</td></tr>
+          <tr><td style="color:var(--loss)">流出</td><td>元件</td><td class="num down">-70亿</td><td>方邦股份-10%+领跌</td></tr>
+          <tr><td style="color:var(--gain)">流入</td><td>电力</td><td class="num up">+14.6亿</td><td>中国广核/国电电力/国投电力</td></tr>
+          <tr><td style="color:var(--gain)">流入</td><td>零售</td><td class="num up">+13.8亿</td><td>消费扩容政策催化</td></tr>
+          <tr><td style="color:var(--gain)">流入</td><td>证券/保险</td><td class="num up">+12.2亿</td><td>大金融护盘</td></tr>
         </tbody>
       </table>
     </div>
   </div>
 
   <div class="section">
-    <div class="section-title"><span class="icon">📢</span> 重大公司公告</div>
+    <div class="section-title"><span class="icon">📢</span> 关键信号</div>
     <div class="cards-grid">
       <div class="card">
-        <div class="card-title">中芯国际 半年报</div>
-        <div style="font-size:1.2rem;margin:8px 0;color:var(--gain)">营收386亿 +19.4%</div>
-        <div class="card-sub">归母净利44.67亿（+94.2%）——近乎翻倍，产业景气验证</div>
+        <div class="card-title">科技→价值大切换</div>
+        <div style="font-size:1.2rem;margin:8px 0;color:var(--loss)">半导体-121亿 银行创历史新高</div>
+        <div class="card-sub">资金从高位AI硬件大幅流出，涌向低位消费/农业/银行。结构性分化加剧，非普跌行情</div>
       </div>
       <div class="card">
-        <div class="card-title">长江存储 IPO</div>
-        <div style="font-size:1.2rem;margin:8px 0;color:var(--gain)">获受理 募资330亿</div>
-        <div class="card-sub">扩产带动半导体设备、材料、封测全产业链上行</div>
+        <div class="card-title">七部门消费扩容政策</div>
+        <div style="font-size:1.2rem;margin:8px 0;color:var(--gain)">2030年社零目标60万亿</div>
+        <div class="card-sub">商务部等七部门发文推动商品消费扩容升级——绿色消费/智能消费/健康消费三大十万亿级赛道</div>
       </div>
       <div class="card">
-        <div class="card-title">大普微 SSD大单</div>
-        <div style="font-size:1.2rem;margin:8px 0;color:var(--gain)">签约$5.15亿（30亿+）</div>
-        <div class="card-sub">上半年营收+531%，净利13.34亿扭亏。企业级SSD需求爆发</div>
+        <div class="card-title">银行股全面创历史新高</div>
+        <div style="font-size:1.2rem;margin:8px 0;color:var(--gain)">中行A+H总市值突破2万亿</div>
+        <div class="card-sub">42家上市银行19家净息差回升，券商上半年合计净利润+49%。高股息+低估值持续被机构配置</div>
       </div>
       <div class="card">
-        <div class="card-title">半导体产业利润</div>
-        <div style="font-size:1.2rem;margin:8px 0;color:var(--gain)">1-7月 集成电路+1850%</div>
-        <div class="card-sub">电子行业利润同比+110%，基本面硬核验证景气周期</div>
+        <div class="card-title">美债收益率飙升压制成长</div>
+        <div style="font-size:1.2rem;margin:8px 0;color:var(--loss)">10Y=4.79% 30Y=5.28%</div>
+        <div class="card-sub">全球债市崩盘→高估值成长赛道系统性承压。A股科创50-2.19%领跌=直接传导</div>
       </div>
     </div>
   </div>
 
   <div class="alert-box">
-    <strong>⚠️ 关键风险</strong>：沪指逼近4000前高压力位，今日放量2.14万亿，明日周五存在获利盘兑现需求。明晚22:00沃什Jackson Hole首秀为本周最后核弹变量。9月加息概率44%→若偏鹰QDII承压。半导体PE 93%+极端高位，业绩利好≠加仓信号，若借利好拉升留意是否为减仓窗口。60%+现金仓位仍为最优。
-  </div>
-
-  <div class="quote-box">
-    英伟达营收$962亿翻倍+FY28指引+70%——A股科技全面主升：电子+4.31%、通信+3.39%、成交2.14万亿放量3000亿+。中芯翻倍+长存IPO+大普微大单——产业景气从代工向设备/封测全链扩散。但4000前高+周五沃什首秀+半导体PE 93%，"以静制动"优于追涨。
+    <strong>⚠️ 关键风险</strong>：科创50暴跌2.19%，半导体主力流出121亿——全球债市收益率飙升至多年新高直接压制高估值成长板块。但个股赚钱效应尚可（3384涨/2035跌）=非系统性风险，而是结构性轮动。<strong>本周关注：JOLTS→AVGO财报→非农→FOMC</strong>。60%+现金仓位仍为最优策略。
   </div>
 </section>
 
 <!-- ===== 美股 ===== -->
 <section class="tab-content" id="us-stock" data-print-title="美股盯盘" role="tabpanel">
   <div class="conclusion">
-    <strong>8/27 美股盘中：NVDA财报炸裂引爆芯片股！纳指高开+0.89%，NVDA+6.7%，CRM+13%，OKTA+21%！</strong><br>
-    纳指+0.89%领涨，标普+0.25%。NVDA开盘+6.7%报$223.78（市值$5.39万亿），10+投行上调目标价最高$420。CRM+13%（Agentforce ARR近$39亿+Claudeforce），OKTA+21%/CRWD+9%（网安beat & raise）。芯片/网安/云计算全面爆发。但道指-0.15%（HPQ-9%/WEN-14%拖累），七子严重分化——NVDA独涨其余六子持平或下跌。<strong>特朗普考虑扩大半导体关税至笔记本/服务器/游戏主机，Warsh明晚22:00 Jackson Hole首秀为最大变量</strong>。
+    <strong>9/1 美股盘中：全球债市崩盘！日债30年新高！科技股全线暴跌！九月开门黑！苹果换帅首日！</strong><br>
+    道指-0.65%（~52,918），标普-0.70%（~7,632），纳指<strong>-1.27%</strong>（~26,034）。<strong>10Y美债4.79%创20个月新高，日本10Y国债3.0%创历史新高，英国10Y突破5.2%</strong>。七子全线下跌：META/AMZN-2.4%领跌，TSLA-2.04%，NVDA-1.82%。半导体/存储/光通信"没有一块好的"——ISM评论"关税+霍尔木兹海峡冲突导致价格上涨"。WTI逼近$88，布油突破$92。<strong>ISM制造业54.6仍在扩张但减速，价格指标71.1居高不下</strong>。苹果换帅首日AAPL仅-0.18%=市场认为交接平稳。
   </div>
 
   <div class="alert-box">
-    <strong>⚠️ 持仓提示</strong>：NVDA虽+6.7%但<strong>不改变"半导体高位不新增仓位"纪律</strong>。毛利率Q3→74%、Q4→71-72%，利润率触顶信号明确。开盘+7%已大幅消化利好+过去4季度beat即跌魔咒+特朗普关税风险——60%+现金仓位仍为最优。A股半导体链今日已联动暴涨（澜起+10%/华润微+9%），020465受益但勿追高。
+    <strong>⚠️ 持仓提示</strong>：全球债市崩盘+科技股血洗再次验证<strong>"半导体高位不新增仓位"</strong>和<strong>"60%+现金仓位"</strong>纪律的正确性。020465/023383对应的A股半导体/科创今日已暴跌，今晚美股科技继续暴跌。ISM价格指标71.1=企业端通胀真实存在。本周JOLTS+非农+FOMC=三重不确定性叠加。持仓不动，纪律不变。
   </div>
 
   <div class="section">
-    <div class="section-title"><span class="icon">📈</span> 8/27 美股开盘概况（~09:55 ET）</div>
+    <div class="section-title"><span class="icon">📈</span> 9/1 美股盘中实况（~10:34 ET）</div>
     <div class="table-wrap">
       <table>
-        <thead><tr><th>指标</th><th class="num">开盘数据</th><th>备注</th></tr></thead>
+        <thead><tr><th>指标</th><th class="num">盘中数据</th><th>备注</th></tr></thead>
         <tbody>
-          <tr><td>道琼斯</td><td class="num down">-0.09~0.15%（~53,414）</td><td>HPQ/WEN拖累</td></tr>
-          <tr><td>标普500</td><td class="num up">+0.25~0.36%（~7,695）</td><td>NVDA/CRM等权重拉升</td></tr>
-          <tr><td>纳斯达克</td><td class="num up">+0.73~0.89%（~26,321）</td><td>芯片+网安+云全面上涨</td></tr>
-          <tr><td>NVDA</td><td class="num up">+6.7~7%（~$223.78）</td><td>财报炸裂+FY28指引70%</td></tr>
-          <tr><td>10Y收益率</td><td class="num flat">~4.65%</td><td>与昨日持平</td></tr>
-          <tr><td>WTI原油</td><td class="num up">$82.45（+0.29%）</td><td>小幅反弹</td></tr>
-          <tr><td>现货黄金</td><td class="num up">$4,606/oz（+0.29%）</td><td>重回$4,600上方</td></tr>
+          <tr><td>道琼斯</td><td class="num down">-0.65%（~52,918）</td><td>全球债市崩盘拖累</td></tr>
+          <tr><td>标普500</td><td class="num down">-0.70%（~7,632）</td><td>低开</td></tr>
+          <tr><td>纳斯达克</td><td class="num down">-1.27%（~26,034）</td><td>科技股血洗</td></tr>
+          <tr><td>WTI原油</td><td class="num down">$87.92/桶</td><td>+2.5% 油轮遇袭</td></tr>
+          <tr><td>布伦特</td><td class="num down">$92.24/桶</td><td>+4.3% 逼近$93</td></tr>
+          <tr><td>COMEX黄金</td><td class="num down">$4,429/oz</td><td>-1.17% 继续回落</td></tr>
+          <tr><td>白银</td><td class="num down">$65.31/oz</td><td>-2.52% 重挫</td></tr>
+          <tr><td>10Y收益率</td><td class="num down">4.79%</td><td>20个月新高！</td></tr>
+          <tr><td>30Y收益率</td><td class="num down">5.28%</td><td>逼近2007年来最高</td></tr>
         </tbody>
       </table>
     </div>
   </div>
 
   <div class="section">
-    <div class="section-title"><span class="icon">👑</span> 科技七子（Magnificent 7）——"NVDA独立行情"</div>
-    <div class="table-wrap">
-      <table>
-        <thead><tr><th>股票</th><th class="num">盘中涨跌</th><th>备注</th></tr></thead>
-        <tbody>
-          <tr><td style="color:var(--gain)"><strong>英伟达 NVDA</strong></td><td class="num up"><strong>+6.7~7%</strong></td><td>财报炸裂+FY28指引70%增长</td></tr>
-          <tr><td>特斯拉 TSLA</td><td class="num up">+0.3%</td><td>小幅反弹</td></tr>
-          <tr><td>亚马逊 AMZN</td><td class="num down">-0.2%</td><td>小幅承压</td></tr>
-          <tr><td>谷歌 GOOGL</td><td class="num down">-0.4%</td><td>小幅承压</td></tr>
-          <tr><td>Meta META</td><td class="num down">-0.6%</td><td>小幅回调</td></tr>
-          <tr><td>苹果 AAPL</td><td class="num down">-0.9%</td><td>承压</td></tr>
-          <tr><td>微软 MSFT</td><td class="num down">-0.9%</td><td>大盘科技分化</td></tr>
-        </tbody>
-      </table>
-    </div>
-    <p style="font-size:0.75rem;color:var(--text-muted);margin-top:4px;">七子严重分化：NVDA独涨+7%最强，其余六子持平或下跌——典型的"NVDA独立行情"，财报驱动个股暴涨而非系统性科技反弹</p>
-  </div>
-
-  <div class="section">
-    <div class="section-title"><span class="icon">💾</span> 芯片/半导体——"NVDA财报引爆全链暴涨"</div>
+    <div class="section-title"><span class="icon">👑</span> 科技七子（Magnificent 7）——"全线下跌！"</div>
     <div class="table-wrap">
       <table>
         <thead><tr><th>股票</th><th class="num">盘中涨跌</th><th>备注</th></tr></thead>
         <tbody>
-          <tr><td style="color:var(--gain)"><strong>英伟达 NVDA</strong></td><td class="num up"><strong>+6.7~7.6%</strong></td><td>营收$962亿+FY28增长70%</td></tr>
-          <tr><td>Nebius NBIS</td><td class="num up">+6~7.5%</td><td>AI云服务</td></tr>
-          <tr><td>CoreWeave CRWV</td><td class="num up">+5~6%</td><td>AI算力</td></tr>
-          <tr><td>闪迪 SNDK</td><td class="num up">+5%</td><td>铠侠+闪迪$310亿联合投资</td></tr>
-          <tr><td>迈威尔 MRVL</td><td class="num up">+5~5.7%</td><td>盘后发财报，Susquehanna目标$265</td></tr>
-          <tr><td>ARM</td><td class="num up">+4~4.7%</td><td>AI芯片设计IP联动</td></tr>
-          <tr><td>美光 MU</td><td class="num up">+3.9~4.5%</td><td>存储景气+NVDA验证</td></tr>
-          <tr><td>SK海力士</td><td class="num up">+4%+</td><td>HBM核心供应商</td></tr>
-          <tr><td>英特尔 INTC</td><td class="num up">+2~3%</td><td>板块联动</td></tr>
-          <tr><td>AMD</td><td class="num up">+1.7%</td><td>涨幅相对温和</td></tr>
+          <tr><td>苹果 AAPL</td><td class="num down">-0.18%</td><td>特努斯时代首日——交接平稳</td></tr>
+          <tr><td>英伟达 NVDA</td><td class="num down">-1.82%</td><td>半导体关税+全球利率飙升</td></tr>
+          <tr><td>特斯拉 TSLA</td><td class="num down">-2.04%</td><td>昨日+5%后获利回吐</td></tr>
+          <tr><td>微软 MSFT</td><td class="num down">-1.44~-1.85%</td><td>跟随科技板块走弱</td></tr>
+          <tr><td>谷歌 GOOGL</td><td class="num down">-1.59~-1.73%</td><td></td></tr>
+          <tr><td style="color:var(--loss)"><strong>亚马逊 AMZN</strong></td><td class="num down"><strong>-2.29~-2.41%</strong></td><td>跌幅最大之一</td></tr>
+          <tr><td style="color:var(--loss)"><strong>Meta META</strong></td><td class="num down"><strong>-2.41~-2.44%</strong></td><td>跌幅最大</td></tr>
         </tbody>
       </table>
     </div>
+    <p style="font-size:0.75rem;color:var(--text-muted);margin-top:4px;">七子全线下跌——META/AMZN-2.4%领跌。全球债市崩盘+高利率环境对高估值科技股系统性压制。苹果换帅首日AAPL仅-0.18%=市场认为交接平稳</p>
   </div>
 
   <div class="section">
-    <div class="section-title"><span class="icon">🔒</span> 网络安全——"AI驱动安全需求爆发，OKTA+21%标志性事件"</div>
+    <div class="section-title"><span class="icon">💾</span> 芯片/半导体——"全线暴跌！关税+利率+地缘三重夹击"</div>
     <div class="table-wrap">
       <table>
         <thead><tr><th>股票</th><th class="num">盘中涨跌</th><th>备注</th></tr></thead>
         <tbody>
-          <tr><td style="color:var(--gain)"><strong>Okta OKTA</strong></td><td class="num up"><strong>+19~21%</strong></td><td>Q2超预期+上调全年指引</td></tr>
-          <tr><td>CrowdStrike CRWD</td><td class="num up">+8~9%</td><td>Q2超预期+上调营收指引</td></tr>
-          <tr><td>Tenable TENB</td><td class="num up">+7%+</td><td>将加入S&P SmallCap 600</td></tr>
-          <tr><td>SentinelOne S</td><td class="num up">+5%</td><td>网安板块共振</td></tr>
-          <tr><td>Palo Alto PANW</td><td class="num up">+4%</td><td>板块联动</td></tr>
+          <tr><td style="color:var(--loss)"><strong>AMD</strong></td><td class="num down"><strong>-2.68%</strong></td><td>跌幅最大</td></tr>
+          <tr><td style="color:var(--loss)"><strong>英特尔 INTC</strong></td><td class="num down"><strong>-3.51%</strong></td><td></td></tr>
+          <tr><td style="color:var(--loss)">CoreWeave CRWV</td><td class="num down">-3.55%</td><td>AI算力IPO承压</td></tr>
+          <tr><td style="color:var(--loss)">MRVL</td><td class="num down">-3.5%+</td><td>beat but sell延续</td></tr>
+          <tr><td style="color:var(--loss)">闪迪/美光/SK海力士</td><td class="num down">-1~2%</td><td>存储板块普跌</td></tr>
+          <tr><td style="color:var(--loss)">康宁/光通信</td><td class="num down">-3%+</td><td>继续承压</td></tr>
+          <tr><td style="color:var(--loss)">英伟达 NVDA</td><td class="num down">-1.82%</td><td></td></tr>
         </tbody>
       </table>
     </div>
+    <p style="font-size:0.75rem;color:var(--text-muted);margin-top:4px;">ISM评论："关税+霍尔木兹海峡冲突导致的价格上涨将导致通胀"——半导体产业端真实压力。全球债市收益率飙升至多年新高=高估值科技股系统性承压</p>
   </div>
 
   <div class="section">
-    <div class="section-title"><span class="icon">☁️</span> 云计算/软件+光通信——"CRM+13%带动软件修复"</div>
-    <div class="table-wrap">
-      <table>
-        <thead><tr><th>股票</th><th class="num">盘中涨跌</th><th>备注</th></tr></thead>
-        <tbody>
-          <tr><td style="color:var(--gain)"><strong>Salesforce CRM</strong></td><td class="num up"><strong>+11~13%</strong></td><td>Q2超预期+Claudeforce+Agentforce ARR $39亿(+210%)</td></tr>
-          <tr><td>AXT AXTI</td><td class="num up">+10~11%</td><td>光通信</td></tr>
-          <tr><td>Nutanix NTNX</td><td class="num up">+6.3%</td><td>Q4超预期</td></tr>
-          <tr><td>Coherent COHR</td><td class="num up">+5%+</td><td>光通信</td></tr>
-          <tr><td>ServiceNow NOW</td><td class="num up">+3%+</td><td>云计算联动</td></tr>
-          <tr><td>Lumentum LITE</td><td class="num up">+3~6%</td><td>光通信</td></tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-
-  <div class="section">
-    <div class="section-title"><span class="icon">🔴</span> 消费/零售承压——"beat but sell + 收购预期落空"</div>
-    <div class="table-wrap">
-      <table>
-        <thead><tr><th>股票</th><th class="num">盘中涨跌</th><th>备注</th></tr></thead>
-        <tbody>
-          <tr><td>Build-A-Bear BBW</td><td class="num down">-15.5%</td><td>Q2低于预期+下调全年</td></tr>
-          <tr><td>Wendy's WEN</td><td class="num down">-13~14%</td><td>Trian放弃竞购</td></tr>
-          <tr><td>HP HPQ</td><td class="num down">-8~9%</td><td>Q3超预期但PC出货量/利润率下降</td></tr>
-          <tr><td>Moderna MRNA</td><td class="num down">-8%+</td><td>承压</td></tr>
-          <tr><td>Best Buy BBY</td><td class="num down">-4.6%</td><td>消费走弱</td></tr>
-          <tr><td>Dollar Tree DLTR</td><td class="num down">-4.4%</td><td>Q2财报后下跌</td></tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-
-  <div class="section">
-    <div class="section-title"><span class="icon">⚡</span> 今日关键事件</div>
+    <div class="section-title"><span class="icon">🏭</span> ISM制造业PMI——"仍在扩张但减速！价格居高不下！"</div>
     <div class="cards-grid">
       <div class="card">
-        <div class="card-title">特朗普考虑扩大半导体关税</div>
-        <div style="font-size:1.0rem;margin:8px 0;color:var(--loss)">覆盖笔记本/服务器/游戏主机</div>
-        <div class="card-sub">从芯片扩大至含芯片产品。Lutnick倾向关税减免与建厂投资挂钩。科技企业游说反对中，仍为讨论阶段</div>
+        <div class="card-title">ISM综合PMI</div>
+        <div style="font-size:1.5rem;margin:8px 0;color:var(--neutral)">54.6（前值55.6）</div>
+        <div class="card-sub">连续第8个月扩张，但减速1个百分点。22个月连续经济扩张</div>
       </div>
       <div class="card">
-        <div class="card-title">铠侠+闪迪 $310亿联合投资</div>
-        <div style="font-size:1.0rem;margin:8px 0;color:var(--gain)">到2032年 5万亿日元</div>
-        <div class="card-sub">获日本政府支持，推进前沿存储技术研发与产能扩张。确认存储景气周期</div>
+        <div class="card-title">价格指标</div>
+        <div style="font-size:1.5rem;margin:8px 0;color:var(--loss)">71.1（持平前值）</div>
+        <div class="card-sub">通胀压力居高不下！57%负面评论提及"价格波动"。关税+伊朗战争推动成本上升</div>
       </div>
       <div class="card">
-        <div class="card-title">全球央行鹰派共振</div>
-        <div style="font-size:1.0rem;margin:8px 0;color:var(--loss)">韩国加息25bp至3.00% 日本继续加息</div>
-        <div class="card-sub">韩国连续第二个月加息（2022年来首次），日本央行副行长"继续上调利率"。全球流动性收紧</div>
+        <div class="card-title">新订单/就业</div>
+        <div style="font-size:1.2rem;margin:8px 0;color:var(--neutral)">订单53.7(-3) 就业51.2(-1.6)</div>
+        <div class="card-sub">需求端放缓但未萎缩。就业仍在扩张区间。客户库存"太低"=未来生产积极信号</div>
       </div>
       <div class="card">
-        <div class="card-title">特朗普宣布电网"国家紧急状态"</div>
-        <div style="font-size:1.0rem;margin:8px 0;color:var(--loss)">限制外国电力设备</div>
-        <div class="card-sub">限制大型变压器/光伏逆变器/储能系统等进口，冲击A股阳光电源等</div>
+        <div class="card-title">受访者情绪</div>
+        <div style="font-size:1.2rem;margin:8px 0;color:var(--loss)">42%正面 vs 58%负面</div>
+        <div class="card-sub">"价格波动"57%、"交货期延长"46%、"伊朗战争"30%、"关税"29%。制造业端压力真实</div>
       </div>
     </div>
   </div>
 
   <div class="quote-box">
-    NVDA开盘+6.7%+CRM+13%+OKTA+21%——AI不仅在硬件层面爆发，正向软件和安全层全面渗透。Agentforce ARR近$39亿（+210%）+亚马逊200万GPU——AI基建从"军备竞赛"进入"工业化"。但道指-0.15%、HPQ/WEN暴跌、消费vs科技剪刀差扩大+特朗普关税阴云+Warsh明晚首秀——"以静制动"仍是最优策略。
+    全球债市崩盘→科技股系统性承压→ISM价格71.1居高不下→企业端通胀真实存在→Fed加息大门敞开。苹果换帅平稳过渡但9/9发布会为真正考验。Fervo地热+谷歌400MW=能源转型新方向。Robinhood获MS升级/Anthropic-$35B Lambda协议=结构性亮点。但整体：高利率+高油价+地缘冲突=九月开门黑。60%+现金仍为最优策略。
   </div>
 </section>
 
 <!-- ===== 港股 ===== -->
 <section class="tab-content" id="hk-stock" data-print-title="港股盯盘" role="tabpanel">
   <div class="conclusion">
-    <strong>8/27收盘：恒指-0.34%收25,566——高开后弱势调整，科技硬件逆势走强，消费股拖累</strong><br>
-    恒生科技-0.13%（4,620），国企指数-0.51%（8,490）。成交HK$2,335亿。存储芯片/PCB等科技硬件股受NVDA财报催化逆势走强，但小米-3%+、消费股财报不佳拖累大盘。智谱+8.35%发布GLM-5.3-Flash 320B，网易+5.58%。与A股科技全面爆发形成分化——港股偏弱，资金观望沃什讲话。
+    <strong>9/1收盘：9月开门黑！恒指-0.93% 恒生科技-1.49%！科网股全线走弱，内银逆势创新高！</strong><br>
+    恒指25,329.73（-0.93%，-237.26点），恒生科技4,550.88（-1.49%，-68.99点），国企指数8,462（-0.59%）。阿里-3.3%/腾讯-2.6%/美团-2.9%拖累指数。内房延续跌势（越秀地产-7%+），PCB/半导体/AI概念齐跌。<strong>内银逆势走强</strong>：农行+2.6%，中行/工行/建行创历史新高。南向资金积极抄底净买入超77亿港元。
   </div>
 
   <div class="section">
-    <div class="section-title"><span class="icon">📈</span> 8/27 港股收盘</div>
+    <div class="section-title"><span class="icon">📈</span> 9/1 港股收盘</div>
     <div class="table-wrap">
       <table>
         <thead><tr><th>指数</th><th class="num">收盘</th><th class="num">涨跌幅</th><th>备注</th></tr></thead>
         <tbody>
-          <tr><td>恒生指数</td><td class="num">25,565.74</td><td class="num down">-0.34%</td><td>高开后回落，-87点</td></tr>
-          <tr><td>恒生科技</td><td class="num">4,620.29</td><td class="num down">-0.13%</td><td>科技硬件逆势走强</td></tr>
-          <tr><td>恒生国企</td><td class="num">8,490.31</td><td class="num down">-0.51%</td><td>消费股拖累</td></tr>
+          <tr><td>恒生指数</td><td class="num">25,329.73</td><td class="num down">-0.93%</td><td>9月开门黑</td></tr>
+          <tr><td>恒生科技</td><td class="num">4,550.88</td><td class="num down">-1.49%</td><td>科网股拖累</td></tr>
+          <tr><td>国企指数</td><td class="num">8,462</td><td class="num down">-0.59%</td><td></td></tr>
         </tbody>
       </table>
     </div>
-    <p style="font-size:0.75rem;color:var(--text-muted);margin-top:4px;">成交HK$2,335亿 | A股+1.13%全面爆发 vs 港股-0.34%弱势分化</p>
+    <p style="font-size:0.75rem;color:var(--text-muted);margin-top:4px;">南向资金净买入超77亿港元 | 成交$2,387.4亿</p>
   </div>
 
   <div class="section">
-    <div class="section-title"><span class="icon">📊</span> 港股涨幅亮点</div>
-    <div class="table-wrap">
-      <table>
-        <thead><tr><th>股票</th><th class="num">涨幅</th><th>备注</th></tr></thead>
-        <tbody>
-          <tr><td>意华股份</td><td class="num up">+12.05%</td><td>连接器/消费电子供应链</td></tr>
-          <tr><td>智谱</td><td class="num up">+8.35%</td><td>发布GLM-5.3-Flash 320B大模型</td></tr>
-          <tr><td>网易</td><td class="num up">+5.58%</td><td>游戏/互联网</td></tr>
-          <tr><td>新东方</td><td class="num up">+3.60%</td><td>教育/消费</td></tr>
-          <tr><td>联想集团</td><td class="num up">+3.08%</td><td>PC/AI硬件</td></tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-
-  <div class="section">
-    <div class="section-title"><span class="icon">📊</span> 跨市场信号</div>
+    <div class="section-title"><span class="icon">📊</span> 港股今日涨跌</div>
     <div class="sector-list">
-      <span class="sector-tag sector-up">💾 存储/PCB硬件 受NVDA财报催化逆势走强（与A股联动）</span>
-      <span class="sector-tag sector-up">🤖 AI大模型 智谱+8.35%（GLM-5.3-Flash 320B发布）</span>
-      <span class="sector-tag sector-up">🎮 互联网 网易+5.58% 新东方+3.60%</span>
-      <span class="sector-tag sector-down">📱 小米 -3%+ 权重拖累恒指</span>
-      <span class="sector-tag sector-down">🍲 消费股 财报不佳拖累</span>
+      <span class="sector-tag sector-up">🏦 内银 农行+2.6% 中行/工行/建行创历史新高</span>
+      <span class="sector-tag sector-up">📱 快手+3% 逆势走强</span>
+      <span class="sector-tag sector-down">💻 科网股 阿里-3.3% 腾讯-2.6% 美团-2.9%</span>
+      <span class="sector-tag sector-down">🏠 内房 越秀地产-7%+ 建发国际4连跌</span>
+      <span class="sector-tag sector-down">💾 PCB/半导体/AI概念 齐跌</span>
+      <span class="sector-tag sector-down">🎰 濠赌股 澳门8月博彩收入远逊预期</span>
     </div>
     <div class="quote-box">
-      A股+1.13% vs 港股-0.34%——两地市场罕见分化。A股科技全面主升、成交2.14万亿放量3000亿+，港股则受小米回调+消费股拖累弱势调整。科技硬件（存储/PCB）在两地均逆势走强，NVDA传导信号明确。但港股整体偏弱，资金在沃什讲话前选择观望。
+      天风证券：港股前期反弹由估值和流动性驱动，但长期上涨需等待信用修复/消费改善/互联网龙头盈利模式突破。华泰证券：中东地缘冲突+美联储加息预期+市场滞胀担忧再起，港股宜均衡布局，优先低波动红利资产作为底仓配置。
     </div>
   </div>
 </section>
@@ -903,90 +805,60 @@ a:hover { text-decoration: underline; }
 <!-- ===== 持仓基金 ===== -->
 <section class="tab-content" id="fund" data-print-title="持仓基金" role="tabpanel">
   <div class="conclusion">
-    <strong>持仓综合评估（8/27收盘·官方净值）：英伟达财报引爆科技！半导体+3.07%，科创200+3.31%，持仓受益明显</strong><br>
-    020465 官方净值3.7487（+3.07%），自高点-22.8%。023383 官方净值1.5257（+3.31%），PE 20%低估区间维持，估值修复趋势确立。QDII：017641 净值≈1.7040（-0.06%），040046/014978 净值8.1297/≈7.96。<br><br>
+    <strong>持仓综合评估（9/1收盘）：全球债市崩盘+科技暴跌！科创50-2.19%！半导体全线暴跌！</strong><br>
+    A股：科创50暴跌2.19%（1,648），半导体主力流出121亿。科技→消费/金融大切换。QDII：美股今日低开——全球债市崩盘+科技股血洗。纳指-1.27%。ISM价格71.1=通胀压力真实。<br><br>
     <strong>投资规则</strong>：60%+现金仓位 | 半导体高位不新增 | QDII限购不追加 | A股:QDII ≈ 70:30
   </div>
 
   <div class="alert-box">
-    <strong>⚠️ NVDA财报已落地：全面超预期</strong>。A股科技已大涨消化利好（半导体+3.07%、科创200+3.31%）。明晚22:00沃什Jackson Hole首秀为本周最后变量。9月加息概率44%→若偏鹰QDII承压。业绩利好≠加仓信号，60%+现金仍为最优。
+    <strong>⚠️ 关键风险</strong>：全球债市崩盘+科技股全线暴跌+ISM价格71.1=三重压力叠加。本周JOLTS+AVGO财报+非农+FOMC=密集数据轰炸。60%+现金仓位继续最优安全垫。定投纪律不变。
   </div>
 
   <div class="section">
-    <div class="section-title"><span class="icon">💼</span> 持仓净值速览（8/27官方净值）</div>
+    <div class="section-title"><span class="icon">💼</span> 持仓净值速览（9/1更新）</div>
     <div class="table-wrap">
       <table>
-        <thead><tr><th>基金</th><th>代码</th><th class="num">最新净值</th><th class="num">当日涨跌</th><th class="num">自高点</th><th class="num">PE分位</th><th>操作</th></tr></thead>
+        <thead><tr><th>基金</th><th>代码</th><th class="num">最新净值</th><th class="num">当日涨跌</th><th>操作</th></tr></thead>
         <tbody>
           <tr>
             <td><strong>半导体ETF联接C</strong></td>
             <td>020465</td>
-            <td class="num">3.7487</td>
-            <td class="num up">+3.07%</td>
-            <td class="num down">-22.8%</td>
-            <td class="num" style="color:var(--loss)">⚠️ 93%+高位</td>
+            <td class="num">待更新</td>
+            <td class="num down">估-2%+ 科创50暴跌</td>
             <td>❌ 不加仓</td>
           </tr>
           <tr>
             <td><strong>科创200ETF联接C</strong></td>
             <td>023383</td>
-            <td class="num">1.5257</td>
-            <td class="num up">+3.31%</td>
-            <td class="num down">-20.6%</td>
-            <td class="num" style="color:var(--gain)">✅ 20%低估</td>
+            <td class="num">待更新</td>
+            <td class="num down">估-2%+ 跟随科创50</td>
             <td>✅ 月投250元</td>
           </tr>
           <tr>
             <td><strong>标普500 QDII A</strong></td>
             <td>017641</td>
-            <td class="num">≈1.7040</td>
-            <td class="num down">-0.06%</td>
-            <td class="num down">-2.0%</td>
-            <td class="num">—</td>
+            <td class="num">待更新</td>
+            <td class="num down">美股低开-0.70%</td>
             <td>日投10元限额</td>
           </tr>
           <tr>
             <td><strong>纳指100联接A</strong></td>
             <td>040046</td>
-            <td class="num">8.1297</td>
-            <td class="num flat">+0.01%</td>
-            <td class="num down">-2.0%</td>
-            <td class="num">—</td>
+            <td class="num">待更新</td>
+            <td class="num down">纳指-1.27%</td>
             <td>限额不追加</td>
           </tr>
           <tr>
             <td><strong>纳指100联接C</strong></td>
             <td>014978</td>
-            <td class="num">≈7.96</td>
-            <td class="num down">≈-0.05%</td>
-            <td class="num down">-2.0%</td>
-            <td class="num">—</td>
+            <td class="num">待更新</td>
+            <td class="num down">纳指-1.27%</td>
             <td>限额不追加</td>
           </tr>
         </tbody>
       </table>
     </div>
-    <p style="font-size:0.75rem;color:var(--text-muted);margin-top:8px;">A股基金为8/27官方净值（天天基金平台），QDII基金为8/26官方净值（T+2披露）。最终以基金公司官方披露为准。</p>
-  </div>
-
-  <div class="section">
-    <div class="section-title"><span class="icon">📊</span> ETF资金流向</div>
-    <div class="table-wrap">
-      <table>
-        <thead><tr><th>方向</th><th class="num">净流入(亿)</th><th>备注</th></tr></thead>
-        <tbody>
-          <tr><td>宽基ETF（8/21）</td><td class="num down">-95.37</td><td>连续两日大额流出，创近期新高</td></tr>
-          <tr><td>黄金ETF华安</td><td class="num up">+16.98</td><td>规模突破1078亿，避险核心</td></tr>
-          <tr><td>短融ETF海富通</td><td class="num up">+15.97</td><td>规模842亿，"货基升级替代"</td></tr>
-          <tr><td>科创50ETF华夏</td><td class="num down">-1.78</td><td>从+44亿→转为净流出</td></tr>
-          <tr><td>半导体设备ETF(5只)</td><td class="num up">+8.55</td><td>设备方向仍有结构性流入</td></tr>
-          <tr><td>半导体ETF整体</td><td class="num up">持续吸金</td><td>科创半导体ETF近5日净流入37.22亿</td></tr>
-        </tbody>
-      </table>
-    </div>
-    <div class="quote-box">
-      避险格局升级：黄金+短融+信用债+货币集体大额流入，宽基ETF连续大额流出——资金在做"从风险到安全"的系统性迁移。但半导体ETF逆势吸金，市场对中长期信心未崩。
-    </div>
+    <p style="font-size:0.75rem;color:var(--text-muted);margin-top:8px;">基金净值待官方披露后更新。估算值基于当日指数跌幅推算，仅供参考。</p>
   </div>
 
   <div class="section">
@@ -995,22 +867,22 @@ a:hover { text-decoration: underline; }
       <div class="card">
         <div class="card-title">半导体 020465</div>
         <div style="font-size:1.5rem;margin:8px 0;color:var(--loss)">❌ 不加仓</div>
-        <div class="card-sub">PE 93%+极端高位，自高点-22.8%。8/27净值+3.07%大涨（NVDA催化）。产业景气扩散（中芯翻倍+长存IPO），但业绩利好≠加仓信号。若借利好拉升，留意是否为减仓窗口</div>
+        <div class="card-sub">全球半导体全线暴跌，ISM价格71.1+关税+地缘冲突。"半导体高位不新增仓位"纪律再次验证。持仓不动</div>
       </div>
       <div class="card">
         <div class="card-title">科创200 023383</div>
         <div style="font-size:1.5rem;margin:8px 0;color:var(--gain)">✅ 月投250元</div>
-        <div class="card-sub">PE 20%分位低估区间。8/27大涨+3.31%，估值修复趋势确立。定投纪律执行</div>
+        <div class="card-sub">科创50暴跌2.19%，PE低估区间回调提供更好的定投价格。定投纪律不变</div>
       </div>
       <div class="card">
         <div class="card-title">QDII（标普/纳指）</div>
         <div style="font-size:1.5rem;margin:8px 0;color:var(--neutral)">🔒 维持限额</div>
-        <div class="card-sub">日投10元标普，不追加。PCE偏热+加息概率44%。明晚沃什Jackson Hole首秀为最大变量</div>
+        <div class="card-sub">全球债市崩盘+科技股暴跌。本周JOLTS+非农+FOMC为关键。限额内保持纪律</div>
       </div>
       <div class="card">
         <div class="card-title">黄金</div>
-        <div style="font-size:1.5rem;margin:8px 0;color:var(--gain)">✅ 已变现</div>
-        <div class="card-sub">40g@991元/克售出，买入600元/克，利润+65.2%。不再持有</div>
+        <div style="font-size:1.1rem;margin:8px 0;color:var(--gold)">📊 跟踪观察</div>
+        <div class="card-sub">黄金继续回落$4,614→$4,429。高利率环境下避险逻辑失效。关注Fed利率路径</div>
       </div>
     </div>
   </div>
@@ -1019,63 +891,72 @@ a:hover { text-decoration: underline; }
 <!-- ===== 宏观·黄金 ===== -->
 <section class="tab-content" id="macro" data-print-title="宏观与黄金" role="tabpanel">
   <div class="conclusion">
-    <strong>黄金：已变现 ✅</strong><br>
-    40g手镯于8/24以991元/克售出，买入价600元/克，利润391元/克（+65.2%），变现总额39,640元，利润15,640元。<br>
-    现货黄金$4,614（+0.5% 守住$4,600）——Jackson Hole+沃什首秀+NVDA本周密集，锁定利润是正确决策。
+    <strong>黄金：继续回落 $4,429/oz 📉 高利率环境下避险逻辑失效</strong><br>
+    全球债市崩盘+高利率环境下，传统避险资产黄金持续承压。10Y美债4.79%创20个月新高，日本10Y 3.0%创历史新高。重点关注：Fed利率路径（9月加息概率上升）、霍尔木兹海峡地缘风险、美元走势。
   </div>
 
   <div class="section">
-    <div class="section-title"><span class="icon">🌍</span> 关键宏观指标（8/28更新）</div>
+    <div class="section-title"><span class="icon">🌍</span> 关键宏观指标（9/1更新）</div>
     <div class="macro-grid">
       <div class="macro-item">
         <div class="macro-name">美元指数 DXY</div>
-        <div class="macro-val">99.16</div>
-        <div class="macro-note">持平</div>
+        <div class="macro-val">99.43</div>
+        <div class="macro-note">昨日-0.28%</div>
       </div>
       <div class="macro-item">
         <div class="macro-name">现货黄金</div>
-        <div class="macro-val" style="color:var(--gold)">$4,614/oz</div>
-        <div class="macro-note">+0.5% 守住$4,600（已卖出）</div>
+        <div class="macro-val" style="color:var(--loss)">$4,429/oz</div>
+        <div class="macro-note">-1.17% 继续回落</div>
       </div>
       <div class="macro-item">
         <div class="macro-name">10Y美债</div>
-        <div class="macro-val up">4.67%</div>
-        <div class="macro-note">+3bp 收益率走高</div>
+        <div class="macro-val down">4.79%</div>
+        <div class="macro-note">20个月新高！</div>
       </div>
       <div class="macro-item">
         <div class="macro-name">30Y美债</div>
-        <div class="macro-val down">~5.3%</div>
-        <div class="macro-note">2007年以来最高区域</div>
+        <div class="macro-val down">5.28%</div>
+        <div class="macro-note">逼近2007年来最高</div>
       </div>
       <div class="macro-item">
         <div class="macro-name">WTI原油</div>
-        <div class="macro-val up">$83.53</div>
-        <div class="macro-note">+1.58% 伊朗+地缘升温</div>
+        <div class="macro-val down">$87.92</div>
+        <div class="macro-note">+2.5% 油轮遇袭</div>
       </div>
       <div class="macro-item">
         <div class="macro-name">布伦特原油</div>
-        <div class="macro-val up">$89.70</div>
-        <div class="macro-note">+2.12%</div>
+        <div class="macro-val down">$92.24</div>
+        <div class="macro-note">+4.3% 逼近$93</div>
       </div>
       <div class="macro-item">
-        <div class="macro-name" style="color:var(--gain)">LME期铜</div>
-        <div class="macro-val up">$14,324.5/吨</div>
-        <div class="macro-note">创收盘价历史新高！</div>
+        <div class="macro-name">白银</div>
+        <div class="macro-val down">$65.31/oz</div>
+        <div class="macro-note">-2.52% 重挫</div>
       </div>
       <div class="macro-item">
-        <div class="macro-name">BTC</div>
-        <div class="macro-val up">~$81,000</div>
-        <div class="macro-note">+2.9% 逼近81000</div>
+        <div class="macro-name">日本10Y债</div>
+        <div class="macro-val down">3.0%+</div>
+        <div class="macro-note">创历史新高！</div>
+      </div>
+      <div class="macro-item">
+        <div class="macro-name">英国10Y债</div>
+        <div class="macro-val down">5.2%+</div>
+        <div class="macro-note">突破</div>
+      </div>
+      <div class="macro-item">
+        <div class="macro-name">ISM制造业</div>
+        <div class="macro-val">54.6</div>
+        <div class="macro-note">扩张但减速(前值55.6)</div>
+      </div>
+      <div class="macro-item">
+        <div class="macro-name">ISM价格指标</div>
+        <div class="macro-val down">71.1</div>
+        <div class="macro-note">通胀压力居高不下</div>
       </div>
       <div class="macro-item">
         <div class="macro-name">Fed利率</div>
         <div class="macro-val">3.50-3.75%</div>
-        <div class="macro-note down">9月加息概率40-44%（沃什前）</div>
-      </div>
-      <div class="macro-item">
-        <div class="macro-name">财政部回购</div>
-        <div class="macro-val up">~$1万亿</div>
-        <div class="macro-note">77%市场参与者认为不会成功</div>
+        <div class="macro-note">9/15-16 FOMC</div>
       </div>
     </div>
   </div>
@@ -1084,56 +965,40 @@ a:hover { text-decoration: underline; }
 <!-- ===== 本周事件 ===== -->
 <section class="tab-content" id="events" data-print-title="本周事件日历" role="tabpanel">
   <div class="conclusion">
-    <strong>"数据炸弹周"——NVDA+软件暴涨+PCE已落地，今晚沃什Jackson Hole首秀为最后核弹</strong><br>
-    NVDA+8.74%市值+$4420亿，软件/网安史诗级暴涨（OKTA+29%/CRM+23%/CRWD+21%），A股低开高走但网安高开低走。今晚22:00沃什首秀32%偏鹰+9月加息概率40%——"最后一击"尚未落地。60%+现金仓位的最优安全垫策略在当前环境下尤为重要。
+    <strong>"数据炸弹周"——全球债市崩盘+科技暴跌+苹果换帅+ISM减速！本周密集数据将决定市场方向</strong><br>
+    全球债市崩盘（日债/英债/美债均创多年新高）+油价暴涨逼近$90+ISM仍在扩张但减速=滞胀担忧升温。本周关键：JOLTS→AVGO财报→非农→FOMC。
   </div>
 
   <div class="section">
     <div class="section-title"><span class="icon">📅</span> 关键事件时间线</div>
     <ul class="event-list">
-      <li class="event-item">
-        <div class="event-date">8/24 周一</div>
-        <div class="event-text">A股放量暴跌——三重利空共振 <span class="event-stars">✅ 已发生</span></div>
-      </li>
-      <li class="event-item">
-        <div class="event-date">8/25 周二</div>
-        <div class="event-text">央行5000亿MLF + 多公司业绩披露 <span class="event-stars">✅ 已落地</span></div>
+      <li class="event-item event-critical">
+        <div class="event-date">9/1（周二）今日</div>
+        <div class="event-text">✅ 苹果换帅特努斯上任 + ✅ ISM 54.6减速 + ✅ 全球债市崩盘 + 待公布：JOLTS(22:00) <span class="event-stars">⭐⭐⭐⭐⭐</span></div>
       </li>
       <li class="event-item event-critical">
-        <div class="event-date">8/26 周三</div>
-        <div class="event-text">✅ PCE已公布：整体+3.7%>预期3.6%，核心+3.3%符合，9月加息概率→44% <span class="event-stars">⭐⭐⭐⭐⭐ 已公布</span></div>
+        <div class="event-date">9/3（周三）盘后</div>
+        <div class="event-text">Broadcom (AVGO) 财报 — 预期EPS $2.63(+91%) <span class="event-stars">⭐⭐⭐⭐⭐</span></div>
       </li>
       <li class="event-item event-critical">
-        <div class="event-date">8/27 清晨</div>
-        <div class="event-text">✅ NVDA FY27Q2财报：营收$962亿(+106%) beat $923亿，FY28指引+70%，收盘+8.74% $227.98 <span class="event-stars">⭐⭐⭐⭐⭐ 已公布·全面超预期</span></div>
+        <div class="event-date">9/5（周五）</div>
+        <div class="event-text">⭐ 8月非农就业报告 — 预期+53K（7月意外负增长后） <span class="event-stars">⭐⭐⭐⭐⭐</span></div>
+      </li>
+      <li class="event-item">
+        <div class="event-date">9/9（周二）</div>
+        <div class="event-text">苹果秋季发布会（特努斯首秀——折叠屏iPhone）<span class="event-stars">⭐⭐⭐⭐</span></div>
       </li>
       <li class="event-item event-critical">
-        <div class="event-date">8/27 收盘</div>
-        <div class="event-text">✅ 美股软件/网安史诗级暴涨：OKTA+29%/CRM+23%/CRWD+21%，IGV创关税以来最大涨幅，SaaS篮子自4月低点累弹75% <span class="event-stars">⭐⭐⭐⭐⭐ SaaSpocalypse已死</span></div>
+        <div class="event-date">9/15-16</div>
+        <div class="event-text">FOMC利率决议 <span class="event-stars">⭐⭐⭐⭐⭐</span></div>
       </li>
       <li class="event-item">
-        <div class="event-date">8/28 上午（今天）</div>
-        <div class="event-text">🟢 A股低开高走——科创50+0.85%领涨，网安高开低走（奇安信从+14%回撤至+6.8%）<span class="event-stars">⭐⭐⭐⭐ 进行中</span></div>
+        <div class="event-date">8/31 已过</div>
+        <div class="event-text">✅ 美伊冲突升级——油轮遇袭+油价暴涨+三大指数全跌 <span class="event-stars">✅ 已发生</span></div>
       </li>
       <li class="event-item">
-        <div class="event-date">8/27 今夜</div>
-        <div class="event-text">MRVL盘后财报——定制AI芯片+高速互联龙头 <span class="event-stars">⭐⭐⭐ 已公布</span></div>
-      </li>
-      <li class="event-item event-critical">
-        <div class="event-date">今晚 22:00</div>
-        <div class="event-text">🏛️ 沃什Jackson Hole主旨演讲（首秀！10am ET）——32%偏鹰/69%中性，是否释放"前置加息"信号？<span class="event-stars">⭐⭐⭐⭐⭐ 本周最后重磅</span></div>
-      </li>
-      <li class="event-item">
-        <div class="event-date">8/28 今日</div>
-        <div class="event-text">美团披露财报 + 国内成品油调价窗口（预计上调320-410元/吨）<span class="event-stars">⭐⭐⭐</span></div>
-      </li>
-      <li class="event-item">
-        <div class="event-date">8/31 周日</div>
-        <div class="event-text">A股半年报收官 <span class="event-stars">⭐⭐</span></div>
-      </li>
-      <li class="event-item">
-        <div class="event-date">9/16</div>
-        <div class="event-text">FOMC利率决议 <span class="event-stars">⭐⭐⭐⭐</span></div>
+        <div class="event-date">8/31 已过</div>
+        <div class="event-text">✅ 苹果库克最后工作日→特努斯9/1正式接任CEO <span class="event-stars">✅ 已完成</span></div>
       </li>
     </ul>
   </div>
@@ -1142,24 +1007,24 @@ a:hover { text-decoration: underline; }
     <div class="section-title"><span class="icon">⚠️</span> 核心风险评估</div>
     <div class="cards-grid">
       <div class="card">
-        <div class="card-title">沃什讲话 今晚22:00</div>
-        <div style="font-size:1.2rem;margin:8px 0;color:var(--loss)">Jackson Hole首秀 32%偏鹰</div>
-        <div class="card-sub">69%中性。若释放前置加息信号→长端利率上行→全球高估值承压。9月加息概率40%+。美银警告30Y可能冲5.5%</div>
+        <div class="card-title">全球债市崩盘</div>
+        <div style="font-size:1.2rem;margin:8px 0;color:var(--loss)">10Y=4.79% 日债3.0%新高</div>
+        <div class="card-sub">全球利率中枢上移对高估值资产构成系统性压制。William Blair：收益率阻力最小方向仍向上</div>
       </div>
       <div class="card">
-        <div class="card-title">✅ NVDA 收盘+8.74%</div>
-        <div style="font-size:1.2rem;margin:8px 0;color:var(--gain)">$227.98 市值+$4420亿</div>
-        <div class="card-sub">营收$962亿+FY28+70%。开盘+7%已大幅消化利好，过去4季度beat即跌魔咒+毛利率Q3→74%/Q4→71-72%触顶</div>
+        <div class="card-title">油价逼近$90</div>
+        <div style="font-size:1.2rem;margin:8px 0;color:var(--loss)">WTI $88 布油 $92</div>
+        <div class="card-sub">霍尔木兹海峡油轮遇袭+伊朗拒绝和解。若突破$100→PCE+0.3-0.5%→Fed加息确定</div>
       </div>
       <div class="card">
-        <div class="card-title">✅ PCE数据 已公布</div>
-        <div style="font-size:1.2rem;margin:8px 0;color:var(--loss)">偏热 整体+3.7%>预期3.6%</div>
-        <div class="card-sub">9月加息概率40-44%。实际消费支出环比0%——消费动能急剧放缓</div>
+        <div class="card-title">ISM价格71.1</div>
+        <div style="font-size:1.2rem;margin:8px 0;color:var(--loss)">企业端通胀真实</div>
+        <div class="card-sub">58%受访者负面。"关税+霍尔木兹海峡冲突导致价格上涨"。ISM直接警告通胀将导致经济下行</div>
       </div>
       <div class="card">
-        <div class="card-title">A股低开高走 网安高开低走</div>
-        <div style="font-size:1.2rem;margin:8px 0;color:var(--neutral)">科创50+0.85% 奇安信20min -7pct</div>
-        <div class="card-sub">存量博弈下热点切换极快。标普11板块仅1个收涨的"宽度灾难"+半导体PE 93%——业绩利好≠加仓信号</div>
+        <div class="card-title">九月季节性魔咒</div>
+        <div style="font-size:1.2rem;margin:8px 0;color:var(--loss)">S&P九月平均-0.6%</div>
+        <div class="card-sub">仅45%概率正收益，与二月并列全年最差。叠加当前宏观环境=风险倍增</div>
       </div>
     </div>
   </div>
@@ -1169,8 +1034,8 @@ a:hover { text-decoration: underline; }
 
 <footer>
   <div class="container">
-    <p>数据来源：<a href="https://signal.coze.com" target="_blank" rel="noopener noreferrer">Signal Arena API</a>、<a href="https://www.eastmoney.com" target="_blank" rel="noopener noreferrer">东方财富</a>、<a href="https://www.cls.cn" target="_blank" rel="noopener noreferrer">财联社</a>、<a href="https://www.yicai.com" target="_blank" rel="noopener noreferrer">第一财经</a>、<a href="https://fund.eastmoney.com" target="_blank" rel="noopener noreferrer">天天基金</a></p>
-    <p>更新时间：2026-08-28 10:12 · A股盘中/美股已收盘 | 每日盯盘看板 · 奥丁的乌鸦</p>
+    <p>数据来源：<a href="https://signal.coze.com" target="_blank" rel="noopener noreferrer">Signal Arena API</a>、<a href="https://www.eastmoney.com" target="_blank" rel="noopener noreferrer">东方财富</a>、<a href="https://www.cls.cn" target="_blank" rel="noopener noreferrer">财联社</a>、<a href="https://www.ismworld.org" target="_blank" rel="noopener noreferrer">ISM</a>、<a href="https://www.cnbc.com" target="_blank" rel="noopener noreferrer">CNBC</a>、<a href="https://fund.eastmoney.com" target="_blank" rel="noopener noreferrer">天天基金</a></p>
+    <p>更新时间：2026-09-01 22:34 · A股已收盘/美股盘中/港股已收盘 | 每日盯盘看板 · 奥丁的乌鸦</p>
     <p style="margin-top:8px;">⚠️ 仅供投资参考，不构成投资建议</p>
   </div>
 </footer>
@@ -1196,11 +1061,12 @@ document.querySelector('.tab-nav').addEventListener('keydown', e => {
   if (e.key === 'ArrowRight' && idx < tabs.length - 1) { tabs[idx + 1].focus(); tabs[idx + 1].click(); }
   if (e.key === 'ArrowLeft' && idx > 0) { tabs[idx - 1].focus(); tabs[idx - 1].click(); }
 });
+
 </script>
 
 <!-- Floating Components (injected) -->
 <div class="fab-stack">
-        <a class="fab fab-portal" href="/" aria-label="返回监控中枢" title="返回监控中枢">🏠</a>
+    <a class="fab fab-portal" href="/" aria-label="返回监控中枢" title="返回监控中枢">🏠</a>
     <button class="fab fab-feedback" aria-label="反馈与建议" title="反馈与建议">💬</button>
     <button class="fab fab-theme" aria-label="切换深色模式" title="切换深色/浅色模式">🌙</button>
     <button class="fab fab-back" aria-label="回到顶部" title="回到顶部">↑</button>
@@ -1224,7 +1090,6 @@ document.querySelector('.tab-nav').addEventListener('keydown', e => {
     </div>
 </div>
 
-
 <script>
 // ── Floating Components (injected) ──
 (function() {
@@ -1244,7 +1109,7 @@ document.querySelector('.tab-nav').addEventListener('keydown', e => {
     }
     var themeBtn = document.querySelector('.fab-theme');
     if (themeBtn) {
-        var saved = localStorage.getItem('monitor-theme') || '';
+        var saved = localStorage.getItem('stock-dash-theme') || '';
         var prefDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
         var theme = saved || (prefDark ? 'dark' : 'light');
         function apply(t) {
@@ -1254,7 +1119,7 @@ document.querySelector('.tab-nav').addEventListener('keydown', e => {
         apply(theme);
         themeBtn.addEventListener('click', function() {
             var isDark = document.documentElement.getAttribute('data-theme') === 'dark';
-            var n = isDark ? 'light' : 'dark'; apply(n); localStorage.setItem('monitor-theme', n);
+            var n = isDark ? 'light' : 'dark'; apply(n); localStorage.setItem('stock-dash-theme', n);
         });
     }
     var fbBtn = document.querySelector('.fab-feedback');
@@ -1273,18 +1138,17 @@ document.querySelector('.tab-nav').addEventListener('keydown', e => {
         var t = fbText ? fbText.value.trim() || '(未填写)' : '';
         var label = {bug:'报告错误',suggestion:'功能建议',content:'内容补充'}[fbType]||'反馈';
         var enc = encodeURIComponent('['+label+'] '+t);
-        var body = encodeURIComponent('['+label+'] '+t+'\n\n---\n来源: praxisfit.me\n时间: '+new Date().toISOString());
+        var body = encodeURIComponent('['+label+'] '+t+'\n\n---\n来源: praxisfit.me/stock-dash\n时间: '+new Date().toISOString());
         if (fbGithub) fbGithub.href = 'https://github.com/praxisfitme/policy-monitor/issues/new?title='+enc+'&body='+body;
-        if (fbEmail) fbEmail.href = 'mailto:victor8989@qq.com?subject='+enc+'&body='+body;
+        if (fbEmail) fbEmail.href = 'mailto:research-crow@coze.email?subject='+enc+'&body='+body;
     }
     if (fbBtn) fbBtn.addEventListener('click', function() { fbOverlay.classList.add('visible'); setTimeout(function(){if(fbText)fbText.focus();},300); });
     if (fbClose) fbClose.addEventListener('click', function() { fbOverlay.classList.remove('visible'); });
-    if (fbOverlay) fbOverlay.addEventListener('click', function(e) { if (e.target===fbOverlay) fbOverlay.classList.remove('visible'); });
-    document.addEventListener('keydown', function(e) { if (e.key==='Escape' && fbOverlay && fbOverlay.classList.contains('visible')) fbOverlay.classList.remove('visible'); });
+    if (fbOverlay) fbOverlay.addEventListener('click', function(e) { if (e.target === fbOverlay) fbOverlay.classList.remove('visible'); });
     if (fbText) fbText.addEventListener('input', updateLinks);
+    document.addEventListener('keydown', function(e) { if (e.key === 'Escape' && fbOverlay.classList.contains('visible')) fbOverlay.classList.remove('visible'); });
     updateLinks();
 })();
 </script>
-
 </body>
 </html>
