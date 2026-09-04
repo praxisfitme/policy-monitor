@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>每日盯盘看板 | 2026-09-03</title>
+<title>每日盯盘看板 | 2026-09-04</title>
     <meta property="og:title" content="股市盯盘看板">
     <meta property="og:description" content="A股·港股·美股三市行情，基金净值、宏观指标、市场情绪与关键财经新闻">
     <meta property="og:type" content="website">
@@ -240,6 +240,7 @@ tr:hover td { background: rgba(255,255,255,0.02); }
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   gap: 12px;
+  margin-bottom: 16px;
 }
 .macro-item {
   background: var(--bg-tertiary);
@@ -284,19 +285,6 @@ footer {
   font-size: 0.75rem;
   text-align: center;
 }
-@media (max-width: 768px) {
-  .container { padding: 8px; }
-  .summary-bar { grid-template-columns: repeat(2, 1fr); }
-  .tab-btn { padding: 10px 16px; font-size: 0.85rem; }
-  .cards-grid { grid-template-columns: 1fr; }
-  .macro-grid { grid-template-columns: repeat(2, 1fr); }
-  h1 { font-size: 1.2rem; }
-  td, th { padding: 8px; font-size: 0.8rem; }
-}
-.tab-btn:focus-visible, a:focus-visible, button:focus-visible {
-  outline: 2px solid var(--accent);
-  outline-offset: 2px;
-}
 a { color: var(--accent); text-decoration: none; }
 a:hover { text-decoration: underline; }
 @media (prefers-reduced-motion: reduce) {
@@ -308,6 +296,7 @@ a:hover { text-decoration: underline; }
   .tab-content { display: block !important; page-break-inside: avoid; }
   .tab-content::before { content: attr(data-print-title); display: block; font-size: 1.2rem; font-weight: 700; margin: 20px 0 10px; border-bottom: 2px solid #333; padding-bottom: 8px; }
 }
+/* ── Floating Components ── */
 .fab-stack {
     position: fixed;
     right: 20px;
@@ -461,6 +450,17 @@ a:hover { text-decoration: underline; }
     .fab-stack { right: 16px; gap: 8px; }
     .feedback-modal { padding: 20px 16px; }
     .feedback-btn { min-width: 100px; font-size: 0.8125rem; }
+    .container { padding: 8px; }
+    .summary-bar { grid-template-columns: repeat(2, 1fr); }
+    .tab-btn { padding: 10px 16px; font-size: 0.85rem; }
+    .cards-grid { grid-template-columns: 1fr; }
+    .macro-grid { grid-template-columns: repeat(2, 1fr); }
+    h1 { font-size: 1.2rem; }
+    td, th { padding: 8px; font-size: 0.8rem; }
+}
+.tab-btn:focus-visible, a:focus-visible, button:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
 }
 </style>
 </head>
@@ -470,61 +470,61 @@ a:hover { text-decoration: underline; }
   <div class="header-inner">
     <div class="header-top">
       <h1>📊 每日盯盘看板</h1>
-      <span class="header-date">2026年9月3日 周四 · A股收盘/美股盘中/港股收盘</span>
+      <span class="header-date">2026年9月4日 周五 · A股收盘/美股盘中/港股收盘</span>
       <span class="header-tag tag-closed">A股已收盘</span>
       <span class="header-tag tag-trading">美股盘中</span>
       <span class="header-tag tag-closed">港股已收盘</span>
     </div>
     <div class="summary-bar">
       <div class="summary-item">
-        <div class="summary-label">上证指数</div>
-        <div class="summary-value">3,942</div>
-        <div class="summary-change flat">+0.02% 勉强收红</div>
+        <div class="summary-label">标普500（昨收）</div>
+        <div class="summary-value">7,748</div>
+        <div class="summary-change up">+1.06% 创月最大涨幅</div>
       </div>
       <div class="summary-item">
-        <div class="summary-label">创业板指</div>
-        <div class="summary-value">3,313</div>
-        <div class="summary-change flat">+0.01% 假阴真阳</div>
+        <div class="summary-label">纳指（昨收）</div>
+        <div class="summary-value">26,584</div>
+        <div class="summary-change up">+1.40%</div>
       </div>
       <div class="summary-item">
-        <div class="summary-label">标普500</div>
-        <div class="summary-value">~7,690</div>
-        <div class="summary-change up">+0.4% 沃勒放鸽</div>
+        <div class="summary-label">道指（昨收）</div>
+        <div class="summary-value">53,686</div>
+        <div class="summary-change up">+1.18% +624点</div>
       </div>
       <div class="summary-item">
-        <div class="summary-label">纳指</div>
-        <div class="summary-value">~26,330</div>
-        <div class="summary-change up">+0.4% AI软件领涨</div>
+        <div class="summary-label">标普500（今日盘中）</div>
+        <div class="summary-value">~7,740</div>
+        <div class="summary-change down">-0.11% 非农后转跌</div>
       </div>
       <div class="summary-item">
-        <div class="summary-label">恒生指数</div>
-        <div class="summary-value">25,213</div>
-        <div class="summary-change down">-0.39% 高开低走</div>
-      </div>
-      <div class="summary-item">
-        <div class="summary-label">WTI原油</div>
-        <div class="summary-value">$92.51</div>
-        <div class="summary-change down">+1.65% 逼近$100</div>
-      </div>
-      <div class="summary-item">
-        <div class="summary-label">布伦特原油</div>
-        <div class="summary-value">$96.58</div>
-        <div class="summary-change down">+0.99% 五周高位</div>
+        <div class="summary-label">费半</div>
+        <div class="summary-value">+3.23%</div>
+        <div class="summary-change up">半导体全线暴涨！</div>
       </div>
       <div class="summary-item">
         <div class="summary-label" style="color:var(--gold)">现货黄金</div>
-        <div class="summary-value" style="color:var(--gold)">$4,467</div>
-        <div class="summary-change up">+1.76% 沃勒放鸽暴涨</div>
+        <div class="summary-value" style="color:var(--loss)">~$4,388</div>
+        <div class="summary-change down">-1.3% 失守$4,400！</div>
+      </div>
+      <div class="summary-item">
+        <div class="summary-label">WTI原油</div>
+        <div class="summary-value">$89.28</div>
+        <div class="summary-change down">-2%+ 跌破$90</div>
       </div>
       <div class="summary-item">
         <div class="summary-label">10Y美债</div>
-        <div class="summary-value">4.754%</div>
-        <div class="summary-change up">-4bp 沃勒后回落</div>
+        <div class="summary-value">4.80%</div>
+        <div class="summary-change down">+3bp 加息预期推升</div>
       </div>
       <div class="summary-item">
         <div class="summary-label">Fed加息概率</div>
-        <div class="summary-value">~50%</div>
-        <div class="summary-change up">从60%骤降！</div>
+        <div class="summary-value">61%</div>
+        <div class="summary-change down">从50%飙升！非农爆表</div>
+      </div>
+      <div class="summary-item">
+        <div class="summary-label">美元指数</div>
+        <div class="summary-value">99.18</div>
+        <div class="summary-change up">+0.3% 非农后跳涨</div>
       </div>
     </div>
   </div>
@@ -536,7 +536,7 @@ a:hover { text-decoration: underline; }
   <button class="tab-btn" data-tab="hk-stock" role="tab" aria-selected="false">🇭🇰 港股 <span class="tab-badge badge-close">收盘</span></button>
   <button class="tab-btn" data-tab="fund" role="tab" aria-selected="false">💼 持仓基金</button>
   <button class="tab-btn" data-tab="macro" role="tab" aria-selected="false">🌍 宏观·黄金</button>
-  <button class="tab-btn" data-tab="events" role="tab" aria-selected="false">📅 本周事件</button>
+  <button class="tab-btn" data-tab="events" role="tab" aria-selected="false">📅 事件日历</button>
 </nav>
 
 <main class="container">
@@ -544,272 +544,239 @@ a:hover { text-decoration: underline; }
 <!-- ===== A股 ===== -->
 <section class="tab-content active" id="a-share" data-print-title="A股盯盘" role="tabpanel">
   <div class="conclusion">
-    <strong>9/3收盘：缩量勉强收红！"假阴真阳"！沪指+0.02%收3942！1846涨/3570跌——指数虚涨个股杀跌！</strong><br>
-    沪指+0.02%（3,942.09），深成指+0.10%（13,625），创业板<strong>+0.01%（3,313）</strong>。两市成交<strong>1.76-1.78万亿</strong>继续缩量。贵金属<strong>+2.63%领涨</strong>，航运/液冷活跃。高位人气股集体跌停（一鸣食品/传智教育）。券商异动护盘。主力净流出51亿。<strong>等待明日非农+9/11 CPI</strong>
+    <strong>9/4收盘：消费+周期接力！新希望涨停+10%！中国船舶+9.15%！泸州老窖+5.13%！风格从科技切向传统消费！</strong><br>
+    Signal Arena涨幅榜：新希望+10%（猪周期）、中国船舶+9.15%（造船/航运）、世纪华通+7.89%（游戏AI）、芒果超媒+5.46%（传媒）、泸州老窖+5.13%（白酒）。<strong>A股风格明显切换——从前日科技/AI转向消费/周期/航运</strong>。等待今晚非农+CPI信号
   </div>
 
   <div class="section">
-    <div class="section-title"><span class="icon">📈</span> 9/3 A股收盘</div>
+    <div class="section-title"><span class="icon">🔥</span> A股涨幅榜Top5（Signal Arena）</div>
     <div class="table-wrap">
       <table>
-        <thead><tr><th>指数</th><th class="num">收盘</th><th class="num">涨跌幅</th><th>备注</th></tr></thead>
+        <thead><tr><th>排名</th><th>代码</th><th>名称</th><th class="num">现价</th><th class="num">涨幅</th><th>逻辑</th></tr></thead>
         <tbody>
-          <tr><td>上证指数</td><td class="num">3,942.09</td><td class="num flat">+0.02%</td><td>假阴真阳，勉强收红</td></tr>
-          <tr><td>深证成指</td><td class="num">13,625.12</td><td class="num flat">+0.10%</td><td></td></tr>
-          <tr><td>创业板指</td><td class="num">3,312.54</td><td class="num flat">+0.01%</td><td></td></tr>
-          <tr><td>科创综指</td><td class="num">1,906.51</td><td class="num flat">-0.01%</td><td>窄幅弱势震荡</td></tr>
-          <tr><td>北证50</td><td class="num">—</td><td class="num down">-1.61%</td><td>昨日+2.5%后回落</td></tr>
+          <tr><td>1</td><td>sz000876</td><td><strong>新希望</strong></td><td class="num">7.70</td><td class="num up"><strong>+10.00%</strong></td><td>猪周期+消费回暖，涨停</td></tr>
+          <tr><td>2</td><td>sh600150</td><td><strong>中国船舶</strong></td><td class="num">37.46</td><td class="num up"><strong>+9.15%</strong></td><td>造船周期+航运主线延续</td></tr>
+          <tr><td>3</td><td>sz002602</td><td>世纪华通</td><td class="num">15.72</td><td class="num up">+7.89%</td><td>游戏/AI应用</td></tr>
+          <tr><td>4</td><td>sz300413</td><td>芒果超媒</td><td class="num">21.25</td><td class="num up">+5.46%</td><td>传媒回暖</td></tr>
+          <tr><td>5</td><td>sz000568</td><td>泸州老窖</td><td class="num">79.90</td><td class="num up">+5.13%</td><td>白酒消费复苏</td></tr>
         </tbody>
       </table>
     </div>
-    <p style="font-size:0.75rem;color:var(--text-muted);margin-top:4px;">两市成交1.76-1.78万亿（继续缩量），1846涨/3570跌（指数红盘个股普跌），涨停46/跌停16。主力净流出51亿</p>
   </div>
 
   <div class="section">
-    <div class="section-title"><span class="icon">🔥</span> 今日板块——"贵金属+2.63%领涨！航运新高！高位妖股集体跌停！"</div>
-    <div class="sector-list">
-      <span class="sector-tag sector-up">🥇 贵金属 +2.63% 湖南白银/湖南黄金/中金黄金涨幅居前</span>
-      <span class="sector-tag sector-up">🚢 航运港口 最强主线！海通发展涨停（定增20亿购船）</span>
-      <span class="sector-tag sector-up">💧 液冷/IDC 集泰股份4连板，金帝股份4天3板</span>
-      <span class="sector-tag sector-up">💎 培育钻石 恒盛能源涨停，黄河旋风触板</span>
-      <span class="sector-tag sector-up">📈 券商 国盛证券盘中涨停→收+4.02% 护盘</span>
-      <span class="sector-tag sector-down">🌾 农林牧渔 继续杀跌 新赛股份跌停</span>
-      <span class="sector-tag sector-down">💀 高位人气股 一鸣食品/传智教育/深中华A/爱丽家居跌停</span>
-      <span class="sector-tag sector-down">📺 传媒/教育 走弱</span>
-    </div>
-  </div>
-
-  <div class="section">
-    <div class="section-title"><span class="icon">📢</span> 关键信号</div>
+    <div class="section-title"><span class="icon">📊</span> 风格切换信号</div>
     <div class="cards-grid">
       <div class="card">
-        <div class="card-title">指数虚涨个股杀跌</div>
-        <div style="font-size:1.2rem;margin:8px 0;color:var(--loss)">1846涨/3570跌</div>
-        <div class="card-sub">典型指数护盘行情。权重撑指数但多数个股亏钱。赚钱效应极差</div>
+        <div class="card-title">消费+周期接力</div>
+        <div style="font-size:1.2rem;margin:8px 0;color:var(--gain)">新希望涨停+泸州老窖+5%</div>
+        <div class="card-sub">猪周期+白酒复苏——资金从科技/AI切向传统消费。市场风格明显切换</div>
       </div>
       <div class="card">
-        <div class="card-title">航运成新主线</div>
-        <div style="font-size:1.2rem;margin:8px 0;color:var(--gain)">海通发展涨停+定增20亿</div>
-        <div class="card-sub">海运运价催化。资金从军工→航运切换。关注欧线集运期货大跌的反向信号</div>
+        <div class="card-title">航运/造船延续</div>
+        <div style="font-size:1.2rem;margin:8px 0;color:var(--gain)">中国船舶+9.15%</div>
+        <div class="card-sub">延续前日海通发展涨停逻辑。造船超级周期+海运运价催化</div>
       </div>
       <div class="card">
-        <div class="card-title">高位股退潮加速</div>
-        <div style="font-size:1.2rem;margin:8px 0;color:var(--loss)">多只妖股跌停</div>
-        <div class="card-sub">前期暴涨的游资股集中退潮。市场极度谨慎等待非农+CPI</div>
+        <div class="card-title">AI应用仍有余热</div>
+        <div style="font-size:1.2rem;margin:8px 0;color:var(--neutral)">世纪华通+7.89%</div>
+        <div class="card-sub">游戏/AI应用。但主线已从AI切向消费/周期</div>
       </div>
       <div class="card">
-        <div class="card-title">缩量观望</div>
-        <div style="font-size:1.2rem;margin:8px 0;color:var(--neutral)">成交1.76万亿 继续缩量</div>
-        <div class="card-sub">增量资金不进场。等明日非农（9/4）+8月CPI（9/11）信号</div>
+        <div class="card-title">港股风格差异</div>
+        <div style="font-size:1.2rem;margin:8px 0;color:var(--accent)">港股偏科技 vs A股偏消费</div>
+        <div class="card-sub">金蝶/联想/百度在港股涨幅榜 vs 新希望/泸州老窖在A股——两地风格分化</div>
       </div>
     </div>
-  </div>
-
-  <div class="alert-box">
-    <strong>⚠️ 关键风险</strong>：A股缩量震荡——市场在等非农+CPI两个数据定方向。1846涨/3570跌=指数红盘个股杀跌。60%+现金仓位仍为最优策略。
   </div>
 </section>
 
 <!-- ===== 美股 ===== -->
 <section class="tab-content" id="us-stock" data-print-title="美股盯盘" role="tabpanel">
   <div class="conclusion">
-    <strong>9/3 美股盘中：沃勒放鸽！加息概率60%→50%！七巨头集体上涨！Snowflake+21%！微软+3%（Azure重组）！TSLA+5.5%！博通-6.3%！费半开盘-2%！</strong><br>
-    道指+0.5%（~53,400），标普+0.4%（~7,690），纳指+0.4%（~26,330）。<strong>沃勒：若通胀降温→维持利率，过热→加息。讲话后黄金暴涨$40至$4,467，美股期货拉升</strong>。Snowflake+21%（财报全面beat），Palantir+9%，Robinhood+14.8%。微软+3%（宣布重组+按季披露Azure $294亿/季）。特斯拉+5.5%。英伟达$130亿收购Hugging Face。博通-6.3%（Q4指引低于预期0.7%）。<strong>AI软件/平台接棒AI硬件！</strong>
+    <strong>9/4 美股盘中：非农爆表+16.2万（预期+5.6万）！加息概率50%→61%！黄金跳水$4,365！特斯拉-5%（NHTSA审计Cybercab）！Lululemon-18%！半导体全线暴涨费半+3.23%！</strong><br>
+    道指-0.35%（~53,500），标普-0.11%（~7,740），纳指+0.13%（~26,620）。<strong>非农3倍于预期→加息概率飙至61%→美元跳涨→黄金闪崩$70+→美债收益率飙升</strong>。费半+3.23%（KLA+6.66%/希捷+5.30%/ARM+4.65%）。英伟达+2%。特斯拉-5%（Cybercab遭NHTSA调查）。Lululemon-18%（下调全年指引）。<strong>昨日"AI软件强/AI硬件弱"今日彻底反转——半导体全线暴涨！</strong>
   </div>
 
   <div class="alert-box">
-    <strong>⚠️ 持仓提示</strong>：沃勒放鸽是今日最大变量——加息概率从60%降至50%。但他说"不需要太多通胀加速就转鹰"。9/11 CPI是分水岭。Snowflake+21%说明AI从硬件转向软件/应用变现。博通-6.3%=AI硬件容错率极低。费半开盘-2%。60%+现金仓位+定投纪律不变。关注明日非农+9/11 CPI。
+    <strong>⚠️ 持仓提示</strong>：非农爆表→加息概率61%！但9/11 CPI才是真正分水岭。分析师认为"实际加息概率<15%，9月按兵不动+鹰派信号概率85%+"。半导体今日+3.23%但波动极大（昨日分化→今日全线暴涨）。特斯拉从昨日+5.42%→今日-5%。60%+现金仓位+定投纪律不变。
   </div>
 
   <div class="section">
-    <div class="section-title"><span class="icon">📈</span> 9/3 美股盘中实况（~10:34 ET）</div>
+    <div class="section-title"><span class="icon">📈</span> 9/4 美股盘中实况（~10:34 ET）</div>
     <div class="table-wrap">
       <table>
         <thead><tr><th>指标</th><th class="num">盘中数据</th><th>备注</th></tr></thead>
         <tbody>
-          <tr><td>道琼斯</td><td class="num up">+0.5%（~53,400）</td><td>沃勒放鸽+期货拉升</td></tr>
-          <tr><td>标普500</td><td class="num up">+0.4%（~7,690）</td><td>集体高开</td></tr>
-          <tr><td>纳斯达克</td><td class="num up">+0.4%（~26,330）</td><td>AI软件领涨</td></tr>
-          <tr><td>WTI原油</td><td class="num down">$92.51/桶</td><td>+1.65% 继续走高</td></tr>
-          <tr><td>布伦特</td><td class="num down">$96.58/桶</td><td>逼近$100！</td></tr>
-          <tr><td>现货黄金</td><td class="num up">$4,467/oz</td><td>+1.76% 沃勒后暴涨！</td></tr>
-          <tr><td>现货白银</td><td class="num up">$66.05/oz</td><td>+1.15%</td></tr>
-          <tr><td>美元指数</td><td class="num down">~99.40</td><td>沃勒后跳水</td></tr>
-          <tr><td>10Y收益率</td><td class="num up">4.754%</td><td>-4bp 沃勒后回落</td></tr>
-          <tr><td>Fed加息概率</td><td class="num up">~50%</td><td>从60%骤降！</td></tr>
+          <tr><td>道琼斯</td><td class="num down">-0.35%（~53,500）</td><td>非农后转跌</td></tr>
+          <tr><td>标普500</td><td class="num down">-0.11%（~7,740）</td><td>涨跌不一</td></tr>
+          <tr><td>纳斯达克</td><td class="num up">+0.13%（~26,620）</td><td>半导体撑住</td></tr>
+          <tr><td>费城半导体</td><td class="num up"><strong>+3.23%</strong></td><td>全线暴涨！</td></tr>
+          <tr><td>WTI原油</td><td class="num down">$89.28/桶</td><td>-2%+ 跌破$90！</td></tr>
+          <tr><td>现货黄金</td><td class="num down">~$4,388/oz</td><td>-1.3% 失守$4,400！盘中低$4,365</td></tr>
+          <tr><td>美元指数</td><td class="num up">99.18</td><td>非农后跳涨+0.3%</td></tr>
+          <tr><td>10Y收益率</td><td class="num down">4.80%</td><td>+3bp 加息预期</td></tr>
+          <tr><td>2Y收益率</td><td class="num down">4.425%</td><td>+7bp 2025年1月来最高</td></tr>
+          <tr><td>Fed加息概率</td><td class="num down"><strong>61%</strong></td><td>从50%飙升！</td></tr>
+          <tr><td>BTC</td><td class="num down"><$80,000</td><td>涨幅全部回吐</td></tr>
         </tbody>
       </table>
     </div>
   </div>
 
   <div class="section">
-    <div class="section-title"><span class="icon">👑</span> 科技七子（Magnificent 7）——"集体上涨！Meta+4% TSLA+5.5% MSFT+3%！"</div>
+    <div class="section-title"><span class="icon">🤖</span> 半导体板块——"费半+3.23%！全线暴涨！昨日弱势今日反转！"</div>
     <div class="table-wrap">
       <table>
         <thead><tr><th>股票</th><th class="num">盘中涨跌</th><th>备注</th></tr></thead>
         <tbody>
-          <tr><td style="color:var(--gain)"><strong>特斯拉 TSLA</strong></td><td class="num up"><strong>+5.53%</strong></td><td>马斯克G20预测10亿机器人+SpaceX联动</td></tr>
-          <tr><td style="color:var(--gain)"><strong>Meta META</strong></td><td class="num up"><strong>+4%</strong></td><td>盘初七巨头领涨</td></tr>
-          <tr><td style="color:var(--gain)"><strong>微软 MSFT</strong></td><td class="num up"><strong>+3%+</strong></td><td>重组财报结构！按季披露Azure $294亿/季</td></tr>
-          <tr><td style="color:var(--gain)">谷歌 GOOGL</td><td class="num up">+1.8%</td><td>从旧服务器拆DDR4缓解内存瓶颈</td></tr>
-          <tr><td style="color:var(--gain)">英伟达 NVDA</td><td class="num up">+1.03%</td><td>$130亿收购Hugging Face</td></tr>
-          <tr><td style="color:var(--gain)">苹果 AAPL</td><td class="num up">+0.76%</td><td>平稳</td></tr>
-          <tr><td style="color:var(--gain)">亚马逊 AMZN</td><td class="num up">+0.66%</td><td>温和</td></tr>
+          <tr><td style="color:var(--gain)"><strong>KLA Corp KLAC</strong></td><td class="num up"><strong>+6.66%</strong></td><td>Signal Arena美股涨幅第一！半导体检测龙头</td></tr>
+          <tr><td style="color:var(--gain)"><strong>希捷 STX</strong></td><td class="num up"><strong>+5.30%</strong></td><td>存储需求+铠侠NAND替代DRAM</td></tr>
+          <tr><td style="color:var(--gain)"><strong>ARM Holdings ARM</strong></td><td class="num up"><strong>+4.65%</strong></td><td>芯片架构龙头</td></tr>
+          <tr><td style="color:var(--gain)"><strong>应用材料 AMAT</strong></td><td class="num up"><strong>+4.64%</strong></td><td>半导体设备需求</td></tr>
+          <tr><td style="color:var(--gain)"><strong>Marvell MRVL</strong></td><td class="num up"><strong>+4.61%</strong></td><td>数据中心芯片</td></tr>
+          <tr><td style="color:var(--gain)">美光 MU</td><td class="num up">+4%+</td><td>存储板块领涨</td></tr>
+          <tr><td style="color:var(--gain)">SK海力士</td><td class="num up">+3.89%</td><td>存储/HBM</td></tr>
+          <tr><td style="color:var(--gain)">Coherent</td><td class="num up">+6%</td><td>光通信暴涨</td></tr>
+          <tr><td style="color:var(--gain)">英伟达 NVDA</td><td class="num up">+2%+</td><td>半导体共振</td></tr>
+          <tr><td style="color:var(--gain)">闪迪/希捷</td><td class="num up">+6%</td><td>存储全线暴涨</td></tr>
         </tbody>
       </table>
     </div>
-    <p style="font-size:0.75rem;color:var(--text-muted);margin-top:4px;">七巨头集体上涨！TSLA+5.5%/META+4%/MSFT+3%领涨。微软宣布2015年来首次重组财报结构</p>
+    <p style="font-size:0.75rem;color:var(--text-muted);margin-top:4px;">费半+3.23%！Signal Arena美股涨幅Top5全部为半导体公司！昨日"AI软件强/AI硬件弱"今日彻底反转</p>
   </div>
 
   <div class="section">
-    <div class="section-title"><span class="icon">🤖</span> AI板块——"Snowflake+21%！AI软件接棒硬件！博通-6.3%！"</div>
+    <div class="section-title"><span class="icon">👑</span> 科技七巨头 & 关键个股</div>
     <div class="table-wrap">
       <table>
         <thead><tr><th>股票</th><th class="num">盘中涨跌</th><th>备注</th></tr></thead>
         <tbody>
-          <tr><td style="color:var(--gain)"><strong>Snowflake SNOW</strong></td><td class="num up"><strong>+21%</strong></td><td>FY27 Q2营收$15.5亿beat+全年指引上调！消费型AI云验证</td></tr>
-          <tr><td style="color:var(--gain)">Robinhood HOOD</td><td class="num up">+14.78%</td><td>加密+散户交易热度</td></tr>
-          <tr><td style="color:var(--gain)">Palantir PLTR</td><td class="num up">+8.87%</td><td>AI国防/企业需求</td></tr>
-          <tr><td style="color:var(--gain)">ServiceNow NOW</td><td class="num up">+6.39%</td><td>企业AI应用</td></tr>
-          <tr><td style="color:var(--gain)">Coinbase COIN</td><td class="num up">+8.60%</td><td>加密反弹</td></tr>
-          <tr><td style="color:var(--gain)">微软 MSFT</td><td class="num up">+3%+</td><td>Azure重组+按季披露</td></tr>
-          <tr><td style="color:var(--loss)"><strong>博通 AVGO</strong></td><td class="num down"><strong>-6.3%</strong></td><td>Q4指引$348亿<预期$350亿！市值$1.64万亿创4月来新低</td></tr>
-          <tr><td style="color:var(--loss)">HPE</td><td class="num down">-8%+</td><td>FY27 Q3业绩不及预期</td></tr>
-          <tr><td style="color:var(--loss)">Ciena CIEN</td><td class="num down">-10%</td><td>光通信承压</td></tr>
-          <tr><td style="color:var(--loss)">Ultragenyx RARE</td><td class="num down">-47%</td><td>药物后期试验失败</td></tr>
+          <tr><td style="color:var(--gain)">英伟达 NVDA</td><td class="num up">+2%+</td><td>半导体板块共振</td></tr>
+          <tr><td style="color:var(--loss)"><strong>特斯拉 TSLA</strong></td><td class="num down"><strong>-5%</strong></td><td>Cybercab遭NHTSA审计！发布会失望！昨日+5.42%→今日-5%</td></tr>
+          <tr><td style="color:var(--loss)"><strong>Lululemon LULU</strong></td><td class="num down"><strong>-18%</strong></td><td>下调全年指引-5%~-7%，Q2同店-9%，创8年新低</td></tr>
+          <tr><td style="color:var(--gain)">Planet Labs</td><td class="num up">+7%</td><td>Q2营收超预期</td></tr>
+          <tr><td style="color:var(--gain)">百度 BIDU（港）</td><td class="num up">+5.25%</td><td>AI搜索+自动驾驶</td></tr>
         </tbody>
       </table>
     </div>
-    <p style="font-size:0.75rem;color:var(--text-muted);margin-top:4px;">AI软件/平台全面接棒AI硬件！Snowflake+21%验证消费型AI云。但博通-6.3%/Ciena-10%=AI硬件容错率极低。费半开盘-2%</p>
   </div>
 
   <div class="section">
-    <div class="section-title"><span class="icon">🕊️</span> 沃勒放鸽——"加息概率60%→50%！CPI定生死！"</div>
+    <div class="section-title"><span class="icon">💥</span> 非农爆表——"16.2万 vs 预期5.6万！加息概率50%→61%！"</div>
     <div class="cards-grid">
       <div class="card">
-        <div class="card-title">沃勒核心表态</div>
-        <div style="font-size:1.2rem;margin:8px 0;color:var(--gain)">条件式暂停</div>
-        <div class="card-sub">通胀降温→维持利率不变；通胀过热→支持加息。预期下周CPI/PPI"处于合理水平"。三个月核心通胀2.8%可接受</div>
+        <div class="card-title">非农核心数据</div>
+        <div style="font-size:1.5rem;margin:8px 0;color:var(--loss)">+16.2万（预期+5.6万）</div>
+        <div class="card-sub">3倍于预期！前值大幅上修：7月-2.3万→+2.1万，6月+2万→+3.1万。失业率4.1%不变</div>
       </div>
       <div class="card">
-        <div class="card-title">市场反应</div>
-        <div style="font-size:1.2rem;margin:8px 0;color:var(--gain)">全线乐观！</div>
-        <div class="card-sub">黄金+$40至$4,467 | 10Y-4bp至4.754% | 美股期货拉升 | 美元跳水 | 加息概率60%→50%</div>
+        <div class="card-title">市场剧震</div>
+        <div style="font-size:1.2rem;margin:8px 0;color:var(--loss)">黄金闪崩$70+！</div>
+        <div class="card-sub">黄金失守$4,400至$4,365 | 10Y+3bp至4.80% | 2Y+7bp至4.425% | 美元跳涨至99.39 | BTC<$80K</div>
       </div>
       <div class="card">
-        <div class="card-title">关键日程</div>
-        <div style="font-size:1.2rem;margin:8px 0;color:var(--neutral)">决战9/11 CPI</div>
-        <div class="card-sub">明日非农→9/11 CPI/PPI→9/15 FOMC。沃勒给9月会议设了清晰条件句：只要通胀不过热→按兵不动</div>
+        <div class="card-title">加息概率飙升</div>
+        <div style="font-size:1.5rem;margin:8px 0;color:var(--loss)">61%（LSEG）/ 67%（零对冲）</div>
+        <div class="card-sub">非农前50%→非农后61%。但分析师认为"实际加息概率<15%，9月维持不变概率85%+"</div>
       </div>
       <div class="card">
-        <div class="card-title">当前利率</div>
-        <div style="font-size:1.2rem;margin:8px 0;color:var(--text-primary)">3.50%-3.75%</div>
-        <div class="card-sub">沃勒称"仅对总需求形成轻微限制"。7月会议已有3名FOMC成员支持加息25bp</div>
+        <div class="card-title">关键前瞻</div>
+        <div style="font-size:1.2rem;margin:8px 0;color:var(--neutral)">9/11 CPI定生死</div>
+        <div class="card-sub">40万亿美债利息压力+AI泡沫风险+白宫政治压力=加息成本极高。CPI降温→按兵不动</div>
       </div>
     </div>
   </div>
 
   <div class="quote-box">
-    沃勒放鸽是今日最大变量。从"加息几乎确定"到"条件式暂停"——市场获得喘息空间。但他说得很清楚："不需要太多通胀加速就转鹰"。一切取决于9/11 CPI。AI板块从硬件→软件/应用的切换非常明显：Snowflake+21%、ServiceNow+6%、Palantir+9% vs 博通-6.3%、Ciena-10%。微软Azure重组单独披露=$294亿/季规模令人印象深刻。60%+现金仓位+关注明日非农+9/11 CPI。
+    非农爆表≠美联储一定加息。关键逻辑：①40万亿美债利息成本让每次加息25bp多付$1000亿/年；②加息=拉爆AI科技泡沫，美国承受不起；③万斯公开喊话降息，政治压力巨大；④9/11 CPI才是真正分水岭。半导体今日+3.23%是超跌反弹还是趋势逆转需观察。特斯拉一天从+5.42%→-5%=当前市场对"AI故事"容错率极低。60%+现金仓位继续最优。
   </div>
 </section>
 
 <!-- ===== 港股 ===== -->
 <section class="tab-content" id="hk-stock" data-print-title="港股盯盘" role="tabpanel">
   <div class="conclusion">
-    <strong>9/3收盘：恒指-0.39%报25,213！高开低走！科指-1.08%刷新阶段新低！</strong><br>
-    恒指25,213.31（-0.39%），恒生科技4,468.48（-1.08%，阶段新低），国企指数8,385.24（-0.77%）。大型科技全线走弱：小米/阿里/网易跌超2%，美团-1.4%，腾讯-1.19%。内银集体回落：农行-2.41%。黄金股强势（中国大冶有色+15%）。全日主板成交1993.82亿港元（缩量）。
+    <strong>9/4收盘：全面反弹！金蝶+7.26%！联想+5.83%！百度+5.25%！美团+5.02%！科技/AI回归！</strong><br>
+    Signal Arena涨幅榜Top5全部+5%以上！金蝶国际+7.26%（企业SaaS），联想+5.83%（AI PC），优必选+5.25%（机器人），百度+5.25%（AI搜索），美团+5.02%（消费复苏）。昨日恒指-0.39%后今日全面反弹
   </div>
 
   <div class="section">
-    <div class="section-title"><span class="icon">📈</span> 9/3 港股收盘</div>
+    <div class="section-title"><span class="icon">🔥</span> 港股涨幅榜Top5（Signal Arena）</div>
     <div class="table-wrap">
       <table>
-        <thead><tr><th>指数</th><th class="num">收盘</th><th class="num">涨跌幅</th><th>备注</th></tr></thead>
+        <thead><tr><th>排名</th><th>代码</th><th>名称</th><th class="num">现价</th><th class="num">涨幅</th><th>逻辑</th></tr></thead>
         <tbody>
-          <tr><td>恒生指数</td><td class="num">25,213.31</td><td class="num down">-0.39%</td><td>高开低走</td></tr>
-          <tr><td>恒生科技</td><td class="num">4,468.48</td><td class="num down">-1.08%</td><td>刷新阶段新低！</td></tr>
-          <tr><td>国企指数</td><td class="num">8,385.24</td><td class="num down">-0.77%</td><td></td></tr>
+          <tr><td>1</td><td>hk00268</td><td><strong>金蝶国际</strong></td><td class="num">8.86</td><td class="num up"><strong>+7.26%</strong></td><td>企业SaaS/AI应用</td></tr>
+          <tr><td>2</td><td>hk00992</td><td><strong>联想集团</strong></td><td class="num">32.32</td><td class="num up"><strong>+5.83%</strong></td><td>AI PC+服务器</td></tr>
+          <tr><td>3</td><td>hk09880</td><td>优必选</td><td class="num">83.25</td><td class="num up">+5.25%</td><td>机器人概念</td></tr>
+          <tr><td>4</td><td>hk09888</td><td>百度集团</td><td class="num">96.30</td><td class="num up">+5.25%</td><td>AI搜索+自动驾驶</td></tr>
+          <tr><td>5</td><td>hk03690</td><td>美团-W</td><td class="num">81.55</td><td class="num up">+5.02%</td><td>消费复苏</td></tr>
         </tbody>
       </table>
     </div>
-    <p style="font-size:0.75rem;color:var(--text-muted);margin-top:4px;">全日主板成交1993.82亿港元（缩量173亿）</p>
   </div>
 
-  <div class="section">
-    <div class="section-title"><span class="icon">📊</span> 港股今日涨跌</div>
-    <div class="sector-list">
-      <span class="sector-tag sector-up">💊 医药 中国生物制药+5.99% 石药集团走强</span>
-      <span class="sector-tag sector-up">🏠 华润置地+3.46% 8月楼市活跃</span>
-      <span class="sector-tag sector-up">🥇 黄金股 中国大冶有色金属+15%！</span>
-      <span class="sector-tag sector-up">🛡️ 保险 中国平安+2.71%</span>
-      <span class="sector-tag sector-down">💻 大型科技全线走弱 小米/阿里/网易跌超2% 腾讯-1.19% 美团-1.4%</span>
-      <span class="sector-tag sector-down">🏦 内银回落 农行-2.41% 工行-1.89% 建行-1.09%</span>
-      <span class="sector-tag sector-down">⛽ 石油 中海油-1.12% 中石油-0.79%</span>
-    </div>
-    <div class="quote-box">
-    港股今日高开低走。扰动因素：①日元升值（日本央行倾向本月加息25bp）→套息交易逆转风险；②高盛提示全球回报下降；③半导体关税消息扰动。但黄金股/医药/保险逆势走强。恒生科技-1.08%刷新阶段新低——全球流动性预期收紧直接压制科技成长。
-    </div>
+  <div class="quote-box">
+    港股从昨日"高开低走-0.39%"转为今日全面反弹。科技/AI回归涨幅榜：金蝶（SaaS）/联想（AI PC）/百度（AI）/优必选（机器人）/美团（消费）。与A股形成鲜明对比——A股偏消费/周期，港股偏科技/AI
   </div>
 </section>
 
 <!-- ===== 持仓基金 ===== -->
 <section class="tab-content" id="fund" data-print-title="持仓基金" role="tabpanel">
   <div class="conclusion">
-    <strong>持仓综合评估（9/3）：沃勒放鸽！加息概率降至50%！黄金暴涨$4,467！A股勉强收红1846涨/3570跌！</strong><br>
-    A股：沪指+0.02%（3942），缩量勉强收红。美股：沃勒放鸽+AI软件领涨（Snowflake+21%）。黄金暴涨$4,467（+1.76%）。关键：明日非农+9/11 CPI决定FOMC方向。<br><br>
+    <strong>持仓综合评估（9/4）：非农爆表+16.2万！加息概率61%！黄金跳水$4,365！半导体暴涨费半+3.23%！特斯拉-5%！</strong><br>
+    美股：非农后加息预期飙升，但CPI才是关键。A股：消费/周期接力。港股：科技全面反弹。黄金闪崩后$4,388。<br><br>
     <strong>投资规则</strong>：60%+现金仓位 | 半导体高位不新增 | QDII限购不追加 | A股:QDII ≈ 70:30
   </div>
 
   <div class="alert-box">
-    <strong>⚠️ 关键信号</strong>：沃勒放鸽→加息概率从60%降至50%。但条件是"通胀不过热"。9/11 CPI是分水岭。A股缩量观望等待数据。AI板块从硬件→软件切换（Snowflake+21% vs 博通-6.3%）。60%+现金仓位继续最优。
+    <strong>⚠️ 关键信号</strong>：非农爆表→加息概率61%。但分析师认为实际加息概率<15%。9/11 CPI是分水岭。半导体今日+3.23%但波动极大。特斯拉-5%=容错率极低。60%+现金仓位继续最优。
   </div>
 
   <div class="section">
-    <div class="section-title"><span class="icon">💼</span> 持仓净值速览（9/3更新）</div>
+    <div class="section-title"><span class="icon">💼</span> 持仓净值速览（9/4更新）</div>
     <div class="table-wrap">
       <table>
-        <thead><tr><th>基金</th><th>代码</th><th class="num">最新净值</th><th class="num">当日涨跌</th><th>操作</th></tr></thead>
+        <thead><tr><th>基金</th><th>代码</th><th class="num">最新净值</th><th class="num">当日变动</th><th>操作</th></tr></thead>
         <tbody>
           <tr>
             <td><strong>半导体ETF联接C</strong></td>
             <td>020465</td>
             <td class="num">待更新</td>
-            <td class="num flat">估+0.02% 跟随科创</td>
+            <td class="num up">美股费半+3.23%！</td>
             <td>❌ 不加仓</td>
           </tr>
           <tr>
             <td><strong>科创200ETF联接C</strong></td>
             <td>023383</td>
             <td class="num">待更新</td>
-            <td class="num flat">估-0.01%</td>
+            <td class="num flat">A股风格切换消费/周期</td>
             <td>✅ 月投250元</td>
           </tr>
           <tr>
             <td><strong>标普500 QDII A</strong></td>
             <td>017641</td>
             <td class="num">待更新</td>
-            <td class="num up">美股盘中+0.4%</td>
+            <td class="num down">非农后-0.11%</td>
             <td>日投10元限额</td>
           </tr>
           <tr>
             <td><strong>纳指100联接A</strong></td>
             <td>040046</td>
             <td class="num">待更新</td>
-            <td class="num up">纳指+0.4%</td>
+            <td class="num up">纳指+0.13% 半导体撑住</td>
             <td>限额不追加</td>
           </tr>
           <tr>
             <td><strong>纳指100联接C</strong></td>
             <td>014978</td>
             <td class="num">待更新</td>
-            <td class="num up">纳指+0.4%</td>
+            <td class="num up">纳指+0.13%</td>
             <td>限额不追加</td>
           </tr>
         </tbody>
       </table>
     </div>
-    <p style="font-size:0.75rem;color:var(--text-muted);margin-top:8px;">基金净值待官方披露后更新。估算值基于当日指数变动推算，仅供参考。</p>
   </div>
 
   <div class="section">
@@ -818,22 +785,22 @@ a:hover { text-decoration: underline; }
       <div class="card">
         <div class="card-title">半导体 020465</div>
         <div style="font-size:1.5rem;margin:8px 0;color:var(--loss)">❌ 不加仓</div>
-        <div class="card-sub">A股半导体今日随大盘持平。美股费半开盘-2%+博通-6.3%。AI硬件容错率极低</div>
+        <div class="card-sub">美股费半+3.23%全线暴涨。但波动极大（昨日分化→今日暴涨）。不追高</div>
       </div>
       <div class="card">
         <div class="card-title">科创200 023383</div>
         <div style="font-size:1.5rem;margin:8px 0;color:var(--gain)">✅ 月投250元</div>
-        <div class="card-sub">科创综指-0.01%持平。低位震荡。定投纪律不变</div>
+        <div class="card-sub">A股风格切换消费/周期。科技偏弱。低位定投纪律不变</div>
       </div>
       <div class="card">
         <div class="card-title">QDII（标普/纳指）</div>
-        <div style="font-size:1.5rem;margin:8px 0;color:var(--gain)">📈 沃勒放鸽利好</div>
-        <div class="card-sub">加息概率从60%降至50%。美股盘中+0.4%。关注明日非农+9/11 CPI</div>
+        <div style="font-size:1.5rem;margin:8px 0;color:var(--neutral)">⚠️ 非农后承压</div>
+        <div class="card-sub">加息概率61%。但实际加息概率<15%。关注9/11 CPI</div>
       </div>
       <div class="card">
         <div class="card-title">黄金</div>
-        <div style="font-size:1.1rem;margin:8px 0;color:var(--gold)">📈 暴涨$4,467！</div>
-        <div class="card-sub">沃勒放鸽+美元走弱+地缘风险=黄金暴涨突破。已变现手镯下车，关注行情</div>
+        <div style="font-size:1.1rem;margin:8px 0;color:var(--loss)">📉 闪崩至$4,365</div>
+        <div class="card-sub">非农后失守$4,400。已变现手镯下车。中长期逻辑未变，短期承压</div>
       </div>
     </div>
   </div>
@@ -842,82 +809,82 @@ a:hover { text-decoration: underline; }
 <!-- ===== 宏观·黄金 ===== -->
 <section class="tab-content" id="macro" data-print-title="宏观与黄金" role="tabpanel">
   <div class="conclusion">
-    <strong>黄金：暴涨 $4,467/oz 📈 沃勒放鸽后暴涨$40+！美元指数跳水至99.4</strong><br>
-    沃勒讲话→加息概率60%→50%→美元跳水→黄金暴涨。但油价逼近$100仍为通胀隐患。黄金在$4,400-4,500区间。
+    <strong>黄金闪崩 $4,388/oz 📉 非农后失守$4,400！盘中最低$4,365！美元指数99.18跳涨！油价跌破$90！</strong><br>
+    非农+16.2万→加息预期飙至61%→美元跳涨→黄金闪崩。但40万亿美债+地缘风险=黄金中长期逻辑未变。
   </div>
 
   <div class="section">
-    <div class="section-title"><span class="icon">🌍</span> 关键宏观指标（9/3更新）</div>
+    <div class="section-title"><span class="icon">🌍</span> 关键宏观指标（9/4更新 — 非农后剧变！）</div>
     <div class="macro-grid">
       <div class="macro-item">
         <div class="macro-name">美元指数 DXY</div>
-        <div class="macro-val">~99.40</div>
-        <div class="macro-note">沃勒后跳水 -0.2%</div>
+        <div class="macro-val">99.18</div>
+        <div class="macro-note">+0.3% 非农后跳涨！</div>
       </div>
       <div class="macro-item">
         <div class="macro-name">现货黄金</div>
-        <div class="macro-val" style="color:var(--gain)">$4,467/oz</div>
-        <div class="macro-note">+1.76% 沃勒放鸽暴涨！</div>
+        <div class="macro-val" style="color:var(--loss)">~$4,388/oz</div>
+        <div class="macro-note">-1.3%~-2% 失守$4,400！盘中低$4,365</div>
       </div>
       <div class="macro-item">
         <div class="macro-name">10Y美债</div>
-        <div class="macro-val up">4.754%</div>
-        <div class="macro-note">-4bp 沃勒后回落</div>
+        <div class="macro-val down">4.80%</div>
+        <div class="macro-note">+3bp 加息预期推升</div>
+      </div>
+      <div class="macro-item">
+        <div class="macro-name">2Y美债</div>
+        <div class="macro-val down">4.425%</div>
+        <div class="macro-note">+7bp 2025年1月来最高！</div>
       </div>
       <div class="macro-item">
         <div class="macro-name">30Y美债</div>
-        <div class="macro-val">~5.20%</div>
-        <div class="macro-note">小幅回落</div>
+        <div class="macro-val down">5.258%</div>
+        <div class="macro-note">上行</div>
       </div>
       <div class="macro-item">
         <div class="macro-name">WTI原油</div>
-        <div class="macro-val down">$92.51</div>
-        <div class="macro-note">+1.65% 继续走高</div>
+        <div class="macro-val up">$89.28</div>
+        <div class="macro-note">-2%+ 跌破$90！</div>
       </div>
       <div class="macro-item">
         <div class="macro-name">布伦特原油</div>
-        <div class="macro-val down">$96.58</div>
-        <div class="macro-note">逼近$100！</div>
+        <div class="macro-val up">~$94</div>
+        <div class="macro-note">-2% 回落</div>
       </div>
       <div class="macro-item">
         <div class="macro-name">白银</div>
-        <div class="macro-val up">$66.05/oz</div>
-        <div class="macro-note">+1.15% 跟随黄金</div>
-      </div>
-      <div class="macro-item">
-        <div class="macro-name">日本10Y债</div>
-        <div class="macro-val down">~3.0%</div>
-        <div class="macro-note">1996年来最高</div>
-      </div>
-      <div class="macro-item">
-        <div class="macro-name">英国10Y Gilt</div>
-        <div class="macro-val down">5.25%</div>
-        <div class="macro-note">2008年来最高</div>
+        <div class="macro-val down">~$65.6/oz</div>
+        <div class="macro-note">-3% 跌破$66</div>
       </div>
       <div class="macro-item">
         <div class="macro-name">VIX</div>
-        <div class="macro-val">~15.20</div>
-        <div class="macro-note">前日-7% 恐慌降温</div>
+        <div class="macro-val">~15</div>
+        <div class="macro-note">维持低位</div>
       </div>
       <div class="macro-item">
         <div class="macro-name">Fed加息概率</div>
-        <div class="macro-val up">~50%</div>
-        <div class="macro-note">从60%骤降！沃勒放鸽</div>
+        <div class="macro-val down">61%</div>
+        <div class="macro-note">从50%飙升！非农后！</div>
       </div>
       <div class="macro-item">
-        <div class="macro-name">在岸人民币</div>
-        <div class="macro-val">6.7178</div>
-        <div class="macro-note">离岸6.71</div>
+        <div class="macro-name">BTC</div>
+        <div class="macro-val down"><$80,000</div>
+        <div class="macro-note">涨幅全部回吐</div>
+      </div>
+      <div class="macro-item">
+        <div class="macro-name">USD/JPY</div>
+        <div class="macro-val">156.27</div>
+        <div class="macro-note">非农后一度156.75</div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ===== 本周事件 ===== -->
-<section class="tab-content" id="events" data-print-title="本周事件日历" role="tabpanel">
+<!-- ===== 事件日历 ===== -->
+<section class="tab-content" id="events" data-print-title="事件日历" role="tabpanel">
   <div class="conclusion">
-    <strong>沃勒放鸽是本周转折！但决战在9/11 CPI！本周剩余：明日非农→9/9苹果发布会→9/11 CPI/PPI→9/15 FOMC</strong><br>
-    沃勒给9月会议设了清晰条件句：只要通胀不过热→按兵不动。明日非农为第一个数据验证。
+    <strong>非农已出：+16.2万（预期+5.6万）！加息概率→61%！决战9/11 CPI！下一个变量：OPEC+周日→苹果9/9→CPI/PPI 9/11→FOMC 9/15</strong><br>
+    非农好≠一定加息。40万亿美债+AI泡沫+白宫政治压力=加息成本极高。9/11 CPI是分水岭。
   </div>
 
   <div class="section">
@@ -925,19 +892,19 @@ a:hover { text-decoration: underline; }
     <ul class="event-list">
       <li class="event-item">
         <div class="event-date">9/1（周二）已过</div>
-        <div class="event-text">✅ 美伊冲突升级（美军空袭伊朗6.5h） + ✅ ISM 54.6 + ✅ 油价破$90 <span class="event-stars">✅ 已发生</span></div>
+        <div class="event-text">✅ 美伊冲突升级 + ISM 54.6 + 油价破$90 <span class="event-stars">✅ 已发生</span></div>
       </li>
       <li class="event-item">
         <div class="event-date">9/2（周三）已过</div>
-        <div class="event-text">✅ 三指反弹+0.45~0.56% + ✅ ADP +3.8万爆冷 + ✅ Dell AI炸裂+15.8% + ✅ 博通盘后beat+miss <span class="event-stars">✅ 已发生</span></div>
+        <div class="event-text">✅ 三指反弹 + ADP +3.8万 + Dell AI + 博通盘后 <span class="event-stars">✅ 已发生</span></div>
       </li>
       <li class="event-item">
-        <div class="event-date">9/3（周四）今日</div>
-        <div class="event-text">✅ 沃勒放鸽！加息概率60%→50% + ✅ Snowflake+21% + ✅ 微软重组Azure + ✅ 英伟达收购Hugging Face $130亿 <span class="event-stars">⭐⭐⭐⭐⭐</span></div>
+        <div class="event-date">9/3（周四）已过</div>
+        <div class="event-text">✅ 沃勒放鸽 + 三指+1%+ + Snowflake+21% + 微软重组 + NVDA收购HF <span class="event-stars">✅ 已发生</span></div>
       </li>
-      <li class="event-item event-critical">
-        <div class="event-date">9/4（周五明日）</div>
-        <div class="event-text">⭐ 8月非农就业报告 — 预期+5.6万（ADP仅+3.8万）<span class="event-stars">⭐⭐⭐⭐⭐</span></div>
+      <li class="event-item">
+        <div class="event-date">9/4（周五今日）已过</div>
+        <div class="event-text">✅ 非农+16.2万（预期+5.6万）+ ✅ 加息概率→61% + ✅ 黄金闪崩$4,365 + ✅ 费半+3.23% + ✅ TSLA-5% + ✅ LULU-18% <span class="event-stars">⭐⭐⭐⭐⭐</span></div>
       </li>
       <li class="event-item">
         <div class="event-date">9/5（周六）</div>
@@ -945,7 +912,7 @@ a:hover { text-decoration: underline; }
       </li>
       <li class="event-item">
         <div class="event-date">9/7（周日）</div>
-        <div class="event-text">OPEC+会议——据悉可能维持产量政策不变 <span class="event-stars">⭐⭐⭐⭐</span></div>
+        <div class="event-text">OPEC+会议——供应端变量 <span class="event-stars">⭐⭐⭐⭐</span></div>
       </li>
       <li class="event-item">
         <div class="event-date">9/9（周二）</div>
@@ -966,24 +933,24 @@ a:hover { text-decoration: underline; }
     <div class="section-title"><span class="icon">⚠️</span> 核心风险评估</div>
     <div class="cards-grid">
       <div class="card">
-        <div class="card-title">油价逼近$100</div>
-        <div style="font-size:1.2rem;margin:8px 0;color:var(--loss)">WTI $92.5 布油 $96.6</div>
-        <div class="card-sub">若破$100→通胀预期再起→沃勒条件式暂停立即变加息。OPEC+周日会议为供应端变量</div>
+        <div class="card-title">非农爆表→加息预期</div>
+        <div style="font-size:1.2rem;margin:8px 0;color:var(--loss)">加息概率61%</div>
+        <div class="card-sub">非农+16.2万3倍于预期。但分析师认为实际加息概率<15%。40万亿美债+AI泡沫=加息成本极高。9/11 CPI是分水岭</div>
       </div>
       <div class="card">
-        <div class="card-title">沃勒"条件式暂停"</div>
-        <div style="font-size:1.2rem;margin:8px 0;color:var(--neutral)">加息概率50%</div>
-        <div class="card-sub">双向条件：通胀降温→按兵不动；过热→加息。9/11 CPI是分水岭。7月已有3名FOMC成员支持加息</div>
+        <div class="card-title">油价跌破$90</div>
+        <div style="font-size:1.2rem;margin:8px 0;color:var(--gain)">WTI $89.28 -2%</div>
+        <div class="card-sub">从逼近$100到跌破$90——短期通胀压力缓解。但OPEC+周日会议+美伊冲突仍是供应端变量</div>
       </div>
       <div class="card">
-        <div class="card-title">全球债市仍紧张</div>
-        <div style="font-size:1.2rem;margin:8px 0;color:var(--loss)">日债3% 英Gilt 5.25%</div>
-        <div class="card-sub">虽沃勒讲话后10Y小幅回落至4.75%，但全球利率中枢仍在高位。MOVE指数本周+10%</div>
+        <div class="card-title">半导体波动极大</div>
+        <div style="font-size:1.2rem;margin:8px 0;color:var(--neutral)">费半+3.23%</div>
+        <div class="card-sub">昨日"AI硬件弱"→今日"全线暴涨"。超跌反弹还是趋势逆转需观察。铠侠NAND替代DRAM催化</div>
       </div>
       <div class="card">
-        <div class="card-title">AI硬件容错率极低</div>
-        <div style="font-size:1.2rem;margin:8px 0;color:var(--loss)">博通-6.3% 费半-2%</div>
-        <div class="card-sub">Q3完美beat但Q4指引差0.7%就跌6%。已被定价"必须超预期"。但AI软件/平台接棒（SNOW+21%）</div>
+        <div class="card-title">特斯拉多空极速翻转</div>
+        <div style="font-size:1.2rem;margin:8px 0;color:var(--loss)">昨日+5.42%→今日-5%</div>
+        <div class="card-sub">Cybercab NHTSA审计+发布会失望。当前市场对"AI故事"容错率极低</div>
       </div>
     </div>
   </div>
@@ -993,8 +960,8 @@ a:hover { text-decoration: underline; }
 
 <footer>
   <div class="container">
-    <p>数据来源：<a href="https://signal.coze.com" target="_blank" rel="noopener noreferrer">Signal Arena API</a>、<a href="https://www.eastmoney.com" target="_blank" rel="noopener noreferrer">东方财富</a>、<a href="https://www.cls.cn" target="_blank" rel="noopener noreferrer">财联社</a>、<a href="https://finance.sina.com.cn" target="_blank" rel="noopener noreferrer">新浪财经</a>、<a href="https://www.cnbc.com" target="_blank" rel="noopener noreferrer">CNBC</a>、<a href="https://fund.eastmoney.com" target="_blank" rel="noopener noreferrer">天天基金</a></p>
-    <p>更新时间：2026-09-03 22:34 · A股已收盘/美股盘中/港股已收盘 | 每日盯盘看板 · 奥丁的乌鸦</p>
+    <p>数据来源：<a href="https://signal.coze.com" target="_blank" rel="noopener noreferrer">Signal Arena API</a>、<a href="https://www.eastmoney.com" target="_blank" rel="noopener noreferrer">东方财富</a>、<a href="https://www.cls.cn" target="_blank" rel="noopener noreferrer">财联社</a>、<a href="https://finance.sina.com.cn" target="_blank" rel="noopener noreferrer">新浪财经</a>、<a href="https://www.cnbc.com" target="_blank" rel="noopener noreferrer">CNBC</a>、<a href="https://www.morningstar.com" target="_blank" rel="noopener noreferrer">Morningstar</a>、<a href="https://www.fx678.com" target="_blank" rel="noopener noreferrer">汇通财经</a></p>
+    <p>更新时间：2026-09-04 22:34 · A股已收盘/美股盘中/港股已收盘 | 每日盯盘看板 · 奥丁的乌鸦</p>
     <p style="margin-top:8px;">⚠️ 仅供投资参考，不构成投资建议</p>
   </div>
 </footer>
@@ -1020,7 +987,6 @@ document.querySelector('.tab-nav').addEventListener('keydown', e => {
   if (e.key === 'ArrowRight' && idx < tabs.length - 1) { tabs[idx + 1].focus(); tabs[idx + 1].click(); }
   if (e.key === 'ArrowLeft' && idx > 0) { tabs[idx - 1].focus(); tabs[idx - 1].click(); }
 });
-
 </script>
 
 <!-- Floating Components (injected) -->
