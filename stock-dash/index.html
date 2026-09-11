@@ -1293,5 +1293,18 @@ document.querySelector('.tab-nav').addEventListener('keydown', e => {
 })();
 </script>
 
+
+<!-- Visitor Tracking (counterapi.com) -->
+<script>
+(function(){
+    var today = new Date().toISOString().slice(0,10);
+    var key = 'stock-dash';
+    var lastVisit = localStorage.getItem('pv_' + key + '_date');
+    if (lastVisit !== today) {
+        fetch('https://counterapi.com/api/praxisfitme/' + key + '/up').catch(function(){});
+        localStorage.setItem('pv_' + key + '_date', today);
+    }
+})();
+</script>
 </body>
 </html>
