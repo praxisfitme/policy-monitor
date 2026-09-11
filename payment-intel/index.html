@@ -1778,5 +1778,18 @@ if(el){e.preventDefault();el.scrollIntoView({behavior:'smooth'});}
     updateLinks();
 })();
 </script>
+
+<!-- Visitor Tracking (counterapi.com) -->
+<script>
+(function(){
+    var today = new Date().toISOString().slice(0,10);
+    var key = 'payment-intel';
+    var lastVisit = localStorage.getItem('pv_' + key + '_date');
+    if (lastVisit !== today) {
+        fetch('https://counterapi.com/api/praxisfitme/' + key + '/up').catch(function(){});
+        localStorage.setItem('pv_' + key + '_date', today);
+    }
+})();
+</script>
 </body>
 </html>
