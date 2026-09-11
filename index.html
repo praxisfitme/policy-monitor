@@ -506,6 +506,73 @@
             .feedback-modal { padding: 20px 16px; }
             .feedback-btn { min-width: 100px; font-size: 0.8125rem; }
         }
+    
+        /* ── Visitor Stats ── */
+        .visitor-stats {
+            position: relative;
+            z-index: 1;
+            max-width: 900px;
+            width: 100%;
+            padding: 0 24px 12px;
+        }
+        .visitor-stats-inner {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            padding: 16px 20px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            flex-wrap: wrap;
+        }
+        .visitor-stat-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 14px;
+            border-radius: 8px;
+            background: var(--bg-deep);
+            border: 1px solid var(--border);
+            transition: all 0.2s ease;
+        }
+        .visitor-stat-item:hover {
+            border-color: var(--border-hover);
+            transform: translateY(-1px);
+        }
+        .visitor-stat-icon {
+            font-size: 1.1rem;
+            line-height: 1;
+        }
+        .visitor-stat-info {
+            display: flex;
+            flex-direction: column;
+            gap: 1px;
+        }
+        .visitor-stat-label {
+            font-size: 0.68rem;
+            color: var(--text-muted);
+            line-height: 1.2;
+            white-space: nowrap;
+        }
+        .visitor-stat-value {
+            font-size: 0.88rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            line-height: 1.2;
+            font-variant-numeric: tabular-nums;
+        }
+        .visitor-stat-value.loading {
+            color: var(--text-muted);
+            font-weight: 400;
+        }
+        @media (max-width: 640px) {
+            .visitor-stats { padding: 0 16px 12px; }
+            .visitor-stats-inner { gap: 10px; padding: 12px 14px; }
+            .visitor-stat-item { padding: 5px 10px; }
+            .visitor-stat-label { font-size: 0.62rem; }
+            .visitor-stat-value { font-size: 0.8rem; }
+        }
+
     </style>
 </head>
 <body>
@@ -574,6 +641,41 @@
         </a>
     </main>
 
+
+    <!-- Visitor Stats -->
+    <div class="visitor-stats">
+        <div class="visitor-stats-inner">
+            <div class="visitor-stat-item">
+                <span class="visitor-stat-icon">📊</span>
+                <div class="visitor-stat-info">
+                    <span class="visitor-stat-label">本页累计访客</span>
+                    <span class="visitor-stat-value loading" id="stat-portal">--</span>
+                </div>
+            </div>
+            <div class="visitor-stat-item">
+                <span class="visitor-stat-icon">💳</span>
+                <div class="visitor-stat-info">
+                    <span class="visitor-stat-label">跨境支付情报</span>
+                    <span class="visitor-stat-value loading" id="stat-payment">--</span>
+                </div>
+            </div>
+            <div class="visitor-stat-item">
+                <span class="visitor-stat-icon">🛡️</span>
+                <div class="visitor-stat-info">
+                    <span class="visitor-stat-label">泰国政策监控</span>
+                    <span class="visitor-stat-value loading" id="stat-policy">--</span>
+                </div>
+            </div>
+            <div class="visitor-stat-item">
+                <span class="visitor-stat-icon">📈</span>
+                <div class="visitor-stat-info">
+                    <span class="visitor-stat-label">股市盯盘看板</span>
+                    <span class="visitor-stat-value loading" id="stat-stock">--</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <footer class="footer">
         <p>Powered by <a href="https://github.com">GitHub Pages</a> · praxisfit.me</p>
     </footer>
@@ -611,7 +713,7 @@
             var m = document.querySelector('meta[name="theme-color"]');
             if (m) m.setAttribute('content', '#0b0f1a');
         } else {
-            document.documentElement.removeAttribute('data-theme');
+            document.documentElement.setAttribute('data-theme', 'light');
             themeBtn.textContent = '🌙';
             themeBtn.setAttribute('aria-label', '切换深色模式');
             themeBtn.setAttribute('title', '切换深色/浅色模式');
@@ -659,6 +761,47 @@
     document.addEventListener('keydown', function(e) { if (e.key === 'Escape' && fbOverlay.classList.contains('visible')) fbOverlay.classList.remove('visible'); });
     if (fbText) fbText.addEventListener('input', updateLinks);
     updateLinks();
+
+    
+    // ── Visitor Stats (powered by counterapi.com) ──
+    (function() {
+        var API_BASE = 'https://counterapi.com/api';
+        var NS = 'praxisfitme';
+        var today = new Date().toISOString().slice(0, 10); // YYYY-MM-DD
+
+        // Increment portal visit
+        var portalCounted = localStorage.getItem('pv_portal_date') !== today;
+        if (portalCounted) {
+            fetch(API_BASE + '/' + NS + '/portal/up').catch(function(){});
+            localStorage.setItem('pv_portal_date', today);
+            // Increment today-unique portal counter
+            fetch(API_BASE + '/' + NS + '/portal-' + today.replace(/-/g, '') + '/up').catch(function(){});
+        }
+
+        // Fetch and display counts
+        var pages = [
+            { id: 'stat-portal', key: 'portal' },
+            { id: 'stat-payment', key: 'payment-intel' },
+            { id: 'stat-policy', key: 'policy-monitor' },
+            { id: 'stat-stock', key: 'stock-dash' }
+        ];
+
+        pages.forEach(function(p) {
+            fetch(API_BASE + '/' + NS + '/' + p.key + '/up')
+                .then(function(r) { return r.json(); })
+                .then(function(d) {
+                    var el = document.getElementById(p.id);
+                    if (el) {
+                        el.textContent = Number(d.value).toLocaleString();
+                        el.classList.remove('loading');
+                    }
+                })
+                .catch(function() {
+                    var el = document.getElementById(p.id);
+                    if (el) { el.textContent = '-'; el.classList.remove('loading'); }
+                });
+        });
+    })();
 
     }); // end DOMContentLoaded
     </script>
