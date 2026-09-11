@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>跨境支付情报监控 — 2026.09.10</title>
+<title>跨境支付情报监控 — 2026.09.11</title>
 <meta property="og:title" content="跨境支付情报监控">
 <meta property="og:description" content="全球跨境支付政策法规、Crypto监管动态、头部品牌战略与市场数据">
 <meta property="og:type" content="website">
@@ -24,40 +24,7 @@
 --text:#F7FAFF;--text2:#9AA7C7;--text3:#6B7A99;
 --font:'Inter','SF Pro Display','PingFang SC','Microsoft YaHei',system-ui,sans-serif;
 --radius:12px;--radius-sm:8px;--radius-lg:16px;
-
 }
-
-/* ── Light Theme ── */
-[data-theme="light"]{
---bg:#F5F7FA;--bg2:#FFFFFF;--glass:rgba(0,0,0,.03);--glass-hover:rgba(0,0,0,.06);
---border:rgba(0,0,0,.08);--border-hover:rgba(0,0,0,.15);
---primary:#6C4CE6;--accent:#0891B2;--success:#059669;--warn:#D97706;--danger:#DC2626;
---text:#1A202C;--text2:#4A5568;--text3:#718096;
-}
-[data-theme="light"] body{background:var(--bg);color:var(--text)}
-[data-theme="light"] body::before{background:radial-gradient(ellipse at 30% 20%,rgba(124,92,255,.06) 0%,transparent 50%),radial-gradient(ellipse at 70% 80%,rgba(8,145,178,.04) 0%,transparent 50%)}
-[data-theme="light"] .header{background:rgba(245,247,250,.92);border-bottom:1px solid rgba(0,0,0,.08)}
-[data-theme="light"] .tabs{background:rgba(245,247,250,.92);border-bottom:1px solid rgba(0,0,0,.08)}
-[data-theme="light"] .card:hover{box-shadow:0 8px 32px rgba(0,0,0,.08)}
-[data-theme="light"] .tag-new{background:rgba(8,145,178,.1);color:var(--accent)}
-[data-theme="light"] .highlight-item{background:linear-gradient(135deg,rgba(124,92,255,.05),rgba(8,145,178,.03));border:1px solid rgba(0,0,0,.08)}
-[data-theme="light"] .kpi-value{background:linear-gradient(135deg,var(--text),var(--accent));-webkit-background-clip:text;background-clip:text}
-[data-theme="light"] .fab-portal{background:#fff;color:#333;border:1px solid #e5e7eb}
-[data-theme="light"] .fab-theme{background:#fff;color:#333;border:1px solid #e5e7eb}
-[data-theme="light"] .fab-feedback{background:#fff;color:#333;border:1px solid #e5e7eb}
-[data-theme="light"] .fab-feedback .fab-badge{border-color:#fff}
-[data-theme="light"] .feedback-modal{background:#fff;border:1px solid #e5e7eb;color:#1A202C;box-shadow:0 20px 40px rgba(0,0,0,.12)}
-[data-theme="light"] .feedback-modal .feedback-hint{color:#4A5568}
-[data-theme="light"] .feedback-modal textarea{background:#F7FAFC;color:#1A202C;border:1px solid #E2E8F0}
-[data-theme="light"] .feedback-modal textarea:focus{border-color:#6C4CE6}
-[data-theme="light"] .feedback-modal textarea::placeholder{color:#A0AEC0}
-[data-theme="light"] .feedback-btn-secondary{background:#F7FAFC;color:#1A202C;border:1px solid #E2E8F0}
-[data-theme="light"] .feedback-btn-close{color:#718096;border:1px solid #E2E8F0}
-[data-theme="light"] .feedback-modal .feedback-note{color:#A0AEC0}
-[data-theme="light"] .feedback-type-btn{border:1px solid #E2E8F0;background:#F7FAFC;color:#4A5568}
-[data-theme="light"] .footer{border-top:1px solid rgba(0,0,0,.08)}
-[data-theme="light"] .update-time{background:rgba(0,0,0,.04);border:1px solid rgba(0,0,0,.08)}
-[data-theme="light"] .card-source{border-top:1px solid rgba(0,0,0,.06)}
 html{font-size:15px;scroll-behavior:smooth}
 body{font-family:var(--font);background:var(--bg);color:var(--text);line-height:1.6;min-height:100vh;overflow-x:hidden}
 body::before{content:'';position:fixed;top:-50%;left:-50%;width:200%;height:200%;background:radial-gradient(ellipse at 30% 20%,rgba(124,92,255,.08) 0%,transparent 50%),radial-gradient(ellipse at 70% 80%,rgba(105,231,255,.05) 0%,transparent 50%);pointer-events:none;z-index:0}
@@ -152,163 +119,6 @@ a{color:#333}
 .fab-feedback { background: rgba(26,26,46,0.85); color: #fff; backdrop-filter: blur(10px); }
 .fab-theme { background: rgba(26,26,46,0.85); color: #fbbf24; backdrop-filter: blur(10px); }
 .fab-top { background: rgba(26,26,46,0.85); color: #fff; backdrop-filter: blur(10px); }
-
-/* ── Floating Components ── */
-.fab-stack {
-    position: fixed;
-    right: 20px;
-    bottom: 24px;
-    z-index: 9999;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    align-items: center;
-}
-.fab {
-    width: 44px;
-    height: 44px;
-    border-radius: 50%;
-    border: none;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.2rem;
-    box-shadow: 0 4px 16px rgba(0,0,0,0.3);
-    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-    -webkit-user-select: none;
-    user-select: none;
-    -webkit-tap-highlight-color: transparent;
-    touch-action: manipulation;
-    z-index: 9999;
-}
-.fab:active { transform: scale(0.88); }
-.fab-portal {
-    background: var(--bg-card, #fff);
-    color: var(--text-primary, #333);
-    border: 1px solid var(--border, #e5e7eb);
-    text-decoration: none;
-}
-.fab-portal:active { transform: scale(0.88); }
-.fab-back {
-    background: var(--accent-blue, var(--accent, #3b82f6));
-    color: white;
-    opacity: 0;
-    pointer-events: none;
-}
-.fab-back.visible { opacity: 1; pointer-events: auto; }
-.fab-theme {
-    background: var(--bg-card, #111827);
-    color: var(--text-primary, #e2e8f0);
-    border: 1px solid var(--border, #1e293b);
-}
-.fab-theme:active { transform: scale(0.88) rotate(180deg); }
-.fab-feedback {
-    background: var(--bg-card, #111827);
-    color: var(--text-primary, #e2e8f0);
-    border: 1px solid var(--border, #1e293b);
-    position: relative;
-}
-.fab-feedback .fab-badge {
-    position: absolute;
-    top: -2px;
-    right: -2px;
-    width: 10px;
-    height: 10px;
-    background: #f43f5e;
-    border-radius: 50%;
-    border: 2px solid var(--bg-card, #111827);
-}
-.feedback-overlay {
-    position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,0.5);
-    z-index: 10000;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.25s ease;
-    -webkit-backdrop-filter: blur(2px);
-    backdrop-filter: blur(2px);
-}
-.feedback-overlay.visible { opacity: 1; pointer-events: auto; }
-.feedback-modal {
-    background: var(--bg-card, #111827);
-    border-radius: 12px;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.4);
-    max-width: 460px;
-    width: 100%;
-    padding: 24px 20px;
-    transform: scale(0.92) translateY(20px);
-    transition: transform 0.25s ease;
-    border: 1px solid var(--border, #1e293b);
-    color: var(--text-primary, #e2e8f0);
-}
-.feedback-overlay.visible .feedback-modal { transform: scale(1) translateY(0); }
-.feedback-modal h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 6px; }
-.feedback-modal .feedback-hint { font-size: 0.8125rem; color: var(--text-secondary, #94a3b8); margin-bottom: 14px; line-height: 1.6; }
-.feedback-modal textarea {
-    width: 100%;
-    min-height: 120px;
-    padding: 12px 14px;
-    border: 1px solid var(--border, #1e293b);
-    border-radius: 8px;
-    font-size: 0.875rem;
-    font-family: inherit;
-    resize: vertical;
-    outline: none;
-    background: var(--bg-card-hover, var(--bg-secondary, #1a2332));
-    color: var(--text-primary, #e2e8f0);
-    line-height: 1.6;
-    box-sizing: border-box;
-}
-.feedback-modal textarea:focus { border-color: var(--accent-blue, var(--accent, #3b82f6)); box-shadow: 0 0 0 3px rgba(59,130,246,0.15); }
-.feedback-modal textarea::placeholder { color: var(--text-muted, #64748b); }
-.feedback-modal .feedback-actions { display: flex; gap: 10px; margin-top: 16px; flex-wrap: wrap; }
-.feedback-btn {
-    flex: 1;
-    min-width: 120px;
-    padding: 12px 16px;
-    border-radius: 8px;
-    font-size: 0.875rem;
-    font-weight: 600;
-    cursor: pointer;
-    border: none;
-    transition: all 0.2s ease;
-    min-height: 44px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 6px;
-    text-decoration: none;
-}
-.feedback-btn:active { transform: scale(0.96); }
-.feedback-btn-primary { background: var(--accent-blue, var(--accent, #3b82f6)); color: white; }
-.feedback-btn-secondary { background: var(--bg-card-hover, var(--bg-secondary, #1a2332)); color: var(--text-primary, #e2e8f0); border: 1px solid var(--border, #1e293b); }
-.feedback-btn-close { background: transparent; color: var(--text-secondary, #94a3b8); border: 1px solid var(--border, #1e293b); flex: 0 0 auto; min-width: 44px; }
-.feedback-modal .feedback-note { margin-top: 12px; font-size: 0.75rem; color: var(--text-muted, #64748b); line-height: 1.5; }
-.feedback-modal .feedback-type { display: flex; gap: 8px; margin-bottom: 12px; }
-.feedback-type-btn {
-    padding: 8px 14px;
-    border-radius: 100px;
-    font-size: 0.8125rem;
-    font-weight: 500;
-    cursor: pointer;
-    border: 1px solid var(--border, #1e293b);
-    background: var(--bg-card-hover, var(--bg-secondary, #1a2332));
-    color: var(--text-secondary, #94a3b8);
-    transition: all 0.2s ease;
-}
-.feedback-type-btn.active { background: var(--accent-blue, var(--accent, #3b82f6)); color: white; border-color: var(--accent-blue, var(--accent, #3b82f6)); }
-@media (max-width: 768px) {
-    .fab-stack { right: 16px; gap: 8px; }
-    .feedback-modal { padding: 20px 16px; }
-    .feedback-btn { min-width: 100px; font-size: 0.8125rem; }
-}
-
 </style>
 </head>
 <body>
@@ -321,7 +131,7 @@ a{color:#333}
 <span class="subtitle">Cross-Border Payment Intelligence</span>
 </div>
 </div>
-<span class="update-time">🕐 2026.09.10 19:30 UTC+8 · Daily Brief</span>
+<span class="update-time">🕐 2026.09.11 19:30 UTC+8 · Daily Brief</span>
 </div>
 </header>
 
@@ -346,9 +156,9 @@ a{color:#333}
 <div class="kpi-sub">2025年 · 同比+6.9%</div>
 </div>
 <div class="kpi-card">
-<div class="kpi-label">全球稳定币市值</div>
-<div class="kpi-value">$3030亿+</div>
-<div class="kpi-sub">USDT 60.5% · USDC 24%</div>
+<div class="kpi-label">全球稳定币交易(Q2)</div>
+<div class="kpi-value">$1190亿+</div>
+<div class="kpi-sub">AI Agent占比55% · Circle $400亿+ · 收购Tazapay</div>
 </div>
 <div class="kpi-card">
 <div class="kpi-label">SWIFT 美元占比</div>
@@ -356,14 +166,14 @@ a{color:#333}
 <div class="kpi-sub">2026年7月 · 人民币3.1%</div>
 </div>
 <div class="kpi-card">
-<div class="kpi-label">CIPS参与者(8月末)</div>
+<div class="kpi-label">CIPS参与者(9月)</div>
 <div class="kpi-value">1,853家</div>
-<div class="kpi-sub">133国 · 5300+法人银行 · CEBEC厦门开幕</div>
+<div class="kpi-sub">192国 · 5300+法人银行 · 直参211家 · 投洽会路演</div>
 </div>
 <div class="kpi-card">
-<div class="kpi-label">中国跨境收支(7月)</div>
-<div class="kpi-value">1.7万亿$</div>
-<div class="kpi-sub">同比+20% · 顺差183亿$</div>
+<div class="kpi-label">中国跨境收支(2025全年)</div>
+<div class="kpi-value">15.6万亿$</div>
+<div class="kpi-sub">同比+80% · 外汇市场42.6万亿$ · "十五五"更便利</div>
 </div>
 <div class="kpi-card">
 <div class="kpi-label">Airwallex 估值</div>
@@ -376,9 +186,24 @@ a{color:#333}
 <div class="section-header">
 <div class="section-icon insight">⚡</div>
 <h2 class="section-title">今日关键信号</h2>
-<span class="section-count">49条</span>
+<span class="section-count">55条</span>
 </div>
 <div class="highlight-bar">
+<div class="highlight-item">
+<div class="highlight-date">2026.09.11</div>
+<div class="highlight-title">🔴 蚂蚁国际推出全球"代理式"(Agentic)支付协议：携手Visa+万事达卡制定KYA标准</div>
+<div class="highlight-desc">9/11蚂蚁国际宣布推出Agentic支付协议，与10家Alipay+合作数字钱包（合计服务15亿用户）达成合作。蚂蚁国际、万事达卡和Visa将共同制定AI代理支付新标准，建立"了解你的代理"(KYA)框架——每个代理与有效实体关联，一次注册全网通用。麦肯锡预测到2030年AI代理将处理$3-5万亿全球消费者商务。支付宝同步推出AI钱包智能体+Vibe Pay/Skill Pay/Machine Pay三大"AI收"能力</div>
+</div>
+<div class="highlight-item">
+<div class="highlight-date">2026.09.11</div>
+<div class="highlight-title">🔴 投洽会数字人民币路演：CBETS首笔2亿大宗贸易+留学缴费全链路闭环</div>
+<div class="highlight-desc">第26届投洽会数字人民币国际运营中心路演，工行/建行/交行/兴业四家银行亮相。建行通过CBETS完成全国首笔货物贸易数字人民币跨境支付2.09亿元（东盟大宗原料采购）；工行联合拉卡拉推出数币留学缴费方案；交行面向中小外贸企业优化跨境结算；兴业覆盖经常+资本项目全链条。CBETS首批26家直参覆盖港澳台/新加坡/泰国/阿联酋/巴西等，另有38家机构申请接入</div>
+</div>
+<div class="highlight-item">
+<div class="highlight-date">2026.09.11</div>
+<div class="highlight-title">🔴 外汇局勾勒"十五五"外汇管理新蓝图："四更"改革+2025年跨境收支15.6万亿美元</div>
+<div class="highlight-desc">9/10国新办发布会，外汇局副局长李斌系统阐述"十五五"外汇管理四大方向——更加便利(诚信企业免审单)、更加开放(资本项目开放深化)、更加安全(宏观审慎+微监管)、更加智慧(数智化赋能)。2025年跨境收支15.6万亿美元(+80% vs 2020)，外汇市场交易量42.6万亿美元。超5万家优质企业享受便利化，跨境电商批量办理7.3亿笔/服务190万商户</div>
+</div>
 <div class="highlight-item">
 <div class="highlight-date">2026.09.10</div>
 <div class="highlight-title">🔴 央行陆磊国新办发布：十五五优化CIPS功能+推进数字人民币跨境使用</div>
@@ -616,9 +441,33 @@ a{color:#333}
 <div class="section-header">
 <div class="section-icon policy">🏛️</div>
 <h2 class="section-title">政策法规</h2>
-<span class="section-count">41条</span>
+<span class="section-count">45条</span>
 </div>
 <div class="cards-grid">
+<div class="card" data-type="policy">
+<span class="card-tag tag-hot">🔴 重磅</span>
+<div class="card-title">外汇局勾勒"十五五"新蓝图：构建"更便利、更开放、更安全、更智慧"外汇管理体制</div>
+<div class="card-desc">9/10国新办发布会，外汇局副局长李斌系统阐述"十五五"外汇管理改革四大方向：①更加便利——推进银行外汇展业改革，"越诚信越便利"，信用优良企业免于审单/凭指令直接办理②更加开放——深化直接投资/证券投资/跨境融资改革，提高资本项目开放水平③更加安全——健全"宏观审慎+微监管"框架，严打虚假贸易/地下钱庄④更加智慧——推动外汇管理条例修订+数智化赋能。2025年跨境收支15.6万亿美元(+80%)/外汇市场交易量42.6万亿美元(+42%)</div>
+<div class="card-source">来源：<a href="https://www.yicai.com/news/103359900.html" target="_blank" rel="noopener noreferrer">第一财经</a> · 2026.09.10</div>
+</div>
+<div class="card" data-type="policy">
+<span class="card-tag tag-hot">🔥 金砖</span>
+<div class="card-title">金砖峰会9/12-13新德里：跨境支付系统互联+CBDC互联成核心议题</div>
+<div class="highlight-desc">第18届金砖峰会9月在新德里举行，财金代表此前8月在斋浦尔会晤讨论跨境支付便利化机制。核心议题：①数字支付系统跨境互联（UPI/Pix等）②CBDC互联服务大额贸易③不创设统一货币，而是连接现有系统。印度主持，聚焦支付系统合作而非货币统一</div>
+<div class="card-source">来源：<a href="https://patanjalicivilserviceacademy.com/currentAffair/1370" target="_blank" rel="noopener noreferrer">The Hindu</a> · 2026.09.11</div>
+</div>
+<div class="card" data-type="policy">
+<span class="card-tag tag-new">🆕 路演</span>
+<div class="card-title">投洽会数字人民币路演：CBETS首笔2亿大宗贸易+四行差异化方案</div>
+<div class="card-desc">第26届投洽会金融展区，数字人民币国际运营中心及工行/建行/交行/兴业四家银行路演。建行8/15通过CBETS完成中化国际2.09亿元东盟大宗原料采购跨境支付（全国首笔货物贸易数币跨境）；工行联合拉卡拉推出数币留学缴费方案（不跳端/不拆分/全链路闭环）；交行优化中小外贸企业跨境结算；兴业覆盖经常+资本项目全链条。CBETS首批26家直参签约，38家新申请接入</div>
+<div class="card-source">来源：<a href="http://m.toutiao.com/group/7684225657072517658/" target="_blank" rel="noopener noreferrer">金融时报</a> · 2026.09.11</div>
+</div>
+<div class="card" data-type="policy">
+<span class="card-tag tag-new">🆕 印度</span>
+<div class="card-title">RBI发布新版PA/PA-CB总指引(2025.9)：跨境支付聚合商直接监管时代</div>
+<div class="card-desc">RBI 2025年9月Master Direction正式将跨境支付聚合商(PA-CB)纳入直接授权监管，取代此前OPGSP间接模式。非银行需净资产≥₹15 crore(申请时)/₹25 crore(第三年末)，须通过PRAVAAH门户提交申请。GIFT City IFSCA另设独立PSP授权通道，适合超出PA-CB ₹25 lakh上限或需非INR结算的机构。PayPal/Worldline已获PA-CB原则性批准</div>
+<div class="card-source">来源：<a href="https://treelife.in/fintech/rbi-payment-aggregator-pa-cb-authorisation/" target="_blank" rel="noopener noreferrer">Treelife</a> · 2026.09.08</div>
+</div>
 <div class="card" data-type="policy">
 <span class="card-tag tag-hot">🔴 重磅</span>
 <div class="card-title">央行陆磊国新办发布：十五五优化CIPS功能+推进数字人民币跨境使用</div>
@@ -888,9 +737,15 @@ a{color:#333}
 <div class="section-header">
 <div class="section-icon crypto">🔗</div>
 <h2 class="section-title">Crypto / Web3</h2>
-<span class="section-count">31条</span>
+<span class="section-count">32条</span>
 </div>
 <div class="cards-grid">
+<div class="card" data-type="crypto">
+<span class="card-tag tag-data">📊 数据</span>
+<div class="card-title">稳定币跨境支付数据全景：Q2处理$400亿+全球$1190亿+AI Agent占比55%</div>
+<div class="card-desc">Visa发布稳定币趋势报告完整数据：①Circle 2025年处理$400亿+稳定币支付(稳定币vs传统法币"完全可比"——100%储备)②全球稳定币交易$1190亿(含B2C/B2B/C2C)③Circle 2026.4 USDC处理$119亿④稳定币占AI Agent支付55%(新兴市场40%)⑤Circle/BitGo/Anchorage/Coinbase Custody处理$320亿代币化资产⑥稳定币占AI Agent支付55%。Circle收购Tazapay加速渗透企业跨境支付</div>
+<div class="card-source">来源：<a href="https://www.finextra.com/newsarticle/47489/stablecoin-transactions-to-reach-119-trillion-by-q2-2025" target="_blank" rel="noopener noreferrer">Finextra</a> · 2026.09.11</div>
+</div>
 <div class="card" data-type="crypto">
 <span class="card-tag tag-hot">🔥 监管</span>
 <div class="card-title">FDIC主席Hill：稳定币最终规则年底前完成，跟随OCC节奏</div>
@@ -1070,9 +925,33 @@ a{color:#333}
 <div class="section-header">
 <div class="section-icon brand">🏢</div>
 <h2 class="section-title">品牌动态</h2>
-<span class="section-count">38条</span>
+<span class="section-count">43条</span>
 </div>
 <div class="cards-grid">
+<div class="card" data-type="brand">
+<span class="card-tag tag-hot">🔴 AI支付</span>
+<div class="card-title">蚂蚁国际携手Visa+万事达卡：共建AI代理支付信任体系+推出Agentic支付协议</div>
+<div class="card-desc">9/10-11蚂蚁国际连续发布AI支付重磅：与Visa/万事达卡共同制定"了解你的代理"(KYA)标准，建立支付公司如何实现代理与有效实体关联的共同标准。蚂蚁国际首席创新官杨江明："信任是AI转型的基础"，"如果代理在蚂蚁国际注册，就无需在Visa/万事达卡重复注册"。同步推出AI钱包智能体+Vibe Pay/Skill Pay/Machine Pay三大"AI收"能力+APASS商业信任基础设施。支付宝数据：5个月智能体代买任务量增长7倍</div>
+<div class="card-source">来源：<a href="https://caifuhao.eastmoney.com/news/20260910102915845823260" target="_blank" rel="noopener noreferrer">东方财富</a> · 2026.09.10</div>
+</div>
+<div class="card" data-type="brand">
+<span class="card-tag tag-new">🆕 非洲</span>
+<div class="card-title">PingPong福贸推出非洲20国本地账户+巴西Pix T+0到账</div>
+<div class="card-desc">PingPong福贸9月发布非洲本地收款账户，通过与各国官方清算网络直接对接，支持本币直接收款，预计9月底覆盖非洲20个国家。在巴西已搭建完整本地支付体系：联合本地银行开立雷亚尔账户，支持Pix实时T+0到账，接入Pix/Boleto/Elo三大本地支付方式。全球15国40城60+牌照，近20个本地币种账户。打破单一美元结算困局</div>
+<div class="card-source">来源：<a href="http://economy.enorth.com.cn/system/2026/09/08/059741363.shtml" target="_blank" rel="noopener noreferrer">北方网</a> · 2026.09.08</div>
+</div>
+<div class="card" data-type="brand">
+<span class="card-tag tag-new">🆕 香港</span>
+<div class="card-title">XTransfer香港新兴市场收款量暴增300%：亚非拉占比近50%</div>
+<div class="card-desc">XTransfer最新数据：2025年Q1香港客户与东盟/非洲/拉美跨境收款量同比增长300%，其中尼日利亚增速最高。三大新兴市场收款占香港客户总量近50%，近70%客户出口至亚非拉。"本币账户"支持30+国家56+本地币种收款，24种本地货币付款，汇款费用降低95%/换汇成本降80%。70万+企业客户</div>
+<div class="card-source">来源：<a href="https://www.thetimes.com.au/news/news-from-asia/39808-xtransfer-helps-hk-companies-expand-into-emerging-markets-sees-soaring-collection-volume-from-asia-africa-and-latin-america" target="_blank" rel="noopener noreferrer">Times Australia</a> · 2026.09.10</div>
+</div>
+<div class="card" data-type="brand">
+<span class="card-tag tag-hot">🔥 收购</span>
+<div class="card-title">Circle收购Tazapay后整合：USDC跨境支付基建直达100+市场</div>
+<div class="card-desc">Circle 4亿美元收购新加坡跨境支付平台Tazapay后加速整合。Tazapay年化处理量$250亿/覆盖100+市场，提供数十国"payout rails"。Circle借此将USDC结算网络直接嵌入企业级跨境支付，从"稳定币发行方"升级为"全栈跨境支付平台"。全球跨境支付市场2024年约$150万亿(世界银行数据)，稳定币正加速渗透</div>
+<div class="card-source">来源：<a href="https://correio-capital.com/2026/09/08/circle-compra-tazapay-expandir-pagamentos-usdc/" target="_blank" rel="noopener noreferrer">Correio Capital</a> · 2026.09.08</div>
+</div>
 <div class="card" data-type="brand">
 <span class="card-tag tag-new">🆕 AI</span>
 <div class="card-title">Airwallex推出AI助手Kai：独立处理88%用户对话+100+工具</div>
@@ -1399,9 +1278,21 @@ a{color:#333}
 <div class="section-header">
 <div class="section-icon market">📈</div>
 <h2 class="section-title">市场数据</h2>
-<span class="section-count">30条</span>
+<span class="section-count">33条</span>
 </div>
 <div class="cards-grid">
+<div class="card" data-type="market">
+<span class="card-tag tag-data">📊 稳定币</span>
+<div class="card-title">稳定币跨境支付爆发：Q2处理$400亿+$1190亿等值+占AI Agent支付55%+交易$320亿</div>
+<div class="card-desc">Visa最新报告：①Circle 2025年处理$400亿+稳定币支付②全球稳定币交易$1190亿(含B2C/B2B/C2C)③Circle 2026.4 USDC处理$119亿④稳定币占AI Agent支付55%⑤Circle/BitGo/Anchorage/Coinbase Custody处理$320亿代币化资产⑥稳定币在新兴市场占AI Agent支付40%。Circle收购Tazapay加速渗透企业跨境支付，USDC结算直达100+市场</div>
+<div class="card-source">来源：<a href="https://www.finextra.com/newsarticle/47489/stablecoin-transactions-to-reach-119-trillion-by-q2-2025" target="_blank" rel="noopener noreferrer">Finextra</a> · 2026.09.11</div>
+</div>
+<div class="card" data-type="market">
+<span class="card-tag tag-data">📊 代币化</span>
+<div class="card-title">Swift代币化存款支付2025年已落地：630家银行参与+AI代理支付场景拓展</div>
+<div class="card-desc">Swift全球代币化存款支付方案2025年已投入运营，支持银行间代币化存款转移。Visa正开发链上稳定币/代币化存款支付+与Circle/PayPal共建跨境支付通道。核心趋势：①AI代理支付(Visa+蚂蚁国际KYA标准/Mastercard Agent Pay)②CBDC互联(CBDC Bridge)③Swift扩展代币化网络④跨境支付系统互操作(Pix/UPI/CBDC等)。全球跨境支付市场2024年约$150万亿(世界银行)</div>
+<div class="card-source">来源：<a href="https://www.nasdaq.com/articles/stablecoin-transactions-reach-1.19-trillion-q2-2025-report" target="_blank" rel="noopener noreferrer">Nasdaq</a> · 2026.09.11</div>
+</div>
 <div class="card" data-type="market">
 <span class="card-tag tag-hot">🔥 数据</span>
 <div class="card-title">CIPS日均处理量增至8280亿元：星展直连试运行4个月处理240亿元</div>
@@ -1611,91 +1502,23 @@ if(el){e.preventDefault();el.scrollIntoView({behavior:'smooth'});}
 })();
 </script>
 
-
-<!-- Floating Components (injected) -->
 <div class="fab-stack">
-    <a class="fab fab-portal" href="/" aria-label="返回监控中枢" title="返回监控中枢">🏠</a>
-    <button class="fab fab-feedback" aria-label="反馈与建议" title="反馈与建议">💬</button>
-    <button class="fab fab-theme" aria-label="切换深色模式" title="切换深色/浅色模式">🌙</button>
-    <button class="fab fab-back" aria-label="回到顶部" title="回到顶部">↑</button>
-</div>
-<div class="feedback-overlay" id="feedbackOverlay">
-    <div class="feedback-modal" role="dialog" aria-labelledby="feedbackTitle">
-        <h3 id="feedbackTitle">📋 反馈与建议</h3>
-        <p class="feedback-hint">发现错误或有改进建议？请告诉我们，您的反馈会让这个面板更好。</p>
-        <div class="feedback-type">
-            <button class="feedback-type-btn active" data-type="bug">🐛 报告错误</button>
-            <button class="feedback-type-btn" data-type="suggestion">💡 功能建议</button>
-            <button class="feedback-type-btn" data-type="content">📝 内容补充</button>
-        </div>
-        <textarea id="feedbackText" placeholder="请描述您遇到的问题或建议……"></textarea>
-        <div class="feedback-actions">
-            <a class="feedback-btn feedback-btn-primary" id="feedbackGithub" href="#" target="_blank" rel="noopener">🔗 GitHub Issue</a>
-            <a class="feedback-btn feedback-btn-secondary" id="feedbackEmail" href="#">📧 邮件反馈</a>
-            <button class="feedback-btn feedback-btn-close" id="feedbackClose" aria-label="关闭">✕</button>
-        </div>
-        <p class="feedback-note">💡 GitHub Issue 会直接通知仓库管理员；邮件反馈将打开您的邮件应用。</p>
-    </div>
+  <button class="fab fab-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="回顶部" title="回顶部">↑</button>
+  <button class="fab fab-theme" id="fabTheme" aria-label="切换主题" title="切换主题">🌙</button>
+  <a class="fab fab-feedback" href="https://wj.qq.com/s2/26567856/9784/" target="_blank" rel="noopener noreferrer" aria-label="反馈" title="反馈">💬</a>
+  <a class="fab fab-portal" href="/" aria-label="返回监控中枢" title="返回监控中枢">🏠</a>
 </div>
 <script>
-// ── Floating Components (injected) ──
-(function() {
-    var backBtn = document.querySelector('.fab-back');
-    if (backBtn) {
-        var ticking = false;
-        window.addEventListener('scroll', function() {
-            if (!ticking) {
-                window.requestAnimationFrame(function() {
-                    backBtn.classList.toggle('visible', window.scrollY > 400);
-                    ticking = false;
-                });
-                ticking = true;
-            }
-        }, { passive: true });
-        backBtn.addEventListener('click', function() { window.scrollTo({ top: 0, behavior: 'smooth' }); });
-    }
-    var themeBtn = document.querySelector('.fab-theme');
-    if (themeBtn) {
-        var saved = localStorage.getItem('monitor-theme') || '';
-        var prefDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-        var theme = saved || (prefDark ? 'dark' : 'light');
-        function apply(t) {
-            if (t === 'dark') { document.documentElement.setAttribute('data-theme','dark'); themeBtn.textContent='☀️'; }
-            else { document.documentElement.removeAttribute('data-theme'); themeBtn.textContent='🌙'; }
-        }
-        apply(theme);
-        themeBtn.addEventListener('click', function() {
-            var isDark = document.documentElement.getAttribute('data-theme') === 'dark';
-            var n = isDark ? 'light' : 'dark'; apply(n); localStorage.setItem('monitor-theme', n);
-        });
-    }
-    var fbBtn = document.querySelector('.fab-feedback');
-    var fbOverlay = document.getElementById('feedbackOverlay');
-    var fbClose = document.getElementById('feedbackClose');
-    var fbText = document.getElementById('feedbackText');
-    var fbGithub = document.getElementById('feedbackGithub');
-    var fbEmail = document.getElementById('feedbackEmail');
-    var fbTypes = document.querySelectorAll('.feedback-type-btn');
-    var fbType = 'bug';
-    fbTypes.forEach(function(b) { b.addEventListener('click', function() {
-        fbTypes.forEach(function(x) { x.classList.remove('active'); });
-        this.classList.add('active'); fbType = this.dataset.type; updateLinks();
-    }); });
-    function updateLinks() {
-        var t = fbText ? fbText.value.trim() || '(未填写)' : '';
-        var label = {bug:'报告错误',suggestion:'功能建议',content:'内容补充'}[fbType]||'反馈';
-        var enc = encodeURIComponent('[跨境支付] '+label+': '+t);
-        var body = encodeURIComponent('[跨境支付] '+label+': '+t+'\n\n---\n来源: praxisfit.me/payment-intel\n时间: '+new Date().toISOString());
-        if (fbGithub) fbGithub.href = 'https://github.com/praxisfitme/policy-monitor/issues/new?title='+enc+'&body='+body;
-        if (fbEmail) fbEmail.href = 'mailto:victor8989@qq.com?subject='+enc+'&body='+body;
-    }
-    if (fbBtn) fbBtn.addEventListener('click', function() { fbOverlay.classList.add('visible'); setTimeout(function(){if(fbText)fbText.focus();},300); });
-    if (fbClose) fbClose.addEventListener('click', function() { fbOverlay.classList.remove('visible'); });
-    if (fbOverlay) fbOverlay.addEventListener('click', function(e) { if (e.target === fbOverlay) fbOverlay.classList.remove('visible'); });
-    if (fbText) fbText.addEventListener('input', updateLinks);
-    document.addEventListener('keydown', function(e) { if (e.key === 'Escape' && fbOverlay.classList.contains('visible')) fbOverlay.classList.remove('visible'); });
-    updateLinks();
-})();
+document.addEventListener('DOMContentLoaded', function() {
+  const themeBtn = document.getElementById('fabTheme');
+  const body = document.body;
+  if (themeBtn) {
+    themeBtn.addEventListener('click', function() {
+      body.setAttribute('data-theme', body.getAttribute('data-theme') === 'light' ? 'dark' : 'light');
+      themeBtn.textContent = body.getAttribute('data-theme') === 'light' ? '☀️' : '🌙';
+    });
+  }
+});
 </script>
 </body>
 </html>
