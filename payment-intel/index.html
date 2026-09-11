@@ -1742,7 +1742,7 @@ if(el){e.preventDefault();el.scrollIntoView({behavior:'smooth'});}
         var theme = saved || (prefDark ? 'dark' : 'light');
         function apply(t) {
             if (t === 'dark') { document.documentElement.setAttribute('data-theme','dark'); themeBtn.textContent='☀️'; }
-            else { document.documentElement.removeAttribute('data-theme'); themeBtn.textContent='🌙'; }
+            else { document.documentElement.setAttribute('data-theme','light'); themeBtn.textContent='🌙'; }
         }
         apply(theme);
         themeBtn.addEventListener('click', function() {
