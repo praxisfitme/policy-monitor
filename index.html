@@ -764,21 +764,18 @@
 
     
     // ── Visitor Stats (powered by counterapi.com) ──
+    // 规则：每个浏览器每天每个页面只计1次（localStorage 去重）
     (function() {
-        var API_BASE = 'https://counterapi.com/api';
-        var NS = 'praxisfitme';
-        var today = new Date().toISOString().slice(0, 10); // YYYY-MM-DD
+        var API_BASE = 'https://counterapi.com/api/praxisfit.me/view';
+        var today = new Date().toISOString().slice(0, 10); // YYYY-MM-DD (UTC)
 
-        // Increment portal visit
-        var portalCounted = localStorage.getItem('pv_portal_date') !== today;
-        if (portalCounted) {
-            fetch(API_BASE + '/' + NS + '/portal/up').catch(function(){});
+        // Portal own visit: increment once per browser per day
+        if (localStorage.getItem('pv_portal_date') !== today) {
+            fetch(API_BASE + '/portal?trackOnly=true').catch(function(){});
             localStorage.setItem('pv_portal_date', today);
-            // Increment today-unique portal counter
-            fetch(API_BASE + '/' + NS + '/portal-' + today.replace(/-/g, '') + '/up').catch(function(){});
         }
 
-        // Fetch and display counts
+        // Display counts: portal increments via above; sub-pages increment themselves
         var pages = [
             { id: 'stat-portal', key: 'portal' },
             { id: 'stat-payment', key: 'payment-intel' },
@@ -787,12 +784,13 @@
         ];
 
         pages.forEach(function(p) {
-            fetch(API_BASE + '/' + NS + '/' + p.key + '/up')
+            var url = API_BASE + '/' + p.key + '?readOnly=true';
+            fetch(url)
                 .then(function(r) { return r.json(); })
                 .then(function(d) {
                     var el = document.getElementById(p.id);
                     if (el) {
-                        el.textContent = Number(d.value).toLocaleString();
+                        el.textContent = Number(d.value || 0).toLocaleString();
                         el.classList.remove('loading');
                     }
                 })
