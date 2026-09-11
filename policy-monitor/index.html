@@ -4321,14 +4321,14 @@ function switchRankingTab(store) {
 }
 </script>
 
-<!-- Visitor Tracking (counterapi.com) -->
+
+<!-- Visitor Tracking (counterapi.com) — 每浏览器每天计1次 -->
 <script>
 (function(){
     var today = new Date().toISOString().slice(0,10);
     var key = 'policy-monitor';
-    var lastVisit = localStorage.getItem('pv_' + key + '_date');
-    if (lastVisit !== today) {
-        fetch('https://counterapi.com/api/praxisfitme/' + key + '/up').catch(function(){});
+    if (localStorage.getItem('pv_' + key + '_date') !== today) {
+        fetch('https://counterapi.com/api/praxisfit.me/view/' + key + '?trackOnly=true').catch(function(){});
         localStorage.setItem('pv_' + key + '_date', today);
     }
 })();
