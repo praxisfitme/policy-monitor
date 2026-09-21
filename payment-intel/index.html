@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>跨境支付情报监控 — 2026.09.20</title>
+<title>跨境支付情报监控 — 2026.09.21</title>
 <meta property="og:title" content="跨境支付情报监控">
 <meta property="og:description" content="全球跨境支付政策法规、Crypto监管动态、头部品牌战略与市场数据">
 <meta property="og:type" content="website">
@@ -25,6 +25,39 @@
 --font:'Inter','SF Pro Display','PingFang SC','Microsoft YaHei',system-ui,sans-serif;
 --radius:12px;--radius-sm:8px;--radius-lg:16px;
 
+}
+
+/* ── Light Theme ── */
+[data-theme="light"]{
+--bg:#F5F7FA;--bg2:#FFFFFF;--glass:rgba(0,0,0,.03);--glass-hover:rgba(0,0,0,.06);
+--border:rgba(0,0,0,.08);--border-hover:rgba(0,0,0,.15);
+--primary:#6C4CE6;--accent:#0891B2;--success:#059669;--warn:#D97706;--danger:#DC2626;
+--text:#1A202C;--text2:#4A5568;--text3:#718096;
+}
+[data-theme="light"] body{background:var(--bg);color:var(--text)}
+[data-theme="light"] body::before{background:radial-gradient(ellipse at 30% 20%,rgba(124,92,255,.06) 0%,transparent 50%),radial-gradient(ellipse at 70% 80%,rgba(8,145,178,.04) 0%,transparent 50%)}
+[data-theme="light"] .header{background:rgba(245,247,250,.92);border-bottom:1px solid rgba(0,0,0,.08)}
+[data-theme="light"] .tabs{background:rgba(245,247,250,.92);border-bottom:1px solid rgba(0,0,0,.08)}
+[data-theme="light"] .card:hover{box-shadow:0 8px 32px rgba(0,0,0,.08)}
+[data-theme="light"] .tag-new{background:rgba(8,145,178,.1);color:var(--accent)}
+[data-theme="light"] .highlight-item{background:linear-gradient(135deg,rgba(124,92,255,.05),rgba(8,145,178,.03));border:1px solid rgba(0,0,0,.08)}
+[data-theme="light"] .kpi-value{background:linear-gradient(135deg,var(--text),var(--accent));-webkit-background-clip:text;background-clip:text}
+[data-theme="light"] .fab-portal{background:#fff;color:#333;border:1px solid #e5e7eb}
+[data-theme="light"] .fab-theme{background:#fff;color:#333;border:1px solid #e5e7eb}
+[data-theme="light"] .fab-feedback{background:#fff;color:#333;border:1px solid #e5e7eb}
+[data-theme="light"] .fab-feedback .fab-badge{border-color:#fff}
+[data-theme="light"] .feedback-modal{background:#fff;border:1px solid #e5e7eb;color:#1A202C;box-shadow:0 20px 40px rgba(0,0,0,.12)}
+[data-theme="light"] .feedback-modal .feedback-hint{color:#4A5568}
+[data-theme="light"] .feedback-modal textarea{background:#F7FAFC;color:#1A202C;border:1px solid #E2E8F0}
+[data-theme="light"] .feedback-modal textarea:focus{border-color:#6C4CE6}
+[data-theme="light"] .feedback-modal textarea::placeholder{color:#A0AEC0}
+[data-theme="light"] .feedback-btn-secondary{background:#F7FAFC;color:#1A202C;border:1px solid #E2E8F0}
+[data-theme="light"] .feedback-btn-close{color:#718096;border:1px solid #E2E8F0}
+[data-theme="light"] .feedback-modal .feedback-note{color:#A0AEC0}
+[data-theme="light"] .feedback-type-btn{border:1px solid #E2E8F0;background:#F7FAFC;color:#4A5568}
+[data-theme="light"] .footer{border-top:1px solid rgba(0,0,0,.08)}
+[data-theme="light"] .update-time{background:rgba(0,0,0,.04);border:1px solid rgba(0,0,0,.08)}
+[data-theme="light"] .card-source{border-top:1px solid rgba(0,0,0,.06)
 }
 
 /* ── Light Theme ── */
@@ -309,6 +342,163 @@ a{color:#333}
     .feedback-btn { min-width: 100px; font-size: 0.8125rem; }
 }
 
+
+/* ── Floating Components ── */
+.fab-stack {
+    position: fixed;
+    right: 20px;
+    bottom: 24px;
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+}
+.fab {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.3);
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    -webkit-user-select: none;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+    z-index: 9999;
+}
+.fab:active { transform: scale(0.88); }
+.fab-portal {
+    background: var(--bg-card, #fff);
+    color: var(--text-primary, #333);
+    border: 1px solid var(--border, #e5e7eb);
+    text-decoration: none;
+}
+.fab-portal:active { transform: scale(0.88); }
+.fab-back {
+    background: var(--accent-blue, var(--accent, #3b82f6));
+    color: white;
+    opacity: 0;
+    pointer-events: none;
+}
+.fab-back.visible { opacity: 1; pointer-events: auto; }
+.fab-theme {
+    background: var(--bg-card, #111827);
+    color: var(--text-primary, #e2e8f0);
+    border: 1px solid var(--border, #1e293b);
+}
+.fab-theme:active { transform: scale(0.88) rotate(180deg); }
+.fab-feedback {
+    background: var(--bg-card, #111827);
+    color: var(--text-primary, #e2e8f0);
+    border: 1px solid var(--border, #1e293b);
+    position: relative;
+}
+.fab-feedback .fab-badge {
+    position: absolute;
+    top: -2px;
+    right: -2px;
+    width: 10px;
+    height: 10px;
+    background: #f43f5e;
+    border-radius: 50%;
+    border: 2px solid var(--bg-card, #111827);
+}
+.feedback-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.5);
+    z-index: 10000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s ease;
+    -webkit-backdrop-filter: blur(2px);
+    backdrop-filter: blur(2px);
+}
+.feedback-overlay.visible { opacity: 1; pointer-events: auto; }
+.feedback-modal {
+    background: var(--bg-card, #111827);
+    border-radius: 12px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+    max-width: 460px;
+    width: 100%;
+    padding: 24px 20px;
+    transform: scale(0.92) translateY(20px);
+    transition: transform 0.25s ease;
+    border: 1px solid var(--border, #1e293b);
+    color: var(--text-primary, #e2e8f0);
+}
+.feedback-overlay.visible .feedback-modal { transform: scale(1) translateY(0); }
+.feedback-modal h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 6px; }
+.feedback-modal .feedback-hint { font-size: 0.8125rem; color: var(--text-secondary, #94a3b8); margin-bottom: 14px; line-height: 1.6; }
+.feedback-modal textarea {
+    width: 100%;
+    min-height: 120px;
+    padding: 12px 14px;
+    border: 1px solid var(--border, #1e293b);
+    border-radius: 8px;
+    font-size: 0.875rem;
+    font-family: inherit;
+    resize: vertical;
+    outline: none;
+    background: var(--bg-card-hover, var(--bg-secondary, #1a2332));
+    color: var(--text-primary, #e2e8f0);
+    line-height: 1.6;
+    box-sizing: border-box;
+}
+.feedback-modal textarea:focus { border-color: var(--accent-blue, var(--accent, #3b82f6)); box-shadow: 0 0 0 3px rgba(59,130,246,0.15); }
+.feedback-modal textarea::placeholder { color: var(--text-muted, #64748b); }
+.feedback-modal .feedback-actions { display: flex; gap: 10px; margin-top: 16px; flex-wrap: wrap; }
+.feedback-btn {
+    flex: 1;
+    min-width: 120px;
+    padding: 12px 16px;
+    border-radius: 8px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    cursor: pointer;
+    border: none;
+    transition: all 0.2s ease;
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    text-decoration: none;
+}
+.feedback-btn:active { transform: scale(0.96); }
+.feedback-btn-primary { background: var(--accent-blue, var(--accent, #3b82f6)); color: white; }
+.feedback-btn-secondary { background: var(--bg-card-hover, var(--bg-secondary, #1a2332)); color: var(--text-primary, #e2e8f0); border: 1px solid var(--border, #1e293b); }
+.feedback-btn-close { background: transparent; color: var(--text-secondary, #94a3b8); border: 1px solid var(--border, #1e293b); flex: 0 0 auto; min-width: 44px; }
+.feedback-modal .feedback-note { margin-top: 12px; font-size: 0.75rem; color: var(--text-muted, #64748b); line-height: 1.5; }
+.feedback-modal .feedback-type { display: flex; gap: 8px; margin-bottom: 12px; }
+.feedback-type-btn {
+    padding: 8px 14px;
+    border-radius: 100px;
+    font-size: 0.8125rem;
+    font-weight: 500;
+    cursor: pointer;
+    border: 1px solid var(--border, #1e293b);
+    background: var(--bg-card-hover, var(--bg-secondary, #1a2332));
+    color: var(--text-secondary, #94a3b8);
+    transition: all 0.2s ease;
+}
+.feedback-type-btn.active { background: var(--accent-blue, var(--accent, #3b82f6)); color: white; border-color: var(--accent-blue, var(--accent, #3b82f6)); }
+@media (max-width: 768px) {
+    .fab-stack { right: 16px; gap: 8px; }
+    .feedback-modal { padding: 20px 16px; }
+    .feedback-btn { min-width: 100px; font-size: 0.8125rem; }
+}
+
 </style>
 </head>
 <body>
@@ -321,7 +511,7 @@ a{color:#333}
 <span class="subtitle">Cross-Border Payment Intelligence</span>
 </div>
 </div>
-<span class="update-time">🕐 2026.09.20 19:30 UTC+8 · Daily Brief</span>
+<span class="update-time">🕐 2026.09.21 19:30 UTC+8 · Daily Brief</span>
 </div>
 </header>
 
@@ -376,9 +566,59 @@ a{color:#333}
 <div class="section-header">
 <div class="section-icon insight">⚡</div>
 <h2 class="section-title">今日关键信号</h2>
-<span class="section-count">97条</span>
+<span class="section-count">107条</span>
 </div>
 <div class="highlight-bar">
+<div class="highlight-item">
+<div class="highlight-date">2026.09.21</div>
+<div class="highlight-title">🔴 管涛：人民币国际化迎来黄金窗口期+做好三件事三个统筹</div>
+<div class="highlight-desc">华福证券首席经济学家管涛9/19在清华五道口首席经济学家论坛发言：当前是推进人民币国际化的黄金窗口期(引用周小川判断)。三件事：①夯实实体经济根基让外资有赚钱效应②深化资本市场改革让外资宾至如归③推进资本项目开放从正面清单转负面清单。三个统筹：与全面深化改革/与资本项目开放/与强化风险防范统筹推进。去美元化延续但黄金是最大受益者(黄金储备份额+15ppt vs 美元-11ppt)。"十五五"规划将对外开放从第9位提前至第5位</div>
+</div>
+<div class="highlight-item">
+<div class="highlight-date">2026.09.21</div>
+<div class="highlight-title">🔴 国务院837号令落地：企业境外投资监管收紧+ODI合规门槛提升</div>
+<div class="highlight-desc">2026年7月1日起施行的国务院令第837号《国务院关于对外投资的规定》正式进入执行期。明确要求投资者依法履行核准备案与跨境资金登记手续，如实提交材料。安永国际跨境合规圈深度解读：亏损企业仍可办ODI但需构建完整商业逻辑+资金来源证据链。监管核心仍是防范"虚假投资"和"资金外逃"，非禁止正常出海</div>
+</div>
+<div class="highlight-item">
+<div class="highlight-date">2026.09.21</div>
+<div class="highlight-title">🔴 安徽首笔跨国公司本外币跨境资金集中运营业务落地</div>
+<div class="highlight-desc">9/14银发〔2026〕163号施行首日，铜陵精达完成本外币跨境资金集中运营业务备案。外债额度集中155.3亿元人民币+境外放款额度集中28.7亿元。企业可开展经常项目资金集中收付和轧差净额结算。标志资金池新规从政策文件走向实际业务落地</div>
+</div>
+<div class="highlight-item">
+<div class="highlight-date">2026.09.21</div>
+<div class="highlight-title">🔴 连连×银联国际战略合作：全球采购"人在场"智能体支付落地+星小汇上线</div>
+<div class="highlight-desc">连连数字与银联国际9/10达成战略合作，聚焦AI与跨境支付融合，率先落地全球采购"人在场"智能体支付场景。8/24推出星小汇AI外汇助手：自然语言交互"一句话换汇"，覆盖即期/远期/委托换汇。连连正从"跨境支付工具"进化为"全链路跨境金融操作系统"</div>
+</div>
+<div class="highlight-item">
+<div class="highlight-date">2026.09.21</div>
+<div class="highlight-title">🔴 XTransfer未来外贸大会：TradePilot AI+亚非拉收款占比73%+100万客户</div>
+<div class="highlight-desc">8/12深圳大会，4500+外贸企业+50+银行参与。CEO邓国标披露：2025年支付总额605亿美元/累计服务超100万企业/本地收款账户覆盖近60国。TradePilot AI模型：72个智能体嵌入审核流程，覆盖KYC到反洗钱全生命周期。自动化审核率98.5%，欺诈率0.003%，单位风控成本不到传统银行5%。Q1亚非拉新兴市场收款占比73%(+45%)，非洲+115%/拉美+97%</div>
+</div>
+<div class="highlight-item">
+<div class="highlight-date">2026.09.21</div>
+<div class="highlight-title">🔴 数娱出海支付战：PingPong内嵌收银台+空中云汇Airi+蚂蚁Antom Shield</div>
+<div class="highlight-desc">中国游戏出海H1收入123.72亿美元(+30.22%)创6年最大增幅。支付机构竞相入局：PingPong 3月推出北美游戏场景内嵌收银台(降低10-15%用户流失)；空中云汇6月推出Airi一键结账(转化率+14%)；蚂蚁Antom Shield实现100%实时风控+毫秒级决策。数娱赛道从"成本项"走向增长杠杆，官网直付可让利润率提升25%+</div>
+</div>
+<div class="highlight-item">
+<div class="highlight-date">2026.09.21</div>
+<div class="highlight-title">🔴 GENIUS Act执行规则加速推进：OCC/FDIC 3月发布NPRM+11月最终规则在即</div>
+<div class="highlight-desc">GENIUS Act(2025.7.18生效)执行规则制定进入关键期。OCC 3/2发布NPRM+FDIC同日跟进：①1:1储备 backing(仅接受美元/国债/逆回购)②2个工作日内赎回③>$100亿市值发行方受联邦直接监管。Treasury 8/27提交最终规则至OMB审核。新规预计11月发布。行业预测：2026年稳定币将占美元支付3%，2031年升至10%</div>
+</div>
+<div class="highlight-item">
+<div class="highlight-date">2026.09.21</div>
+<div class="highlight-title">🔴 香港施政报告金融大招：稳定币交易+代币化基金结算+EnsembleTX 24小时运作</div>
+<div class="highlight-desc">9/16施政报告四大金融科技创新：①受规管稳定币可在持牌VA平台交易(新权限)②稳定币可用于结算代币化货币市场基金(新权限)③EnsembleTX年底前完成CBDC结算+7×24运作④代币化黄金等RWA纳入框架。2025-H1 2026香港数字债券占全球近50%。HK$120亿数字债券(全球最大)。五年规划首次将数字资产写入"施工图"</div>
+</div>
+<div class="highlight-item">
+<div class="highlight-date">2026.09.21</div>
+<div class="highlight-title">🔴 8月外汇数据：跨境收支1.5万亿$/月+净流入624亿$+外汇储备34383亿$</div>
+<div class="highlight-desc">外汇局9月公布：8月非银部门跨境收支1.5万亿美元(延续快速增长)；跨境资金净流入624亿美元(环比+4%)；结售汇顺差485亿美元。8月末外汇储备34383亿美元(+195亿/+0.57%)。2025全年跨境收支15.6万亿美元(+80%)、外汇市场42.6万亿美元。银行外汇展业改革已便利化办理超1.3万亿美元</div>
+</div>
+<div class="highlight-item">
+<div class="highlight-date">2026.09.21</div>
+<div class="highlight-title">🔴 全球跨境支付基础设施转型：B2B稳定币支付$3900亿+新轨道蚕食代理行市场</div>
+<div class="highlight-desc">2026年全球B2B稳定币支付预计达$3900亿(2022年$30亿)但仍不足$173万亿总量0.5%。BVNK年化$300亿稳定币量被Mastercard $18亿收购。Airwallex 2025年收入+85%/交易量$2660亿。SWIFT代理行仍处理$190万亿/年但对应关系下降22-29%。稳定币轨道3分钟内到账/成本0.1-0.5% vs SWIFT 3-5天/2-7%。CPMI目标2027年底跨境支付成本降至1%+1小时内到账</div>
+</div>
 <div class="highlight-item">
 <div class="highlight-date">2026.09.20</div>
 <div class="highlight-title">🔴 央行行长潘功胜：建设多渠道、广覆盖的跨境支付体系</div>
@@ -2508,6 +2748,8 @@ if(el){e.preventDefault();el.scrollIntoView({behavior:'smooth'});}
 })();
 </script>
 
+
+<!-- Floating Components (injected) -->
 
 <!-- Floating Components (injected) -->
 <div class="fab-stack">
