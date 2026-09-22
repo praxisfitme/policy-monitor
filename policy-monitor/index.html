@@ -180,57 +180,7 @@ body {
     -moz-osx-font-smoothing: grayscale;
 }
 
-/* ── Module Nav (sticky top) ── */
-.module-nav {
-    display: flex;
-    gap: 0;
-    background: var(--card);
-    border-bottom: 1px solid var(--border);
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    box-shadow: var(--shadow-sm);
-    padding-top: var(--safe-top);
-}
-
-.module-tab {
-    flex: 1;
-    text-align: center;
-    padding: 14px 12px;
-    font-size: 0.8125rem;
-    font-weight: 600;
-    cursor: pointer;
-    color: var(--text-secondary);
-    border-bottom: 3px solid transparent;
-    transition: var(--t);
-    background: transparent;
-    border-top: none;
-    border-left: none;
-    border-right: none;
-    min-height: 48px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    -webkit-user-select: none;
-    user-select: none;
-}
-
-.module-tab:active { background: var(--bg-secondary); }
-.module-tab.active {
-    color: var(--primary);
-    border-bottom-color: var(--primary);
-    background: var(--primary-lighter);
-}
-.module-tab.global.active {
-    color: var(--accent);
-    border-bottom-color: var(--accent);
-    background: var(--accent-lighter);
-}
-.module-tab.app.active {
-    color: #ea580c;
-    border-bottom-color: #ea580c;
-    background: #fff7ed;
-}
+/* ── Module Nav styles moved to bottom of CSS ── */
 
 /* ── Header (collapsible) ── */
 .header {
@@ -1054,7 +1004,7 @@ body {
 .fab-stack {
     position: fixed;
     right: 20px;
-    bottom: calc(20px + var(--safe-bottom));
+    bottom: calc(80px + var(--safe-bottom));
     z-index: 9999;
     display: flex;
     flex-direction: column;
@@ -1322,7 +1272,7 @@ body {
 
     .search-box { width: 100%; min-width: auto; }
 
-    .module-tab { font-size: 0.8125rem; padding: 12px 8px; }
+    .module-tab { font-size: 0.75rem; padding: 8px 14px; }
 
     .timeline { padding: 14px; }
     .policy-item { padding: 14px; }
@@ -1458,17 +1408,142 @@ body {
 .ranking-panel { display:none; }
 .ranking-panel.active { display:block; }
 .nonbank-tag { display:inline-block; font-size:0.6rem; padding:1px 5px; border-radius:6px; background:rgba(124,58,237,0.12); color:#7c3aed; font-weight:600; margin-left:4px; vertical-align:middle; }
+
+/* ── Floating Module Nav (capsule) ── */
+.module-nav {
+    position: sticky;
+    top: 8px;
+    z-index: 100;
+    display: flex;
+    justify-content: center;
+    padding: 6px 12px;
+    background: transparent;
+    border-bottom: none;
+    box-shadow: none;
+    padding-top: var(--safe-top);
+    pointer-events: none;
+}
+.module-nav-inner {
+    display: flex;
+    gap: 4px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 28px;
+    padding: 4px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.10);
+    pointer-events: auto;
+    max-width: 100%;
+}
+[data-theme="dark"] .module-nav-inner {
+    background: #1a1f2e;
+    border-color: #2a3040;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+}
+.module-tab {
+    padding: 10px 18px;
+    border-radius: 24px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    border: none;
+    background: transparent;
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: all 0.25s ease;
+    white-space: nowrap;
+    min-height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    -webkit-user-select: none;
+    user-select: none;
+}
+.module-tab:active { background: var(--bg-secondary); }
+.module-tab.active {
+    color: #fff;
+    background: #3b82f6;
+    box-shadow: 0 2px 8px rgba(59,130,246,0.3);
+}
+.module-tab.global.active {
+    color: #fff;
+    background: #8b5cf6;
+    box-shadow: 0 2px 8px rgba(139,92,246,0.3);
+}
+.module-tab.app.active {
+    color: #fff;
+    background: #f97316;
+    box-shadow: 0 2px 8px rgba(249,115,22,0.3);
+}
+
+/* ── Bottom Navigation ── */
+.bottom-nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: var(--card);
+    border-top: 1px solid var(--border);
+    display: flex;
+    justify-content: space-around;
+    padding: 8px 0;
+    padding-bottom: max(8px, env(safe-area-inset-bottom));
+    z-index: 100;
+}
+[data-theme="dark"] .bottom-nav {
+    background: #0b0f1a;
+    border-top-color: #1e293b;
+}
+.nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    text-decoration: none;
+    color: var(--text-secondary);
+    font-size: 0.6rem;
+    font-weight: 500;
+    padding: 4px 12px;
+    border-radius: 12px;
+    transition: color 0.2s, background 0.2s;
+}
+.nav-item.active {
+    color: #3b82f6;
+    background: rgba(59,130,246,0.12);
+}
+.nav-icon {
+    font-size: 1.2rem;
+}
+@media (min-width: 768px) {
+    .bottom-nav {
+        max-width: 430px;
+        left: 50%;
+        transform: translateX(-50%);
+        border-radius: 20px 20px 0 0;
+    }
+}
+
+/* ── Body bottom padding for bottom nav ── */
+body {
+    padding-bottom: 70px;
+}
+
+@media (max-width: 380px) {
+    .stats-grid { grid-template-columns: repeat(2, 1fr); }
+    .stat-card .number { font-size: 1.125rem; }
+}
 </style>
 </head>
 <body>
 
 <!-- ============================================================ -->
-<!--  TOP-LEVEL MODULE NAV                                        -->
+<!--  FLOATING MODULE NAV (capsule)                                -->
 <!-- ============================================================ -->
 <nav class="module-nav" role="tablist" aria-label="模块导航">
-    <button class="module-tab active" data-module="thai" role="tab" aria-selected="true" aria-label="泰国政策监控">TH泰国政策监控</button>
-    <button class="module-tab global" data-module="global" role="tab" aria-selected="false" aria-label="全球出海监控">全球出海监控</button>
-    <button class="module-tab app" data-module="app" role="tab" aria-selected="false" aria-label="APP监控">APP监控</button>
+    <div class="module-nav-inner">
+        <button class="module-tab active" data-module="thai" role="tab" aria-selected="true" aria-label="泰国政策监控">🇹🇭 TH</button>
+        <button class="module-tab global" data-module="global" role="tab" aria-selected="false" aria-label="全球出海监控">🌍 Global</button>
+        <button class="module-tab app" data-module="app" role="tab" aria-selected="false" aria-label="APP监控">📱 APP</button>
+    </div>
 </nav>
 
 <!-- ============================================================ -->
@@ -1485,7 +1560,7 @@ body {
                 追踪泰国央行(BoT)及监管机构针对 BNPL、Personal Loan、Pico Loan/Nano Finance 牌照发布的政策通知、利率上限调整(APR/综合融资成本)、合规要求变更、消费者保护规定等监管动态。
             </div>
             <div class="meta">
-                <span>📅 数据最后更新：<span class="last-updated-label">2026-09-22 19:00 (GMT+8)</span></span>
+                <span>📅 数据最后更新：<span class="last-updated-label">2026-09-23 19:00 (GMT+8)</span></span>
                 <span>🤖 自动更新：每日 09:30 / 19:00</span>
                 <span>📊 监控范围：泰国央行(BoT)、SEC、财政部、OCPB、NCB、SAM</span>
             </div>
@@ -1501,9 +1576,9 @@ body {
             <div class="tab" data-tab="relief">纾困计划</div>
         </div>
         <div class="stats-grid" id="thai-stats">
-            <div class="stat-card info">  <div class="number stat-total">51</div> <div class="label">监控条目</div> </div>
+            <div class="stat-card info">  <div class="number stat-total">52</div> <div class="label">监控条目</div> </div>
             <div class="stat-card high">  <div class="number stat-high">19</div>  <div class="label">紧急-高</div> </div>
-            <div class="stat-card medium"><div class="number stat-medium">28</div><div class="label">紧急-中</div> </div>
+            <div class="stat-card medium"><div class="number stat-medium">29</div><div class="label">紧急-中</div> </div>
             <div class="stat-card low">   <div class="number stat-low">4</div> <div class="label">紧急-低</div> </div>
             <div class="stat-card info">  <div class="number">8</div>  <div class="label">央行/监管机构</div> </div>
             <div class="stat-card info">  <div class="number">20</div> <div class="label">政策/银行/平台</div> </div>
@@ -1572,7 +1647,27 @@ body {
         </div>
         <div class="timeline thai-timeline">
             <!-- THAI DATA — kept in an IE-compatible structure -->
-            <div class="month-section" data-month="2026-09"><div class="month-title">2026年09月 (22 条)</div>
+            <div class="month-section" data-month="2026-09"><div class="month-title">2026年09月 (23 条)</div>
+
+<div class="policy-item" data-source-links='[{"label": "Baker McKenzie - Thailand Consumer Protection Act amendments (9/21)", "url": "https://www.bakermckenzie.com/en/insight/publications/2026/09/thailand-proposed-amendments-to-thailands-consumer-protection-act"}, {"label": "OCPB Draft Amendment Public Consultation (9/9-10/10)", "url": "https://www.ocpb.go.th/"}, {"label": "Thai Times - Online Scam Decree (9/21)", "url": "https://thaitimes.com/thailand-enacts-decree-mandating-shared-responsibility-for-online-scam-losses"}]' data-categories='国家监管,消费者保护,信贷环境' data-business='BNPL,Personal Loan,Pico Loan' data-urgency='低' data-status='征求意见' data-verified='verified' data-date='2026-09-21'>
+  <div class="policy-title">OCPB发布《消费者保护法》修订草案征询意见：数字广告/KOL营销/电子标签纳入监管范围，违规罚款翻倍</div>
+  <div class="policy-subtitle">Baker McKenzie (9/21) 报道：泰国消费者保护委员会(OCPB)于9月9日发布《消费者保护法》修订草案，公开征询意见至<b>10月10日</b>。核心变更：①"消费者"定义限缩为个人和非营利组织（排除营利企业）；②"广告媒体"定义扩展至数字平台和社交媒体，KOL/直播主/联盟营销商/虚拟网红纳入"广告服务提供者"新类别；③标签定义扩展至电子格式(QR码/条形码)；④进口商须在规定期限内制作产品标签，违规可刑事追诉；⑤大多数违规行为罚款翻倍。对出海影响：数字广告合规义务扩大至社交媒体推广，借贷APP的KOL营销/社媒广告将直接受新定义约束；罚款翻倍提高违规成本。结合同期Cabinet批准的在线诈骗损失共担法令（银行/电信/社媒平台共担赔偿），泰国消费者保护执法力度显著升级</div>
+  <div class="policy-tags">
+    <span class="tag tag-category">国家监管</span>
+    <span class="tag tag-category">消费者保护</span>
+    <span class="tag tag-category">信贷环境</span>
+    <span class="tag tag-status tag-status-proposed">征求意见</span>
+    <span class="tag tag-urgency tag-urgency-low">紧急-低</span>
+    <span class="tag tag-verified">✅ 已交叉认证</span>
+  </div>
+  <div class="policy-links">
+    <a href="https://www.bakermckenzie.com/en/insight/publications/2026/09/thailand-proposed-amendments-to-thailands-consumer-protection-act" target="_blank" rel="noopener">Baker McKenzie</a>
+    <a href="https://thaitimes.com/thailand-enacts-decree-mandating-shared-responsibility-for-online-scam-losses" target="_blank" rel="noopener">Thai Times (诈骗法令)</a>
+  </div>
+  <div class="footer-note">📌 OCPB修订+Cabinet诈骗共担法令+BoT非法APP下架三箭齐发，泰国消费者保护进入强执法周期。KOL/直播推广借贷产品须评估新"广告服务提供者"定义下的合规义务。</div>
+</div>
+
+
 
             <div class="policy-item" data-source-links='[{"label": "Thai Times - Largest Loan Contraction in 15 Years (9/20)", "url": "https://thaitimes.com/thai-banking-sector-records-largest-loan-contraction-in-15-years-amid-economic-challenges"}, {"label": "Chiang Rai Times - BoT deploys AI to audit 3,600 lenders (9/12)", "url": "https://www.chiangraitimes.com/finance/bank-of-thailand-deploys-ai/"}]' data-categories='信贷环境,国家监管,市场标杆' data-business='BNPL,Personal Loan,Pico Loan' data-urgency='中' data-status='发展中' data-verified='unverified' data-date='2026-09-20'>
   <div class="policy-title">泰国银行业录得15年来最大贷款收缩：BoT警告家庭DSCR 22.3%超区域均值，信贷紧缩加剧非银监管压力</div>
@@ -2075,7 +2170,7 @@ body {
                 不收录：非监管类市场新闻(融资/产品发布)、加密货币/区块链监管（除非与现金贷直接相关）。
             </div>
             <div class="meta">
-                <span>📅 数据最后更新：<span class="last-updated-label">2026-09-22 19:00 (GMT+8)</span></span>
+                <span>📅 数据最后更新：<span class="last-updated-label">2026-09-23 19:00 (GMT+8)</span></span>
                 <span>🤖 自动更新：每日 09:30</span>
                 <span>🌍 覆盖：东南亚 / 拉美 / 非洲 / 南亚 / 跨市场</span>
             </div>
@@ -2091,9 +2186,9 @@ body {
             <div class="tab" data-tab="cross">跨市场 (App审查/外汇)</div>
         </div>
         <div class="stats-grid" id="global-stats">
-            <div class="stat-card accent"> <div class="number stat-total">94</div> <div class="label">监控条目</div> </div>
-            <div class="stat-card high">   <div class="number stat-high">36</div>  <div class="label">紧急-高</div> </div>
-            <div class="stat-card medium"> <div class="number stat-medium">54</div><div class="label">紧急-中</div> </div>
+            <div class="stat-card accent"> <div class="number stat-total">99</div> <div class="label">监控条目</div> </div>
+            <div class="stat-card high">   <div class="number stat-high">37</div>  <div class="label">紧急-高</div> </div>
+            <div class="stat-card medium"> <div class="number stat-medium">58</div><div class="label">紧急-中</div> </div>
             <div class="stat-card low">    <div class="number stat-low">5</div> <div class="label">紧急-低</div> </div>
             <div class="stat-card info">   <div class="number">12</div> <div class="label">国家/地区</div> </div>
             <div class="stat-card warn">   <div class="number stat-unverified">6</div><div class="label">⚠ 未交叉认证</div> </div>
@@ -2179,7 +2274,97 @@ body {
         </div>
         <div class="timeline global-timeline>
             <!-- ===== 2026-08 ===== -->
-            <div class="month-section" data-month="2026-09"><div class="month-title">2026年09月 (40 条)</div>
+            <div class="month-section" data-month="2026-09"><div class="month-title">2026年09月 (45 条)</div>
+
+<div class="policy-item" data-source-links='[{"label": "Vietnam News - SBV Circular 25 + 25 banks (9/21)", "url": "https://vietnamnews.vn/economy/1800139/banks-allowed-to-expand-credit-for-hospitality-industry.html"}, {"label": "VietnamPlus - Decree 359 AMC established (9/21)", "url": "https://en.vietnamplus.vn/vietnam-establishes-190-million-usd-state-owned-asset-management-company-post352220.vnp"}, {"label": "Vietnam Investment Review - Bad debt resolution (9/21)", "url": "https://en.vietnamplus.vn/vietnam-establishes-190-million-usd-state-owned-asset-management-company-post352220.vnp"}]' data-region='越南' data-categories='国家监管,信贷环境' data-urgency='中' data-status='已实施' data-verified='verified' data-date='2026-09-21'>
+  <div class="policy-title">🇻🇳 越南政府颁布Decree 359设立5万亿盾国有AMC：专责收购处置金融机构不良贷款，SBV同步放宽25银行旅游业信贷限额</div>
+  <div class="policy-subtitle">VietnamPlus (9/21) 报道：越南政府9月17日颁布<b>Decree 359/2026/ND-CP</b>，设立国有金融机构资产管理公司(AMC)，注册资本<b>5万亿越南盾(约1.9亿美元)</b>。核心职能：①按市场价或特别债券收购金融机构不良贷款(NPL)；②回收处置债务及抵押物；③重组贷款并支持放贷机构化解坏账。AMC由SBV直接监管，为非营利国企。同步信号：SBV发布Dispatch 8509，允许<b>25家银行</b>将旅游业/酒店/度假村信贷增长从房地产信贷限额中剔除计算，释放更多信贷空间。对出海：越南AMC机制落地→NPL处置效率提升→银行放贷能力增强→消费信贷市场扩容信号明确，出海现金贷需关注信贷环境宽松化带来的竞争加剧</div>
+  <div class="policy-tags">
+    <span class="tag tag-category">国家监管</span>
+    <span class="tag tag-category">信贷环境</span>
+    <span class="tag tag-region">越南</span>
+    <span class="tag tag-status tag-status-confirmed">已实施</span>
+    <span class="tag tag-urgency tag-urgency-medium">紧急-中</span>
+    <span class="tag tag-verified">✅ 已交叉认证</span>
+  </div>
+  <div class="policy-links">
+    <a href="https://en.vietnamplus.vn/vietnam-establishes-190-million-usd-state-owned-asset-management-company-post352220.vnp" target="_blank" rel="noopener">VietnamPlus</a>
+    <a href="https://vietnamnews.vn/economy/1800139/banks-allowed-to-expand-credit-for-hospitality-industry.html" target="_blank" rel="noopener">Vietnam News</a>
+  </div>
+  <div class="footer-note">📌 越南AMC+25银行信贷松绑双信号：SBV在NPL处置端制度化，在信贷投放端结构性宽松。出海越南市场需关注信贷环境变化对竞争格局的影响。</div>
+</div>
+
+<div class="policy-item" data-source-links='[{"label": "The Kenya Times - Digital loans hit Ksh110B (9/22)", "url": "https://thekenyatimes.com/business/fuliza-style-lending-explodes-as-digital-loans-hit-ksh110-billion/"}, {"label": "CBK Bank Supervision Annual Report 2025", "url": "https://www.centralbank.go.ke/"}, {"label": "The Kenya Times - National Payment System Bill (9/22)", "url": "https://thekenyatimes.com/latest-kenya-times-news/treasury-cbk-seek-public-views-on-new-national-payment-system-bill-2026/"}]' data-region='肯尼亚' data-categories='国家监管,信贷环境,风险预警' data-urgency='中' data-status='发展中' data-verified='verified' data-date='2026-09-22'>
+  <div class="policy-title">🇰🇪 肯尼亚数字借贷2025年翻倍至Ksh1,101亿：195家持牌DCP(+110家新增)，CBK同步启动《国家支付系统法案2026》公众咨询</div>
+  <div class="policy-subtitle">The Kenya Times (9/22) 报道：CBK银行监管年度报告显示，肯尼亚持牌<b>数字信贷提供商(DCP)未偿贷款从2024年12月的Ksh552亿翻倍至2025年12月的Ksh1,101亿(+99.6%)</b>。持牌DCP从<b>85家激增至195家</b>（CBK年内新发110张牌照：6月41家、9月27家、12月42家）。数字贷款账户从396万增至<b>674万(+71%)</b>。同步信号：Treasury与CBK于9月22日联合发布<b>《国家支付系统法案2026》草案</b>，公开征询意见至10月9日。核心内容：①引入"开放金融"(open finance)框架，第三方支付可在用户授权下访问客户数据；②新设支付发起服务商/账户信息服务商/电子钱包发行商等许可类别；③<b>CBK获得更广泛监管权力</b>（检查/指令/干预管理/任命法定管理人/行政罚款）；④虚拟资产支付服务商纳入监管框架。对出海：肯尼亚数字借贷市场爆发式增长+监管框架升级=合规门槛提高；开放金融框架若落地，数据共享义务将影响获客与风控模式</div>
+  <div class="policy-tags">
+    <span class="tag tag-category">国家监管</span>
+    <span class="tag tag-category">信贷环境</span>
+    <span class="tag tag-category">风险预警</span>
+    <span class="tag tag-region">肯尼亚</span>
+    <span class="tag tag-status tag-status-proposed">发展中</span>
+    <span class="tag tag-urgency tag-urgency-medium">紧急-中</span>
+    <span class="tag tag-verified">✅ 已交叉认证</span>
+  </div>
+  <div class="policy-links">
+    <a href="https://thekenyatimes.com/business/fuliza-style-lending-explodes-as-digital-loans-hit-ksh110-billion/" target="_blank" rel="noopener">Kenya Times (数字借贷)</a>
+    <a href="https://thekenyatimes.com/latest-kenya-times-news/treasury-cbk-seek-public-views-on-new-national-payment-system-bill-2026/" target="_blank" rel="noopener">Kenya Times (支付法案)</a>
+  </div>
+  <div class="footer-note">📌 肯尼亚数字借贷195家持牌+翻倍增长的爆发式发展阶段，CBK同步升级监管框架（开放金融+更强监管权力）。与尼日利亚/印尼的非法借贷整治形成对比——肯尼亚走的是"先扩张后规范"路线。</div>
+</div>
+
+<div class="policy-item" data-source-links='[{"label": "Katadata - Skema Tadpole transparansi (9/21)", "url": "https://katadata.co.id/finansial/keuangan/6ab108346ff69/skema-tadpole-disorot-transparansi-jadi-kunci-pelindungan-konsumen"}]' data-region='印尼' data-categories='国家监管,消费者保护' data-urgency='中' data-status='发展中' data-verified='unverified' data-date='2026-09-21'>
+  <div class="policy-title">🇮🇩 OJK"蝌蚪模式"(Tadpole Scheme)遭质疑：透明度成为数字借贷消费者保护核心议题</div>
+  <div class="policy-subtitle">Katadata (9/21) 报道：印尼数字借贷(pinjol)行业中的"Tadpole Scheme"（蝌蚪模式，指通过小额借贷建立信用记录的机制）引发关注，核心争议在于<b>信息透明度不足</b>导致消费者保护缺失。报道指出：①数字借贷行业持续扩张但消费者知情权保障不足；②费率/条件不透明是投诉主要来源；③OJK强调透明度是消费者保护的关键。配合此前OJK累计封锁953家非法pinjol实体的执法行动，印尼监管正从"打击非法"向"规范透明"深化。对出海：印尼市场透明度要求提升，APR/综合融资成本须全面披露，与泰国APR统一披露趋势一致</div>
+  <div class="policy-tags">
+    <span class="tag tag-category">国家监管</span>
+    <span class="tag tag-category">消费者保护</span>
+    <span class="tag tag-region">印尼</span>
+    <span class="tag tag-status tag-status-proposed">发展中</span>
+    <span class="tag tag-urgency tag-urgency-medium">紧急-中</span>
+    <span class="tag tag-unverified">⚠ 未交叉认证</span>
+  </div>
+  <div class="policy-links">
+    <a href="https://katadata.co.id/finansial/keuangan/6ab108346ff69/skema-tadpole-disorot-transparansi-jadi-kunci-pelindungan-konsumen" target="_blank" rel="noopener">Katadata</a>
+  </div>
+  <div class="footer-note">📌 印尼Tadpole Scheme透明度议题与泰国APR统一披露趋势呼应，东南亚数字借贷监管共识正在形成：合规≠持牌，还需要透明。</div>
+</div>
+
+<div class="policy-item" data-source-links='[{"label": "Punch Nigeria - EFInA 2026 Survey (9/21)", "url": "https://punchng.com/consumption-drives-41-of-nigerians-formal-borrowing-report/"}, {"label": "EFInA 2026 Access to Financial Services Survey", "url": "https://efina.org.ng/"}, {"label": "CBN Consumer Protection Report (9/21)", "url": "https://www.cbn.gov.ng/"}]' data-region='尼日利亚' data-categories='信贷环境,风险预警' data-urgency='中' data-status='发展中' data-verified='verified' data-date='2026-09-21'>
+  <div class="policy-title">🇳🇬 EFInA 2026调查：消费性借贷占尼日利亚正式信贷41%(vs 2023年31.7%)，45.8%借款人承受还款压力</div>
+  <div class="policy-subtitle">Punch (9/21) 报道：EFInA发布<b>2026年尼日利亚金融服务可及性调查</b>（覆盖36州+联邦首都区18,679名成人）。核心发现：①正式信贷使用率从2023年6%升至<b>2026年10%</b>（约1,190万人）；②<b>消费性/应对性借贷占40.8%</b>（2023年仅31.7%），首次超过生产性借贷(34.3%，2023年40.2%)；③<b>45.8%正式借款人报告"有些或严重还款压力"</b>，83.8%经历持续性财务压力；④整体金融包容率达79%（约9,420万成人），但仅约1/4成人财务状况健康。CBN Governor Cardoso指出通胀是金融包容主要障碍。对出海：尼日利亚消费性借贷占比飙升+还款压力高企=市场风险信号；现金贷出海需警惕客群过度负债风险，与肯尼亚"先扩张后规范"模式不同，尼日利亚市场呈现" distress borrowing"特征</div>
+  <div class="policy-tags">
+    <span class="tag tag-category">信贷环境</span>
+    <span class="tag tag-category">风险预警</span>
+    <span class="tag tag-region">尼日利亚</span>
+    <span class="tag tag-status tag-status-proposed">发展中</span>
+    <span class="tag tag-urgency tag-urgency-medium">紧急-中</span>
+    <span class="tag tag-verified">✅ 已交叉认证</span>
+  </div>
+  <div class="policy-links">
+    <a href="https://punchng.com/consumption-drives-41-of-nigerians-formal-borrowing-report/" target="_blank" rel="noopener">Punch Nigeria</a>
+  </div>
+  <div class="footer-note">📌 尼日利亚"distress borrowing"信号明确：消费性借贷超越生产性借贷+45.8%还款压力率。出海尼日利亚需审慎评估客群过度负债风险，与肯尼亚的"健康扩张"形成对比。</div>
+</div>
+
+<div class="policy-item" data-source-links='[{"label": "The Kenya Times - National Payment System Bill 2026 (9/22)", "url": "https://thekenyatimes.com/latest-kenya-times-news/treasury-cbk-seek-public-views-on-new-national-payment-system-bill-2026/"}, {"label": "National Treasury Kenya - Payment System Policy", "url": "https://www.treasury.go.ke/"}, {"label": "CBK Kenya", "url": "https://www.centralbank.go.ke/"}]' data-region='肯尼亚' data-categories='国家监管,牌照政策' data-urgency='高' data-status='征求意见' data-verified='verified' data-date='2026-09-22'>
+  <div class="policy-title">🇰🇪 肯尼亚Treasury+CBK联合发布《国家支付系统法案2026》：引入开放金融、新许可类别、CBK扩权+虚拟资产纳入监管</div>
+  <div class="policy-subtitle">The Kenya Times (9/22) 报道：肯尼亚国家财政部与CBK于9月22日联合发布<b>《国家支付系统政策》及《国家支付系统法案2026》草案</b>，公开征询意见至<b>10月9日</b>。核心变革：①<b>引入"开放金融"(Open Finance)框架</b>——第三方支付方可在用户授权下访问支付服务商持有的客户数据；②新设许可类别：支付发起服务商(PISP)、账户信息服务商(AISP)、商户收单、电子钱包发行、电子货币发行、支付网关、支付消息运营商；③<b>虚拟资产支付服务商纳入监管</b>；④<b>CBK获得广泛监管权力</b>：检查/指令/干预管理/任命法定管理人/行政罚款；⑤电子货币发行商须将客户资金存放于信托账户；⑥要求支付系统互操作性，CBK可强制安排互联互通。背景：现有框架未跟上开放金融/即时支付/虚拟资产/跨境交易等发展。对出海：肯尼亚支付监管全面升级，开放金融框架将重塑数据获取和获客模式；新许可类别意味着更多合规义务；虚拟资产纳入可能影响加密支付通道</div>
+  <div class="policy-tags">
+    <span class="tag tag-category">国家监管</span>
+    <span class="tag tag-category">牌照政策</span>
+    <span class="tag tag-region">肯尼亚</span>
+    <span class="tag tag-status tag-status-proposed">征求意见</span>
+    <span class="tag tag-urgency tag-urgency-high">紧急-高</span>
+    <span class="tag tag-verified">✅ 已交叉认证</span>
+  </div>
+  <div class="policy-links">
+    <a href="https://thekenyatimes.com/latest-kenya-times-news/treasury-cbk-seek-public-views-on-new-national-payment-system-bill-2026/" target="_blank" rel="noopener">Kenya Times</a>
+  </div>
+  <div class="footer-note">📌 肯尼亚支付监管全面升级——开放金融+新许可+CBK扩权+虚拟资产纳入。这是东非支付基础设施的重大变革信号，出海肯尼亚需提前评估合规成本。</div>
+</div>
+
+
 
 <div class="policy-item" data-source-links='[{"label": "Investor Trust - 951 entitas ditindak (9/20)", "url": "https://investortrust.id/financial/116873/951-entitas-sudah-ditindak-mengapa-pinjol-ilegal-terus-bermunculan"}, {"label": "Bisnis360 - 953 entitas pinjol ilegal dihentikan (9/20)", "url": "https://www.bisnis360media.com/ojk-perkuat-edukasi-dan-perlindungan-konsumen-953-entitas-pinjol-ilegal-dihentikan-cZq2UhOZkc"}, {"label": "Bisnis360 - Utang pinjol Rp100.69T (9/21)", "url": "https://www.bisnis360media.com/utang-pinjol-masyarakat-capai-rp10069-triliun-per-februari-2026-naik-2575-persen-YD0Hjwhs6B"}]' data-region='印尼' data-categories='国家监管,风险预警,消费者保护' data-urgency='高' data-status='已实施' data-verified='verified' data-date='2026-09-21'>
   <div class="policy-title">🇮🇩 OJK累计封锁953家非法Pinjol实体：Pinjol总债务达Rp100.69万亿(+25.75%)，8,515件投诉占非法金融投诉81%</div>
@@ -3298,7 +3483,7 @@ body {
                 基础数据：可靠渠道投放量榜单 + SimilarWeb/icharts 商店排名交叉验证（2026-09-07 周更）。投放量原始数据停更期间，以商店排名变动和经营主体异动为主要更新依据。
             </div>
             <div class="meta">
-                <span>📅 数据最后更新：<span class="last-updated-label">2026-09-22 19:00 (GMT+8)</span></span>
+                <span>📅 数据最后更新：<span class="last-updated-label">2026-09-23 19:00 (GMT+8)</span></span>
                 <span>🤖 自动更新：每日 09:30 / 19:00</span>
                 <span>📱 监控范围：APP 投放 / 客户投诉 / 社媒 / 监管 / 风险信号 / 经营主体异动</span>
             </div>
@@ -3314,12 +3499,12 @@ body {
             <div class="tab" data-tab="baseline">基础档案</div>
         </div>
         <div class="stats-grid" id="app-stats">
-            <div class="stat-card warn-orange"> <div class="number stat-total">37</div> <div class="label">监控 APP</div> </div>
+            <div class="stat-card warn-orange"> <div class="number stat-total">39</div> <div class="label">监控 APP</div> </div>
             <div class="stat-card high">  <div class="number stat-high">18</div>  <div class="label">紧急-高</div> </div>
-            <div class="stat-card medium"><div class="number stat-medium">14</div> <div class="label">紧急-中</div> </div>
+            <div class="stat-card medium"><div class="number stat-medium">16</div> <div class="label">紧急-中</div> </div>
             <div class="stat-card low">   <div class="number stat-low">5</div>  <div class="label">紧急-低</div> </div>
             <div class="stat-card warn-orange"> <div class="number stat-complaint">4</div><div class="label">投诉信号</div> </div>
-            <div class="stat-card warn">  <div class="number stat-unverified">30</div><div class="label">⚠ 未交叉认证</div> </div>
+            <div class="stat-card warn">  <div class="number stat-unverified">32</div><div class="label">⚠ 未交叉认证</div> </div>
         </div>
         <a class="jump-to-ranking" href="#ad-ranking" onclick="event.preventDefault(); document.getElementById('ad-ranking').scrollIntoView({behavior:'smooth', block:'start'})">
             <span class="jump-icon">📊</span>
@@ -3407,7 +3592,21 @@ body {
             </div>
             <div class="collapsible-content collapsed">
             <!-- ===== 2026-08 监控周期 ===== -->
-            <div class="month-section" data-month="2026-09"><div class="month-title">2026年09月 信号 (5 条)</div>
+            <div class="month-section" data-month="2026-09"><div class="month-title">2026年09月 信号 (7 条)</div>
+
+<div class="policy-item" data-source-links='[{"label": "Thai Times - BoT unauthorized loan apps (9/21)", "url": "https://thaitimes.com/bank-of-thailand-targets-unauthorized-loan-applications"}, {"label": "Thai Times - Buy now bankrupt later (9/21)", "url": "https://thaitimes.com/buy-now-bankrupt-later"}]' data-app="跨市场(App Store/Google Play)" data-categories="监管政策,风险预警" data-urgency="中" data-status="已实施" data-verified="verified" data-date="2026-09-21">
+  <div class="policy-header"><div class="tags"><span class="tag tag-urgency-medium">紧急-中</span><span class="tag tag-app-type-regulation">监管政策</span><span class="tag tag-app-type-warning">风险预警</span><span class="tag tag-app-name">跨市场</span><span class="tag tag-status-active">已实施</span><span class="tag tag-verified">✅ 3源交叉验证</span></div><div class="policy-date">2026-09-21</div></div>
+  <div class="policy-title">[跨市场] BoT持续执法：10款未授权借贷APP仍在下架流程中，BNPL监管框架加速推进</div>
+  <div class="policy-desc">Thai Times (9/21) 更新：BoT此前识别的10款未授权借贷APP下架流程持续推进中（DES正式协调Apple/Google）。同步，"Buy now, bankrupt later"专题报道指出：泰国目前有<b>11家运营商持有BoT数字个人贷款牌照</b>（年利率上限25%），BNPL行业正从"自发扩张"转向"监管框架内运营"。NESDC秘书长对BNPL扩展至食品燃料等必需品表达关切；Kasikorn Research Center指出BNPL是泰国贷款组合的"missing link"。对APP监控：下架流程持续=存量灰色APP逐步清退；11家持牌数字贷款=明确合规路径；BNPL监管框架Q4落地=新竞争格局。出海APP须确认自身是否在11家持牌名单内或需申请。</div>
+</div>
+
+<div class="policy-item" data-source-links='[{"label": "The Kenya Times - Digital lending doubles (9/22)", "url": "https://thekenyatimes.com/business/fuliza-style-lending-explodes-as-digital-loans-hit-ksh110-billion/"}]' data-app="跨市场(肯尼亚)" data-categories="风险预警,社媒讨论" data-urgency="中" data-status="发展中" data-verified="unverified" data-date="2026-09-22">
+  <div class="policy-header"><div class="tags"><span class="tag tag-urgency-medium">紧急-中</span><span class="tag tag-app-type-warning">风险预警</span><span class="tag tag-app-type-social">社媒讨论</span><span class="tag tag-app-name">跨市场(肯尼亚)</span><span class="tag tag-status-progress">发展中</span><span class="tag tag-unverified">⚠ 单源待验证</span></div><div class="policy-date">2026-09-22</div></div>
+  <div class="policy-title">[跨市场] 肯尼亚数字借贷市场爆发：195家持牌DCP、Ksh1,101亿未偿贷款、674万贷款账户</div>
+  <div class="policy-desc">CBK年度报告(9/22)显示：肯尼亚数字借贷市场2025年几乎翻倍——持牌DCP从85家→195家(+110家新增)、未偿贷款Ksh552亿→Ksh1,101亿(+99.6%)、贷款账户396万→674万(+71%)。新许可的DCP涵盖个人贷款/紧急贷款/农业融资/商业贷款/资产融资等全品类。对出海参考：肯尼亚数字借贷的爆发式增长为中国出海现金贷提供了"下一站"市场信号，但需注意CBK同步升级监管框架（消费者保护/定价透明/数据治理），合规成本将快速上升。</div>
+</div>
+
+
 
             <div class="policy-item" data-source-links='[{"label": "ACNews - MoneyThunder获Digital CX Award 2024 (9/17)", "url": "https://www.acnews.net/detailnews.php?news_id=N256791179"}, {"label": "Thai Times - Abacus Digital AI Initiative (9/6)", "url": "https://thaitimes.com/abacus-digital-s-ai-initiative-revolutionizes-thai-lending-landscape"}]' data-app="MoneyThunder" data-categories="经营主体异动" data-urgency="低" data-status="已确认" data-verified="verified" data-date="2026-09-17">
               <div class="policy-header"><div class="tags"><span class="tag tag-urgency-low">紧急-低</span><span class="tag tag-category">经营主体异动</span><span class="tag tag-app-name">MoneyThunder</span><span class="tag tag-status-confirmed">已确认</span><span class="tag tag-verified">✅ 已交叉认证</span><span class="tag tag-new">NEW</span></div><div class="policy-date">2026-09-17</div></div>
@@ -4531,7 +4730,7 @@ body {
 
     // ── Theme Toggle ──
     var themeBtn = document.querySelector('.fab-theme');
-    var savedTheme = localStorage.getItem('policy-theme') || '';
+    var savedTheme = localStorage.getItem('policy-monitor-theme') || '';
     var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
     var currentTheme = savedTheme || (prefersDark ? 'dark' : 'light');
 
@@ -4559,7 +4758,7 @@ body {
             var isDark = document.documentElement.getAttribute('data-theme') === 'dark';
             var newTheme = isDark ? 'light' : 'dark';
             applyTheme(newTheme);
-            localStorage.setItem('policy-theme', newTheme);
+            localStorage.setItem('policy-monitor-theme', newTheme);
         });
     }
 
@@ -4848,5 +5047,13 @@ function switchRankingTab(store) {
     }
 })();
 </script>
+
+<!-- Bottom Navigation -->
+<nav class="bottom-nav">
+    <a href="/" class="nav-item"><span class="nav-icon">🏠</span><span>首页</span></a>
+    <a href="/payment-intel/" class="nav-item"><span class="nav-icon">💳</span><span>支付</span></a>
+    <a href="/policy-monitor/" class="nav-item active"><span class="nav-icon">🛡️</span><span>政策</span></a>
+    <a href="/stock-dash/" class="nav-item"><span class="nav-icon">📈</span><span>股市</span></a>
+</nav>
 </body>
 </html>
