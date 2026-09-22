@@ -12,599 +12,147 @@
     <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🦉</text></svg>">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;700;900&display=swap');
-        
         * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
-        
         :root {
-            --bg: #f5f5f7;
-            --card: #ffffff;
-            --text: #1a1a1a;
-            --text-secondary: #6b7280;
-            --text-tertiary: #9ca3af;
-            --border: #e5e7eb;
-            --accent-green: #84cc16;
-            --accent-green-light: #ecfccb;
-            --accent-blue: #3b82f6;
-            --accent-blue-light: #dbeafe;
-            --accent-orange: #f97316;
-            --accent-orange-light: #ffedd5;
-            --accent-purple: #8b5cf6;
-            --accent-purple-light: #ede9fe;
-            --radius: 20px;
-            --radius-sm: 12px;
-            --shadow: 0 2px 12px rgba(0,0,0,0.06);
-            --shadow-lg: 0 8px 32px rgba(0,0,0,0.08);
+            --bg: #f5f5f7; --card: #ffffff; --text: #1a1a1a; --text-secondary: #6b7280; --text-tertiary: #9ca3af;
+            --border: #e5e7eb; --accent-green: #84cc16; --accent-green-light: #ecfccb;
+            --accent-blue: #3b82f6; --accent-blue-light: #dbeafe;
+            --accent-orange: #f97316; --accent-orange-light: #ffedd5;
+            --accent-purple: #8b5cf6; --accent-purple-light: #ede9fe;
+            --radius: 20px; --radius-sm: 12px;
+            --shadow: 0 2px 12px rgba(0,0,0,0.06); --shadow-lg: 0 8px 32px rgba(0,0,0,0.08);
         }
-        
         [data-theme="dark"] {
-            --bg: #0a0a0f;
-            --card: #16161e;
-            --text: #f5f5f7;
-            --text-secondary: #9ca3af;
-            --text-tertiary: #6b7280;
-            --border: #2a2a35;
-            --accent-green-light: rgba(132, 204, 22, 0.15);
-            --accent-blue-light: rgba(59, 130, 246, 0.15);
-            --accent-orange-light: rgba(249, 115, 22, 0.15);
-            --accent-purple-light: rgba(139, 92, 246, 0.15);
-            --shadow: 0 2px 12px rgba(0,0,0,0.3);
-            --shadow-lg: 0 8px 32px rgba(0,0,0,0.4);
+            --bg: #0a0a0f; --card: #16161e; --text: #f5f5f7; --text-secondary: #9ca3af; --text-tertiary: #6b7280;
+            --border: #2a2a35; --accent-green-light: rgba(132, 204, 22, 0.15); --accent-blue-light: rgba(59, 130, 246, 0.15);
+            --accent-orange-light: rgba(249, 115, 22, 0.15); --accent-purple-light: rgba(139, 92, 246, 0.15);
+            --shadow: 0 2px 12px rgba(0,0,0,0.3); --shadow-lg: 0 8px 32px rgba(0,0,0,0.4);
         }
-        
-        html, body {
-            font-family: 'Inter', 'Noto Sans SC', -apple-system, BlinkMacSystemFont, sans-serif;
-            background: var(--bg);
-            color: var(--text);
-            line-height: 1.5;
-            -webkit-font-smoothing: antialiased;
-        }
-        
-        body {
-            padding-bottom: 80px;
-            min-height: 100vh;
-        }
-        
-        /* Header */
-        .header {
-            padding: 16px 20px 12px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-        
-        .header-left {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-        
-        .avatar {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background: var(--accent-green-light);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.2rem;
-        }
-        
-        .header-title {
-            font-size: 0.75rem;
-            color: var(--text-secondary);
-        }
-        
-        .header-name {
-            font-size: 1rem;
-            font-weight: 700;
-        }
-        
-        .header-actions {
-            display: flex;
-            gap: 8px;
-        }
-        
-        .header-btn {
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            background: var(--card);
-            border: 1px solid var(--border);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            font-size: 1rem;
-            transition: transform 0.2s;
-        }
-        
+        html, body { font-family: 'Inter', 'Noto Sans SC', -apple-system, BlinkMacSystemFont, sans-serif; background: var(--bg); color: var(--text); line-height: 1.5; -webkit-font-smoothing: antialiased; }
+        body { padding-bottom: 80px; min-height: 100vh; }
+        .header { padding: 16px 20px 12px; display: flex; align-items: center; justify-content: space-between; }
+        .header-left { display: flex; align-items: center; gap: 12px; }
+        .avatar { width: 40px; height: 40px; border-radius: 50%; background: var(--accent-green-light); display: flex; align-items: center; justify-content: center; font-size: 1.2rem; }
+        .header-title { font-size: 0.75rem; color: var(--text-secondary); }
+        .header-name { font-size: 1rem; font-weight: 700; }
+        .header-actions { display: flex; gap: 8px; }
+        .header-btn { width: 36px; height: 36px; border-radius: 50%; background: var(--card); border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 1rem; transition: transform 0.2s; }
         .header-btn:active { transform: scale(0.92); }
-        
-        /* Status Bar */
-        .status-bar {
-            margin: 0 20px 16px;
-            padding: 16px;
-            background: var(--accent-green);
-            border-radius: var(--radius);
-            color: #fff;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-        
-        [data-theme="dark"] .status-bar {
-            background: linear-gradient(135deg, #84cc16, #65a30d);
-        }
-        
-        .status-left h2 {
-            font-size: 1.1rem;
-            font-weight: 800;
-            margin-bottom: 4px;
-        }
-        
-        .status-left p {
-            font-size: 0.75rem;
-            opacity: 0.85;
-        }
-        
-        .status-right {
-            text-align: right;
-        }
-        
-        .status-count {
-            font-size: 1.5rem;
-            font-weight: 900;
-            font-variant-numeric: tabular-nums;
-        }
-        
-        .status-label {
-            font-size: 0.65rem;
-            opacity: 0.8;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-        }
-        
-        /* Quick Stats */
-        .quick-stats {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 12px;
-            margin: 0 20px 20px;
-        }
-        
-        .quick-stat {
-            background: var(--card);
-            border-radius: var(--radius-sm);
-            padding: 14px 12px;
-            text-align: center;
-            box-shadow: var(--shadow);
-        }
-        
-        .quick-stat-icon {
-            font-size: 1.3rem;
-            margin-bottom: 6px;
-        }
-        
-        .quick-stat-value {
-            font-size: 1.1rem;
-            font-weight: 800;
-            font-variant-numeric: tabular-nums;
-        }
-        
-        .quick-stat-label {
-            font-size: 0.65rem;
-            color: var(--text-tertiary);
-            margin-top: 2px;
-        }
-        
-        /* Section */
-        .section {
-            margin: 0 20px 20px;
-        }
-        
-        .section-header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 12px;
-        }
-        
-        .section-title {
-            font-size: 1rem;
-            font-weight: 700;
-        }
-        
-        .section-more {
-            font-size: 0.75rem;
-            color: var(--accent-green);
-            font-weight: 600;
-            text-decoration: none;
-        }
-        
-        /* Module Cards */
-        .modules {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
-        
-        .module {
-            background: var(--card);
-            border-radius: var(--radius);
-            padding: 16px;
-            box-shadow: var(--shadow);
-            text-decoration: none;
-            color: var(--text);
-            display: flex;
-            align-items: center;
-            gap: 14px;
-            transition: transform 0.2s, box-shadow 0.2s;
-            cursor: pointer;
-        }
-        
-        .module:active {
-            transform: scale(0.98);
-            box-shadow: var(--shadow-lg);
-        }
-        
-        .module-icon {
-            width: 48px;
-            height: 48px;
-            border-radius: 14px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            flex-shrink: 0;
-        }
-        
+        .status-bar { margin: 0 20px 16px; padding: 16px; background: var(--accent-green); border-radius: var(--radius); color: #fff; display: flex; align-items: center; justify-content: space-between; }
+        [data-theme="dark"] .status-bar { background: linear-gradient(135deg, #84cc16, #65a30d); }
+        .status-left h2 { font-size: 1.1rem; font-weight: 800; margin-bottom: 4px; }
+        .status-left p { font-size: 0.75rem; opacity: 0.85; }
+        .status-right { text-align: right; }
+        .status-count { font-size: 1.5rem; font-weight: 900; font-variant-numeric: tabular-nums; }
+        .status-label { font-size: 0.65rem; opacity: 0.8; text-transform: uppercase; letter-spacing: 0.05em; }
+        .quick-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 0 20px 20px; }
+        .quick-stat { background: var(--card); border-radius: var(--radius-sm); padding: 14px 12px; text-align: center; box-shadow: var(--shadow); }
+        .quick-stat-icon { font-size: 1.3rem; margin-bottom: 6px; }
+        .quick-stat-value { font-size: 1.1rem; font-weight: 800; font-variant-numeric: tabular-nums; }
+        .quick-stat-label { font-size: 0.65rem; color: var(--text-tertiary); margin-top: 2px; }
+        .section { margin: 0 20px 20px; }
+        .section-title { font-size: 1rem; font-weight: 700; margin-bottom: 12px; }
+        .modules { display: flex; flex-direction: column; gap: 12px; }
+        .module { background: var(--card); border-radius: var(--radius); padding: 16px; box-shadow: var(--shadow); text-decoration: none; color: var(--text); display: flex; align-items: center; gap: 14px; transition: transform 0.2s, box-shadow 0.2s; cursor: pointer; position: relative; overflow: hidden; }
+        .module::after { content: '›'; position: absolute; right: 16px; top: 50%; transform: translateY(-50%); font-size: 1.5rem; color: var(--text-tertiary); font-weight: 300; }
+        .module:active { transform: scale(0.98); box-shadow: var(--shadow-lg); }
+        .module-icon { width: 48px; height: 48px; border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; flex-shrink: 0; }
         .module-payment .module-icon { background: var(--accent-orange-light); }
         .module-policy .module-icon { background: var(--accent-blue-light); }
         .module-stock .module-icon { background: var(--accent-purple-light); }
-        
-        .module-info { flex: 1; min-width: 0; }
-        
-        .module-title {
-            font-size: 0.95rem;
-            font-weight: 700;
-            margin-bottom: 4px;
-        }
-        
-        .module-desc {
-            font-size: 0.72rem;
-            color: var(--text-secondary);
-            line-height: 1.4;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            white-space: nowrap;
-        }
-        
-        .module-meta {
-            display: flex;
-            flex-direction: column;
-            align-items: flex-end;
-            gap: 4px;
-            flex-shrink: 0;
-        }
-        
-        .module-badge {
-            font-size: 0.65rem;
-            font-weight: 600;
-            padding: 3px 8px;
-            border-radius: 100px;
-            background: var(--accent-green-light);
-            color: #4d7c0f;
-        }
-        
-        [data-theme="dark"] .module-badge {
-            color: #84cc16;
-        }
-        
-        .module-visits {
-            font-size: 0.65rem;
-            color: var(--text-tertiary);
-            font-variant-numeric: tabular-nums;
-        }
-        
-        .module-arrow {
-            font-size: 1rem;
-            color: var(--text-tertiary);
-        }
-        
-        /* Activity Feed */
-        .activity-list {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-        }
-        
-        .activity-item {
-            background: var(--card);
-            border-radius: var(--radius-sm);
-            padding: 12px 14px;
-            box-shadow: var(--shadow);
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-        
-        .activity-dot {
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            flex-shrink: 0;
-        }
-        
-        .activity-dot.green { background: var(--accent-green); }
-        .activity-dot.blue { background: var(--accent-blue); }
-        .activity-dot.orange { background: var(--accent-orange); }
-        
-        .activity-content { flex: 1; min-width: 0; }
-        
-        .activity-title {
-            font-size: 0.8rem;
-            font-weight: 600;
-            margin-bottom: 2px;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            white-space: nowrap;
-        }
-        
-        .activity-time {
-            font-size: 0.65rem;
-            color: var(--text-tertiary);
-        }
-        
-        .activity-count {
-            font-size: 0.75rem;
-            font-weight: 700;
-            color: var(--accent-green);
-            flex-shrink: 0;
-        }
-        
-        /* Bottom Nav */
-        .bottom-nav {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: var(--card);
-            border-top: 1px solid var(--border);
-            display: flex;
-            justify-content: space-around;
-            padding: 8px 0;
-            padding-bottom: max(8px, env(safe-area-inset-bottom));
-            z-index: 100;
-        }
-        
-        .nav-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 4px;
-            text-decoration: none;
-            color: var(--text-tertiary);
-            font-size: 0.6rem;
-            font-weight: 500;
-            padding: 4px 12px;
-            border-radius: 12px;
-            transition: color 0.2s, background 0.2s;
-        }
-        
-        .nav-item.active {
-            color: var(--accent-green);
-            background: var(--accent-green-light);
-        }
-        
-        .nav-icon {
-            font-size: 1.2rem;
-        }
-        
-        /* Responsive */
-        @media (min-width: 768px) {
-            body { max-width: 430px; margin: 0 auto; }
-            .bottom-nav { max-width: 430px; left: 50%; transform: translateX(-50%); }
-        }
+        .module-info { flex: 1; min-width: 0; padding-right: 24px; }
+        .module-title { font-size: 0.95rem; font-weight: 700; margin-bottom: 4px; }
+        .module-desc { font-size: 0.72rem; color: var(--text-secondary); line-height: 1.4; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+        .module-meta { display: flex; flex-direction: column; align-items: flex-end; gap: 4px; flex-shrink: 0; }
+        .module-badge { font-size: 0.65rem; font-weight: 600; padding: 3px 8px; border-radius: 100px; background: var(--accent-green-light); color: #4d7c0f; }
+        [data-theme="dark"] .module-badge { color: #84cc16; }
+        .module-visits { font-size: 0.65rem; color: var(--text-tertiary); font-variant-numeric: tabular-nums; }
+        .recent-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+        .recent-item { background: var(--card); border-radius: var(--radius-sm); padding: 12px 10px; text-align: center; box-shadow: var(--shadow); }
+        .recent-dot { width: 6px; height: 6px; border-radius: 50%; margin: 0 auto 8px; }
+        .recent-dot.green { background: var(--accent-green); }
+        .recent-dot.blue { background: var(--accent-blue); }
+        .recent-dot.orange { background: var(--accent-orange); }
+        .recent-name { font-size: 0.7rem; font-weight: 600; margin-bottom: 4px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+        .recent-count { font-size: 0.9rem; font-weight: 800; color: var(--accent-green); font-variant-numeric: tabular-nums; }
+        .recent-time { font-size: 0.6rem; color: var(--text-tertiary); margin-top: 2px; }
+        .bottom-nav { position: fixed; bottom: 0; left: 0; right: 0; background: var(--card); border-top: 1px solid var(--border); display: flex; justify-content: space-around; padding: 8px 0; padding-bottom: max(8px, env(safe-area-inset-bottom)); z-index: 100; }
+        .nav-item { display: flex; flex-direction: column; align-items: center; gap: 4px; text-decoration: none; color: var(--text-tertiary); font-size: 0.6rem; font-weight: 500; padding: 4px 12px; border-radius: 12px; transition: color 0.2s, background 0.2s; }
+        .nav-item.active { color: var(--accent-green); background: var(--accent-green-light); }
+        .nav-icon { font-size: 1.2rem; }
+        @media (min-width: 768px) { body { max-width: 430px; margin: 0 auto; } .bottom-nav { max-width: 430px; left: 50%; transform: translateX(-50%); } }
     </style>
 </head>
 <body>
-    <!-- Header -->
     <header class="header">
         <div class="header-left">
             <div class="avatar">🦉</div>
-            <div>
-                <div class="header-title">监控中枢</div>
-                <div class="header-name">PraxisFit</div>
-            </div>
+            <div><div class="header-title">监控中枢</div><div class="header-name">PraxisFit</div></div>
         </div>
         <div class="header-actions">
-            <button class="header-btn" id="btn-theme">🌙</button>
+            <button class="header-btn" id="btn-theme"></button>
             <button class="header-btn" id="btn-search">🔍</button>
         </div>
     </header>
-    
-    <!-- Status Bar -->
     <div class="status-bar">
-        <div class="status-left">
-            <h2>今日监控</h2>
-            <p>3 个面板 · 每日自动更新</p>
-        </div>
-        <div class="status-right">
-            <div class="status-count">270+</div>
-            <div class="status-label">条目总数</div>
-        </div>
+        <div class="status-left"><h2>今日监控</h2><p>3 个面板 · 每日自动更新</p></div>
+        <div class="status-right"><div class="status-count">270+</div><div class="status-label">条目总数</div></div>
     </div>
-    
-    <!-- Quick Stats -->
     <div class="quick-stats">
-        <div class="quick-stat">
-            <div class="quick-stat-icon">👁</div>
-            <div class="quick-stat-value" id="stat-total">--</div>
-            <div class="quick-stat-label">总访问</div>
-        </div>
-        <div class="quick-stat">
-            <div class="quick-stat-icon">📊</div>
-            <div class="quick-stat-value" id="stat-today">--</div>
-            <div class="quick-stat-label">今日</div>
-        </div>
-        <div class="quick-stat">
-            <div class="quick-stat-icon">🕐</div>
-            <div class="quick-stat-value">19:00</div>
-            <div class="quick-stat-label">日更时间</div>
-        </div>
+        <div class="quick-stat"><div class="quick-stat-icon">👁</div><div class="quick-stat-value" id="stat-total">--</div><div class="quick-stat-label">总访问</div></div>
+        <div class="quick-stat"><div class="quick-stat-icon">📊</div><div class="quick-stat-value" id="stat-today">--</div><div class="quick-stat-label">今日</div></div>
+        <div class="quick-stat"><div class="quick-stat-icon">🕐</div><div class="quick-stat-value">19:00</div><div class="quick-stat-label">日更时间</div></div>
     </div>
-    
-    <!-- Modules -->
     <div class="section">
-        <div class="section-header">
-            <div class="section-title">监控面板</div>
-            <a href="#" class="section-more">See More →</a>
-        </div>
+        <div class="section-title">监控面板</div>
         <div class="modules">
             <a href="/payment-intel/" class="module module-payment">
                 <div class="module-icon">💳</div>
-                <div class="module-info">
-                    <div class="module-title">跨境支付情报</div>
-                    <div class="module-desc">全球支付政策 · Crypto 监管 · 品牌战略</div>
-                </div>
-                <div class="module-meta">
-                    <span class="module-badge">107 条</span>
-                    <span class="module-visits">👁 <span class="visit-count" data-page="payment">--</span></span>
-                </div>
-                <div class="module-arrow">›</div>
+                <div class="module-info"><div class="module-title">跨境支付情报</div><div class="module-desc">全球支付政策 · Crypto 监管 · 品牌战略</div></div>
+                <div class="module-meta"><span class="module-badge">107 条</span><span class="module-visits"> <span class="visit-count" data-page="payment">--</span></span></div>
             </a>
-            
             <a href="/policy-monitor/" class="module module-policy">
                 <div class="module-icon">🛡️</div>
-                <div class="module-info">
-                    <div class="module-title">泰国政策监控</div>
-                    <div class="module-desc">BNPL · Personal Loan · 出海监管动态</div>
-                </div>
-                <div class="module-meta">
-                    <span class="module-badge">165 条</span>
-                    <span class="module-visits">👁 <span class="visit-count" data-page="policy">--</span></span>
-                </div>
-                <div class="module-arrow">›</div>
+                <div class="module-info"><div class="module-title">泰国政策监控</div><div class="module-desc">BNPL · Personal Loan · 出海监管动态</div></div>
+                <div class="module-meta"><span class="module-badge">165 条</span><span class="module-visits">👁 <span class="visit-count" data-page="policy">--</span></span></div>
             </a>
-            
             <a href="/stock-dash/" class="module module-stock">
-                <div class="module-icon"></div>
-                <div class="module-info">
-                    <div class="module-title">股市盯盘看板</div>
-                    <div class="module-desc">A 股·港股·美股 · 基金净值 · 宏观指标</div>
-                </div>
-                <div class="module-meta">
-                    <span class="module-badge">三市</span>
-                    <span class="module-visits"> <span class="visit-count" data-page="stock">--</span></span>
-                </div>
-                <div class="module-arrow">›</div>
+                <div class="module-icon">📈</div>
+                <div class="module-info"><div class="module-title">股市盯盘看板</div><div class="module-desc">A 股·港股·美股 · 基金净值 · 宏观指标</div></div>
+                <div class="module-meta"><span class="module-badge">三市</span><span class="module-visits"> <span class="visit-count" data-page="stock">--</span></span></div>
             </a>
         </div>
     </div>
-    
-    <!-- Recent Activity -->
     <div class="section">
-        <div class="section-header">
-            <div class="section-title">最近更新</div>
-            <a href="#" class="section-more">查看全部 →</a>
-        </div>
-        <div class="activity-list">
-            <div class="activity-item">
-                <div class="activity-dot green"></div>
-                <div class="activity-content">
-                    <div class="activity-title">泰国政策监控</div>
-                    <div class="activity-time">今日 19:00 · 新增 8 条</div>
-                </div>
-                <div class="activity-count">165</div>
-            </div>
-            <div class="activity-item">
-                <div class="activity-dot blue"></div>
-                <div class="activity-content">
-                    <div class="activity-title">跨境支付情报</div>
-                    <div class="activity-time">今日 · 新增 6 条</div>
-                </div>
-                <div class="activity-count">107</div>
-            </div>
-            <div class="activity-item">
-                <div class="activity-dot orange"></div>
-                <div class="activity-content">
-                    <div class="activity-title">股市盯盘看板</div>
-                    <div class="activity-time">9-21 · 三市跟踪</div>
-                </div>
-                <div class="activity-count">--</div>
-            </div>
+        <div class="section-title">最近更新</div>
+        <div class="recent-grid">
+            <div class="recent-item"><div class="recent-dot blue"></div><div class="recent-name">泰国政策</div><div class="recent-count">165</div><div class="recent-time">今日 19:00</div></div>
+            <div class="recent-item"><div class="recent-dot orange"></div><div class="recent-name">跨境支付</div><div class="recent-count">107</div><div class="recent-time">今日</div></div>
+            <div class="recent-item"><div class="recent-dot green"></div><div class="recent-name">股市看板</div><div class="recent-count">--</div><div class="recent-time">9-21</div></div>
         </div>
     </div>
-    
-    <!-- Bottom Nav -->
     <nav class="bottom-nav">
-        <a href="/" class="nav-item active">
-            <span class="nav-icon"></span>
-            <span>首页</span>
-        </a>
-        <a href="/payment-intel/" class="nav-item">
-            <span class="nav-icon">💳</span>
-            <span>支付</span>
-        </a>
-        <a href="/policy-monitor/" class="nav-item">
-            <span class="nav-icon">🛡️</span>
-            <span>政策</span>
-        </a>
-        <a href="/stock-dash/" class="nav-item">
-            <span class="nav-icon"></span>
-            <span>股市</span>
-        </a>
+        <a href="/" class="nav-item active"><span class="nav-icon">🏠</span><span>首页</span></a>
+        <a href="/payment-intel/" class="nav-item"><span class="nav-icon">💳</span><span>支付</span></a>
+        <a href="/policy-monitor/" class="nav-item"><span class="nav-icon">🛡️</span><span>政策</span></a>
+        <a href="/stock-dash/" class="nav-item"><span class="nav-icon">📈</span><span>股市</span></a>
     </nav>
-    
     <script>
-        // Theme Toggle
         (function() {
             const btn = document.getElementById('btn-theme');
             const saved = localStorage.getItem('portal-theme');
             const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
             let isDark = saved ? saved === 'dark' : prefersDark;
-            
-            function update() {
-                document.documentElement.setAttribute('data-theme', isDark ? 'dark' : '');
-                btn.textContent = isDark ? '☀️' : '🌙';
-            }
+            function update() { document.documentElement.setAttribute('data-theme', isDark ? 'dark' : ''); btn.textContent = isDark ? '☀️' : '🌙'; }
             update();
-            btn.addEventListener('click', () => {
-                isDark = !isDark;
-                localStorage.setItem('portal-theme', isDark ? 'dark' : 'light');
-                update();
-            });
+            btn.addEventListener('click', () => { isDark = !isDark; localStorage.setItem('portal-theme', isDark ? 'dark' : 'light'); update(); });
         })();
-        
-        // Visitor Stats
         (function() {
-            fetch('https://counterapi.com/api/praxisfit.me/view/portal')
-                .then(r => r.json())
-                .then(d => { document.getElementById('stat-total').textContent = d.value || d.count || 0; })
-                .catch(() => {});
-            
-            fetch('https://counterapi.com/api/praxisfit.me/view/portal-today')
-                .then(r => r.json())
-                .then(d => { document.getElementById('stat-today').textContent = d.value || d.count || 0; })
-                .catch(() => {});
-            
-            document.querySelectorAll('.visit-count').forEach(el => {
-                const page = el.dataset.page;
-                fetch(`https://counterapi.com/api/praxisfit.me/view/${page}`)
-                    .then(r => r.json())
-                    .then(d => { el.textContent = d.value || d.count || 0; })
-                    .catch(() => { el.textContent = '--'; });
-            });
+            fetch('https://counterapi.com/api/praxisfit.me/view/portal').then(r => r.json()).then(d => { document.getElementById('stat-total').textContent = d.value || d.count || 0; }).catch(() => {});
+            fetch('https://counterapi.com/api/praxisfit.me/view/portal-today').then(r => r.json()).then(d => { document.getElementById('stat-today').textContent = d.value || d.count || 0; }).catch(() => {});
+            document.querySelectorAll('.visit-count').forEach(el => { const page = el.dataset.page; fetch(`https://counterapi.com/api/praxisfit.me/view/${page}`).then(r => r.json()).then(d => { el.textContent = d.value || d.count || 0; }).catch(() => { el.textContent = '--'; }); });
         })();
-        
-        // Page View Tracking
-        (function() {
-            const today = new Date().toISOString().slice(0, 10);
-            if (localStorage.getItem('pv_portal_date') !== today) {
-                fetch('https://counterapi.com/api/praxisfit.me/view/portal?trackOnly=true').catch(() => {});
-                localStorage.setItem('pv_portal_date', today);
-            }
-        })();
+        (function() { const today = new Date().toISOString().slice(0, 10); if (localStorage.getItem('pv_portal_date') !== today) { fetch('https://counterapi.com/api/praxisfit.me/view/portal?trackOnly=true').catch(() => {}); localStorage.setItem('pv_portal_date', today); } })();
     </script>
 </body>
 </html>
