@@ -286,12 +286,21 @@
             gap: 16px;
             font-size: 0.8125rem;
             color: var(--text-tertiary);
+            flex-wrap: wrap;
         }
         
         .card-stats .stat {
             display: flex;
             align-items: center;
             gap: 4px;
+        }
+        
+        .card-stats .visit-count {
+            font-variant-numeric: tabular-nums;
+            font-weight: 600;
+            color: var(--text-secondary);
+            min-width: 20px;
+            text-align: right;
         }
         
         .card-arrow {
@@ -305,6 +314,7 @@
             justify-content: center;
             transition: all 0.3s ease;
             color: var(--text-secondary);
+            flex-shrink: 0;
         }
         
         .card:hover .card-arrow {
@@ -348,6 +358,7 @@
             -webkit-text-fill-color: transparent;
             background-clip: text;
             margin-bottom: 4px;
+            font-variant-numeric: tabular-nums;
         }
         
         .stat-label {
@@ -434,6 +445,7 @@
             .card { padding: 24px; }
             .stats-grid { grid-template-columns: repeat(2, 1fr); }
             .fab-container { bottom: 24px; right: 24px; }
+            .card-stats { gap: 12px; }
         }
         
         @media (max-width: 480px) {
@@ -442,6 +454,8 @@
             .hero-meta { gap: 12px; }
             .cards-grid { grid-template-columns: 1fr; }
             .stats-grid { grid-template-columns: 1fr 1fr; gap: 12px; }
+            .card-footer { flex-direction: column; align-items: flex-start; gap: 12px; }
+            .card-arrow { align-self: flex-end; }
         }
     </style>
 </head>
@@ -474,6 +488,7 @@
                         <div class="card-stats">
                             <span class="stat">📊 107 条</span>
                             <span class="stat">🕐 9-21</span>
+                            <span class="stat">👁 <span class="visit-count" data-page="payment">--</span></span>
                         </div>
                         <div class="card-arrow">→</div>
                     </div>
@@ -486,7 +501,8 @@
                     <div class="card-footer">
                         <div class="card-stats">
                             <span class="stat">📊 165 条</span>
-                            <span class="stat">🕐 9-23</span>
+                            <span class="stat"> 9-23</span>
+                            <span class="stat">👁 <span class="visit-count" data-page="policy">--</span></span>
                         </div>
                         <div class="card-arrow">→</div>
                     </div>
@@ -495,11 +511,12 @@
                 <a href="/stock-dash/" class="card card-stock">
                     <div class="card-icon">📈</div>
                     <h3 class="card-title">股市盯盘看板</h3>
-                    <p class="card-desc">A股·港股·美股三市行情，基金净值、宏观指标、市场情绪与关键财经新闻</p>
+                    <p class="card-desc">A 股·港股·美股三市行情，基金净值、宏观指标、市场情绪与关键财经新闻</p>
                     <div class="card-footer">
                         <div class="card-stats">
-                            <span class="stat">📊 三市跟踪</span>
+                            <span class="stat"> 三市跟踪</span>
                             <span class="stat">🕐 9-21</span>
+                            <span class="stat"> <span class="visit-count" data-page="stock">--</span></span>
                         </div>
                         <div class="card-arrow">→</div>
                     </div>
@@ -586,20 +603,45 @@
             });
         })();
         
-        // Visitor Stats
+        // Visitor Stats - 修复 API 响应字段
         (function() {
+            // Portal 主页访问量
             fetch('https://counterapi.com/api/praxisfit.me/view/portal')
                 .then(r => r.json())
-                .then(d => { document.getElementById('visitor-total').textContent = d.count || '--'; })
+                .then(d => { 
+                    const count = d.value || d.count || 0;
+                    document.getElementById('visitor-total').textContent = count; 
+                })
                 .catch(() => {});
             
+            // 今日访问
             fetch('https://counterapi.com/api/praxisfit.me/view/portal-today')
                 .then(r => r.json())
-                .then(d => { document.getElementById('visitor-today').textContent = d.count || '--'; })
+                .then(d => { 
+                    const count = d.value || d.count || 0;
+                    document.getElementById('visitor-today').textContent = count; 
+                })
                 .catch(() => {});
+            
+            // 各子页面访问量
+            const visitCounters = document.querySelectorAll('.visit-count');
+            const pageKeys = { payment: 'payment', policy: 'policy', stock: 'stock' };
+            
+            visitCounters.forEach(el => {
+                const page = el.dataset.page;
+                if (pageKeys[page]) {
+                    fetch(`https://counterapi.com/api/praxisfit.me/view/${pageKeys[page]}`)
+                        .then(r => r.json())
+                        .then(d => { 
+                            const count = d.value || d.count || 0;
+                            el.textContent = count; 
+                        })
+                        .catch(() => { el.textContent = '--'; });
+                }
+            });
         })();
         
-        // Page View Tracking
+        // Page View Tracking - 每日去重
         (function() {
             const today = new Date().toISOString().slice(0, 10);
             const key = 'portal';
