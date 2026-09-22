@@ -3,910 +3,1120 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>每日盯盘看板 | 2026-09-22</title>
+<title>股市盯盘看板 | 2026-09-22</title>
 <meta name="description" content="A股·港股·美股每日盯盘看板，覆盖基金、宏观指标、市场情绪与关键新闻。">
-<meta property="og:title" content="股市盯盘看板">
-<meta property="og:description" content="A股·港股·美股三市行情，基金净值、宏观指标、市场情绪与关键财经新闻">
-<meta property="og:website" content="website">
+<meta property="og:title" content="股市盯盘看板 — A股·港股·美股">
+<meta property="og:description" content="A股·港股·美股每日盯盘看板，覆盖基金、宏观指标、市场情绪与关键新闻。">
+<meta property="og:type" content="website">
 <meta property="og:url" content="https://praxisfit.me/stock-dash/">
 <meta property="og:locale" content="zh_CN">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="股市盯盘看板">
-<meta name="twitter:description" content="A股·港股·美股三市行情，基金净值、宏观指标、市场情绪与关键财经新闻">
+<meta name="twitter:title" content="股市盯盘看板 — A股·港股·美股">
+<meta name="twitter:description" content="A股·港股·美股每日盯盘看板，覆盖基金、宏观指标、市场情绪与关键新闻。">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📈</text></svg>">
 <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📈</text></svg>">
 <link rel="canonical" href="https://praxisfit.me/stock-dash/">
 <style>
+/* ===== CSS Variables: Dark default ===== */
 :root {
-  --bg-primary: #ffffff;
-  --bg-secondary: #f6f8fa;
-  --bg-tertiary: #eaeef2;
+  --bg-body: #0a0a0f;
+  --bg-card: #12121a;
+  --bg-elevated: #1a1a2e;
+  --bg-input: #1e1e30;
+  --border: rgba(255,255,255,0.08);
+  --border-strong: rgba(255,255,255,0.15);
+  --text-primary: #f0f0f5;
+  --text-secondary: #9ca3af;
+  --text-muted: #6b7280;
+  --gain: #10b981;
+  --gain-bg: rgba(16,185,129,0.12);
+  --loss: #ef4444;
+  --loss-bg: rgba(239,68,68,0.12);
+  --primary: #6366f1;
+  --primary-light: rgba(99,102,241,0.15);
+  --violet: #8b5cf6;
+  --cyan: #06b6d4;
+  --pink: #ec4899;
+  --gold: #f59e0b;
+  --gold-bg: rgba(245,158,11,0.12);
+  --gradient-primary: linear-gradient(135deg, #6366f1, #8b5cf6);
+  --gradient-card: linear-gradient(135deg, rgba(99,102,241,0.1), rgba(139,92,246,0.1));
+  --shadow-card: 0 4px 24px rgba(0,0,0,0.4);
+  --shadow-elevated: 0 8px 32px rgba(0,0,0,0.5);
+  --font-mono: 'SF Mono','Cascadia Code','Fira Code','Consolas',monospace;
+  --font-sans: -apple-system,BlinkMacSystemFont,'Segoe UI','Noto Sans SC',sans-serif;
+  --radius: 16px;
+  --radius-sm: 10px;
+  --radius-xs: 6px;
+}
+
+/* Light theme override */
+[data-theme="light"] {
+  --bg-body: #f0f0f5;
   --bg-card: #ffffff;
-  --border: #d0d7de;
-  --text-primary: #1f2328;
-  --text-secondary: #656d76;
-  --text-muted: #6e7781;
-  --gain: #1a7f37;
-  --gain-bg: rgba(26,127,55,0.08);
-  --loss: #cf222e;
-  --loss-bg: rgba(207,34,46,0.08);
-  --neutral: #9a6700;
-  --accent: #0969da;
-  --accent-bg: rgba(9,105,218,0.08);
-  --gold: #9a6700;
-  --gold-bg: rgba(154,103,0,0.08);
-  --tab-active: #0969da;
-  --font-mono: 'SF Mono', 'Cascadia Code', 'Fira Code', 'Consolas', monospace;
-  --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans SC', sans-serif;
-  --radius: 8px;
-  --radius-sm: 4px;
+  --bg-elevated: #e8e8f0;
+  --bg-input: #f5f5fa;
+  --border: rgba(0,0,0,0.08);
+  --border-strong: rgba(0,0,0,0.15);
+  --text-primary: #1a1a2e;
+  --text-secondary: #4b5563;
+  --text-muted: #9ca3af;
+  --gain-bg: rgba(16,185,129,0.08);
+  --loss-bg: rgba(239,68,68,0.08);
+  --primary-light: rgba(99,102,241,0.08);
+  --gradient-card: linear-gradient(135deg, rgba(99,102,241,0.06), rgba(139,92,246,0.06));
+  --shadow-card: 0 4px 24px rgba(0,0,0,0.06);
+  --shadow-elevated: 0 8px 32px rgba(0,0,0,0.1);
+  --gold-bg: rgba(245,158,11,0.08);
 }
-[data-theme="dark"] {
-  --bg-primary: #0d1117;
-  --bg-secondary: #161b22;
-  --bg-tertiary: #21262d;
-  --bg-card: #1c2128;
-  --border: #30363d;
-  --text-primary: #e6edf3;
-  --text-secondary: #8b949e;
-  --text-muted: #6e7681;
-  --gain: #3fb950;
-  --gain-bg: rgba(63,185,80,0.1);
-  --loss: #f85149;
-  --loss-bg: rgba(248,81,73,0.1);
-  --neutral: #d29922;
-  --accent: #58a6ff;
-  --accent-bg: rgba(88,166,255,0.1);
-  --gold: #e3b341;
-  --gold-bg: rgba(227,179,65,0.1);
-  --tab-active: #58a6ff;
-}
-[data-theme="dark"] ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); }
-[data-theme="dark"] ::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.2); }
-[data-theme="dark"] tr:nth-child(even) td { background: rgba(255,255,255,0.02); }
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+/* ===== Reset ===== */
+*,*::before,*::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { font-size: 15px; -webkit-text-size-adjust: 100%; }
 body {
   font-family: var(--font-sans);
-  background: var(--bg-primary);
+  background: var(--bg-body);
   color: var(--text-primary);
   line-height: 1.6;
   min-height: 100vh;
+  max-width: 430px;
+  margin: 0 auto;
+  padding-bottom: 80px;
   overflow-x: hidden;
-  transition: background-color 0.35s ease, color 0.35s ease;
 }
-.container { max-width: 1400px; margin: 0 auto; padding: 16px; }
-header {
-  background: var(--bg-secondary);
-  border-bottom: 1px solid var(--border);
-  padding: 20px 0;
-  margin-bottom: 0;
-}
-.header-inner { max-width: 1400px; margin: 0 auto; padding: 0 16px; }
-.header-top { display: flex; align-items: baseline; gap: 16px; flex-wrap: wrap; }
-h1 { font-size: 1.5rem; font-weight: 700; letter-spacing: -0.02em; }
-.header-date { color: var(--text-secondary); font-size: 0.9rem; }
-.header-tag {
-  display: inline-block;
-  padding: 2px 8px;
-  border-radius: 12px;
-  font-size: 0.75rem;
-  font-weight: 600;
-}
-.tag-trading { background: var(--gain-bg); color: var(--gain); border: 1px solid rgba(26,127,55,0.3); }
-.tag-closed { background: var(--loss-bg); color: var(--loss); border: 1px solid rgba(207,34,46,0.3); }
-[data-theme="dark"] .tag-trading { border-color: rgba(63,185,80,0.3); }
-[data-theme="dark"] .tag-closed { border-color: rgba(248,81,73,0.3); }
-.summary-bar {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-  gap: 12px;
-  margin-top: 16px;
-}
-.summary-item {
-  background: var(--bg-tertiary);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 12px;
-  text-align: center;
-}
-.summary-label { font-size: 0.75rem; color: var(--text-secondary); margin-bottom: 4px; }
-.summary-value { font-size: 1.3rem; font-weight: 700; font-family: var(--font-mono); }
-.summary-change { font-size: 0.75rem; margin-top: 2px; }
-.summary-change.up { color: var(--gain); }
-.summary-change.down { color: var(--loss); }
-.tab-nav {
-  display: flex;
-  gap: 0;
-  background: var(--bg-secondary);
-  border-bottom: 1px solid var(--border);
-  overflow-x: auto;
+a { color: inherit; text-decoration: none; }
+button { font-family: inherit; cursor: pointer; border: none; background: none; }
+table { width: 100%; border-collapse: collapse; }
+
+/* ===== Scrollbar ===== */
+::-webkit-scrollbar { width: 4px; height: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--border-strong); border-radius: 4px; }
+
+/* ===== Header ===== */
+.header {
+  background: var(--gradient-primary);
+  padding: 16px 20px 14px;
   position: sticky;
   top: 0;
   z-index: 100;
 }
-.tab-btn {
-  padding: 12px 20px;
-  border: none;
-  background: transparent;
-  color: var(--text-secondary);
-  font-size: 0.9rem;
-  font-weight: 500;
-  cursor: pointer;
-  border-bottom: 2px solid transparent;
-  white-space: nowrap;
-  transition: all 0.2s;
-  font-family: inherit;
+.header-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
-.tab-btn:hover { color: var(--text-primary); background: var(--bg-tertiary); }
-.tab-btn.active { color: var(--tab-active); border-bottom-color: var(--tab-active); font-weight: 600; }
-.tab-badge {
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.header-avatar {
+  width: 36px;
+  height: 36px;
+  background: rgba(255,255,255,0.2);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+}
+.header-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: #fff;
+}
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.header-btn {
+  width: 34px;
+  height: 34px;
+  background: rgba(255,255,255,0.15);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  color: #fff;
+  transition: background 0.2s;
+}
+.header-btn:active { transform: scale(0.98); background: rgba(255,255,255,0.25); }
+.header-sub {
+  margin-top: 8px;
+  font-size: 12px;
+  color: rgba(255,255,255,0.75);
+}
+.header-sub .status-dot {
   display: inline-block;
-  padding: 1px 6px;
-  border-radius: 8px;
-  font-size: 0.7rem;
-  margin-left: 4px;
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: #f59e0b;
+  margin-right: 4px;
   vertical-align: middle;
 }
-.badge-live { background: var(--gain-bg); color: var(--gain); }
-.badge-closed { background: var(--loss-bg); color: var(--loss); }
-.tab-content { display: none; }
-.tab-content.active { display: block; }
-.conclusion {
-  background: var(--accent-bg);
-  border: 1px solid var(--border);
-  border-left: 4px solid var(--accent);
-  border-radius: var(--radius);
-  padding: 16px 20px;
-  margin-bottom: 24px;
-  font-size: 0.9rem;
-  line-height: 1.8;
-}
-.section { margin-bottom: 24px; }
-.section-title {
-  font-size: 1.05rem;
-  font-weight: 700;
-  margin-bottom: 12px;
-  padding-bottom: 8px;
+
+/* ===== Ticker Scroll ===== */
+.ticker-wrap {
+  background: var(--bg-card);
   border-bottom: 1px solid var(--border);
+  overflow: hidden;
+  padding: 10px 0;
 }
-.section-title .icon { margin-right: 6px; }
-.table-wrap { overflow-x: auto; border-radius: var(--radius); border: 1px solid var(--border); }
-table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
-thead { background: var(--bg-secondary); }
-th { padding: 10px 12px; text-align: left; font-weight: 600; color: var(--text-secondary); border-bottom: 1px solid var(--border); white-space: nowrap; }
-td { padding: 10px 12px; border-bottom: 1px solid var(--border); }
-tr:nth-child(even) td { background: var(--bg-secondary); }
-.num { text-align: right; font-family: var(--font-mono); font-weight: 600; }
-.up { color: var(--gain); }
-.down { color: var(--loss); }
-.cards-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 12px; }
+.ticker-track {
+  display: flex;
+  gap: 24px;
+  animation: tickerScroll 30s linear infinite;
+  width: max-content;
+}
+@keyframes tickerScroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+.ticker-item {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.ticker-name {
+  font-size: 11px;
+  color: var(--text-muted);
+}
+.ticker-val {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+.ticker-chg {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  padding: 1px 5px;
+  border-radius: 4px;
+}
+.ticker-chg.up { color: var(--gain); background: var(--gain-bg); }
+.ticker-chg.down { color: var(--loss); background: var(--loss-bg); }
+
+/* ===== Quick Stats Grid ===== */
+.quick-stats {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  padding: 14px 16px;
+}
+.stat-card {
+  background: var(--bg-card);
+  border-radius: var(--radius);
+  padding: 14px;
+  box-shadow: var(--shadow-card);
+  position: relative;
+  overflow: hidden;
+}
+.stat-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: var(--gradient-primary);
+}
+.stat-card:nth-child(2)::before { background: linear-gradient(135deg, #06b6d4, #6366f1); }
+.stat-card:nth-child(3)::before { background: linear-gradient(135deg, #ec4899, #8b5cf6); }
+.stat-card:nth-child(4)::before { background: linear-gradient(135deg, #f59e0b, #ef4444); }
+.stat-label {
+  font-size: 11px;
+  color: var(--text-muted);
+  margin-bottom: 4px;
+}
+.stat-value {
+  font-family: var(--font-mono);
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+.stat-sub {
+  font-size: 11px;
+  color: var(--text-secondary);
+  margin-top: 2px;
+}
+
+/* ===== Tab Navigation ===== */
+.tab-nav {
+  display: flex;
+  gap: 0;
+  padding: 0 16px;
+  overflow-x: auto;
+  background: var(--bg-card);
+  border-bottom: 1px solid var(--border);
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+.tab-nav::-webkit-scrollbar { display: none; }
+.tab-btn {
+  flex-shrink: 0;
+  padding: 12px 16px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  border-bottom: 2px solid transparent;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+.tab-btn:active { transform: scale(0.98); }
+.tab-btn.active {
+  color: var(--primary);
+  border-bottom-color: var(--primary);
+  font-weight: 600;
+}
+
+/* ===== Tab Content ===== */
+.tab-content { display: none; padding: 14px 16px; }
+.tab-content.active { display: block; }
+
+/* ===== Cards ===== */
 .card {
   background: var(--bg-card);
-  border: 1px solid var(--border);
   border-radius: var(--radius);
   padding: 16px;
-}
-.card-title { font-size: 0.85rem; font-weight: 600; color: var(--text-secondary); margin-bottom: 4px; }
-.card-sub { font-size: 0.8rem; color: var(--text-muted); margin-top: 8px; line-height: 1.5; }
-.macro-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px; }
-.macro-item {
-  background: var(--bg-secondary);
+  margin-bottom: 12px;
+  box-shadow: var(--shadow-card);
   border: 1px solid var(--border);
-  border-radius: var(--radius-sm);
-  padding: 10px 14px;
+}
+.card-title {
+  font-size: 14px;
+  font-weight: 700;
+  margin-bottom: 12px;
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  gap: 6px;
 }
-.macro-label { font-size: 0.8rem; color: var(--text-secondary); }
-.macro-value { font-family: var(--font-mono); font-weight: 600; font-size: 0.9rem; }
-.event-list { list-style: none; }
-.event-item {
-  display: flex;
-  gap: 12px;
-  padding: 10px 0;
-  border-bottom: 1px solid var(--border);
-  align-items: baseline;
+.card-title .icon { font-size: 16px; }
+
+/* Conclusion card with gradient border */
+.conclusion-card {
+  background: var(--gradient-card);
+  border: 1px solid var(--border-strong);
+  border-left: 3px solid var(--primary);
+  border-radius: var(--radius);
+  padding: 14px;
+  margin-bottom: 12px;
 }
-.event-date { font-family: var(--font-mono); font-size: 0.8rem; color: var(--text-secondary); min-width: 140px; }
-.event-text { font-size: 0.85rem; }
-.event-critical .event-text { color: var(--loss); font-weight: 600; }
-.event-stars { font-size: 0.75rem; margin-left: 4px; }
-footer {
-  background: var(--bg-secondary);
-  border-top: 1px solid var(--border);
-  padding: 20px 0;
-  margin-top: 24px;
-  font-size: 0.8rem;
+.conclusion-card p {
+  font-size: 13px;
+  line-height: 1.7;
+  color: var(--text-secondary);
+}
+.conclusion-card strong { color: var(--text-primary); }
+
+/* ===== Table Styles ===== */
+.data-table {
+  width: 100%;
+  font-size: 12px;
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+}
+.data-table thead th {
+  background: var(--bg-elevated);
+  padding: 8px 10px;
+  text-align: left;
+  font-weight: 600;
+  font-size: 11px;
   color: var(--text-muted);
-  text-align: center;
+  white-space: nowrap;
 }
-footer a { color: var(--accent); text-decoration: none; }
-footer a:hover { text-decoration: underline; }
+.data-table tbody td {
+  padding: 8px 10px;
+  border-bottom: 1px solid var(--border);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  white-space: nowrap;
+}
+.data-table tbody tr:last-child td { border-bottom: none; }
+.data-table tbody tr:active { background: var(--primary-light); }
+.data-table .name-col {
+  font-family: var(--font-sans);
+  font-weight: 500;
+  color: var(--text-primary);
+}
+.val-up { color: var(--gain); font-weight: 600; }
+.val-down { color: var(--loss); font-weight: 600; }
+.val-flat { color: var(--text-muted); }
 
-/* Floating Components */
-.fab-stack {
-    position: fixed;
-    right: 20px;
-    bottom: 24px;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    z-index: 9999;
+/* ===== Pill Tags ===== */
+.pill-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 12px;
 }
-.fab {
-    width: 44px;
-    height: 44px;
-    border-radius: 50%;
-    border: 1px solid var(--border);
-    background: var(--bg-card);
-    color: var(--text-primary);
-    font-size: 1.1rem;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.12);
-    transition: all 0.25s ease;
-    text-decoration: none;
-    padding: 0;
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 5px 10px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 600;
 }
-.fab:hover { transform: scale(1.1); box-shadow: 0 4px 16px rgba(0,0,0,0.18); }
-.fab-back { opacity: 0; pointer-events: none; transition: opacity 0.3s ease, transform 0.25s ease; }
-.fab-back.visible { opacity: 1; pointer-events: auto; }
-.fab-theme { background: var(--bg-tertiary); }
-.fab-theme:active { transform: scale(0.88) rotate(180deg); }
-.fab-feedback { position: relative; }
-.fab-feedback .fab-badge {
-    position: absolute;
-    top: -2px;
-    right: -2px;
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    background: var(--loss);
-    border: 2px solid var(--bg-card);
-}
-.fab-portal { background: var(--accent-bg); }
+.pill.up { background: var(--gain-bg); color: var(--gain); }
+.pill.down { background: var(--loss-bg); color: var(--loss); }
+.pill.neutral { background: var(--primary-light); color: var(--primary); }
 
-/* Feedback Modal */
-.feedback-overlay {
-    position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,0.5);
-    z-index: 10000;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.25s ease;
+/* ===== Grid Cards 2x2 ===== */
+.grid-2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  margin-bottom: 12px;
 }
-.feedback-overlay.visible { opacity: 1; pointer-events: auto; }
-.feedback-modal {
-    background: var(--bg-card);
-    border-radius: 12px;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.2);
-    max-width: 460px;
-    width: 100%;
-    padding: 24px 20px;
-    transform: scale(0.92) translateY(20px);
-    transition: transform 0.25s ease;
-    border: 1px solid var(--border);
-    color: var(--text-primary);
+.mini-card {
+  background: var(--bg-elevated);
+  border-radius: var(--radius-sm);
+  padding: 12px;
+  border: 1px solid var(--border);
 }
-.feedback-overlay.visible .feedback-modal { transform: scale(1) translateY(0); }
-.feedback-modal h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 6px; }
-.feedback-modal .feedback-hint { font-size: 0.8125rem; color: var(--text-secondary); margin-bottom: 14px; line-height: 1.6; }
-.feedback-modal textarea {
-    width: 100%;
-    min-height: 120px;
-    padding: 12px 14px;
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    font-size: 0.875rem;
-    font-family: inherit;
-    resize: vertical;
-    outline: none;
-    background: var(--bg-tertiary);
-    color: var(--text-primary);
-    line-height: 1.6;
+.mini-card:active { transform: scale(0.98); }
+.mini-card .mc-title {
+  font-size: 11px;
+  color: var(--text-muted);
+  margin-bottom: 4px;
 }
-.feedback-modal textarea:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(9,105,218,0.15); }
-[data-theme="dark"] .feedback-modal textarea:focus { box-shadow: 0 0 0 3px rgba(88,166,255,0.15); }
-.feedback-modal textarea::placeholder { color: var(--text-muted); }
-.feedback-modal .feedback-actions { display: flex; gap: 10px; margin-top: 16px; flex-wrap: wrap; }
-.feedback-btn {
-    flex: 1;
-    min-width: 120px;
-    padding: 12px 16px;
-    border-radius: 8px;
-    font-size: 0.875rem;
-    font-weight: 600;
-    cursor: pointer;
-    border: none;
-    transition: all 0.2s ease;
-    min-height: 44px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 6px;
-    text-decoration: none;
+.mini-card .mc-value {
+  font-family: var(--font-mono);
+  font-size: 16px;
+  font-weight: 700;
 }
-.feedback-btn:active { transform: scale(0.96); }
-.feedback-btn-primary { background: var(--accent); color: white; }
-.feedback-btn-secondary { background: var(--bg-tertiary); color: var(--text-primary); border: 1px solid var(--border); }
-.feedback-btn-close { background: transparent; color: var(--text-secondary); border: 1px solid var(--border); flex: 0 0 auto; min-width: 44px; }
-.feedback-modal .feedback-note { margin-top: 12px; font-size: 0.75rem; color: var(--text-muted); line-height: 1.5; }
-.feedback-modal .feedback-type { display: flex; gap: 8px; margin-bottom: 12px; }
-.feedback-type-btn {
-    padding: 8px 14px;
-    border-radius: 100px;
-    font-size: 0.8125rem;
-    font-weight: 500;
-    cursor: pointer;
-    border: 1px solid var(--border);
-    background: var(--bg-tertiary);
-    color: var(--text-secondary);
-    transition: all 0.2s ease;
+.mini-card .mc-sub {
+  font-size: 10px;
+  color: var(--text-muted);
+  margin-top: 2px;
 }
-.feedback-type-btn.active { background: var(--accent); color: white; border-color: var(--accent); }
-.collapsible-header { cursor: pointer; user-select: none; display: flex; align-items: center; gap: 8px; }
-.collapsible-toggle { transition: transform 0.2s; }
-.collapsible-content.collapsed { display: none; }
-@media (max-width: 768px) {
-    .fab-stack { right: 16px; gap: 8px; }
-    .feedback-modal { padding: 20px 16px; }
-    .feedback-btn { min-width: 100px; font-size: 0.8125rem; }
-    .container { padding: 8px; }
-    .summary-bar { grid-template-columns: repeat(2, 1fr); }
-    .tab-btn { padding: 10px 16px; font-size: 0.85rem; }
-    .cards-grid { grid-template-columns: 1fr; }
-    .macro-grid { grid-template-columns: repeat(2, 1fr); }
-    h1 { font-size: 1.2rem; }
-    td, th { padding: 8px; font-size: 0.8rem; }
+
+/* ===== Risk Card ===== */
+.risk-card {
+  border: 1px solid rgba(239,68,68,0.3);
+  border-left: 3px solid var(--loss);
+  background: var(--loss-bg);
+  border-radius: var(--radius);
+  padding: 14px;
+  margin-bottom: 12px;
 }
-.tab-btn:focus-visible, a:focus-visible, button:focus-visible {
-  outline: 2px solid var(--accent);
-  outline-offset: 2px;
+.risk-card .risk-title {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--loss);
+  margin-bottom: 6px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.risk-card ul {
+  list-style: none;
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+.risk-card li {
+  padding: 3px 0;
+  padding-left: 14px;
+  position: relative;
+}
+.risk-card li::before {
+  content: '⚠';
+  position: absolute;
+  left: 0;
+  font-size: 10px;
+}
+
+/* ===== Summary Quote ===== */
+.summary-quote {
+  border-left: 3px solid var(--primary);
+  padding: 12px 14px;
+  background: var(--primary-light);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  margin-bottom: 12px;
+  font-size: 13px;
+  line-height: 1.7;
+  color: var(--text-secondary);
+}
+
+/* ===== Macro Grid ===== */
+.macro-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px;
+}
+.macro-item {
+  background: var(--bg-elevated);
+  border-radius: var(--radius-sm);
+  padding: 12px;
+  border: 1px solid var(--border);
+}
+.macro-item .mi-label {
+  font-size: 10px;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+.macro-item .mi-value {
+  font-family: var(--font-mono);
+  font-size: 18px;
+  font-weight: 700;
+  margin-top: 2px;
+}
+.macro-item .mi-chg {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+}
+
+/* ===== Event Timeline ===== */
+.timeline { position: relative; padding-left: 20px; }
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 6px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: var(--border-strong);
+  border-radius: 1px;
+}
+.timeline-item {
+  position: relative;
+  padding: 8px 0 14px;
+}
+.timeline-item::before {
+  content: '';
+  position: absolute;
+  left: -17px;
+  top: 12px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--primary);
+  border: 2px solid var(--bg-card);
+}
+.timeline-date {
+  font-size: 11px;
+  color: var(--primary);
+  font-weight: 600;
+  margin-bottom: 2px;
+}
+.timeline-text {
+  font-size: 12px;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+/* ===== Operation Badge ===== */
+.op-badge {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 10px;
+  font-weight: 700;
+}
+.op-badge.hold { background: var(--gold-bg); color: var(--gold); }
+.op-badge.buy { background: var(--gain-bg); color: var(--gain); }
+.op-badge.no { background: var(--loss-bg); color: var(--loss); }
+
+/* ===== Bottom Nav ===== */
+.bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 430px;
+  z-index: 1000;
+  background: rgba(18,18,26,0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-top: 1px solid var(--border);
+  display: flex;
+  padding: 6px 0 env(safe-area-inset-bottom, 6px);
+}
+[data-theme="light"] .bottom-nav {
+  background: rgba(255,255,255,0.88);
+}
+.nav-item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  padding: 6px 0;
+  font-size: 10px;
+  color: var(--text-muted);
+  transition: color 0.2s;
+}
+.nav-item:active { transform: scale(0.98); }
+.nav-item .nav-icon {
+  font-size: 20px;
+  line-height: 1;
+}
+.nav-item.active {
+  color: var(--primary);
+}
+.nav-item.active .nav-icon-wrap {
+  background: var(--primary-light);
+  border-radius: 10px;
+  padding: 4px 12px;
+}
+
+/* ===== Cleared Badge ===== */
+.cleared-badge {
+  display: inline-block;
+  background: var(--loss-bg);
+  color: var(--loss);
+  font-size: 10px;
+  font-weight: 700;
+  padding: 2px 6px;
+  border-radius: 4px;
+  margin-left: 6px;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 360px) {
+  .quick-stats { grid-template-columns: 1fr 1fr; gap: 8px; }
+  .stat-value { font-size: 17px; }
+  .macro-grid { gap: 6px; }
+  .macro-item .mi-value { font-size: 15px; }
 }
 </style>
 </head>
 <body>
 
-<header>
-  <div class="header-inner">
-    <div class="header-top">
-      <h1>📊 每日盯盘看板</h1>
-      <span class="header-date">2026年9月22日 周二 · A股收盘/美股盘中/港股收盘</span>
-      <span class="header-tag tag-closed">A股已收盘</span>
-      <span class="header-tag tag-trading">美股盘中 9/22</span>
-      <span class="header-tag tag-closed">港股已收盘</span>
+<!-- ===== Header ===== -->
+<header class="header">
+  <div class="header-top">
+    <div class="header-left">
+      <div class="header-avatar">📈</div>
+      <span class="header-title">股市盯盘</span>
     </div>
-    <div class="summary-bar">
-      <div class="summary-item">
-        <div class="summary-label">道指（9/21收盘）</div>
-        <div class="summary-value">52,049</div>
-        <div class="summary-change up">+0.71%</div>
-      </div>
-      <div class="summary-item">
-        <div class="summary-label">标普500（9/21收盘）</div>
-        <div class="summary-value">7,765</div>
-        <div class="summary-change up">+1.49%</div>
-      </div>
-      <div class="summary-item">
-        <div class="summary-label">纳指（9/21收盘）</div>
-        <div class="summary-value" style="color:var(--gain)">27,122</div>
-        <div class="summary-change up">+2.26% 创历史新高！</div>
-      </div>
-      <div class="summary-item">
-        <div class="summary-label">美股开盘（9/22）</div>
-        <div class="summary-value" style="color:var(--gain)">道指+0.37%</div>
-        <div class="summary-change up">纳指+0.19%</div>
-      </div>
-      <div class="summary-item">
-        <div class="summary-label">WTI原油</div>
-        <div class="summary-value" style="color:var(--gain)">$90.59</div>
-        <div class="summary-change down">续跌-1.91%！</div>
-      </div>
-      <div class="summary-item">
-        <div class="summary-label" style="color:var(--gold)">现货黄金</div>
-        <div class="summary-value" style="color:var(--loss)">$4,330</div>
-        <div class="summary-change down">一度失守$4,300！</div>
-      </div>
-      <div class="summary-item">
-        <div class="summary-label">10Y美债收益率</div>
-        <div class="summary-value">4.9%</div>
-        <div class="summary-change down">跌破5%！</div>
-      </div>
-      <div class="summary-item">
-        <div class="summary-label">10月加息概率</div>
-        <div class="summary-value" style="color:var(--loss)">57.6%</div>
-        <div class="summary-change down">较昨日50.9%↑</div>
-      </div>
-      <div class="summary-item">
-        <div class="summary-label">A股成交额</div>
-        <div class="summary-value" style="color:var(--gain)">2.14万亿</div>
-        <div class="summary-change up">放量1040亿！</div>
-      </div>
+    <div class="header-right">
+      <button class="header-btn" onclick="document.getElementById('searchBox')&&document.getElementById('searchBox').scrollIntoView({behavior:'smooth'})">🔍</button>
+      <button class="header-btn" id="themeToggle">🌙</button>
     </div>
+  </div>
+  <div class="header-sub">
+    <span class="status-dot"></span>2026-09-22 · A股已收盘
   </div>
 </header>
 
-<nav class="tab-nav" role="tablist">
-  <button class="tab-btn active" data-tab="a-share" role="tab" aria-selected="true">🇨🇳 A股 <span class="tab-badge badge-closed">9/22收盘</span></button>
-  <button class="tab-btn" data-tab="us-stock" role="tab" aria-selected="false">🇺🇸 美股 <span class="tab-badge badge-live">9/22盘中</span></button>
-  <button class="tab-btn" data-tab="hk-stock" role="tab" aria-selected="false">🇭🇰 港股 <span class="tab-badge badge-closed">9/22收盘</span></button>
-  <button class="tab-btn" data-tab="fund" role="tab" aria-selected="false">💼 持仓基金</button>
-  <button class="tab-btn" data-tab="macro" role="tab" aria-selected="false">🌍 宏观·黄金</button>
-  <button class="tab-btn" data-tab="events" role="tab" aria-selected="false">📅 事件日历</button>
-</nav>
+<!-- ===== Ticker Scroll ===== -->
+<div class="ticker-wrap">
+  <div class="ticker-track" id="tickerTrack">
+    <div class="ticker-item"><span class="ticker-name">上证指数</span><span class="ticker-val">3,879.43</span><span class="ticker-chg down">-1.27%</span></div>
+    <div class="ticker-item"><span class="ticker-name">创业板指</span><span class="ticker-val">3,361.01</span><span class="ticker-chg down">-1.68%</span></div>
+    <div class="ticker-item"><span class="ticker-name">标普500</span><span class="ticker-val">7,730.99</span><span class="ticker-chg up">+0.72%</span></div>
+    <div class="ticker-item"><span class="ticker-name">纳指</span><span class="ticker-val">26,541</span><span class="ticker-chg up">+1.57%</span></div>
+    <div class="ticker-item"><span class="ticker-name">费城半导体</span><span class="ticker-val">--</span><span class="ticker-chg up">+2.33%</span></div>
+    <div class="ticker-item"><span class="ticker-name">NVDA</span><span class="ticker-val">$227.98</span><span class="ticker-chg up">+8.74%</span></div>
+    <div class="ticker-item"><span class="ticker-name">现货黄金</span><span class="ticker-val">$4,326</span><span class="ticker-chg down">-1.18%</span></div>
+    <div class="ticker-item"><span class="ticker-name">BTC</span><span class="ticker-val">$84,217</span><span class="ticker-chg up">+5%</span></div>
+    <!-- duplicate for seamless scroll -->
+    <div class="ticker-item"><span class="ticker-name">上证指数</span><span class="ticker-val">3,879.43</span><span class="ticker-chg down">-1.27%</span></div>
+    <div class="ticker-item"><span class="ticker-name">创业板指</span><span class="ticker-val">3,361.01</span><span class="ticker-chg down">-1.68%</span></div>
+    <div class="ticker-item"><span class="ticker-name">标普500</span><span class="ticker-val">7,730.99</span><span class="ticker-chg up">+0.72%</span></div>
+    <div class="ticker-item"><span class="ticker-name">纳指</span><span class="ticker-val">26,541</span><span class="ticker-chg up">+1.57%</span></div>
+    <div class="ticker-item"><span class="ticker-name">费城半导体</span><span class="ticker-val">--</span><span class="ticker-chg up">+2.33%</span></div>
+    <div class="ticker-item"><span class="ticker-name">NVDA</span><span class="ticker-val">$227.98</span><span class="ticker-chg up">+8.74%</span></div>
+    <div class="ticker-item"><span class="ticker-name">现货黄金</span><span class="ticker-val">$4,326</span><span class="ticker-chg down">-1.18%</span></div>
+    <div class="ticker-item"><span class="ticker-name">BTC</span><span class="ticker-val">$84,217</span><span class="ticker-chg up">+5%</span></div>
+  </div>
+</div>
 
-<main class="container">
+<!-- ===== Quick Stats ===== -->
+<div class="quick-stats">
+  <div class="stat-card">
+    <div class="stat-label">两市成交</div>
+    <div class="stat-value">缩量</div>
+    <div class="stat-sub">量能持续萎缩</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-label">涨跌家数</div>
+    <div class="stat-value" style="color:var(--loss)">跌多涨少</div>
+    <div class="stat-sub">创业板 -1.68%</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-label">WTI 原油</div>
+    <div class="stat-value" style="color:var(--loss)">$92.73</div>
+    <div class="stat-sub">暴跌 3%+ 核心变量</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-label">10月加息概率</div>
+    <div class="stat-value" style="color:var(--gold)">50.9%</div>
+    <div class="stat-sub">高盛：市场定价偏多</div>
+  </div>
+</div>
 
-<!-- ===== A股 ===== -->
-<section class="tab-content active" id="a-share" data-print-title="A股盯盘" role="tabpanel">
-  <div class="conclusion">
-    <strong>9/22收盘：沪指+0.06%→3,952（几乎平盘）！深成指+0.07%→13,739！创业板+0.01%→3,400！成交2.14万亿（放量1040亿）！涨2371只vs跌3024只！传媒+1.79%/计算机+1.41%涨停潮！半导体存储强势！地产/CRO回调！</strong><br>
-    Signal Arena涨幅榜：瑞芯微+10.00%（AI芯片涨停）、中国长城+6.94%（算力/信创）、中环股份+6.54%、澜起科技+5.58%（存储芯片）、深信服+5.41%（AI安全）。<strong>传媒/计算机/AI=三大涨停潮。但个股跌多涨少，分化严重</strong>
+<!-- ===== Tab Navigation ===== -->
+<div class="tab-nav" id="tabNav">
+  <button class="tab-btn active" data-tab="ashare">A股</button>
+  <button class="tab-btn" data-tab="usstock">美股</button>
+  <button class="tab-btn" data-tab="hkstock">港股</button>
+  <button class="tab-btn" data-tab="fund">持仓基金</button>
+  <button class="tab-btn" data-tab="macro">宏观·黄金</button>
+  <button class="tab-btn" data-tab="events">本周事件</button>
+</div>
+
+<!-- ===== A股 Tab ===== -->
+<div class="tab-content active" id="tab-ashare">
+  <div class="conclusion-card">
+    <p><strong>核心结论：</strong>A股延续调整，上证 -1.27% 至 3,879，创业板 -1.68%。<strong>油价暴跌是核心变量</strong>——WTI 持续低于 $95 → 通胀压力缓解 → 加息预期降温，利好成长股估值修复。地产板块连续涨停但不追高，基本面未确认改善。<strong>9/30 PCE 数据为关键验证节点。</strong></p>
   </div>
 
-  <div class="section">
-    <div class="section-title"><span class="icon">🔥</span> A股涨幅榜Top5（Signal Arena）</div>
-    <div class="table-wrap">
-      <table>
-        <thead><tr><th>排名</th><th>代码</th><th>名称</th><th class="num">现价</th><th class="num">涨幅</th><th>逻辑</th></tr></thead>
-        <tbody>
-          <tr><td>1</td><td>sh603893</td><td><strong>瑞芯微</strong></td><td class="num">217.80</td><td class="num up"><strong>+10.00%</strong></td><td>AI芯片涨停！</td></tr>
-          <tr><td>2</td><td>sz000066</td><td><strong>中国长城</strong></td><td class="num">15.87</td><td class="num up"><strong>+6.94%</strong></td><td>算力/信创</td></tr>
-          <tr><td>3</td><td>sz002129</td><td>中环股份</td><td class="num">9.61</td><td class="num up">+6.54%</td><td>光伏/半导体</td></tr>
-          <tr><td>4</td><td>sh688008</td><td>澜起科技</td><td class="num">221.83</td><td class="num up">+5.58%</td><td>存储芯片</td></tr>
-          <tr><td>5</td><td>sz300454</td><td>深信服</td><td class="num">151.00</td><td class="num up">+5.41%</td><td>AI安全</td></tr>
-        </tbody>
-      </table>
+  <div class="card">
+    <div class="card-title"><span class="icon">📊</span> 指数行情</div>
+    <table class="data-table">
+      <thead><tr><th>指数</th><th>收盘</th><th>涨跌幅</th></tr></thead>
+      <tbody>
+        <tr><td class="name-col">上证指数</td><td>3,879.43</td><td class="val-down">-1.27%</td></tr>
+        <tr><td class="name-col">深证成指</td><td>13,595.13</td><td class="val-down">-1.61%</td></tr>
+        <tr><td class="name-col">创业板指</td><td>3,361.01</td><td class="val-down">-1.68%</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="icon">🔥</span> 板块热点</div>
+    <div class="pill-grid">
+      <span class="pill up">地产 涨停潮</span>
+      <span class="pill down">半导体 回调</span>
+      <span class="pill neutral">AI 分化</span>
+      <span class="pill up">油气 受益</span>
+      <span class="pill down">消费电子 承压</span>
     </div>
   </div>
 
-  <div class="section">
-    <div class="section-title"><span class="icon">📊</span> 风格信号</div>
-    <div class="cards-grid">
-      <div class="card">
-        <div class="card-title">传媒/计算机涨停潮！</div>
-        <div style="font-size:1.2rem;margin:8px 0;color:var(--gain)">传媒+1.79% / 计算机+1.41% / 家电+1.24%</div>
-        <div class="card-sub">值得买+10.94%领涨传媒。智度股份/新华文轩/内蒙新华等多股涨停。计算机：旋极信息/光云科技"20cm"涨停。AI应用主线切换</div>
-      </div>
-      <div class="card">
-        <div class="card-title">半导体存储强势！</div>
-        <div style="font-size:1.2rem;margin:8px 0;color:var(--gain)">瑞芯微+10% / 澜起+5.58% / 深信服+5.41%</div>
-        <div class="card-sub">长鑫科技第五代工艺平台量产。AI芯片+CPO概念领涨。美股半导体暴涨传导（昨日ARM+15%/英特尔+13%/AMD+15%）</div>
-      </div>
-      <div class="card">
-        <div class="card-title">放量2.14万亿但个股分化！</div>
-        <div style="font-size:1.2rem;margin:8px 0;color:var(--neutral)">2.14万亿（+1040亿）涨2371 vs 跌3024</div>
-        <div class="card-sub">连续3日2万亿+成交。但涨少跌多=典型权重拉升、题材分化。地产/CRO回调。市场方向待确认</div>
-      </div>
-      <div class="card">
-        <div class="card-title">地产回调！风格切换！</div>
-        <div style="font-size:1.2rem;margin:8px 0;color:var(--loss)">地产/CRO/农业领跌</div>
-        <div class="card-sub">昨日涨停潮后获利了结。风格从地产/创新药→传媒/计算机/AI切换。资金快速轮动</div>
-      </div>
+  <div class="card">
+    <div class="card-title"><span class="icon">💰</span> 关键资金信号</div>
+    <table class="data-table">
+      <thead><tr><th>信号</th><th>状态</th><th>判断</th></tr></thead>
+      <tbody>
+        <tr><td class="name-col">成交量</td><td>缩量</td><td class="val-flat">观望</td></tr>
+        <tr><td class="name-col">地产板块</td><td>连续涨停</td><td style="color:var(--gold);font-weight:600">不追高</td></tr>
+        <tr><td class="name-col">半导体</td><td>回调中</td><td class="val-down">高位不加仓</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="grid-2">
+    <div class="mini-card">
+      <div class="mc-title">📢 油价暴跌</div>
+      <div class="mc-value val-down">WTI $92.73</div>
+      <div class="mc-sub">通胀缓解信号</div>
+    </div>
+    <div class="mini-card">
+      <div class="mc-title">🏠 地产涨停</div>
+      <div class="mc-value" style="color:var(--gold)">不追高</div>
+      <div class="mc-sub">基本面未确认</div>
+    </div>
+    <div class="mini-card">
+      <div class="mc-title">🇮🇷 伊朗赴美</div>
+      <div class="mc-value" style="font-size:14px">UNGA和谈</div>
+      <div class="mc-sub">中东关键窗口</div>
+    </div>
+    <div class="mini-card">
+      <div class="mc-title">🚀 SpaceX</div>
+      <div class="mc-value" style="font-size:14px">星舰第14次</div>
+      <div class="mc-sub">首次尝试入轨</div>
     </div>
   </div>
 
-  <div class="section">
-    <div class="section-title"><span class="icon">📈</span> 指数详情</div>
-    <div class="table-wrap">
-      <table>
-        <thead><tr><th>指数</th><th class="num">收盘</th><th class="num">涨跌幅</th><th>备注</th></tr></thead>
-        <tbody>
-          <tr><td>上证综指</td><td class="num">3,952.13</td><td class="num up"><strong>+0.06%</strong></td><td>几乎平盘</td></tr>
-          <tr><td>深证成指</td><td class="num">13,739.26</td><td class="num up"><strong>+0.07%</strong></td><td>微涨</td></tr>
-          <tr><td>创业板指</td><td class="num">3,399.93</td><td class="num up"><strong>+0.01%</strong></td><td>冲高回落</td></tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-</section>
-
-<!-- ===== 美股 ===== -->
-<section class="tab-content" id="us-stock" data-print-title="美股盯盘" role="tabpanel">
-  <div class="conclusion">
-    <strong>9/22盘中（~10:10 ET）：美股小幅高开！道指+0.37%→~52,241！纳指+0.19%→~27,173！微软+1.11%、谷歌+0.9%！Meta-0.85%/AMD-0.92%获利了结！美伊UNGA外交窗口！油价续跌WTI $90.59！10Y收益率跌破5%！</strong><br>
-    9/21收盘回顾：道指52,048.83（+0.71%）/标普7,764.70（+1.49%）/<strong>纳指27,122.09（+2.26%创历史新高！）</strong>。通信服务+3.86%领涨。Meta+7%（Muse AI agent爆火）。AMD+15%市值破$1万亿。ARM+15%/英特尔+13%
-  </div>
-
-  <div class="section">
-    <div class="section-title"><span class="icon">🔥</span> 9/22盘中关键个股表现</div>
-    <div class="table-wrap">
-      <table>
-        <thead><tr><th>股票</th><th class="num">盘中涨跌</th><th>方向</th></tr></thead>
-        <tbody>
-          <tr><td><strong>微软</strong></td><td class="num up"><strong>+1.11%</strong></td><td>领涨蓝筹</td></tr>
-          <tr><td><strong>谷歌</strong></td><td class="num up"><strong>+0.9%</strong></td><td>AI搜索</td></tr>
-          <tr><td>苹果</td><td class="num up">+0.58%</td><td>跟涨</td></tr>
-          <tr><td>特斯拉</td><td class="num up">+0.56%</td><td>小幅走高</td></tr>
-          <tr><td>Booking</td><td class="num up">+2.11%</td><td>Signal Arena涨幅第一</td></tr>
-          <tr><td>理想汽车</td><td class="num up">+1.30%</td><td>中概股</td></tr>
-          <tr><td>英伟达</td><td class="num down">-0.2%</td><td>获利了结</td></tr>
-          <tr><td><strong>Meta</strong></td><td class="num down">-0.85%</td><td>昨日+7%后回调</td></tr>
-          <tr><td>亚马逊</td><td class="num down"><strong>-1.78%</strong></td><td>逆势下跌</td></tr>
-          <tr><td>AMD</td><td class="num down">-0.92%</td><td>昨日+15%后回调</td></tr>
-          <tr><td>台积电</td><td class="num down">-0.67%</td><td>回调</td></tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-
-  <div class="section">
-    <div class="section-title"><span class="icon">📊</span> 核心驱动信号</div>
-    <div class="cards-grid">
-      <div class="card">
-        <div class="card-title">纳指创历史新高27,122！</div>
-        <div style="font-size:1.2rem;margin:8px 0;color:var(--gain)">+2.26%！通信服务+3.86%！</div>
-        <div class="card-sub">Meta+7%（Muse AI agent爆火，13天下载超ChatGPT）。AMD+15%市值破$1万亿。ARM+15%/英特尔+13%。今日开盘后芯片股获利了结</div>
-      </div>
-      <div class="card">
-        <div class="card-title">美伊UNGA外交窗口！</div>
-        <div style="font-size:1.2rem;margin:8px 0;color:var(--gain)">特朗普"决定模式" + 伊朗抵纽约</div>
-        <div class="card-sub">伊朗官员：如美国减压，7天内重开霍尔木兹海峡。特朗普今日UNGA演讲。中美峰会9/24。油价续跌信号明确</div>
-      </div>
-      <div class="card">
-        <div class="card-title">油价续跌WTI $90！</div>
-        <div style="font-size:1.2rem;margin:8px 0;color:var(--gain)">WTI $90.59（-1.91%）/ 布伦特$95.23</div>
-        <div class="card-sub">从昨日$95.83继续暴跌至$90.59。美银上调H2布伦特预估至$95。中东外交缓和+供给过剩预期</div>
-      </div>
-      <div class="card">
-        <div class="card-title">Fed三位官员今日发声！</div>
-        <div style="font-size:1.2rem;margin:8px 0;color:var(--neutral)">Jefferson/Williams/Barkin</div>
-        <div class="card-sub">穆萨莱姆：当前利率仍属宽松区间，不排除进一步加息。10月加息概率升至57.6%（较昨日50.9%上升）。9/30 PCE为关键验证</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ===== 港股 ===== -->
-<section class="tab-content" id="hk-stock" data-print-title="港股盯盘" role="tabpanel">
-  <div class="conclusion">
-    <strong>9/22收盘：恒指+0.18%→25,088！科技+0.34%→4,438！腾讯+5.02%领涨蓝筹！腾讯音乐+5%！澜起科技+8%！大模型股走低：智谱-6%！PCB分化！小米-1.38%回调！</strong><br>
-    Signal Arena涨幅榜：心动公司+5.74%、腾讯音乐+5.43%、腾讯控股+4.56%（涨449.60）、意华股份+4.40%、联想+2.63%。<strong>腾讯系强势+半导体存储=双主线。大模型→AI agent叙事切换</strong>
-  </div>
-
-  <div class="section">
-    <div class="section-title"><span class="icon">🔥</span> 港股涨幅榜Top5（Signal Arena）</div>
-    <div class="table-wrap">
-      <table>
-        <thead><tr><th>排名</th><th>代码</th><th>名称</th><th class="num">现价</th><th class="num">涨幅</th><th>逻辑</th></tr></thead>
-        <tbody>
-          <tr><td>1</td><td>hk02400</td><td><strong>心动公司</strong></td><td class="num">41.62</td><td class="num up"><strong>+5.74%</strong></td><td>游戏</td></tr>
-          <tr><td>2</td><td>hk01698</td><td><strong>腾讯音乐-SW</strong></td><td class="num">32.24</td><td class="num up"><strong>+5.43%</strong></td><td>音乐/内容</td></tr>
-          <tr><td>3</td><td>hk00700</td><td><strong>腾讯控股</strong></td><td class="num">449.60</td><td class="num up"><strong>+4.56%</strong></td><td>领涨蓝筹！</td></tr>
-          <tr><td>4</td><td>hk06185</td><td>意华股份</td><td class="num">29.42</td><td class="num up">+4.40%</td><td>PCB概念</td></tr>
-          <tr><td>5</td><td>hk00992</td><td>联想集团</td><td class="num">36.68</td><td class="num up">+2.63%</td><td>AI PC</td></tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-
-  <div class="section">
-    <div class="section-title"><span class="icon">📊</span> 风格信号</div>
-    <div class="cards-grid">
-      <div class="card">
-        <div class="card-title">腾讯+5.02%领涨蓝筹！</div>
-        <div style="font-size:1.2rem;margin:8px 0;color:var(--gain)">腾讯音乐+5% / 澜起科技+8%</div>
-        <div class="card-sub">阿里+1.95%、京东+1.04%。联想+2%。但小米-1.38%、美团-1.08%回调。科网股分化明显</div>
-      </div>
-      <div class="card">
-        <div class="card-title">大模型股走低！</div>
-        <div style="font-size:1.2rem;margin:8px 0;color:var(--loss)">智谱-6% / MINIMAX-4%</div>
-        <div class="card-sub">AI应用叙事从"大模型"→"AI agent"切换。Meta Muse推动。PCB走势分化：广合+6%但建滔-5%、胜宏-3%</div>
-      </div>
-      <div class="card">
-        <div class="card-title">存储/半导体活跃！</div>
-        <div style="font-size:1.2rem;margin:8px 0;color:var(--gain)">澜起科技+8% / 天数智芯+3%</div>
-        <div class="card-sub">美股半导体暴涨传导。纳指创纪录27,122后芯片股今日获利了结，但港股存储板块仍受提振</div>
-      </div>
-      <div class="card">
-        <div class="card-title">恒指微涨0.18%维持25000上方！</div>
-        <div style="font-size:1.2rem;margin:8px 0;color:var(--neutral)">25,087.75 / 科技+0.34% / 国企+0.28%</div>
-        <div class="card-sub">昨日+1.18%重回25000后今日消化。华泰：利率波动率下降但点位风险未解除。海外流动性收紧+国内基本面平淡未扭转</div>
-      </div>
-    </div>
-  </div>
-
-  <div class="section">
-    <div class="section-title"><span class="icon">📈</span> 指数详情</div>
-    <div class="table-wrap">
-      <table>
-        <thead><tr><th>指数</th><th class="num">收盘</th><th class="num">涨跌幅</th><th>备注</th></tr></thead>
-        <tbody>
-          <tr><td>恒生指数</td><td class="num">25,087.75</td><td class="num up"><strong>+0.18%</strong></td><td>维持25000上方</td></tr>
-          <tr><td>恒生科技</td><td class="num">4,438.21</td><td class="num up"><strong>+0.34%</strong></td><td>分化</td></tr>
-          <tr><td>国企指数</td><td class="num">8,362.60</td><td class="num up"><strong>+0.28%</strong></td><td>跟涨</td></tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-</section>
-
-<!-- ===== 持仓基金 ===== -->
-<section class="tab-content" id="fund" data-print-title="持仓基金" role="tabpanel">
-  <div class="conclusion">
-    <strong>定投策略不变！</strong>月投250元到科创200（023383）+ 日投10元到标普500 QDII（017641限额）。纳指创纪录27,122！油价续跌WTI $90→通胀压力缓解。A股分化但成交2.14万亿放量。美伊UNGA外交窗口+中美峰会9/24。60%+现金仓位为最优安全垫。
-  </div>
-  <div class="section">
-    <div class="section-title"><span class="icon">💼</span> 关注基金</div>
-    <div class="cards-grid">
-      <div class="card">
-        <div class="card-title">科创200（023383）</div>
-        <div style="font-size:1.2rem;margin:8px 0;color:var(--neutral)">沪指+0.06% 几乎平盘</div>
-        <div class="card-sub">传媒/计算机/AI涨停潮！半导体存储强势。成交2.14万亿放量1040亿。油价续跌WTI $90→通胀缓解→科技估值修复。定投纪律不变（月投250元）</div>
-      </div>
-      <div class="card">
-        <div class="card-title">标普500 QDII（017641）</div>
-        <div style="font-size:1.2rem;margin:8px 0;">日投10元（限额）</div>
-        <div class="card-sub">纳指创纪录27,122（+2.26%）！今日小幅高开+0.19%。油价续跌利好。但10月加息57.6%悬剑。高盛CTA系统性买入标普$8.5B</div>
-      </div>
-      <div class="card">
-        <div class="card-title">📊 黄金跟踪观察</div>
-        <div style="font-size:1.2rem;margin:8px 0;color:var(--loss)">$4,330 一度失守$4,300！</div>
-        <div class="card-sub">📊跟踪观察。黄金连续回调，一度跌破$4,300后反弹。白银跌破$65。长期逻辑（财政恶化/去美元化）未变。已变现手镯下车，不再参与交易</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ===== 宏观·黄金 ===== -->
-<section class="tab-content" id="macro" data-print-title="宏观与黄金" role="tabpanel">
-  <div class="conclusion">
-    <strong>油价续跌WTI $90.59！布伦特$95.23！黄金失守$4,300后反弹至$4,330！纳指创纪录27,122！Fed利率3.75%-4%！10月加息57.6%！10Y收益率跌破5%至4.9%！美伊UNGA外交窗口！</strong>
-  </div>
-
-  <div class="section">
-    <div class="section-title"><span class="icon">🌍</span> 关键宏观指标</div>
-    <div class="macro-grid">
-      <div class="macro-item">
-        <span class="macro-label">Fed利率</span>
-        <span class="macro-value down">3.75%-4.00% 已加息25bp</span>
-      </div>
-      <div class="macro-item">
-        <span class="macro-label">10月加息概率</span>
-        <span class="macro-value down">57.6% ↑ 较昨日升</span>
-      </div>
-      <div class="macro-item">
-        <span class="macro-label">美元指数</span>
-        <span class="macro-value">~100 持平</span>
-      </div>
-      <div class="macro-item">
-        <span class="macro-label">10Y美债收益率</span>
-        <span class="macro-value up">~4.9% 跌破5%！</span>
-      </div>
-      <div class="macro-item">
-        <span class="macro-label">现货黄金</span>
-        <span class="macro-value down">$4,330 一度失守$4,300！</span>
-      </div>
-      <div class="macro-item">
-        <span class="macro-label">COMEX黄金</span>
-        <span class="macro-value down">$4,345.80 -0.91%</span>
-      </div>
-      <div class="macro-item">
-        <span class="macro-label">WTI原油</span>
-        <span class="macro-value up">$90.59 续跌-1.91%！</span>
-      </div>
-      <div class="macro-item">
-        <span class="macro-label">布伦特原油</span>
-        <span class="macro-value up">$95.23 -1.05%</span>
-      </div>
-      <div class="macro-item">
-        <span class="macro-label">现货白银</span>
-        <span class="macro-value down">$65.00 跌破$65！</span>
-      </div>
-      <div class="macro-item">
-        <span class="macro-label">Bitcoin</span>
-        <span class="macro-value">回调中 昨日+5%后整固</span>
-      </div>
-      <div class="macro-item">
-        <span class="macro-label">A股成交额</span>
-        <span class="macro-value up">2.14万亿 放量1040亿</span>
-      </div>
-      <div class="macro-item">
-        <span class="macro-label">回购静默期</span>
-        <span class="macro-value down">64%→85%本周五</span>
-      </div>
-    </div>
-  </div>
-
-  <div class="section">
-    <div class="section-title"><span class="icon">⚠️</span> 核心风险评估</div>
-    <div class="cards-grid">
-      <div class="card">
-        <div class="card-title">美伊UNGA=头号催化剂！</div>
-        <div style="font-size:1.2rem;margin:8px 0;color:var(--gain)">伊朗抵纽约 + 特朗普"决定模式"</div>
-        <div class="card-sub">伊朗：7天内可重开霍尔木兹海峡。中美峰会9/24。影响链：外交突破→油价续跌→通胀缓解→Fed压力降低→全球风险资产修复</div>
-      </div>
-      <div class="card">
-        <div class="card-title">纳指创纪录+芯片股回调！</div>
-        <div style="font-size:1.2rem;margin:8px 0;color:var(--neutral)">27,122新高 → 开盘仅+0.19%</div>
-        <div class="card-sub">AMD/ARM/英特尔昨日暴涨15%/15%/13%后获利了结。Meta -0.85%。高盛：CTA系统性买入$8.5B支撑标普。回购静默期85%逼近</div>
-      </div>
-      <div class="card">
-        <div class="card-title">油价续跌WTI $90！</div>
-        <div style="font-size:1.2rem;margin:8px 0;color:var(--gain)">WTI $90.59 / 布伦特$95.23</div>
-        <div class="card-sub">从$95.83→$90.59连续暴跌。美银上调H2布伦特预估至$95。10Y收益率跌破5%→油价下跌压低通胀预期</div>
-      </div>
-      <div class="card">
-        <div class="card-title">10月加息57.6%+Fed鹰派！</div>
-        <div style="font-size:1.2rem;margin:8px 0;color:var(--loss)">三位官员今日发声</div>
-        <div class="card-sub">穆萨莱姆：利率仍宽松，不排除加息。Jefferson/Williams/Barkin今日讲话。9/30 PCE为关键。Universa警告"标普先破8000再暴跌80%"</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ===== 事件日历 ===== -->
-<section class="tab-content" id="events" data-print-title="事件日历" role="tabpanel">
-  <div class="section">
-    <div class="section-title"><span class="icon">📅</span> 关键事件时间线</div>
-    <ul class="event-list">
-      <li class="event-item">
-        <div class="event-date">9/14-9/21</div>
-        <div class="event-text">✅ Fed加息25bp→3.75%-4%、纳指创纪录27,122（+2.26%）、油价连跌WTI→$90、A股连涨/恒指站稳25000 <span class="event-stars">✅ 已发生</span></div>
-      </li>
-      <li class="event-item">
-        <div class="event-date">9/22（今日）</div>
-        <div class="event-text">✅ A股分化+0.06%/恒指+0.18%/油价续跌WTI$90/黄金失守$4,300！美伊UNGA+特朗普演讲 <span class="event-stars">✅ 已发生</span></div>
-      </li>
-      <li class="event-item event-critical">
-        <div class="event-date">9/22（今日）</div>
-        <div class="event-text">🔴 里奇联储制造业指数 + Fed三位官员（Jefferson/Williams/Barkin）讲话 <span class="event-stars">⭐⭐⭐⭐</span></div>
-      </li>
-      <li class="event-item event-critical">
-        <div class="event-date">9/23（明天）</div>
-        <div class="event-text">🔴 美国9月Markit制造业+服务业PMI初值 <span class="event-stars">⭐⭐⭐⭐⭐</span></div>
-      </li>
-      <li class="event-item event-critical">
-        <div class="event-date">9/24（周三）</div>
-        <div class="event-text">🔴 中美峰会——贸易/关税/关键矿产 <span class="event-stars">⭐⭐⭐⭐⭐</span></div>
-      </li>
-      <li class="event-item">
-        <div class="event-date">9/25</div>
-        <div class="event-text">标普500回购静默期将达85%（本周五） <span class="event-stars">⭐⭐⭐</span></div>
-      </li>
-      <li class="event-item event-critical">
-        <div class="event-date">9/30</div>
-        <div class="event-text">🔴 美国8月PCE物价指数公布——Fed决策关键数据 <span class="event-stars">⭐⭐⭐⭐⭐</span></div>
-      </li>
-      <li class="event-item event-critical">
-        <div class="event-date">10月</div>
-        <div class="event-text">🔴 下一次FOMC会议——10月加息概率57.6% <span class="event-stars">⭐⭐⭐⭐⭐</span></div>
-      </li>
+  <div class="risk-card">
+    <div class="risk-title">⚠️ 风险提示</div>
+    <ul>
+      <li>10月加息概率 50.9% 仍是悬剑</li>
+      <li>地产涨停潮——基本面未确认改善，不追高</li>
+      <li>9/30 PCE 数据将决定后续方向</li>
+      <li>量能持续萎缩，市场信心不足</li>
     </ul>
   </div>
-</section>
 
-</main>
-
-<footer>
-  <div class="container">
-    <p>数据来源：<a href="https://signal.coze.com" target="_blank" rel="noopener noreferrer">Signal Arena API</a>、<a href="https://www.eastmoney.com" target="_blank" rel="noopener noreferrer">东方财富</a>、<a href="https://www.cls.cn" target="_blank" rel="noopener noreferrer">财联社</a>、<a href="https://finance.sina.com.cn" target="_blank" rel="noopener noreferrer">新浪财经</a>、<a href="https://reuters.com" target="_blank" rel="noopener noreferrer">Reuters</a>、<a href="https://morningstar.com" target="_blank" rel="noopener noreferrer">Morningstar</a></p>
-    <p>更新时间：2026-09-22 22:10 · A股已收盘/美股盘中/港股已收盘 | 每日盯盘看板 · 奥丁的乌鸦</p>
-    <p style="margin-top:8px;">⚠️ 仅供投资参考，不构成投资建议</p>
+  <div class="summary-quote">
+    <strong>总结：</strong>油价暴跌 → 通胀缓解 → 加息预期降温，对成长股估值修复有利。但 10 月加息 50.9% 概率仍悬而未决，<strong>9/30 PCE 数据是关键验证节点</strong>。当前策略：60%+ 现金仓位为最优安全垫，不追地产涨停，半导体高位不新增仓位。
   </div>
+</div>
+
+<!-- ===== 美股 Tab ===== -->
+<div class="tab-content" id="tab-usstock">
+  <div class="conclusion-card">
+    <p><strong>核心结论（9/19收盘）：</strong>美股反弹，标普500 +0.72% 至 7,730.99，纳指 +1.57%，费城半导体 +2.33%。<strong>NVDA 单日暴涨 +8.74%</strong> 至 $227.98 领涨科技板块。油价暴跌缓解通胀忧虑，但 10 月加息概率仍在 50% 附近，市场博弈加剧。</p>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="icon">📈</span> 主要指数（9/19 收盘）</div>
+    <table class="data-table">
+      <thead><tr><th>指数</th><th>点位</th><th>涨跌幅</th></tr></thead>
+      <tbody>
+        <tr><td class="name-col">标普500</td><td>7,730.99</td><td class="val-up">+0.72%</td></tr>
+        <tr><td class="name-col">纳斯达克</td><td>26,541</td><td class="val-up">+1.57%</td></tr>
+        <tr><td class="name-col">费城半导体</td><td>--</td><td class="val-up">+2.33%</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="icon">🖥️</span> 科技七子（Mag 7）</div>
+    <table class="data-table">
+      <thead><tr><th>股票</th><th>收盘价</th><th>涨跌幅</th></tr></thead>
+      <tbody>
+        <tr><td class="name-col">NVDA</td><td>$227.98</td><td class="val-up">+8.74%</td></tr>
+        <tr><td class="name-col">AAPL</td><td>--</td><td class="val-flat">待更新</td></tr>
+        <tr><td class="name-col">MSFT</td><td>--</td><td class="val-flat">待更新</td></tr>
+        <tr><td class="name-col">GOOGL</td><td>--</td><td class="val-flat">待更新</td></tr>
+        <tr><td class="name-col">AMZN</td><td>--</td><td class="val-flat">待更新</td></tr>
+        <tr><td class="name-col">META</td><td>--</td><td class="val-flat">待更新</td></tr>
+        <tr><td class="name-col">TSLA</td><td>--</td><td class="val-flat">待更新</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="icon">🔧</span> 关键事件</div>
+    <div class="grid-2">
+      <div class="mini-card">
+        <div class="mc-title">NVDA 暴涨</div>
+        <div class="mc-value val-up">+8.74%</div>
+        <div class="mc-sub">AI 芯片需求强劲</div>
+      </div>
+      <div class="mini-card">
+        <div class="mc-title">油价暴跌</div>
+        <div class="mc-value val-down">WTI &lt;$95</div>
+        <div class="mc-sub">通胀压力缓解</div>
+      </div>
+      <div class="mini-card">
+        <div class="mc-title">加息博弈</div>
+        <div class="mc-value" style="color:var(--gold)">50.9%</div>
+        <div class="mc-sub">10月加息概率</div>
+      </div>
+      <div class="mini-card">
+        <div class="mc-title">PCE 数据</div>
+        <div class="mc-value" style="font-size:14px">9/30</div>
+        <div class="mc-sub">关键验证节点</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="summary-quote">
+    <strong>总结：</strong>NVDA +8.74% 带动半导体板块反弹，油价暴跌缓解通胀压力。但 10 月加息概率仍在 50% 附近，高盛认为"市场定价 4 次加息明显偏多"。<strong>QDII 限购不追加，保持定力。</strong>
+  </div>
+</div>
+
+<!-- ===== 港股 Tab ===== -->
+<div class="tab-content" id="tab-hkstock">
+  <div class="conclusion-card">
+    <p><strong>核心结论：</strong>港股跟随 A 股调整，受全球风险偏好下降影响。油价暴跌对能源股形成压力，但有利于制造业成本端改善。关注 A/H 溢价变化和南向资金动向。</p>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="icon">🇭🇰</span> 港股指数</div>
+    <table class="data-table">
+      <thead><tr><th>指数</th><th>收盘</th><th>涨跌幅</th></tr></thead>
+      <tbody>
+        <tr><td class="name-col">恒生指数</td><td colspan="2" style="text-align:center;color:var(--text-muted)">待更新</td></tr>
+        <tr><td class="name-col">恒生科技</td><td colspan="2" style="text-align:center;color:var(--text-muted)">待更新</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="icon">🔗</span> 跨市场信号</div>
+    <table class="data-table">
+      <thead><tr><th>信号</th><th>状态</th></tr></thead>
+      <tbody>
+        <tr><td class="name-col">A/H 溢价</td><td>关注扩大趋势</td></tr>
+        <tr><td class="name-col">南向资金</td><td>待观察</td></tr>
+        <tr><td class="name-col">油价影响</td><td class="val-down">能源承压/制造受益</td></tr>
+        <tr><td class="name-col">美元走势</td><td>DXY 100.22 持平</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ===== 持仓基金 Tab ===== -->
+<div class="tab-content" id="tab-fund">
+  <div class="conclusion-card">
+    <p><strong>核心结论：</strong>60%+ 现金仓位为最优安全垫。半导体高位不新增仓位，QDII 限购不追加。科创 200 PE 20% 低估区间，维持月投 250 元。黄金已全部清仓变现。</p>
+  </div>
+
+  <div class="card" style="border-left:3px solid var(--gold);background:var(--gold-bg)">
+    <div class="card-title"><span class="icon">📏</span> 投资规则</div>
+    <ul style="list-style:none;font-size:12px;color:var(--text-secondary)">
+      <li style="padding:3px 0">✅ 60%+ 现金仓位 — 最优安全垫</li>
+      <li style="padding:3px 0">❌ 半导体高位 — 不新增仓位</li>
+      <li style="padding:3px 0">❌ QDII 限购 — 不追加</li>
+      <li style="padding:3px 0">✅ 黄金 — 已全部清仓变现</li>
+      <li style="padding:3px 0">✅ 科创200 — 月投250元（PE 20%低估）</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="icon">💼</span> 持仓净值</div>
+    <table class="data-table">
+      <thead><tr><th>基金</th><th>代码</th><th>自高点</th><th>PE分位</th><th>操作</th></tr></thead>
+      <tbody>
+        <tr>
+          <td class="name-col">半导体ETF联接C</td>
+          <td>020465</td>
+          <td class="val-down">-22.8%</td>
+          <td style="color:var(--loss)">93%+</td>
+          <td><span class="op-badge no">❌ 不加仓</span></td>
+        </tr>
+        <tr>
+          <td class="name-col">科创200ETF联接C</td>
+          <td>023383</td>
+          <td class="val-down">-20.6%</td>
+          <td style="color:var(--gain)">20%</td>
+          <td><span class="op-badge buy">✅ 月投250</span></td>
+        </tr>
+        <tr>
+          <td class="name-col">标普500 QDII A</td>
+          <td>017641</td>
+          <td class="val-flat">--</td>
+          <td class="val-flat">--</td>
+          <td><span class="op-badge hold">日投10元限额</span></td>
+        </tr>
+        <tr>
+          <td class="name-col">纳指100联接A</td>
+          <td>040046</td>
+          <td class="val-flat">--</td>
+          <td class="val-flat">--</td>
+          <td><span class="op-badge no">限额不追加</span></td>
+        </tr>
+        <tr>
+          <td class="name-col">纳指100联接C</td>
+          <td>014978</td>
+          <td class="val-flat">--</td>
+          <td class="val-flat">--</td>
+          <td><span class="op-badge no">限额不追加</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="grid-2">
+    <div class="mini-card" style="border-left:3px solid var(--loss)">
+      <div class="mc-title">半导体 020465</div>
+      <div class="mc-value val-down">-22.8%</div>
+      <div class="mc-sub">PE 93%+ 高位 ❌</div>
+    </div>
+    <div class="mini-card" style="border-left:3px solid var(--gain)">
+      <div class="mc-title">科创200 023383</div>
+      <div class="mc-value val-down">-20.6%</div>
+      <div class="mc-sub">PE 20% 低估 ✅</div>
+    </div>
+    <div class="mini-card" style="border-left:3px solid var(--primary)">
+      <div class="mc-title">标普500 017641</div>
+      <div class="mc-value" style="font-size:14px">日投10元</div>
+      <div class="mc-sub">QDII 限额</div>
+    </div>
+    <div class="mini-card" style="border-left:3px solid var(--text-muted)">
+      <div class="mc-title">黄金</div>
+      <div class="mc-value" style="font-size:14px;color:var(--loss)">已清仓</div>
+      <div class="mc-sub">实物已全部变现</div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== 宏观·黄金 Tab ===== -->
+<div class="tab-content" id="tab-macro">
+  <div class="conclusion-card">
+    <p><strong>黄金状态：</strong>已清仓 <span class="cleared-badge">已变现</span> — 实物黄金已全部卖出，不再持有黄金仓位。后续仅关注行情走势，不作为交易参考。</p>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="icon">🌍</span> 关键宏观指标</div>
+    <div class="macro-grid">
+      <div class="macro-item">
+        <div class="mi-label">DXY 美元指数</div>
+        <div class="mi-value">100.22</div>
+        <div class="mi-chg val-flat">持平</div>
+      </div>
+      <div class="macro-item">
+        <div class="mi-label">现货黄金</div>
+        <div class="mi-value">$4,326</div>
+        <div class="mi-chg val-down">-1.18%</div>
+      </div>
+      <div class="macro-item">
+        <div class="mi-label">10Y 美债</div>
+        <div class="mi-value">~5.0%</div>
+        <div class="mi-chg val-flat">维持高位</div>
+      </div>
+      <div class="macro-item">
+        <div class="mi-label">WTI 原油</div>
+        <div class="mi-value">$92.73</div>
+        <div class="mi-chg val-down">暴跌 3%+</div>
+      </div>
+      <div class="macro-item">
+        <div class="mi-label">布伦特原油</div>
+        <div class="mi-value">$96.22</div>
+        <div class="mi-chg val-down">跌破$100</div>
+      </div>
+      <div class="macro-item">
+        <div class="mi-label">BTC</div>
+        <div class="mi-value">$84,217</div>
+        <div class="mi-chg val-up">+5%</div>
+      </div>
+      <div class="macro-item">
+        <div class="mi-label">Fed 利率预期</div>
+        <div class="mi-value" style="color:var(--gold)">50.9%</div>
+        <div class="mi-chg">10月加息概率</div>
+      </div>
+      <div class="macro-item">
+        <div class="mi-label">PCE 数据</div>
+        <div class="mi-value" style="font-size:15px">9/30</div>
+        <div class="mi-chg" style="color:var(--primary)">关键验证</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="icon">🛢️</span> 油价核心逻辑</div>
+    <div class="summary-quote" style="margin-bottom:0">
+      <strong>油价暴跌 → 通胀压力缓解 → 加息预期降温</strong><br><br>
+      WTI 持续低于 $95 是关键信号。若趋势延续，Fed 加息节奏将放缓，利好成长股估值修复。但 10 月加息概率仍在 50.9%，<strong>9/30 PCE 数据是最终验证节点</strong>。
+    </div>
+  </div>
+</div>
+
+<!-- ===== 本周事件 Tab ===== -->
+<div class="tab-content" id="tab-events">
+  <div class="conclusion-card">
+    <p><strong>本周核心：</strong>油价暴跌是最大变量，直接影响通胀预期和 Fed 决策路径。9/30 PCE 数据将决定 10 月加息走向。伊朗总统赴美 UNGA 为中东和谈关键窗口。</p>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="icon">📅</span> 事件时间线</div>
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-date">9/22 周日</div>
+        <div class="timeline-text">A 股收盘：上证 -1.27%，创业板 -1.68%，地产涨停潮</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-date">9/19 周五</div>
+        <div class="timeline-text">美股收盘：标普 +0.72%，纳指 +1.57%，NVDA +8.74%，费城半导体 +2.33%</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-date">本周持续</div>
+        <div class="timeline-text">WTI 原油暴跌至 $92.73（-3%+），布伦特跌破 $100 至 $96.22</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-date">本周</div>
+        <div class="timeline-text">伊朗总统赴美 UNGA 大会 — 中东和谈关键窗口</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-date">本周</div>
+        <div class="timeline-text">SpaceX 星舰第 14 次试飞 — 首次尝试入轨</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-date">9/30 周二</div>
+        <div class="timeline-text"><strong>PCE 数据发布</strong> — 关键验证节点，决定 10 月加息走向</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="risk-card">
+    <div class="risk-title">⚠️ 核心风险评估</div>
+    <ul>
+      <li>10 月加息 50.9% — 高盛认为市场定价偏多，但仍为悬剑</li>
+      <li>油价波动 — 伊朗 UNGA 结果将影响供给预期</li>
+      <li>地产涨停潮 — 基本面未确认，追高风险大</li>
+      <li>量能萎缩 — A 股信心不足，需等 PCE 验证</li>
+    </ul>
+  </div>
+
+  <div class="summary-quote">
+    <strong>行动指南：</strong>等待 9/30 PCE 数据验证。维持 60%+ 现金仓位，不追地产涨停，半导体不加仓，QDII 不追加。油价暴跌是潜在利好——若通胀确认下行，成长股估值修复可期。
+  </div>
+</div>
+
+<!-- ===== Footer ===== -->
+<footer style="padding:20px 16px 20px;text-align:center;font-size:11px;color:var(--text-muted);line-height:1.8">
+  <p>数据来源：各交易所行情 · 盯盘报告</p>
+  <p>更新时间：2026-09-22</p>
+  <p style="margin-top:6px;font-size:10px;color:var(--text-muted)">⚠️ 本页面仅供个人投资参考，不构成任何投资建议。<br>投资有风险，入市需谨慎。</p>
 </footer>
 
-<!-- Floating Components -->
-<div class="fab-stack">
-    <a class="fab fab-portal" href="/" aria-label="返回监控中枢" title="返回监控中枢">🏠</a>
-    <button class="fab fab-feedback" aria-label="反馈与建议" title="反馈与建议">💬</button>
-    <button class="fab fab-theme" aria-label="切换深色模式" title="切换深色/浅色模式">🌙</button>
-    <button class="fab fab-back" aria-label="回到顶部" title="回到顶部">↑</button>
-</div>
-<div class="feedback-overlay" id="feedbackOverlay">
-    <div class="feedback-modal" role="dialog" aria-labelledby="feedbackTitle">
-        <h3 id="feedbackTitle">📋 反馈与建议</h3>
-        <p class="feedback-hint">发现错误或有改进建议？请告诉我们，您的反馈会让这个面板更好。</p>
-        <div class="feedback-type">
-            <button class="feedback-type-btn active" data-type="bug">🐛 报告错误</button>
-            <button class="feedback-type-btn" data-type="suggestion">💡 功能建议</button>
-            <button class="feedback-type-btn" data-type="content">📝 内容补充</button>
-        </div>
-        <textarea id="feedbackText" placeholder="请描述您遇到的问题或建议……"></textarea>
-        <div class="feedback-actions">
-            <a class="feedback-btn feedback-btn-primary" id="feedbackGithub" href="#" target="_blank" rel="noopener">🔗 GitHub Issue</a>
-            <a class="feedback-btn feedback-btn-secondary" id="feedbackEmail" href="#">📧 邮件反馈</a>
-            <button class="feedback-btn feedback-btn-close" id="feedbackClose" aria-label="关闭">✕</button>
-        </div>
-        <p class="feedback-note">💡 GitHub Issue 会直接通知仓库管理员；邮件反馈将打开您的邮件应用。</p>
-    </div>
-</div>
+<!-- ===== Bottom Navigation ===== -->
+<nav class="bottom-nav">
+  <a href="/stock-dash/" class="nav-item active">
+    <div class="nav-icon-wrap"><span class="nav-icon">📊</span></div>
+    <span>股市</span>
+  </a>
+  <a href="/payment-intel/" class="nav-item">
+    <div class="nav-icon-wrap"><span class="nav-icon">💳</span></div>
+    <span>支付</span>
+  </a>
+  <a href="/policy-monitor/" class="nav-item">
+    <div class="nav-icon-wrap"><span class="nav-icon">🛡️</span></div>
+    <span>政策</span>
+  </a>
+  <a href="/" class="nav-item">
+    <div class="nav-icon-wrap"><span class="nav-icon">🏠</span></div>
+    <span>首页</span>
+  </a>
+</nav>
 
+<!-- ===== Theme Toggle Script ===== -->
 <script>
-// Tab switching
 (function() {
-    var btns = document.querySelectorAll('.tab-btn');
-    var panels = document.querySelectorAll('.tab-content');
-    btns.forEach(function(btn) {
-        btn.addEventListener('click', function() {
-            var tab = this.dataset.tab;
-            btns.forEach(function(b) { b.classList.remove('active'); b.setAttribute('aria-selected','false'); });
-            panels.forEach(function(p) { p.classList.remove('active'); });
-            this.classList.add('active');
-            this.setAttribute('aria-selected','true');
-            var target = document.getElementById(tab);
-            if (target) target.classList.add('active');
-        });
+  var saved = localStorage.getItem('stockdash-theme') || '';
+  var prefLight = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches;
+  var theme = saved || (prefLight ? 'light' : 'dark');
+  function apply(t) {
+    if (t === 'light') { document.documentElement.setAttribute('data-theme','light'); }
+    else { document.documentElement.removeAttribute('data-theme'); }
+  }
+  apply(theme);
+  var themeBtn = document.getElementById('themeToggle');
+  if (themeBtn) {
+    themeBtn.addEventListener('click', function() {
+      var isLight = document.documentElement.getAttribute('data-theme') === 'light';
+      var n = isLight ? 'dark' : 'light';
+      apply(n);
+      localStorage.setItem('stockdash-theme', n);
+      themeBtn.textContent = n === 'dark' ? '🌙' : '☀️';
     });
-})();
-
-// Floating Components
-(function() {
-    var backBtn = document.querySelector('.fab-back');
-    if (backBtn) {
-        var ticking = false;
-        window.addEventListener('scroll', function() {
-            if (!ticking) {
-                window.requestAnimationFrame(function() {
-                    backBtn.classList.toggle('visible', window.scrollY > 400);
-                    ticking = false;
-                });
-                ticking = true;
-            }
-        }, { passive: true });
-        backBtn.addEventListener('click', function() { window.scrollTo({ top: 0, behavior: 'smooth' }); });
-    }
-    var themeBtn = document.querySelector('.fab-theme');
-    if (themeBtn) {
-        var saved = localStorage.getItem('stock-dash-theme') || '';
-        var prefDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-        var theme = saved || (prefDark ? 'dark' : 'light');
-        function apply(t) {
-            if (t === 'dark') { document.documentElement.setAttribute('data-theme','dark'); themeBtn.textContent='☀️'; }
-            else { document.documentElement.removeAttribute('data-theme'); themeBtn.textContent='🌙'; }
-        }
-        apply(theme);
-        themeBtn.addEventListener('click', function() {
-            var isDark = document.documentElement.getAttribute('data-theme') === 'dark';
-            var n = isDark ? 'light' : 'dark'; apply(n); localStorage.setItem('stock-dash-theme', n);
-        });
-    }
-    var fbBtn = document.querySelector('.fab-feedback');
-    var fbOverlay = document.getElementById('feedbackOverlay');
-    var fbClose = document.getElementById('feedbackClose');
-    var fbText = document.getElementById('feedbackText');
-    var fbGithub = document.getElementById('feedbackGithub');
-    var fbEmail = document.getElementById('feedbackEmail');
-    var fbTypes = document.querySelectorAll('.feedback-type-btn');
-    var fbType = 'bug';
-    fbTypes.forEach(function(b) { b.addEventListener('click', function() {
-        fbTypes.forEach(function(x) { x.classList.remove('active'); });
-        this.classList.add('active'); fbType = this.dataset.type; updateLinks();
-    }); });
-    function updateLinks() {
-        var t = fbText ? fbText.value.trim() || '(未填写)' : '';
-        var label = {bug:'报告错误',suggestion:'功能建议',content:'内容补充'}[fbType]||'反馈';
-        var enc = encodeURIComponent('['+label+'] '+t);
-        var body = encodeURIComponent('['+label+'] '+t+'\n\n---\n来源: praxisfit.me/stock-dash\n时间: '+new Date().toISOString());
-        if (fbGithub) fbGithub.href = 'https://github.com/praxisfitme/policy-monitor/issues/new?title='+enc+'&body='+body;
-        if (fbEmail) fbEmail.href = 'mailto:research-crow@coze.email?subject='+enc+'&body='+body;
-    }
-    if (fbBtn) fbBtn.addEventListener('click', function() { fbOverlay.classList.add('visible'); setTimeout(function(){if(fbText)fbText.focus();},300); });
-    if (fbClose) fbClose.addEventListener('click', function() { fbOverlay.classList.remove('visible'); });
-    if (fbOverlay) fbOverlay.addEventListener('click', function(e) { if (e.target === fbOverlay) fbOverlay.classList.remove('visible'); });
-    document.addEventListener('keydown', function(e) { if (e.key === 'Escape' && fbOverlay.classList.contains('visible')) fbOverlay.classList.remove('visible'); });
-    if (fbText) fbText.addEventListener('input', updateLinks);
-    updateLinks();
+    themeBtn.textContent = theme === 'dark' ? '🌙' : '☀️';
+  }
 })();
 </script>
 
-<!-- Visitor Tracking (counterapi.com) — 每浏览器每天计1次 -->
+<!-- ===== Tab Switch Script ===== -->
+<script>
+(function() {
+  var btns = document.querySelectorAll('.tab-btn');
+  var contents = document.querySelectorAll('.tab-content');
+  btns.forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      var tab = btn.getAttribute('data-tab');
+      btns.forEach(function(b) { b.classList.remove('active'); });
+      contents.forEach(function(c) { c.classList.remove('active'); });
+      btn.classList.add('active');
+      var target = document.getElementById('tab-' + tab);
+      if (target) target.classList.add('active');
+    });
+  });
+})();
+</script>
+
+<!-- ===== Visitor Counter ===== -->
 <script>
 (function(){
-    var today = new Date().toISOString().slice(0,10);
-    var key = 'stock-dash';
-    if (localStorage.getItem('pv_' + key + '_date') !== today) {
-        fetch('https://counterapi.com/api/praxisfit.me/view/' + key + '?trackOnly=true').catch(function(){});
-        localStorage.setItem('pv_' + key + '_date', today);
-    }
+  var key='pv_stock-dash_date', today=new Date().toDateString();
+  if(localStorage.getItem(key)!==today){
+    localStorage.setItem(key,today);
+    fetch('https://counterapi.com/api/praxisfit.me/view/stock-dash?trackOnly=true').catch(function(){});
+  }
 })();
 </script>
+
 </body>
 </html>
