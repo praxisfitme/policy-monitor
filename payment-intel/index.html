@@ -2856,12 +2856,12 @@ if(el){e.preventDefault();el.scrollIntoView({behavior:'smooth'});}
         var prefDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
         var theme = saved || (prefDark ? 'dark' : 'light');
         function apply(t) {
-            if (t === 'dark') { document.documentElement.setAttribute('data-theme','dark'); themeBtn.textContent='☀️'; }
-            else { document.documentElement.removeAttribute('data-theme'); themeBtn.textContent='🌙'; }
+            if (t === 'dark') { document.documentElement.removeAttribute('data-theme'); themeBtn.textContent='☀️'; }
+            else { document.documentElement.setAttribute('data-theme','light'); themeBtn.textContent='🌙'; }
         }
         apply(theme);
         themeBtn.addEventListener('click', function() {
-            var isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+            var isDark = document.documentElement.getAttribute('data-theme') !== 'light';
             var n = isDark ? 'light' : 'dark'; apply(n); localStorage.setItem('payment-intel-theme', n);
         });
     }
