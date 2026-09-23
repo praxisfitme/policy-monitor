@@ -180,7 +180,57 @@ body {
     -moz-osx-font-smoothing: grayscale;
 }
 
-/* ── Module Nav styles moved to bottom of CSS ── */
+/* ── Module Nav (sticky top) ── */
+.module-nav {
+    display: flex;
+    gap: 0;
+    background: var(--card);
+    border-bottom: 1px solid var(--border);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: var(--shadow-sm);
+    padding-top: var(--safe-top);
+}
+
+.module-tab {
+    flex: 1;
+    text-align: center;
+    padding: 14px 12px;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    cursor: pointer;
+    color: var(--text-secondary);
+    border-bottom: 3px solid transparent;
+    transition: var(--t);
+    background: transparent;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    min-height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+.module-tab:active { background: var(--bg-secondary); }
+.module-tab.active {
+    color: var(--primary);
+    border-bottom-color: var(--primary);
+    background: var(--primary-lighter);
+}
+.module-tab.global.active {
+    color: var(--accent);
+    border-bottom-color: var(--accent);
+    background: var(--accent-lighter);
+}
+.module-tab.app.active {
+    color: #ea580c;
+    border-bottom-color: #ea580c;
+    background: #fff7ed;
+}
 
 /* ── Header (collapsible) ── */
 .header {
@@ -1004,7 +1054,7 @@ body {
 .fab-stack {
     position: fixed;
     right: 20px;
-    bottom: calc(80px + var(--safe-bottom));
+    bottom: calc(20px + var(--safe-bottom));
     z-index: 9999;
     display: flex;
     flex-direction: column;
@@ -1272,7 +1322,7 @@ body {
 
     .search-box { width: 100%; min-width: auto; }
 
-    .module-tab { font-size: 0.75rem; padding: 8px 14px; }
+    .module-tab { font-size: 0.8125rem; padding: 12px 8px; }
 
     .timeline { padding: 14px; }
     .policy-item { padding: 14px; }
@@ -1408,142 +1458,17 @@ body {
 .ranking-panel { display:none; }
 .ranking-panel.active { display:block; }
 .nonbank-tag { display:inline-block; font-size:0.6rem; padding:1px 5px; border-radius:6px; background:rgba(124,58,237,0.12); color:#7c3aed; font-weight:600; margin-left:4px; vertical-align:middle; }
-
-/* ── Floating Module Nav (capsule) ── */
-.module-nav {
-    position: sticky;
-    top: 8px;
-    z-index: 100;
-    display: flex;
-    justify-content: center;
-    padding: 6px 12px;
-    background: transparent;
-    border-bottom: none;
-    box-shadow: none;
-    padding-top: var(--safe-top);
-    pointer-events: none;
-}
-.module-nav-inner {
-    display: flex;
-    gap: 4px;
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 28px;
-    padding: 4px;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.10);
-    pointer-events: auto;
-    max-width: 100%;
-}
-[data-theme="dark"] .module-nav-inner {
-    background: #1a1f2e;
-    border-color: #2a3040;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.4);
-}
-.module-tab {
-    padding: 10px 18px;
-    border-radius: 24px;
-    font-size: 0.8rem;
-    font-weight: 600;
-    border: none;
-    background: transparent;
-    color: var(--text-secondary);
-    cursor: pointer;
-    transition: all 0.25s ease;
-    white-space: nowrap;
-    min-height: auto;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 6px;
-    -webkit-user-select: none;
-    user-select: none;
-}
-.module-tab:active { background: var(--bg-secondary); }
-.module-tab.active {
-    color: #fff;
-    background: #3b82f6;
-    box-shadow: 0 2px 8px rgba(59,130,246,0.3);
-}
-.module-tab.global.active {
-    color: #fff;
-    background: #8b5cf6;
-    box-shadow: 0 2px 8px rgba(139,92,246,0.3);
-}
-.module-tab.app.active {
-    color: #fff;
-    background: #f97316;
-    box-shadow: 0 2px 8px rgba(249,115,22,0.3);
-}
-
-/* ── Bottom Navigation ── */
-.bottom-nav {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background: var(--card);
-    border-top: 1px solid var(--border);
-    display: flex;
-    justify-content: space-around;
-    padding: 8px 0;
-    padding-bottom: max(8px, env(safe-area-inset-bottom));
-    z-index: 100;
-}
-[data-theme="dark"] .bottom-nav {
-    background: #0b0f1a;
-    border-top-color: #1e293b;
-}
-.nav-item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 4px;
-    text-decoration: none;
-    color: var(--text-secondary);
-    font-size: 0.6rem;
-    font-weight: 500;
-    padding: 4px 12px;
-    border-radius: 12px;
-    transition: color 0.2s, background 0.2s;
-}
-.nav-item.active {
-    color: #3b82f6;
-    background: rgba(59,130,246,0.12);
-}
-.nav-icon {
-    font-size: 1.2rem;
-}
-@media (min-width: 768px) {
-    .bottom-nav {
-        max-width: 430px;
-        left: 50%;
-        transform: translateX(-50%);
-        border-radius: 20px 20px 0 0;
-    }
-}
-
-/* ── Body bottom padding for bottom nav ── */
-body {
-    padding-bottom: 70px;
-}
-
-@media (max-width: 380px) {
-    .stats-grid { grid-template-columns: repeat(2, 1fr); }
-    .stat-card .number { font-size: 1.125rem; }
-}
 </style>
 </head>
 <body>
 
 <!-- ============================================================ -->
-<!--  FLOATING MODULE NAV (capsule)                                -->
+<!--  TOP-LEVEL MODULE NAV                                        -->
 <!-- ============================================================ -->
 <nav class="module-nav" role="tablist" aria-label="模块导航">
-    <div class="module-nav-inner">
-        <button class="module-tab active" data-module="thai" role="tab" aria-selected="true" aria-label="泰国政策监控">🇹🇭 TH</button>
-        <button class="module-tab global" data-module="global" role="tab" aria-selected="false" aria-label="全球出海监控">🌍 Global</button>
-        <button class="module-tab app" data-module="app" role="tab" aria-selected="false" aria-label="APP监控">📱 APP</button>
-    </div>
+    <button class="module-tab active" data-module="thai" role="tab" aria-selected="true" aria-label="泰国政策监控">TH泰国政策监控</button>
+    <button class="module-tab global" data-module="global" role="tab" aria-selected="false" aria-label="全球出海监控">全球出海监控</button>
+    <button class="module-tab app" data-module="app" role="tab" aria-selected="false" aria-label="APP监控">APP监控</button>
 </nav>
 
 <!-- ============================================================ -->
@@ -1560,7 +1485,7 @@ body {
                 追踪泰国央行(BoT)及监管机构针对 BNPL、Personal Loan、Pico Loan/Nano Finance 牌照发布的政策通知、利率上限调整(APR/综合融资成本)、合规要求变更、消费者保护规定等监管动态。
             </div>
             <div class="meta">
-                <span>📅 数据最后更新：<span class="last-updated-label">2026-09-23 19:00 (GMT+8)</span></span>
+                <span>📅 数据最后更新：<span class="last-updated-label">2026-09-24 19:00 (GMT+8)</span></span>
                 <span>🤖 自动更新：每日 09:30 / 19:00</span>
                 <span>📊 监控范围：泰国央行(BoT)、SEC、财政部、OCPB、NCB、SAM</span>
             </div>
@@ -2170,7 +2095,7 @@ body {
                 不收录：非监管类市场新闻(融资/产品发布)、加密货币/区块链监管（除非与现金贷直接相关）。
             </div>
             <div class="meta">
-                <span>📅 数据最后更新：<span class="last-updated-label">2026-09-23 19:00 (GMT+8)</span></span>
+                <span>📅 数据最后更新：<span class="last-updated-label">2026-09-24 19:00 (GMT+8)</span></span>
                 <span>🤖 自动更新：每日 09:30</span>
                 <span>🌍 覆盖：东南亚 / 拉美 / 非洲 / 南亚 / 跨市场</span>
             </div>
@@ -2186,9 +2111,9 @@ body {
             <div class="tab" data-tab="cross">跨市场 (App审查/外汇)</div>
         </div>
         <div class="stats-grid" id="global-stats">
-            <div class="stat-card accent"> <div class="number stat-total">99</div> <div class="label">监控条目</div> </div>
-            <div class="stat-card high">   <div class="number stat-high">37</div>  <div class="label">紧急-高</div> </div>
-            <div class="stat-card medium"> <div class="number stat-medium">58</div><div class="label">紧急-中</div> </div>
+            <div class="stat-card accent"> <div class="number stat-total">102</div> <div class="label">监控条目</div> </div>
+            <div class="stat-card high">   <div class="number stat-high">39</div>  <div class="label">紧急-高</div> </div>
+            <div class="stat-card medium"> <div class="number stat-medium">60</div><div class="label">紧急-中</div> </div>
             <div class="stat-card low">    <div class="number stat-low">5</div> <div class="label">紧急-低</div> </div>
             <div class="stat-card info">   <div class="number">12</div> <div class="label">国家/地区</div> </div>
             <div class="stat-card warn">   <div class="number stat-unverified">6</div><div class="label">⚠ 未交叉认证</div> </div>
@@ -2274,7 +2199,53 @@ body {
         </div>
         <div class="timeline global-timeline>
             <!-- ===== 2026-08 ===== -->
-            <div class="month-section" data-month="2026-09"><div class="month-title">2026年09月 (45 条)</div>
+            <div class="month-section" data-month="2026-09"><div class="month-title">2026年09月 (48 条)</div>
+
+<div class="policy-item" data-source-links='[{"label": "Journal News Online - Vargas bill SEC digital lenders (9/23)", "url": "https://journalnews.com.ph/vargas-bill-gives-sec-more-teeth-to-shut-down-digital-lenders-jail-abusive-debt-collectors/"}, {"label": "Newsko - SEC dagdag na ngipin kontra digital lender (9/23)", "url": "https://newsko.com.ph/2026/09/23/dagdag-na-ngipin-sa-sec-kontra-abusadong-digital-lender-at-debt-collectors/"}, {"label": "PhilStar - SEC enhances financial reporting rules (9/23)", "url": "https://qa.philstar.com/business/2026/09/23/2558140/sec-enhances-financial-reporting-rules"}]' data-region='菲律宾' data-categories='国家监管,消费者保护,风险预警' data-urgency='高' data-status='拟议' data-verified='verified' data-date='2026-09-23'>
+  <div class="policy-title">🇵🇭 菲律宾国会议员提案赋予SEC直接关停未注册在线贷款平台权力，暴力催收入刑</div>
+  <div class="policy-subtitle">Journal News (9/23) 报道：Paco Quezon City第五区议员PM Vargas提出法案，赋予SEC直接关闭未注册在线贷款平台(OLA)的权力，并对暴力催收行为施加刑事处罚。法案还要求SEC加强对数字贷行业的整体监管执法能力。当前菲律宾SEC对未注册OLA关停缺乏明确执法通道，此法案填补制度空白。对出海：菲律宾OLA监管收紧趋势明确，未合规平台面临直接关停风险，催收合规成硬约束</div>
+  <div class="policy-tags">
+    <span class="tag tag-category">国家监管</span>
+    <span class="tag tag-category">消费者保护</span>
+    <span class="tag tag-category">风险预警</span>
+  </div>
+  <div class="policy-links">
+    <a href="https://journalnews.com.ph/vargas-bill-gives-sec-more-teeth-to-shut-down-digital-lenders-jail-abusive-debt-collectors/" target="_blank">Journal News</a>
+    <a href="https://newsko.com.ph/2026/09/23/dagdag-na-ngipin-sa-sec-kontra-abusadong-digital-lender-at-debt-collectors/" target="_blank">Newsko</a>
+    <a href="https://qa.philstar.com/business/2026/09/23/2558140/sec-enhances-financial-reporting-rules" target="_blank">PhilStar</a>
+  </div>
+  <div class="footer-note">📊 3 个独立来源交叉验证 ✅ verified | 菲律宾 Lending Company Act + SEC 监管权限扩展</div>
+</div>
+
+<div class="policy-item" data-source-links='[{"label": "IndoTelko - KPPU cartel pinjol 97 perusahaan Rp755M (9/23)", "url": "https://www.indotelko.com/amp/read/1775298183/mesinais-yang-kempis"}, {"label": "Dinamika Pasar - OJK 94 pinjol legal bunga 0.3%/hari (9/23)", "url": "https://dinamikapasar.com/detail/594556/ojk-catat-94-pinjol-legal-per-agustus-2026-bunga-dibatas-03-per-hari"}, {"label": "OJK SEOJK 19/2025 利息上限规定", "url": "https://www.ojk.go.id/"}]' data-region='印尼' data-categories='国家监管,风险预警,消费者保护' data-urgency='高' data-status='已实施' data-verified='verified' data-date='2026-09-23'>
+  <div class="policy-title">🇮🇩 印尼KPPU裁定97家Pinjol组成利息卡特尔罚7550亿盾：AFPI行为准则被认定为价格协调机制</div>
+  <div class="policy-subtitle">IndoTelko (9/23) 深度分析：印尼竞争委员会(KPPU) 3月26日全庭审理裁定<b>97家AFPI成员Pinjol违反反垄断法</b>，认定AFPI行为准则(Code of Conduct)设定的利息上限(0.8%→0.4%/日)实为价格协调机制而非消费者保护。罚款总额<b>Rp7550亿(约4700万美元)</b>：AdaKami Rp1023亿居首，AsetKu Rp1009亿，Kredit Pintar Rp936亿，EasyCash Rp491亿。OJK回应尊重裁决并承诺加强监管，AFPI称将上诉。同步：OJK 8月数据确认<b>94家合法Pinjol</b>，消费贷利息上限<b>0.3%/日(9%/月)</b>（SEOJK 19/2025）。对出海：印尼Pinjol利息协调机制被反垄断法击破，行业定价逻辑面临重构，合规成本上升</div>
+  <div class="policy-tags">
+    <span class="tag tag-category">国家监管</span>
+    <span class="tag tag-category">风险预警</span>
+    <span class="tag tag-category">消费者保护</span>
+  </div>
+  <div class="policy-links">
+    <a href="https://www.indotelko.com/amp/read/1775298183/mesinais-yang-kempis" target="_blank">IndoTelko</a>
+    <a href="https://dinamikapasar.com/detail/594556/ojk-catat-94-pinjol-legal-per-agustus-2026-bunga-dibatas-03-per-hari" target="_blank">Dinamika Pasar</a>
+  </div>
+  <div class="footer-note">📊 3 个独立来源交叉验证 ✅ verified | KPPU裁决+OJK利率上限+行业分析</div>
+</div>
+
+<div class="policy-item" data-source-links='[{"label": "Daily Nation - MPs tighten mobile loan laws (9/23)", "url": "https://nation.africa/kenya/business/mps-launch-bid-to-tighten-laws-on-mobile-phone-loans-5605304"}, {"label": "News African - Kenya National Payment System Bill open banking (9/23)", "url": "https://www.newsafrican.com/2026/09/23/new-bill-forces-banks-m-pesa-to-share-customer-data/"}, {"label": "CBK Kenya", "url": "https://www.centralbank.go.ke/"}]' data-region='肯尼亚' data-categories='消费者保护,国家监管,信贷环境' data-urgency='中' data-status='征求意见' data-verified='verified' data-date='2026-09-23'>
+  <div class="policy-title">🇰🇪 肯尼亚议员提案收紧移动贷款监管：强制全额费用披露、法院程序催收、利息封顶</div>
+  <div class="policy-subtitle">Daily Nation (9/23) 报道：Kisumu West议员Rosa Buyu提出立法草案，对非存款类微贷机构(含移动贷款)引入四项强制条件：①放贷前必须完整披露费用与条款确保借款人充分知情；②催收须经法院程序；③不良贷款累计利息设上限防止债务无限滚增；④合理催收通知期。背景：CBK与财政部联合起草的<b>National Payment System Bill 2026</b>同步推进开放银行(open finance)，要求银行/M-Pesa在客户授权下共享数据。对出海：肯尼亚移动贷监管持续收紧，费用透明度+催收合规成硬门槛</div>
+  <div class="policy-tags">
+    <span class="tag tag-category">消费者保护</span>
+    <span class="tag tag-category">国家监管</span>
+    <span class="tag tag-category">信贷环境</span>
+  </div>
+  <div class="policy-links">
+    <a href="https://nation.africa/kenya/business/mps-launch-bid-to-tighten-laws-on-mobile-phone-loans-5605304" target="_blank">Daily Nation</a>
+    <a href="https://www.newsafrican.com/2026/09/23/new-bill-forces-banks-m-pesa-to-share-customer-data/" target="_blank">News African</a>
+  </div>
+  <div class="footer-note">📊 3 个独立来源交叉验证 ✅ verified | 议员立法草案+CBK开放银行法案</div>
+</div>
 
 <div class="policy-item" data-source-links='[{"label": "Vietnam News - SBV Circular 25 + 25 banks (9/21)", "url": "https://vietnamnews.vn/economy/1800139/banks-allowed-to-expand-credit-for-hospitality-industry.html"}, {"label": "VietnamPlus - Decree 359 AMC established (9/21)", "url": "https://en.vietnamplus.vn/vietnam-establishes-190-million-usd-state-owned-asset-management-company-post352220.vnp"}, {"label": "Vietnam Investment Review - Bad debt resolution (9/21)", "url": "https://en.vietnamplus.vn/vietnam-establishes-190-million-usd-state-owned-asset-management-company-post352220.vnp"}]' data-region='越南' data-categories='国家监管,信贷环境' data-urgency='中' data-status='已实施' data-verified='verified' data-date='2026-09-21'>
   <div class="policy-title">🇻🇳 越南政府颁布Decree 359设立5万亿盾国有AMC：专责收购处置金融机构不良贷款，SBV同步放宽25银行旅游业信贷限额</div>
@@ -3483,7 +3454,7 @@ body {
                 基础数据：可靠渠道投放量榜单 + SimilarWeb/icharts 商店排名交叉验证（2026-09-07 周更）。投放量原始数据停更期间，以商店排名变动和经营主体异动为主要更新依据。
             </div>
             <div class="meta">
-                <span>📅 数据最后更新：<span class="last-updated-label">2026-09-23 19:00 (GMT+8)</span></span>
+                <span>📅 数据最后更新：<span class="last-updated-label">2026-09-24 19:00 (GMT+8)</span></span>
                 <span>🤖 自动更新：每日 09:30 / 19:00</span>
                 <span>📱 监控范围：APP 投放 / 客户投诉 / 社媒 / 监管 / 风险信号 / 经营主体异动</span>
             </div>
@@ -4730,7 +4701,7 @@ body {
 
     // ── Theme Toggle ──
     var themeBtn = document.querySelector('.fab-theme');
-    var savedTheme = localStorage.getItem('policy-monitor-theme') || '';
+    var savedTheme = localStorage.getItem('policy-theme') || '';
     var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
     var currentTheme = savedTheme || (prefersDark ? 'dark' : 'light');
 
@@ -4758,7 +4729,7 @@ body {
             var isDark = document.documentElement.getAttribute('data-theme') === 'dark';
             var newTheme = isDark ? 'light' : 'dark';
             applyTheme(newTheme);
-            localStorage.setItem('policy-monitor-theme', newTheme);
+            localStorage.setItem('policy-theme', newTheme);
         });
     }
 
@@ -5011,6 +4982,9 @@ body {
 
 })();
 </script>
+<!-- Keyboard shortcut hint -->
+<div class="kbd-hint" id="kbdHint" role="button" tabindex="0" aria-label="显示键盘快捷键">⌨️ 快捷键</div>
+
 <!-- Keyboard shortcut modal -->
 <div class="kbd-modal-overlay" id="kbdOverlay">
     <div class="kbd-modal" role="dialog" aria-label="键盘快捷键">
@@ -5044,13 +5018,5 @@ function switchRankingTab(store) {
     }
 })();
 </script>
-
-<!-- Bottom Navigation -->
-<nav class="bottom-nav">
-    <a href="/" class="nav-item"><span class="nav-icon">🏠</span><span>首页</span></a>
-    <a href="/payment-intel/" class="nav-item"><span class="nav-icon">💳</span><span>支付</span></a>
-    <a href="/policy-monitor/" class="nav-item active"><span class="nav-icon">🛡️</span><span>政策</span></a>
-    <a href="/stock-dash/" class="nav-item"><span class="nav-icon">📈</span><span>股市</span></a>
-</nav>
 </body>
 </html>
