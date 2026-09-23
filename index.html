@@ -38,18 +38,17 @@
         .header-actions { display: flex; gap: 8px; }
         .header-btn { width: 36px; height: 36px; border-radius: 50%; background: var(--card); border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 1rem; transition: transform 0.2s; }
         .header-btn:active { transform: scale(0.92); }
-        .status-bar { margin: 0 20px 16px; padding: 16px; background: var(--accent-green); border-radius: var(--radius); color: #fff; display: flex; align-items: center; justify-content: space-between; }
+        .status-bar { margin: 0 20px 16px; padding: 14px 16px; background: var(--accent-green); border-radius: var(--radius); color: #fff; display: flex; align-items: center; justify-content: space-between; gap: 12px; }
         [data-theme="dark"] .status-bar { background: linear-gradient(135deg, #84cc16, #65a30d); }
-        .status-left h2 { font-size: 1.1rem; font-weight: 800; margin-bottom: 4px; }
-        .status-left p { font-size: 0.75rem; opacity: 0.85; }
-        .status-right { text-align: right; }
-        .status-count { font-size: 1.5rem; font-weight: 900; font-variant-numeric: tabular-nums; }
-        .status-label { font-size: 0.65rem; opacity: 0.8; text-transform: uppercase; letter-spacing: 0.05em; }
-        .quick-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 0 20px 20px; }
-        .quick-stat { background: var(--card); border-radius: var(--radius-sm); padding: 14px 12px; text-align: center; box-shadow: var(--shadow); }
-        .quick-stat-icon { font-size: 1.3rem; margin-bottom: 6px; }
-        .quick-stat-value { font-size: 1.1rem; font-weight: 800; font-variant-numeric: tabular-nums; }
-        .quick-stat-label { font-size: 0.65rem; color: var(--text-tertiary); margin-top: 2px; }
+        .status-left h2 { font-size: 1rem; font-weight: 800; margin-bottom: 2px; }
+        .status-left p { font-size: 0.7rem; opacity: 0.85; }
+        .status-right { text-align: right; display: flex; flex-direction: column; gap: 2px; }
+        .status-row { display: flex; align-items: baseline; justify-content: flex-end; gap: 6px; }
+        .status-count { font-size: 1.3rem; font-weight: 900; font-variant-numeric: tabular-nums; }
+        .status-label { font-size: 0.6rem; opacity: 0.8; }
+        .status-visits { display: flex; gap: 10px; font-size: 0.7rem; opacity: 0.9; font-variant-numeric: tabular-nums; }
+        .status-visits span { font-weight: 700; }
+        /* quick-stats removed — visits now in status-bar */
         .section { margin: 0 20px 20px; }
         .section-title { font-size: 1rem; font-weight: 700; margin-bottom: 12px; }
         .modules { display: flex; flex-direction: column; gap: 12px; }
@@ -95,13 +94,11 @@
         </div>
     </header>
     <div class="status-bar">
-        <div class="status-left"><h2>今日监控</h2><p>3 个面板 · 每日自动更新</p></div>
-        <div class="status-right"><div class="status-count">270+</div><div class="status-label">条目总数</div></div>
-    </div>
-    <div class="quick-stats">
-        <div class="quick-stat"><div class="quick-stat-icon">👁</div><div class="quick-stat-value" id="stat-total">--</div><div class="quick-stat-label">总访问</div></div>
-        <div class="quick-stat"><div class="quick-stat-icon">📊</div><div class="quick-stat-value" id="stat-today">--</div><div class="quick-stat-label">今日</div></div>
-        <div class="quick-stat"><div class="quick-stat-icon">🕐</div><div class="quick-stat-value">19:00</div><div class="quick-stat-label">日更时间</div></div>
+        <div class="status-left"><h2>今日监控</h2><p>3 个面板 · 每日19:00更新</p></div>
+        <div class="status-right">
+            <div class="status-row"><span class="status-count">270+</span><span class="status-label">条目</span></div>
+            <div class="status-visits">总访问 <span id="stat-total">--</span> · 今日 <span id="stat-today">--</span></div>
+        </div>
     </div>
     <div class="section">
         <div class="section-title">监控面板</div>
