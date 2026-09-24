@@ -175,7 +175,6 @@ body {
     background: var(--bg);
     color: var(--text);
     line-height: 1.6;
-    padding-bottom: 70px;
     overscroll-behavior-y: contain;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -1055,7 +1054,7 @@ body {
 .fab-stack {
     position: fixed;
     right: 20px;
-    bottom: calc(70px + var(--safe-bottom));
+    bottom: calc(20px + var(--safe-bottom));
     z-index: 9999;
     display: flex;
     flex-direction: column;
@@ -1289,7 +1288,7 @@ body {
     .header .header-inner h1 { font-size: 0.875rem; }
     .header .subtitle { font-size: 0.8125rem; }
 
-    .container { padding: 16px 12px; padding-bottom: calc(70px + var(--safe-bottom)); }
+    .container { padding: 16px 12px; padding-bottom: calc(20px + var(--safe-bottom)); }
 
     .stats-grid { grid-template-columns: repeat(3, 1fr); gap: 8px; }
     .stat-card { padding: 12px 6px; }
@@ -1372,7 +1371,7 @@ body {
 /* ── Enhancements: keyboard shortcut hint ── */
 .kbd-hint {
     position: fixed;
-    bottom: calc(70px + var(--safe-bottom));
+    bottom: calc(20px + var(--safe-bottom));
     left: 20px;
     z-index: 9998;
     font-size: 0.75rem;
@@ -1459,15 +1458,6 @@ body {
 .ranking-panel { display:none; }
 .ranking-panel.active { display:block; }
 .nonbank-tag { display:inline-block; font-size:0.6rem; padding:1px 5px; border-radius:6px; background:rgba(124,58,237,0.12); color:#7c3aed; font-weight:600; margin-left:4px; vertical-align:middle; }
-
-/* ── Bottom Navigation v2 ── */
-.bottom-nav { position: fixed; bottom: 0; left: 0; right: 0; background: var(--card-bg, #fff); border-top: 1px solid var(--border); display: flex; justify-content: space-around; padding: 8px 0; padding-bottom: max(8px, env(safe-area-inset-bottom)); z-index: 100; }
-[data-theme="dark"] .bottom-nav { background: #0b0f1a; }
-.nav-item { display: flex; flex-direction: column; align-items: center; gap: 4px; text-decoration: none; color: var(--text-muted, #94a3b8); font-size: 0.6rem; font-weight: 500; padding: 4px 12px; border-radius: 12px; transition: color 0.2s, background 0.2s; }
-.nav-item.active { color: #3b82f6; background: rgba(59,130,246,0.12); }
-.nav-icon { font-size: 1.2rem; }
-@media (min-width: 768px) { .bottom-nav { max-width: 430px; left: 50%; transform: translateX(-50%); } }
-
 </style>
 </head>
 <body>
@@ -1495,7 +1485,7 @@ body {
                 追踪泰国央行(BoT)及监管机构针对 BNPL、Personal Loan、Pico Loan/Nano Finance 牌照发布的政策通知、利率上限调整(APR/综合融资成本)、合规要求变更、消费者保护规定等监管动态。
             </div>
             <div class="meta">
-                <span>📅 数据最后更新：<span class="last-updated-label">2026-09-24 19:00 (GMT+8)</span></span>
+                <span>📅 数据最后更新：<span class="last-updated-label">2026-09-25 19:00 (GMT+8)</span></span>
                 <span>🤖 自动更新：每日 09:30 / 19:00</span>
                 <span>📊 监控范围：泰国央行(BoT)、SEC、财政部、OCPB、NCB、SAM</span>
             </div>
@@ -1511,9 +1501,9 @@ body {
             <div class="tab" data-tab="relief">纾困计划</div>
         </div>
         <div class="stats-grid" id="thai-stats">
-            <div class="stat-card info">  <div class="number stat-total">52</div> <div class="label">监控条目</div> </div>
+            <div class="stat-card info">  <div class="number stat-total">54</div> <div class="label">监控条目</div> </div>
             <div class="stat-card high">  <div class="number stat-high">19</div>  <div class="label">紧急-高</div> </div>
-            <div class="stat-card medium"><div class="number stat-medium">29</div><div class="label">紧急-中</div> </div>
+            <div class="stat-card medium"><div class="number stat-medium">30</div><div class="label">紧急-中</div> </div>
             <div class="stat-card low">   <div class="number stat-low">4</div> <div class="label">紧急-低</div> </div>
             <div class="stat-card info">  <div class="number">8</div>  <div class="label">央行/监管机构</div> </div>
             <div class="stat-card info">  <div class="number">20</div> <div class="label">政策/银行/平台</div> </div>
@@ -1582,7 +1572,45 @@ body {
         </div>
         <div class="timeline thai-timeline">
             <!-- THAI DATA — kept in an IE-compatible structure -->
-            <div class="month-section" data-month="2026-09"><div class="month-title">2026年09月 (23 条)</div>
+            <div class="month-section" data-month="2026-09"><div class="month-title">2026年09月 (25 条)</div>
+<div class="policy-item" data-source-links='[{"label": "Thai Times - Thailand Resolves 50,000+ High-Interest Loan Cases (9/24)", "url": "https://thaitimes.com/thailand-resolves-over-50-000-high-interest-loan-cases-worth-1-8-billion-baht"}, {"label": "Thai Times - Finance Ministry Household Debt Measures (9/24)", "url": "https://thaitimes.com/thailand-s-finance-ministry-proposes-measures-to-alleviate-household-debt-and-boost-automobile-industry"}, {"label": "Thai Times - BoT Holds Key Rate at 1% GDP Forecast Raised (9/24)", "url": "https://thaitimes.com/bank-of-thailand-holds-key-rate-at-1-while-raising-2026-growth-outlook-to-2-3-amid-uneven-recovery"}]' data-categories='国家监管,信贷环境,消费者保护' data-business='Pico Loan,Personal Loan' data-urgency='中' data-status='发展中' data-verified='verified' data-date='2026-09-24'>
+  <div class="policy-title">泰国财政部化解5万+高利贷案件/1.8B泰铢转贷：Pico Finance扩至1,148家覆盖75府；财政部同步推出&lt;10万铢小额债务重组+NCB黑名单清除计划</div>
+  <div class="policy-subtitle">Thai Times (9/24) 综合报道：泰国财政部自2023年12月启动高利贷转贷计划以来已帮助<b>50,980人</b>完成转贷（总额18亿泰铢），由政府储蓄银行(GSB)和农业合作社银行(BAAC)执行。FPO总监Pornchai确认：已推动大量非银债权人注册为<b>Pico Finance公司</b>，目前<b>1,148家</b>运营商获批在<b>75个府</b>运营（利率上限36%/年）。截至2024年11月，Pico Finance累计放款<b>484万账户/469.8亿泰铢</b>。同日，财长Pichai披露全国家庭债务13万亿泰铢（不含储蓄合作社），其中&lt;10万铢贷款占35%，NPL达1.22万亿泰铢。财政部拟推出灵活重组方案，债务清偿后从<b>NCB黑名单完全移除</b>。BoT MPC同日维持利率1%不变，上调2026 GDP预测至2.3%，但警告家庭债务和中小企业压力仍为核心约束。对出海影响：Pico Finance牌照化进程加速(1,148家/75府) = 合规路径明确；小额债务重组+黑名单清除 = 信贷环境宽松化但合规门槛提高；BoT上调GDP但维持低利率 = 家庭负债压力持续，下沉客群信贷需求旺盛</div>
+  <div class="policy-tags">
+    <span class="tag tag-category">国家监管</span>
+    <span class="tag tag-category">信贷环境</span>
+    <span class="tag tag-category">消费者保护</span>
+    <span class="tag tag-status tag-status-proposed">发展中</span>
+    <span class="tag tag-urgency tag-urgency-medium">紧急-中</span>
+    <span class="tag tag-verified">✅ 已交叉认证</span>
+  </div>
+  <div class="policy-links">
+    <a href="https://thaitimes.com/thailand-resolves-over-50-000-high-interest-loan-cases-worth-1-8-billion-baht" target="_blank" rel="noopener">Thai Times (高利贷化解)</a>
+    <a href="https://thaitimes.com/thailand-s-finance-ministry-proposes-measures-to-alleviate-household-debt-and-boost-automobile-industry" target="_blank" rel="noopener">Thai Times (家庭债务)</a>
+    <a href="https://thaitimes.com/bank-of-thailand-holds-key-rate-at-1-while-raising-2026-growth-outlook-to-2-3-amid-uneven-recovery" target="_blank" rel="noopener">Thai Times (MPC利率)</a>
+  </div>
+  <div class="footer-note">📌 Pico Finance生态持续扩张(1,148家/75府/484万账户)，财政部+BoT双管齐下：高利贷转贷+小额债务重组+NCB清除，泰国非银信贷进入"合规化+普惠化"新阶段。</div>
+</div>
+
+<div class="policy-item" data-source-links='[{"label": "Bangkok Biz News - กขค. Credit Term rules Modern Trade (9/24)", "url": "https://www.bangkokbiznews.com/economics/1253211"}, {"label": "Thai Times - Finance Ministry Household Debt (9/24)", "url": "https://thaitimes.com/thailand-s-finance-ministry-proposes-measures-to-alleviate-household-debt-and-boost-automobile-industry"}]' data-categories='信贷环境,消费者保护,市场标杆' data-business='BNPL,Personal Loan' data-urgency='低' data-status='征求意见' data-verified='unverified' data-date='2026-09-24'>
+  <div class="policy-title">泰国竞争委员会拟出台Modern Trade信用账期硬性规定：农业品≤30天/普通品≤45天，SME近2000亿铢资金被占用</div>
+  <div class="policy-subtitle">Bangkok Biz News (9/24) 报道：泰国竞争委员会(TCC)正准备出台新规，约束大型现代贸易(Moder Trade)企业的信用账期(Credit Term)。新规参照BoT研究：农业及初级加工品≤30天、普通商品≤45天。背景：SME在Modern Trade体系中被拖欠货款近<b>2000亿泰铢</b>，部分企业被迫以采购订单为抵押借高利贷维持周转。此前2021年TCC发布的自愿性指导方针未生效，此次升级为强制性法规，预计年底生效。TCC已在清迈/清莱/南邦/尖竹汶/甲米5府完成实地调研。对出海影响：Modern Trade信用账期紧缩→SME现金流改善→偿债能力增强→非银信贷资产质量改善；但大型零售商的供应链金融安排需重新调整</div>
+  <div class="policy-tags">
+    <span class="tag tag-category">信贷环境</span>
+    <span class="tag tag-category">消费者保护</span>
+    <span class="tag tag-category">市场标杆</span>
+    <span class="tag tag-status tag-status-proposed">征求意见</span>
+    <span class="tag tag-urgency tag-urgency-low">紧急-低</span>
+    <span class="tag tag-unverified">⚠ 未交叉认证</span>
+  </div>
+  <div class="policy-links">
+    <a href="https://www.bangkokbiznews.com/economics/1253211" target="_blank" rel="noopener">Bangkok Biz News</a>
+    <a href="https://thaitimes.com/thailand-s-finance-ministry-proposes-measures-to-alleviate-household-debt-and-boost-automobile-industry" target="_blank" rel="noopener">Thai Times</a>
+  </div>
+  <div class="footer-note">📌 与财政部家庭债务措施形成政策组合拳：SME信用账期硬化+高利贷转贷+Pico Finance扩面，泰国信贷生态整体优化方向明确。</div>
+</div>
+
+
 
 <div class="policy-item" data-source-links='[{"label": "Baker McKenzie - Thailand Consumer Protection Act amendments (9/21)", "url": "https://www.bakermckenzie.com/en/insight/publications/2026/09/thailand-proposed-amendments-to-thailands-consumer-protection-act"}, {"label": "OCPB Draft Amendment Public Consultation (9/9-10/10)", "url": "https://www.ocpb.go.th/"}, {"label": "Thai Times - Online Scam Decree (9/21)", "url": "https://thaitimes.com/thailand-enacts-decree-mandating-shared-responsibility-for-online-scam-losses"}]' data-categories='国家监管,消费者保护,信贷环境' data-business='BNPL,Personal Loan,Pico Loan' data-urgency='低' data-status='征求意见' data-verified='verified' data-date='2026-09-21'>
   <div class="policy-title">OCPB发布《消费者保护法》修订草案征询意见：数字广告/KOL营销/电子标签纳入监管范围，违规罚款翻倍</div>
@@ -2105,7 +2133,7 @@ body {
                 不收录：非监管类市场新闻(融资/产品发布)、加密货币/区块链监管（除非与现金贷直接相关）。
             </div>
             <div class="meta">
-                <span>📅 数据最后更新：<span class="last-updated-label">2026-09-24 19:00 (GMT+8)</span></span>
+                <span>📅 数据最后更新：<span class="last-updated-label">2026-09-25 19:00 (GMT+8)</span></span>
                 <span>🤖 自动更新：每日 09:30</span>
                 <span>🌍 覆盖：东南亚 / 拉美 / 非洲 / 南亚 / 跨市场</span>
             </div>
@@ -2121,12 +2149,12 @@ body {
             <div class="tab" data-tab="cross">跨市场 (App审查/外汇)</div>
         </div>
         <div class="stats-grid" id="global-stats">
-            <div class="stat-card accent"> <div class="number stat-total">102</div> <div class="label">监控条目</div> </div>
-            <div class="stat-card high">   <div class="number stat-high">39</div>  <div class="label">紧急-高</div> </div>
+            <div class="stat-card accent"> <div class="number stat-total">104</div> <div class="label">监控条目</div> </div>
+            <div class="stat-card high">   <div class="number stat-high">40</div>  <div class="label">紧急-高</div> </div>
             <div class="stat-card medium"> <div class="number stat-medium">60</div><div class="label">紧急-中</div> </div>
-            <div class="stat-card low">    <div class="number stat-low">5</div> <div class="label">紧急-低</div> </div>
+            <div class="stat-card low">    <div class="number stat-low">6</div> <div class="label">紧急-低</div> </div>
             <div class="stat-card info">   <div class="number">12</div> <div class="label">国家/地区</div> </div>
-            <div class="stat-card warn">   <div class="number stat-unverified">6</div><div class="label">⚠ 未交叉认证</div> </div>
+            <div class="stat-card warn">   <div class="number stat-unverified">7</div><div class="label">⚠ 未交叉认证</div> </div>
         </div>
         <div class="filters" id="global-filters">
             <div class="filters-header" onclick="this.parentElement.classList.toggle('expanded')"><span>🔧 筛选器</span><span class="arrow">▼</span></div>
@@ -2209,7 +2237,38 @@ body {
         </div>
         <div class="timeline global-timeline>
             <!-- ===== 2026-08 ===== -->
-            <div class="month-section" data-month="2026-09"><div class="month-title">2026年09月 (48 条)</div>
+            <div class="month-section" data-month="2026-09"><div class="month-title">2026年09月 (50 条)</div>
+<div class="policy-item" data-source-links='[{"label": "The National Policy - SEC expanded powers vs abusive collectors (9/24)", "url": "https://thenationalpolicy.com/solon-wants-more-powers-for-sec-to-fight-abusive-debt-collectors/"}, {"label": "Credit and Collection News - Philippine SEC powers (9/23)", "url": "https://www.creditandcollectionnews.com/philippine-lawmaker-seeks-expanded-sec-powers-against-abusive-digital-debt-collection/"}, {"label": "Journal News - Vargas bill SEC digital lenders (9/23)", "url": "https://journalnews.com.ph/vargas-bill-gives-sec-more-teeth-to-shut-down-digital-lenders-jail-abusive-debt-collectors/"}]' data-region='菲律宾' data-categories='国家监管,消费者保护,风险预警' data-urgency='高' data-status='拟议' data-verified='verified' data-date='2026-09-24'>
+  <div class="policy-title">🇵🇭 菲律宾SEC执法升级：国会多路径推进赋予SEC直接关停非法在线贷方权力，暴力催收入刑</div>
+  <div class="policy-subtitle">The National Policy (9/24) + Credit and Collection News (9/23) 跟进：继9/23 Journal News报道P Vargas议员提案后，多路媒体确认菲律宾国会正推进<b>多项互补法案</b>强化SEC执法能力。核心内容：①赋予SEC直接关闭未注册在线贷款平台(OLA)的权力（当前需走法院程序）；②对暴力催收行为施加刑事处罚（威胁/羞辱性信息/过度利息）；③加强对数字贷行业的整体监管执法。同步，SEC已关停CredLadder（未注册贷方，通过Facebook和Google Play获客，涉嫌暴力催收）。对出海：菲律宾监管从"警告"升级为"直接关停+入刑"，未合规平台面临即时清退风险，催收合规成硬性红线</div>
+  <div class="policy-tags">
+    <span class="tag tag-category">国家监管</span>
+    <span class="tag tag-category">消费者保护</span>
+    <span class="tag tag-category">风险预警</span>
+  </div>
+  <div class="policy-links">
+    <a href="https://thenationalpolicy.com/solon-wants-more-powers-for-sec-to-fight-abusive-debt-collectors/" target="_blank">The National Policy</a>
+    <a href="https://www.creditandcollectionnews.com/philippine-lawmaker-seeks-expanded-sec-powers-against-abusive-digital-debt-collection/" target="_blank">Credit and Collection News</a>
+    <a href="https://journalnews.com.ph/vargas-bill-gives-sec-more-teeth-to-shut-down-digital-lenders-jail-abusive-debt-collectors/" target="_blank">Journal News</a>
+  </div>
+  <div class="footer-note">📊 4 个独立来源交叉验证 ✅ verified | 与9/23已有条目互补升级：从单一提案到多法案组合推进</div>
+</div>
+
+<div class="policy-item" data-source-links='[{"label": "Bisnis360 - OJK Sulselbar Cabut Izin 5 Fintech Pinjol (9/23)", "url": "https://bisnis360media.com/ojk-sulselbar-cabut-izin-lima-fintech-pinjaman-online-karena-pelanggaran-2022-2025-s0FOIDdHPU"}, {"label": "OJK 94 Pinjol Legal + 0.3%/day interest cap (9/23)", "url": "https://dinamikapasar.com/detail/594556/ojk-catat-94-pinjol-legal-per-agustus-2026-bunga-dibatas-03-per-hari"}]' data-region='印尼' data-categories='国家监管,风险预警' data-urgency='中' data-status='已实施' data-verified='unverified' data-date='2026-09-24'>
+  <div class="policy-title">🇮🇩 OJK南苏拉威西撤销5家Pinjol牌照(2022-2025违规)：全国94家合法Pinjol+利息上限0.3%/日(9%/月)执行中</div>
+  <div class="policy-subtitle">Bisnis360 (9/23) 报道：OJK南苏拉威西办公室撤销<b>5家P2P借贷平台</b>运营牌照，违规期间为2022-2025年。此为OJK持续清理不合规Pinjol的最新执法行动。同步：OJK 8月数据确认全国<b>94家合法Pinjol</b>，利息上限执行<b>SEOJK 19/2025标准（0.3%/日=9%/月）</b>。叠加此前KPPU反垄断裁决（97家AFPI成员Pinjol组成利息卡特尔），印尼Pinjol行业合规成本持续上升。对出海：OJK执法从全国性利率下调→地方性牌照撤销→反垄断裁决，形成"三箭齐发"态势；不合规平台面临从利息限制到牌照取消的全链条处罚</div>
+  <div class="policy-tags">
+    <span class="tag tag-category">国家监管</span>
+    <span class="tag tag-category">风险预警</span>
+  </div>
+  <div class="policy-links">
+    <a href="https://bisnis360media.com/ojk-sulselbar-cabut-izin-lima-fintech-pinjaman-online-karena-pelanggaran-2022-2025-s0FOIDdHPU" target="_blank">Bisnis360</a>
+    <a href="https://dinamikapasar.com/detail/594556/ojk-catat-94-pinjol-legal-per-agustus-2026-bunga-dibatas-03-per-hari" target="_blank">Dinamika Pasar</a>
+  </div>
+  <div class="footer-note">📊 2 个独立来源 ⚠ unverified | 与9/23 KPPU反垄断裁决形成互补：OJK执法+反垄断双轨推进</div>
+</div>
+
+
 
 <div class="policy-item" data-source-links='[{"label": "Journal News Online - Vargas bill SEC digital lenders (9/23)", "url": "https://journalnews.com.ph/vargas-bill-gives-sec-more-teeth-to-shut-down-digital-lenders-jail-abusive-debt-collectors/"}, {"label": "Newsko - SEC dagdag na ngipin kontra digital lender (9/23)", "url": "https://newsko.com.ph/2026/09/23/dagdag-na-ngipin-sa-sec-kontra-abusadong-digital-lender-at-debt-collectors/"}, {"label": "PhilStar - SEC enhances financial reporting rules (9/23)", "url": "https://qa.philstar.com/business/2026/09/23/2558140/sec-enhances-financial-reporting-rules"}]' data-region='菲律宾' data-categories='国家监管,消费者保护,风险预警' data-urgency='高' data-status='拟议' data-verified='verified' data-date='2026-09-23'>
   <div class="policy-title">🇵🇭 菲律宾国会议员提案赋予SEC直接关停未注册在线贷款平台权力，暴力催收入刑</div>
@@ -3464,7 +3523,7 @@ body {
                 基础数据：可靠渠道投放量榜单 + SimilarWeb/icharts 商店排名交叉验证（2026-09-07 周更）。投放量原始数据停更期间，以商店排名变动和经营主体异动为主要更新依据。
             </div>
             <div class="meta">
-                <span>📅 数据最后更新：<span class="last-updated-label">2026-09-24 19:00 (GMT+8)</span></span>
+                <span>📅 数据最后更新：<span class="last-updated-label">2026-09-25 19:00 (GMT+8)</span></span>
                 <span>🤖 自动更新：每日 09:30 / 19:00</span>
                 <span>📱 监控范围：APP 投放 / 客户投诉 / 社媒 / 监管 / 风险信号 / 经营主体异动</span>
             </div>
@@ -3480,12 +3539,12 @@ body {
             <div class="tab" data-tab="baseline">基础档案</div>
         </div>
         <div class="stats-grid" id="app-stats">
-            <div class="stat-card warn-orange"> <div class="number stat-total">39</div> <div class="label">监控 APP</div> </div>
+            <div class="stat-card warn-orange"> <div class="number stat-total">40</div> <div class="label">监控 APP</div> </div>
             <div class="stat-card high">  <div class="number stat-high">18</div>  <div class="label">紧急-高</div> </div>
             <div class="stat-card medium"><div class="number stat-medium">16</div> <div class="label">紧急-中</div> </div>
             <div class="stat-card low">   <div class="number stat-low">5</div>  <div class="label">紧急-低</div> </div>
             <div class="stat-card warn-orange"> <div class="number stat-complaint">4</div><div class="label">投诉信号</div> </div>
-            <div class="stat-card warn">  <div class="number stat-unverified">32</div><div class="label">⚠ 未交叉认证</div> </div>
+            <div class="stat-card warn">  <div class="number stat-unverified">33</div><div class="label">⚠ 未交叉认证</div> </div>
         </div>
         <a class="jump-to-ranking" href="#ad-ranking" onclick="event.preventDefault(); document.getElementById('ad-ranking').scrollIntoView({behavior:'smooth', block:'start'})">
             <span class="jump-icon">📊</span>
@@ -3573,7 +3632,16 @@ body {
             </div>
             <div class="collapsible-content collapsed">
             <!-- ===== 2026-08 监控周期 ===== -->
-            <div class="month-section" data-month="2026-09"><div class="month-title">2026年09月 信号 (7 条)</div>
+            <div class="month-section" data-month="2026-09"><div class="month-title">2026年09月 信号 (8 条)</div>
+<div class="policy-item" data-source-links='[{"label": "TNN Thailand - FINNIX by MONIX wins Thailand Influencer Awards 2026 (9/24)", "url": "https://www.tnnthailand.com/tnnexclusive/247738/"}]' data-app="FINNIX" data-categories="经营主体异动,社媒讨论" data-urgency="低" data-status="已确认" data-verified="unverified" data-date="2026-09-24">
+  <div class="policy-header"><div class="tags"><span class="tag tag-urgency-low">紧急-低</span><span class="tag tag-category">经营主体异动</span><span class="tag tag-category">社媒讨论</span><span class="tag tag-app-name">FINNIX</span><span class="tag tag-status-confirmed">已确认</span><span class="tag tag-unverified">⚠ 单源待验证</span></div><div class="policy-date">2026-09-24</div></div>
+  <div class="policy-source">来源：TNN Thailand (9/24) / SCBX Group (Monix Co., Ltd.)</div>
+  <div class="policy-title">[经营主体异动 · FINNIX] FINNIX by MONIX 荣获 Thailand Influencer Awards 2026「Best Digital Lending Influencer Campaign」</div>
+  <div class="policy-desc">SCBX集团旗下Gen2子公司 <b>Monix Co., Ltd.</b> 旗下数字借贷APP <b>FINNIX</b> 在 <b>Thailand Influencer Awards 2026</b> 中荣获 "<b>Best Digital Lending Influencer Campaign</b>"（品牌与影响力类别）。FINNIX此前已披露运营数据：下载量超<b>350万次</b>、累计放贷超<b>30亿泰铢</b>，目标年底达50亿泰铢。产品定位：面向无法获得传统金融机构贷款的"做买卖人群"（自由职业者/小商户），额度最高10万泰铢、利率2.75%/月、AI+ML风控审批最快5分钟。获奖反映FINNIX在泰国Nano Finance赛道的<b>品牌影响力+市场渗透力</b>持续提升，与MoneyThunder在Personal Loan赛道形成差异化竞争。对出海玩家：FINNIX作为SCBX Gen2旗下"下沉市场"主力产品，其品牌策略值得参考——通过Influencer营销精准触达传统金融未覆盖客群。运营商/母公司：Monix Co., Ltd.（SCBX集团Gen2子公司，已确认）。</div>
+  <div class="footer-note">📌 第六大信号维度 · 经营主体异动：FINNIX获行业级品牌奖项，确认SCBX在泰国数字借贷赛道的双品牌布局（MoneyThunder=Personal Loan, FINNIX=Nano Finance）。</div>
+</div>
+
+
 
 <div class="policy-item" data-source-links='[{"label": "Thai Times - BoT unauthorized loan apps (9/21)", "url": "https://thaitimes.com/bank-of-thailand-targets-unauthorized-loan-applications"}, {"label": "Thai Times - Buy now bankrupt later (9/21)", "url": "https://thaitimes.com/buy-now-bankrupt-later"}]' data-app="跨市场(App Store/Google Play)" data-categories="监管政策,风险预警" data-urgency="中" data-status="已实施" data-verified="verified" data-date="2026-09-21">
   <div class="policy-header"><div class="tags"><span class="tag tag-urgency-medium">紧急-中</span><span class="tag tag-app-type-regulation">监管政策</span><span class="tag tag-app-type-warning">风险预警</span><span class="tag tag-app-name">跨市场</span><span class="tag tag-status-active">已实施</span><span class="tag tag-verified">✅ 3源交叉验证</span></div><div class="policy-date">2026-09-21</div></div>
@@ -4711,7 +4779,7 @@ body {
 
     // ── Theme Toggle ──
     var themeBtn = document.querySelector('.fab-theme');
-    var savedTheme = localStorage.getItem('policy-monitor-theme') || '';
+    var savedTheme = localStorage.getItem('policy-theme') || '';
     var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
     var currentTheme = savedTheme || (prefersDark ? 'dark' : 'light');
 
@@ -4739,7 +4807,7 @@ body {
             var isDark = document.documentElement.getAttribute('data-theme') === 'dark';
             var newTheme = isDark ? 'light' : 'dark';
             applyTheme(newTheme);
-            localStorage.setItem('policy-monitor-theme', newTheme);
+            localStorage.setItem('policy-theme', newTheme);
         });
     }
 
@@ -4992,6 +5060,9 @@ body {
 
 })();
 </script>
+<!-- Keyboard shortcut hint -->
+<div class="kbd-hint" id="kbdHint" role="button" tabindex="0" aria-label="显示键盘快捷键">⌨️ 快捷键</div>
+
 <!-- Keyboard shortcut modal -->
 <div class="kbd-modal-overlay" id="kbdOverlay">
     <div class="kbd-modal" role="dialog" aria-label="键盘快捷键">
@@ -5025,14 +5096,5 @@ function switchRankingTab(store) {
     }
 })();
 </script>
-
-<!-- Bottom Navigation v2 -->
-<nav class="bottom-nav">
-    <a href="/" class="nav-item"><span class="nav-icon">🏠</span><span>首页</span></a>
-    <a href="/payment-intel/" class="nav-item"><span class="nav-icon">💳</span><span>支付</span></a>
-    <a href="/policy-monitor/" class="nav-item active"><span class="nav-icon">🛡️</span><span>政策</span></a>
-    <a href="/stock-dash/" class="nav-item"><span class="nav-icon">📈</span><span>股市</span></a>
-</nav>
-
 </body>
 </html>
