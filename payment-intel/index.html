@@ -3083,8 +3083,6 @@ if(el){e.preventDefault();el.scrollIntoView({behavior:'smooth'});}
             if (t === 'dark') { document.documentElement.removeAttribute('data-theme'); themeBtn.textContent='☀️'; }
             else { document.documentElement.setAttribute('data-theme','light'); themeBtn.textContent='🌙'; }
         }
-            else { document.documentElement.removeAttribute('data-theme'); themeBtn.textContent='🌙'; }
-        }
         apply(theme);
         themeBtn.addEventListener('click', function() {
             var isDark = document.documentElement.getAttribute('data-theme') !== 'light';
