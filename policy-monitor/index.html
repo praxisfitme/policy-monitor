@@ -175,6 +175,7 @@ body {
     background: var(--bg);
     color: var(--text);
     line-height: 1.6;
+    padding-bottom: 70px;
     overscroll-behavior-y: contain;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -1054,7 +1055,7 @@ body {
 .fab-stack {
     position: fixed;
     right: 20px;
-    bottom: calc(20px + var(--safe-bottom));
+    bottom: calc(70px + var(--safe-bottom));
     z-index: 9999;
     display: flex;
     flex-direction: column;
@@ -1288,7 +1289,7 @@ body {
     .header .header-inner h1 { font-size: 0.875rem; }
     .header .subtitle { font-size: 0.8125rem; }
 
-    .container { padding: 16px 12px; padding-bottom: calc(20px + var(--safe-bottom)); }
+    .container { padding: 16px 12px; padding-bottom: calc(70px + var(--safe-bottom)); }
 
     .stats-grid { grid-template-columns: repeat(3, 1fr); gap: 8px; }
     .stat-card { padding: 12px 6px; }
@@ -1371,7 +1372,7 @@ body {
 /* ── Enhancements: keyboard shortcut hint ── */
 .kbd-hint {
     position: fixed;
-    bottom: calc(20px + var(--safe-bottom));
+    bottom: calc(70px + var(--safe-bottom));
     left: 20px;
     z-index: 9998;
     font-size: 0.75rem;
@@ -1458,6 +1459,15 @@ body {
 .ranking-panel { display:none; }
 .ranking-panel.active { display:block; }
 .nonbank-tag { display:inline-block; font-size:0.6rem; padding:1px 5px; border-radius:6px; background:rgba(124,58,237,0.12); color:#7c3aed; font-weight:600; margin-left:4px; vertical-align:middle; }
+
+/* ── Bottom Navigation v2 ── */
+.bottom-nav { position: fixed; bottom: 0; left: 0; right: 0; background: var(--card-bg, #fff); border-top: 1px solid var(--border); display: flex; justify-content: space-around; padding: 8px 0; padding-bottom: max(8px, env(safe-area-inset-bottom)); z-index: 100; }
+[data-theme="dark"] .bottom-nav { background: #0b0f1a; }
+.nav-item { display: flex; flex-direction: column; align-items: center; gap: 4px; text-decoration: none; color: var(--text-muted, #94a3b8); font-size: 0.6rem; font-weight: 500; padding: 4px 12px; border-radius: 12px; transition: color 0.2s, background 0.2s; }
+.nav-item.active { color: #3b82f6; background: rgba(59,130,246,0.12); }
+.nav-icon { font-size: 1.2rem; }
+@media (min-width: 768px) { .bottom-nav { max-width: 430px; left: 50%; transform: translateX(-50%); } }
+
 </style>
 </head>
 <body>
@@ -4908,7 +4918,7 @@ body {
 
     // ── Theme Toggle ──
     var themeBtn = document.querySelector('.fab-theme');
-    var savedTheme = localStorage.getItem('policy-theme') || '';
+    var savedTheme = localStorage.getItem('policy-monitor-theme') || '';
     var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
     var currentTheme = savedTheme || (prefersDark ? 'dark' : 'light');
 
@@ -4936,7 +4946,7 @@ body {
             var isDark = document.documentElement.getAttribute('data-theme') === 'dark';
             var newTheme = isDark ? 'light' : 'dark';
             applyTheme(newTheme);
-            localStorage.setItem('policy-theme', newTheme);
+            localStorage.setItem('policy-monitor-theme', newTheme);
         });
     }
 
@@ -5189,9 +5199,6 @@ body {
 
 })();
 </script>
-<!-- Keyboard shortcut hint -->
-<div class="kbd-hint" id="kbdHint" role="button" tabindex="0" aria-label="显示键盘快捷键">⌨️ 快捷键</div>
-
 <!-- Keyboard shortcut modal -->
 <div class="kbd-modal-overlay" id="kbdOverlay">
     <div class="kbd-modal" role="dialog" aria-label="键盘快捷键">
@@ -5225,5 +5232,14 @@ function switchRankingTab(store) {
     }
 })();
 </script>
+
+<!-- Bottom Navigation v2 -->
+<nav class="bottom-nav">
+    <a href="/" class="nav-item"><span class="nav-icon">🏠</span><span>首页</span></a>
+    <a href="/payment-intel/" class="nav-item"><span class="nav-icon">💳</span><span>支付</span></a>
+    <a href="/policy-monitor/" class="nav-item active"><span class="nav-icon">🛡️</span><span>政策</span></a>
+    <a href="/stock-dash/" class="nav-item"><span class="nav-icon">📈</span><span>股市</span></a>
+</nav>
+
 </body>
 </html>
