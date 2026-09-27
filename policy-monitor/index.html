@@ -175,7 +175,6 @@ body {
     background: var(--bg);
     color: var(--text);
     line-height: 1.6;
-    padding-bottom: 70px;
     overscroll-behavior-y: contain;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -1055,7 +1054,7 @@ body {
 .fab-stack {
     position: fixed;
     right: 20px;
-    bottom: calc(70px + var(--safe-bottom));
+    bottom: calc(20px + var(--safe-bottom));
     z-index: 9999;
     display: flex;
     flex-direction: column;
@@ -1289,7 +1288,7 @@ body {
     .header .header-inner h1 { font-size: 0.875rem; }
     .header .subtitle { font-size: 0.8125rem; }
 
-    .container { padding: 16px 12px; padding-bottom: calc(70px + var(--safe-bottom)); }
+    .container { padding: 16px 12px; padding-bottom: calc(20px + var(--safe-bottom)); }
 
     .stats-grid { grid-template-columns: repeat(3, 1fr); gap: 8px; }
     .stat-card { padding: 12px 6px; }
@@ -1372,7 +1371,7 @@ body {
 /* ── Enhancements: keyboard shortcut hint ── */
 .kbd-hint {
     position: fixed;
-    bottom: calc(70px + var(--safe-bottom));
+    bottom: calc(20px + var(--safe-bottom));
     left: 20px;
     z-index: 9998;
     font-size: 0.75rem;
@@ -1459,15 +1458,6 @@ body {
 .ranking-panel { display:none; }
 .ranking-panel.active { display:block; }
 .nonbank-tag { display:inline-block; font-size:0.6rem; padding:1px 5px; border-radius:6px; background:rgba(124,58,237,0.12); color:#7c3aed; font-weight:600; margin-left:4px; vertical-align:middle; }
-
-/* ── Bottom Navigation v2 ── */
-.bottom-nav { position: fixed; bottom: 0; left: 0; right: 0; background: var(--card-bg, #fff); border-top: 1px solid var(--border); display: flex; justify-content: space-around; padding: 8px 0; padding-bottom: max(8px, env(safe-area-inset-bottom)); z-index: 100; }
-[data-theme="dark"] .bottom-nav { background: #0b0f1a; }
-.nav-item { display: flex; flex-direction: column; align-items: center; gap: 4px; text-decoration: none; color: var(--text-muted, #94a3b8); font-size: 0.6rem; font-weight: 500; padding: 4px 12px; border-radius: 12px; transition: color 0.2s, background 0.2s; }
-.nav-item.active { color: #3b82f6; background: rgba(59,130,246,0.12); }
-.nav-icon { font-size: 1.2rem; }
-@media (min-width: 768px) { .bottom-nav { max-width: 430px; left: 50%; transform: translateX(-50%); } }
-
 </style>
 </head>
 <body>
@@ -1495,7 +1485,7 @@ body {
                 追踪泰国央行(BoT)及监管机构针对 BNPL、Personal Loan、Pico Loan/Nano Finance 牌照发布的政策通知、利率上限调整(APR/综合融资成本)、合规要求变更、消费者保护规定等监管动态。
             </div>
             <div class="meta">
-                <span>📅 数据最后更新：<span class="last-updated-label">2026-09-26 19:00 (GMT+8)</span></span>
+                <span>📅 数据最后更新：<span class="last-updated-label">2026-09-27 19:00 (GMT+8)</span></span>
                 <span>🤖 自动更新：每日 09:30 / 19:00</span>
                 <span>📊 监控范围：泰国央行(BoT)、SEC、财政部、OCPB、NCB、SAM</span>
             </div>
@@ -1511,9 +1501,9 @@ body {
             <div class="tab" data-tab="relief">纾困计划</div>
         </div>
         <div class="stats-grid" id="thai-stats">
-            <div class="stat-card info">  <div class="number stat-total">57</div> <div class="label">监控条目</div> </div>
+            <div class="stat-card info">  <div class="number stat-total">58</div> <div class="label">监控条目</div> </div>
             <div class="stat-card high">  <div class="number stat-high">21</div>  <div class="label">紧急-高</div> </div>
-            <div class="stat-card medium"><div class="number stat-medium">30</div><div class="label">紧急-中</div> </div>
+            <div class="stat-card medium"><div class="number stat-medium">31</div><div class="label">紧急-中</div> </div>
             <div class="stat-card low">   <div class="number stat-low">5</div> <div class="label">紧急-低</div> </div>
             <div class="stat-card info">  <div class="number">8</div>  <div class="label">央行/监管机构</div> </div>
             <div class="stat-card info">  <div class="number">20</div> <div class="label">政策/银行/平台</div> </div>
@@ -1582,7 +1572,19 @@ body {
         </div>
         <div class="timeline thai-timeline">
             <!-- THAI DATA — kept in an IE-compatible structure -->
-            <div class="month-section" data-month="2026-09"><div class="month-title">2026年09月 (28 条)</div>
+            <div class="month-section" data-month="2026-09"><div class="month-title">2026年09月 (29 条)</div>
+<div class="policy-item" data-source-links='[{"label": "Prachachat - BoT 100B Baht SME Credit Guarantee Fund (9/27)", "url": "https://www.prachachat.net"}, {"label": "Nation TV - 6 State Banks Flood Relief (9/27)", "url": "https://www.nationtv.tv"}]' data-categories='信贷环境,国家监管' data-business='Personal Loan,Pico Loan' data-urgency='中' data-status='已实施' data-verified='verified' data-date='2026-09-27'>
+  <div class="policy-title">BoT设立1000亿泰铢SME信用担保基金（2027年1月启动）+ 6家国有银行洪灾纾困：利率降1-2%、临时授信额度上浮10-20%</div>
+  <div class="policy-desc">泰国央行联合6家国有银行（GSB/BAAC/KTB/SME Bank/Exim Bank/ISBANK）推出双重信贷支持：①BoT设立1000亿泰铢SME信用担保基金，2027年1月通过GSF启动，为受洪灾及经济波动影响的SME提供100%信用担保，首批目标2000家企业，单笔上限1000万泰铢；②6行同步推出洪灾纾困——利率降1-2%/年、临时授信上浮10-20%、GSB 10月15日前免费提现还款。财政部预估27府64万农户受影响。措施降低低收入群体被迫转向非法借贷的风险，间接利好合规pico/personal loan机构。</div>
+  <div class="policy-meta">
+    <span class="tag tag-impact">影响：信贷环境</span>
+    <span class="tag tag-tag">信贷环境</span>
+    <span class="tag tag-tag">国家监管</span>
+    <span class="tag tag-urgency-medium">紧急-中</span>
+    <span class="tag tag-date">📅 2026-09-27</span>
+    <span class="tag tag-verified">✓ 已核实</span>
+  </div>
+</div>
 <div class="policy-item" data-source-links='[{"label": "Thai Times - BoT Targets Illegal Mobile Loan Apps (9/25)", "url": "https://thaitimes.com/bank-of-thailand-targets-illegal-mobile-loan-apps"}, {"label": "Thai Examiner - PDPC BoT loan app review (9/25)", "url": "https://www.thaiexaminer.com"}, {"label": "Thailand Consumers Council - loan app complaints (9/25)", "url": "https://thaitimes.com/thailand-resolves-over-50-000-high-interest-loan-cases-worth-1-8-billion-baht"}]' data-categories='国家监管,消费者保护,风险预警' data-business='Personal Loan,Pico Loan' data-urgency='高' data-status='已实施' data-verified='verified' data-date='2026-09-26'>
   <div class="policy-title">BoT本周正式向Google Play/App Store提交下架报告：10款非法借贷APP（含Fineasy/Happy Loan）清退进入执行阶段，Oppo/Realme预装面临罚款</div>
   <div class="policy-subtitle">Thai Times (9/25) 报道：BoT已完成对PDPC提交的可疑APP清单的审查，认定11款中仅1款合法运营，<b>10款未授权</b>。BoT确认<b>本周将正式向Google Play和其他平台提交下架报告</b>。APP被分为两类：①<b>未授权放贷APP</b>（无注册运营）；②<b>数据窃取APP</b>。部分APP被发现<b>预装于Oppo和Realme手机</b>，且用户无法卸载。已有<b>40人</b>对Oppo、Realme及其经销商提起投诉，指控非法运营和违反个人数据保护法。Thailand Consumers Council、ETDA、NBTC、PDPC等多部门已参与协调。对出海影响：APP下架进入实质性执行阶段；手机OEM预装渠道成执法焦点，出海APP须严格审查OEM供应链合规，确保不存在预装不可卸载APP的数据隐私红线风险</div>
@@ -2193,7 +2195,7 @@ body {
                 不收录：非监管类市场新闻(融资/产品发布)、加密货币/区块链监管（除非与现金贷直接相关）。
             </div>
             <div class="meta">
-                <span>📅 数据最后更新：<span class="last-updated-label">2026-09-26 19:00 (GMT+8)</span></span>
+                <span>📅 数据最后更新：<span class="last-updated-label">2026-09-27 19:00 (GMT+8)</span></span>
                 <span>🤖 自动更新：每日 09:30</span>
                 <span>🌍 覆盖：东南亚 / 拉美 / 非洲 / 南亚 / 跨市场</span>
             </div>
@@ -2209,8 +2211,8 @@ body {
             <div class="tab" data-tab="cross">跨市场 (App审查/外汇)</div>
         </div>
         <div class="stats-grid" id="global-stats">
-            <div class="stat-card accent"> <div class="number stat-total">108</div> <div class="label">监控条目</div> </div>
-            <div class="stat-card high">   <div class="number stat-high">41</div>  <div class="label">紧急-高</div> </div>
+            <div class="stat-card accent"> <div class="number stat-total">111</div> <div class="label">监控条目</div> </div>
+            <div class="stat-card high">   <div class="number stat-high">44</div>  <div class="label">紧急-高</div> </div>
             <div class="stat-card medium"> <div class="number stat-medium">63</div><div class="label">紧急-中</div> </div>
             <div class="stat-card low">    <div class="number stat-low">6</div> <div class="label">紧急-低</div> </div>
             <div class="stat-card info">   <div class="number">12</div> <div class="label">国家/地区</div> </div>
@@ -2297,7 +2299,39 @@ body {
         </div>
         <div class="timeline global-timeline>
             <!-- ===== 2026-08 ===== -->
-            <div class="month-section" data-month="2026-09"><div class="month-title">2026年09月 (54 条)</div>
+            <div class="month-section" data-month="2026-09"><div class="month-title">2026年09月 (57 条)</div>
+<div class="policy-item" data-source-links='[{"label": "Nairametrics - CBN raises regulatory questions over non-banks offering instalment credit (9/26)", "url": "https://nairametrics.com/2026/09/26/cbn-raises-regulatory-questions-over-non-banks-offering-instalment-credit/"}, {"label": "AbokiFx - CBN scrutinises unregulated instalment credit schemes (9/27)", "url": "https://abokifx.io/news/cbn-scrutinises-unregulated-instalment-credit-schemes-as-non-banks-bypass"}]' data-region='尼日利亚' data-categories='国家监管,利率上限,市场标杆' data-urgency='高' data-status='征求意见' data-verified='verified' data-date='2026-09-26'>
+  <div class="policy-title">🇳🇬 CBN正式就非银行机构\"Pay Small Small\"分期付款信贷监管征询意见：拟纳入监管框架，要求透明披露与合规催收</div>
+  <div class="policy-subtitle">Nairametrics/AbokiFx (9/26-27) 报道：尼日利亚央行(CBN)就日益增长的"Pay Small Small"(PSS)非银行分期付款信贷计划正式提出监管质疑。CBN指出，大量非银行实体通过"PSS"模式向消费者提供免息分期付款购物，但完全游离于现有贷款/信贷监管框架之外。CBN正在征询意见，拟采取的措施包括：①明确PSS/BNPL产品的监管归属；②强制借款人透明披露条款；③要求合规催收规范。此举反映全球趋势——各国央行应对金融科技驱动的信贷增长超出传统银行渠道的挑战。<b>对出海BNPL平台影响直接</b>：尼日利亚是非洲最大消费市场，PSS模式被Konga/Jumia等平台广泛采用，若纳入监管将改变竞争格局。</div>
+  <div class="policy-tags">
+    <span class="tag tag-category">国家监管</span>
+    <span class="tag tag-category">利率上限</span>
+    <span class="tag tag-urgency-high">紧急-高</span>
+    <span class="tag tag-date">📅 2026-09-26</span>
+    <span class="tag tag-verified">✓ 已核实</span>
+  </div>
+</div>
+<div class="policy-item" data-source-links='[{"label": "Business Today Egypt - FRA orders consumer finance firms to establish real-time data link (9/24)", "url": "https://www.businesstodayegypt.com/Article/1/7936/FRA-orders-consumer-finance-firms-to-establish-real-time-data"}, {"label": "Techno Time - Egypt FRA Orders Consumer Finance Firms to Link Data Systems (9/24)", "url": "https://www.technotime.net/17137"}]' data-region='埃及' data-categories='国家监管,消费者保护' data-urgency='高' data-status='已实施' data-verified='verified' data-date='2026-09-24'>
+  <div class="policy-title">🇪🇬 埃及FRA令消费金融公司建立实时数据链路（9/24起生效）：强化非银贷后监管</div>
+  <div class="policy-subtitle">Business Today Egypt/Techno Time (9/24) 报道：埃及金融监管局(FRA)正式下令，所有受监管的消费金融公司必须与FRA建立实时数据链接系统。该决定已于9月24日在官方公报发布并生效。此举旨在加强监管能力建设，"在市场条件、技术风险模式演变的情况下促进监督"。实时数据链路意味着FRA可直接监控消费金融机构的贷款发放、还款、逾期等核心运营数据——<b>这标志着埃及消费金融监管从"事后报告"升级为"实时监管"</b>。对出海：在埃及市场运营的cash loan/BNPL平台须配合FRA数据接入要求，否则面临合规风险。</div>
+  <div class="policy-tags">
+    <span class="tag tag-category">国家监管</span>
+    <span class="tag tag-category">消费者保护</span>
+    <span class="tag tag-urgency-high">紧急-高</span>
+    <span class="tag tag-date">📅 2026-09-24</span>
+    <span class="tag tag-verified">✓ 已核实</span>
+  </div>
+</div>
+<div class="policy-item" data-source-links='[{"label": "CSDN - Google Play新政策：年龄限制/订阅/金融声明全线调整 (9/25)", "url": "https://blog.csdn.net/u012565335/article/details/154882783"}, {"label": "Google Play Official - 金融功能声明要求", "url": "https://support.google.com/googleplay/android-developer/answer/16550159"}]' data-region='跨市场' data-categories='国家监管' data-urgency='高' data-status='已实施' data-verified='verified' data-date='2026-09-25'>
+  <div class="policy-title">🌐 Google Play政策全面升级：所有App必须提交金融产品和服务声明，含金融/借贷功能App合规门槛提升</div>
+  <div class="policy-subtitle">CSDN/Google Play官方 (9/25) 报道：Google Play近期对平台政策进行全面升级，覆盖年龄限制、订阅披露、金融声明、风险软件定义及账号治理五大核心环节。其中与现金贷/金融App直接相关的变化：<b>①所有App（无论是否含金融功能）必须提交金融产品和服务声明，否则无法更新版本</b>——即便无充值、提现等功能，也需完成"无金融功能"声明；②含金融功能的应用需完整披露机制，使用第三方支付需精细申报；③风险软件定义更新，废弃"伪装软件"分类，统一使用行业通用的"风险软件"，配合Play Protect AI风控升级。<b>对出海cash loan App影响</b>：所有Google Play上架的借贷App须完成金融声明，否则版本迭代将停滞。这与现有Google Play Loan App Policy（限制9项敏感权限）形成叠加合规压力。</div>
+  <div class="policy-tags">
+    <span class="tag tag-category">国家监管</span>
+    <span class="tag tag-urgency-high">紧急-高</span>
+    <span class="tag tag-date">📅 2026-09-25</span>
+    <span class="tag tag-verified">✓ 已核实</span>
+  </div>
+</div>
 <div class="policy-item" data-source-links='[{"label": "Bisnis360 - OJK Cabut Izin Maucash Astra Group (9/24)", "url": "https://bisnis360media.com/ojk-cabut-izin-usaha-pinjol-maucash-milik-astra-group-perusahaan-diminta-penuhi-kewajiban-13KvUIXXGh"}, {"label": "Kontan - OJK cabut izin Maucash (9/24)", "url": "https://bisnis360media.com/ojk-cabut-izin-usaha-pinjol-maucash-milik-astra-group-perusahaan-diminta-penuhi-kewajiban-13KvUIXXGh"}]' data-region='印尼' data-categories='国家监管,风险预警,市场标杆' data-urgency='中' data-status='已实施' data-verified='unverified' data-date='2026-09-26'>
   <div class="policy-title">🇮🇩 OJK撤销Maucash（Astra Group旗下PT Astra Welab Digital Arta）Pinjol运营牌照，要求公司履行剩余义务</div>
   <div class="policy-subtitle">Bisnis360/Kontan (9/24) 报道：OJK正式撤销<b>PT Astra Welab Digital Arta</b>（运营品牌<b>Maucash</b>）的Pinjol运营许可。Maucash为印尼大型综合企业集团<b>Astra International</b>旗下数字金融子公司。OJK在撤销决定（KEP编号待确认）中要求公司<b>完成所有剩余借款人和债权人的义务履行</b>。背景：此为OJK持续清理不合规Pinjol的最新执法行动——叠加此前KPPU反垄断裁决(97家/7550亿盾)和南苏拉威西5家撤牌。Astra Group作为印尼蓝筹企业集团（涉及汽车/金融/消费品/基础设施），其Pinjol子公司被撤牌释放信号：<b>即使是大型集团背景的Pinjol也不能豁免合规要求</b>。对出海：OJK执法全链条——利率上限→反垄断→牌照撤销，大型集团背景不构成护身符；出海平台须确保持续合规而非依赖母公司品牌背书</div>
@@ -3654,7 +3688,7 @@ body {
                 基础数据：可靠渠道投放量榜单 + SimilarWeb/icharts 商店排名交叉验证（2026-09-07 周更）。投放量原始数据停更期间，以商店排名变动和经营主体异动为主要更新依据。
             </div>
             <div class="meta">
-                <span>📅 数据最后更新：<span class="last-updated-label">2026-09-26 19:00 (GMT+8)</span></span>
+                <span>📅 数据最后更新：<span class="last-updated-label">2026-09-27 19:00 (GMT+8)</span></span>
                 <span>🤖 自动更新：每日 09:30 / 19:00</span>
                 <span>📱 监控范围：APP 投放 / 客户投诉 / 社媒 / 监管 / 风险信号 / 经营主体异动</span>
             </div>
@@ -4918,7 +4952,7 @@ body {
 
     // ── Theme Toggle ──
     var themeBtn = document.querySelector('.fab-theme');
-    var savedTheme = localStorage.getItem('policy-monitor-theme') || '';
+    var savedTheme = localStorage.getItem('policy-theme') || '';
     var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
     var currentTheme = savedTheme || (prefersDark ? 'dark' : 'light');
 
@@ -4946,7 +4980,7 @@ body {
             var isDark = document.documentElement.getAttribute('data-theme') === 'dark';
             var newTheme = isDark ? 'light' : 'dark';
             applyTheme(newTheme);
-            localStorage.setItem('policy-monitor-theme', newTheme);
+            localStorage.setItem('policy-theme', newTheme);
         });
     }
 
@@ -5199,6 +5233,9 @@ body {
 
 })();
 </script>
+<!-- Keyboard shortcut hint -->
+<div class="kbd-hint" id="kbdHint" role="button" tabindex="0" aria-label="显示键盘快捷键">⌨️ 快捷键</div>
+
 <!-- Keyboard shortcut modal -->
 <div class="kbd-modal-overlay" id="kbdOverlay">
     <div class="kbd-modal" role="dialog" aria-label="键盘快捷键">
@@ -5232,14 +5269,5 @@ function switchRankingTab(store) {
     }
 })();
 </script>
-
-<!-- Bottom Navigation v2 -->
-<nav class="bottom-nav">
-    <a href="/" class="nav-item"><span class="nav-icon">🏠</span><span>首页</span></a>
-    <a href="/payment-intel/" class="nav-item"><span class="nav-icon">💳</span><span>支付</span></a>
-    <a href="/policy-monitor/" class="nav-item active"><span class="nav-icon">🛡️</span><span>政策</span></a>
-    <a href="/stock-dash/" class="nav-item"><span class="nav-icon">📈</span><span>股市</span></a>
-</nav>
-
 </body>
 </html>
