@@ -3336,6 +3336,7 @@ if(el){e.preventDefault();el.scrollIntoView({behavior:'smooth'});}
         });
     }
     }
+    }
     var fbBtn = document.querySelector('.fab-feedback');
     var fbOverlay = document.getElementById('feedbackOverlay');
     var fbClose = document.getElementById('feedbackClose');
@@ -3383,6 +3384,19 @@ if(el){e.preventDefault();el.scrollIntoView({behavior:'smooth'});}
     img.setAttribute('style', 'display:none');
     img.src = 'https://counterapi.com/api/visit?token=payment&url=' + encodeURIComponent(window.location.href);
     document.body.appendChild(img);
+})();
+</script>
+
+
+<!-- Visitor Tracking v2 (counterapi.com) -->
+<script>
+(function() {
+    var key = 'payment';
+    fetch('https://counterapi.com/api/praxisfit.me/view/' + key + '?trackOnly=true').catch(function(){});
+    fetch('https://counterapi.com/api/praxisfit.me/view/' + key).then(function(r){return r.json()}).then(function(d){
+        var el = document.getElementById('visit-count');
+        if(el) el.textContent = d.value || d.count || 0;
+    }).catch(function(){});
 })();
 </script>
 
