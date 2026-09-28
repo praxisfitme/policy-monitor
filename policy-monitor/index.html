@@ -175,7 +175,6 @@ body {
     background: var(--bg);
     color: var(--text);
     line-height: 1.6;
-    padding-bottom: 70px;
     overscroll-behavior-y: contain;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -1055,7 +1054,7 @@ body {
 .fab-stack {
     position: fixed;
     right: 20px;
-    bottom: calc(70px + var(--safe-bottom));
+    bottom: calc(20px + var(--safe-bottom));
     z-index: 9999;
     display: flex;
     flex-direction: column;
@@ -1289,7 +1288,7 @@ body {
     .header .header-inner h1 { font-size: 0.875rem; }
     .header .subtitle { font-size: 0.8125rem; }
 
-    .container { padding: 16px 12px; padding-bottom: calc(70px + var(--safe-bottom)); }
+    .container { padding: 16px 12px; padding-bottom: calc(20px + var(--safe-bottom)); }
 
     .stats-grid { grid-template-columns: repeat(3, 1fr); gap: 8px; }
     .stat-card { padding: 12px 6px; }
@@ -1372,7 +1371,7 @@ body {
 /* ── Enhancements: keyboard shortcut hint ── */
 .kbd-hint {
     position: fixed;
-    bottom: calc(70px + var(--safe-bottom));
+    bottom: calc(20px + var(--safe-bottom));
     left: 20px;
     z-index: 9998;
     font-size: 0.75rem;
@@ -1459,15 +1458,6 @@ body {
 .ranking-panel { display:none; }
 .ranking-panel.active { display:block; }
 .nonbank-tag { display:inline-block; font-size:0.6rem; padding:1px 5px; border-radius:6px; background:rgba(124,58,237,0.12); color:#7c3aed; font-weight:600; margin-left:4px; vertical-align:middle; }
-
-/* ── Bottom Navigation v2 ── */
-.bottom-nav { position: fixed; bottom: 0; left: 0; right: 0; background: var(--card-bg, #fff); border-top: 1px solid var(--border); display: flex; justify-content: space-around; padding: 8px 0; padding-bottom: max(8px, env(safe-area-inset-bottom)); z-index: 100; }
-[data-theme="dark"] .bottom-nav { background: #0b0f1a; }
-.nav-item { display: flex; flex-direction: column; align-items: center; gap: 4px; text-decoration: none; color: var(--text-muted, #94a3b8); font-size: 0.6rem; font-weight: 500; padding: 4px 12px; border-radius: 12px; transition: color 0.2s, background 0.2s; }
-.nav-item.active { color: #3b82f6; background: rgba(59,130,246,0.12); }
-.nav-icon { font-size: 1.2rem; }
-@media (min-width: 768px) { .bottom-nav { max-width: 430px; left: 50%; transform: translateX(-50%); } }
-
 </style>
 </head>
 <body>
@@ -4407,7 +4397,7 @@ body {
         <div class="ad-ranking-section" id="ad-ranking">
             <div class="ad-ranking-title">
                 📊 竞品投放排行榜（周更 · 非银排名 · 已剔除传统银行）
-                <small>更新时间：2026-09-22 · 排名逻辑：剔除银行后重新排序，Finance排名含银行供参考</small>
+                <small>更新时间：2026-09-29 · 排名逻辑：剔除银行后重新排序，Finance排名含银行供参考</small>
             </div>
 
             <div class="ranking-tabs">
@@ -4453,91 +4443,91 @@ body {
                             <td class="store-rank"><span class="nb-rank">非银#2</span> <small style="color:var(--text-tertiary);font-size:0.7rem">(GP Finance #50+)</small></td>
                         </tr><tr>
                             <td class="rank-cell top3">3</td>
+                            <td class="app-name-cell">UCHOOSE</td>
+                            <td class="download-cell">~35K</td>
+                            <td><span class="ad-activity-badge medium">中频</span></td>
+                            <td class="trend-cell up">▲ GP Finance #11 确认</td>
+                            <td class="company-cell">Ayudhya Capital Services (Krungsri)</td>
+                            <td class="store-rank"><span class="nb-rank">非银#3</span> <small style="color:var(--text-tertiary);font-size:0.7rem">(GP Finance #11 = 🔍)</small></td>
+                        </tr><tr>
+                            <td class="rank-cell">4</td>
                             <td class="app-name-cell">MoneyThunder</td>
                             <td class="download-cell">~30K</td>
                             <td><span class="ad-activity-badge medium">中频</span></td>
                             <td class="trend-cell stable">→ 持续监控</td>
                             <td class="company-cell">Abacus Digital (SCBX)</td>
-                            <td class="store-rank"><span class="nb-rank">非银#3</span> <small style="color:var(--text-tertiary);font-size:0.7rem">(GP Finance #50+)</small></td>
+                            <td class="store-rank"><span class="nb-rank">非银#4</span> <small style="color:var(--text-tertiary);font-size:0.7rem">(GP Finance #50+)</small></td>
                         </tr><tr>
-                            <td class="rank-cell">4</td>
+                            <td class="rank-cell">5</td>
+                            <td class="app-name-cell">Promise</td>
+                            <td class="download-cell">~40K</td>
+                            <td><span class="ad-activity-badge medium">中频</span></td>
+                            <td class="trend-cell stable">→ 持续监控</td>
+                            <td class="company-cell">Promise Thailand (SMBC)</td>
+                            <td class="store-rank"><span class="nb-rank">非银#5</span> <small style="color:var(--text-tertiary);font-size:0.7rem">(GP Finance #50+)</small></td>
+                        </tr><tr>
+                            <td class="rank-cell">6</td>
                             <td class="app-name-cell">ALPHABYTE</td>
                             <td class="download-cell">~20K</td>
                             <td><span class="ad-activity-badge high">高频</span></td>
                             <td class="trend-cell stable">→ 持续监控</td>
                             <td class="company-cell">运营商未公开</td>
-                            <td class="store-rank"><span class="nb-rank">非银#4</span> <small style="color:var(--text-tertiary);font-size:0.7rem">(GP Finance #50+)</small></td>
+                            <td class="store-rank"><span class="nb-rank">非银#6</span> <small style="color:var(--text-tertiary);font-size:0.7rem">(GP Finance #50+)</small></td>
                         </tr><tr>
-                            <td class="rank-cell">5</td>
+                            <td class="rank-cell">7</td>
                             <td class="app-name-cell">Thong การเงิน</td>
                             <td class="download-cell">~20K</td>
                             <td><span class="ad-activity-badge high">高频</span></td>
                             <td class="trend-cell stable">→ 持续监控</td>
                             <td class="company-cell">运营商未公开</td>
-                            <td class="store-rank"><span class="nb-rank">非银#5</span> <small style="color:var(--text-tertiary);font-size:0.7rem">(GP Finance #50+)</small></td>
-                        </tr><tr>
-                            <td class="rank-cell">6</td>
-                            <td class="app-name-cell">Pico Link</td>
-                            <td class="download-cell">~15K</td>
-                            <td><span class="ad-activity-badge medium">中频</span></td>
-                            <td class="trend-cell stable">→ 持续监控</td>
-                            <td class="company-cell">Pico Link CO., LTD</td>
-                            <td class="store-rank"><span class="nb-rank">非银#6</span> <small style="color:var(--text-tertiary);font-size:0.7rem">(GP Finance #50+)</small></td>
-                        </tr><tr>
-                            <td class="rank-cell">7</td>
-                            <td class="app-name-cell">A money</td>
-                            <td class="download-cell">~15K</td>
-                            <td><span class="ad-activity-badge medium">中频</span></td>
-                            <td class="trend-cell stable">→ 持续监控</td>
-                            <td class="company-cell">AIRA & AIFUL Public Co.</td>
                             <td class="store-rank"><span class="nb-rank">非银#7</span> <small style="color:var(--text-tertiary);font-size:0.7rem">(GP Finance #50+)</small></td>
                         </tr><tr>
                             <td class="rank-cell">8</td>
-                            <td class="app-name-cell">มีมีแคช (Mimi Cash)</td>
-                            <td class="download-cell">~15K</td>
-                            <td><span class="ad-activity-badge medium">中频</span></td>
-                            <td class="trend-cell stable">→ 持续监控</td>
-                            <td class="company-cell">运营商未公开</td>
-                            <td class="store-rank"><span class="nb-rank">非银#8</span> <small style="color:var(--text-tertiary);font-size:0.7rem">(GP Finance #50+)</small></td>
-                        </tr><tr>
-                            <td class="rank-cell">9</td>
                             <td class="app-name-cell">Paypaya</td>
                             <td class="download-cell">~15K</td>
                             <td><span class="ad-activity-badge medium">中频</span></td>
                             <td class="trend-cell stable">→ 持续监控</td>
                             <td class="company-cell">Akulaku X Company</td>
+                            <td class="store-rank"><span class="nb-rank">非银#8</span> <small style="color:var(--text-tertiary);font-size:0.7rem">(GP Finance #50+)</small></td>
+                        </tr><tr>
+                            <td class="rank-cell">9</td>
+                            <td class="app-name-cell">Pico Link</td>
+                            <td class="download-cell">~15K</td>
+                            <td><span class="ad-activity-badge medium">中频</span></td>
+                            <td class="trend-cell stable">→ 持续监控</td>
+                            <td class="company-cell">Pico Link CO., LTD</td>
                             <td class="store-rank"><span class="nb-rank">非银#9</span> <small style="color:var(--text-tertiary);font-size:0.7rem">(GP Finance #50+)</small></td>
                         </tr><tr>
                             <td class="rank-cell">10</td>
-                            <td class="app-name-cell">Promise</td>
-                            <td class="download-cell">~40K</td>
+                            <td class="app-name-cell">A money</td>
+                            <td class="download-cell">~15K</td>
                             <td><span class="ad-activity-badge medium">中频</span></td>
                             <td class="trend-cell stable">→ 持续监控</td>
-                            <td class="company-cell">Promise Thailand</td>
+                            <td class="company-cell">AIRA & AIFUL Public Co.</td>
                             <td class="store-rank"><span class="nb-rank">非银#10</span> <small style="color:var(--text-tertiary);font-size:0.7rem">(GP Finance #50+)</small></td>
                         </tr><tr>
                             <td class="rank-cell">11</td>
+                            <td class="app-name-cell">มีมีแคช (Mimi Cash)</td>
+                            <td class="download-cell">~15K</td>
+                            <td><span class="ad-activity-badge medium">中频</span></td>
+                            <td class="trend-cell stable">→ 持续监控</td>
+                            <td class="company-cell">运营商未公开</td>
+                            <td class="store-rank"><span class="nb-rank">非银#11</span> <small style="color:var(--text-tertiary);font-size:0.7rem">(GP Finance #50+)</small></td>
+                        </tr><tr>
+                            <td class="rank-cell">12</td>
                             <td class="app-name-cell">EASYสินเชื่อ</td>
                             <td class="download-cell">~10K</td>
                             <td><span class="ad-activity-badge low">低频</span></td>
                             <td class="trend-cell stable">→ 持续监控</td>
                             <td class="company-cell">NICE PICO Company</td>
-                            <td class="store-rank"><span class="nb-rank">非银#11</span> <small style="color:var(--text-tertiary);font-size:0.7rem">(GP Finance #50+)</small></td>
+                            <td class="store-rank"><span class="nb-rank">非银#12</span> <small style="color:var(--text-tertiary);font-size:0.7rem">(GP Finance #50+)</small></td>
                         </tr><tr>
-                            <td class="rank-cell">12</td>
+                            <td class="rank-cell">13</td>
                             <td class="app-name-cell">Rabbit Cash</td>
                             <td class="download-cell">~10K</td>
                             <td><span class="ad-activity-badge low">低频</span></td>
                             <td class="trend-cell stable">→ 持续监控</td>
                             <td class="company-cell">Rabbit Cash Co., Ltd.</td>
-                            <td class="store-rank"><span class="nb-rank">非银#12</span> <small style="color:var(--text-tertiary);font-size:0.7rem">(GP Finance #50+)</small></td>
-                        </tr><tr>
-                            <td class="rank-cell">13</td>
-                            <td class="app-name-cell">FinFast (App Store #51)</td>
-                            <td class="download-cell">—</td>
-                            <td><span class="ad-activity-badge low">低频</span></td>
-                            <td class="trend-cell stable">→ 扩展监控</td>
-                            <td class="company-cell">FIN TANJAI GROUP</td>
                             <td class="store-rank"><span class="nb-rank">非银#13</span> <small style="color:var(--text-tertiary);font-size:0.7rem">(GP Finance #50+)</small></td>
                         </tr><tr>
                             <td class="rank-cell">14</td>
@@ -4577,123 +4567,123 @@ body {
                             <td class="rank-cell top1">1</td>
                             <td class="app-name-cell">ไทยแนนซ์</td>
                             <td><span class="ad-activity-badge high">高频</span></td>
-                            <td class="trend-cell up">▲ +1位 (AS #9→#7)</td>
+                            <td class="trend-cell stable">→ 持平 (AS #9)</td>
                             <td class="company-cell">KT TECHNOLOGIES</td>
-                            <td class="store-rank"><span class="nb-rank">非银#1</span> <small style="color:var(--text-tertiary);font-size:0.7rem">(AS Finance #7 ▲2 🔥)</small></td>
+                            <td class="store-rank"><span class="nb-rank">非银#1</span> <small style="color:var(--text-tertiary);font-size:0.7rem">(AS Finance #9 =)</small></td>
                         </tr><tr>
                             <td class="rank-cell top2">2</td>
-                            <td class="app-name-cell">有ตัง</td>
+                            <td class="app-name-cell">SabaideeCash</td>
                             <td><span class="ad-activity-badge medium">中频</span></td>
-                            <td class="trend-cell stable">→ 持平 (AS #12)</td>
-                            <td class="company-cell">P.F.K COMPANY LIMITED</td>
-                            <td class="store-rank"><span class="nb-rank">非银#2</span> <small style="color:var(--text-tertiary);font-size:0.7rem">(AS Finance #12)</small></td>
+                            <td class="trend-cell up">▲ +12位 (AS #25→#13) 🔥</td>
+                            <td class="company-cell">POOLSUK PLUS COMPANY LIMITED</td>
+                            <td class="store-rank"><span class="nb-rank">非银#2</span> <small style="color:var(--text-tertiary);font-size:0.7rem">(AS Finance #13 ▲12 🔥)</small></td>
                         </tr><tr>
                             <td class="rank-cell top3">3</td>
-                            <td class="app-name-cell">MoneyThunder</td>
-                            <td><span class="ad-activity-badge high">高频</span></td>
-                            <td class="trend-cell up">▲ +8位 (AS #29→#21)</td>
-                            <td class="company-cell">ABACUS DIGITAL (SCBX)</td>
-                            <td class="store-rank"><span class="nb-rank">非银#3</span> <small style="color:var(--text-tertiary);font-size:0.7rem">(AS Finance #21 ▲8 🔥)</small></td>
+                            <td class="app-name-cell">有ตัง</td>
+                            <td><span class="ad-activity-badge medium">中频</span></td>
+                            <td class="trend-cell up">▲ +1位 (AS #14→#15)</td>
+                            <td class="company-cell">P.F.K COMPANY LIMITED</td>
+                            <td class="store-rank"><span class="nb-rank">非银#3</span> <small style="color:var(--text-tertiary);font-size:0.7rem">(AS Finance #15 ▲1)</small></td>
                         </tr><tr>
                             <td class="rank-cell">4</td>
-                            <td class="app-name-cell">สมบัติช้าง</td>
+                            <td class="app-name-cell">แคปโอกันด่วน</td>
                             <td><span class="ad-activity-badge medium">中频</span></td>
-                            <td class="trend-cell up">▲ +3位 (AS #23→#20)</td>
-                            <td class="company-cell">ME MONEY TANJAI</td>
-                            <td class="store-rank"><span class="nb-rank">非银#4</span> <small style="color:var(--text-tertiary);font-size:0.7rem">(AS Finance #20 ▲3)</small></td>
+                            <td class="trend-cell up">▲ +2位 (AS #18→#20)</td>
+                            <td class="company-cell">CAPITAL OK COMPANY LIMITED</td>
+                            <td class="store-rank"><span class="nb-rank">非银#4</span> <small style="color:var(--text-tertiary);font-size:0.7rem">(AS Finance #20 ▲2)</small></td>
                         </tr><tr>
                             <td class="rank-cell">5</td>
                             <td class="app-name-cell">FINNIX</td>
                             <td><span class="ad-activity-badge high">高频</span></td>
-                            <td class="trend-cell down">▼ -5位 (AS #19→#24)</td>
-                            <td class="company-cell">MONIX Company Limited</td>
-                            <td class="store-rank"><span class="nb-rank">非银#5</span> <small style="color:var(--text-tertiary);font-size:0.7rem">(AS Finance #24 ▼5)</small></td>
+                            <td class="trend-cell stable">→ 持平 (AS #28)</td>
+                            <td class="company-cell">MONIX Company Limited (SCBX)</td>
+                            <td class="store-rank"><span class="nb-rank">非银#5</span> <small style="color:var(--text-tertiary);font-size:0.7rem">(AS Finance #28 =)</small></td>
                         </tr><tr>
                             <td class="rank-cell">6</td>
-                            <td class="app-name-cell">EASYสินเชื่อ</td>
-                            <td><span class="ad-activity-badge low">低频</span></td>
-                            <td class="trend-cell up">▲ +7位 (AS #32→#25)</td>
-                            <td class="company-cell">NICE PICO Company</td>
-                            <td class="store-rank"><span class="nb-rank">非银#6</span> <small style="color:var(--text-tertiary);font-size:0.7rem">(AS Finance #25 ▲7)</small></td>
+                            <td class="app-name-cell">เงินในพริบตา Go</td>
+                            <td><span class="ad-activity-badge medium">中频</span></td>
+                            <td class="trend-cell up">▲ 新排名确认</td>
+                            <td class="company-cell">JS MONEY UTTARADIT PICO PLUS</td>
+                            <td class="store-rank"><span class="nb-rank">非银#6</span> <small style="color:var(--text-tertiary);font-size:0.7rem">(AS Finance #21)</small></td>
                         </tr><tr>
                             <td class="rank-cell">7</td>
-                            <td class="app-name-cell">Umay+ Application</td>
+                            <td class="app-name-cell">สมบัติช้าง</td>
                             <td><span class="ad-activity-badge medium">中频</span></td>
-                            <td class="trend-cell down">▼ -1位 (AS #28→#29)</td>
-                            <td class="company-cell">EASY BUY Public Co.</td>
-                            <td class="store-rank"><span class="nb-rank">非银#7</span> <small style="color:var(--text-tertiary);font-size:0.7rem">(AS Finance #29 ▼1)</small></td>
+                            <td class="trend-cell up">▲ +3位 (AS #23→#24→#16区域)</td>
+                            <td class="company-cell">ME MONEY TANJAI</td>
+                            <td class="store-rank"><span class="nb-rank">非银#7</span> <small style="color:var(--text-tertiary);font-size:0.7rem">(AS Finance #24 ▲)</small></td>
                         </tr><tr>
                             <td class="rank-cell">8</td>
-                            <td class="app-name-cell">UFUND</td>
-                            <td><span class="ad-activity-badge medium">中频</span></td>
-                            <td class="trend-cell down">▼ -3位 (AS #27→#30)</td>
-                            <td class="company-cell">THUNDER FINFIN CO., LTD</td>
-                            <td class="store-rank"><span class="nb-rank">非银#8</span> <small style="color:var(--text-tertiary);font-size:0.7rem">(AS Finance #30 ▼3)</small></td>
+                            <td class="app-name-cell">MoneyThunder</td>
+                            <td><span class="ad-activity-badge high">高频</span></td>
+                            <td class="trend-cell down">▼ -4位 (AS #21→#35)</td>
+                            <td class="company-cell">ABACUS DIGITAL (SCBX)</td>
+                            <td class="store-rank"><span class="nb-rank">非银#8</span> <small style="color:var(--text-tertiary);font-size:0.7rem">(AS Finance #35 ▼14)</small></td>
                         </tr><tr>
                             <td class="rank-cell">9</td>
-                            <td class="app-name-cell">PROMISE</td>
+                            <td class="app-name-cell">Max Me</td>
                             <td><span class="ad-activity-badge medium">中频</span></td>
-                            <td class="trend-cell down">▼ -2位 (AS #26→#28)</td>
-                            <td class="company-cell">Promise Thailand</td>
-                            <td class="store-rank"><span class="nb-rank">非银#9</span> <small style="color:var(--text-tertiary);font-size:0.7rem">(AS Finance #28 ▼2)</small></td>
+                            <td class="trend-cell stable">→ 持平 (AS #21)</td>
+                            <td class="company-cell">Max Card Company Limited</td>
+                            <td class="store-rank"><span class="nb-rank">非银#9</span> <small style="color:var(--text-tertiary);font-size:0.7rem">(AS Finance #16 =)</small></td>
                         </tr><tr>
                             <td class="rank-cell">10</td>
-                            <td class="app-name-cell">TrustBaht</td>
+                            <td class="app-name-cell">EASYสินเชื่อ</td>
                             <td><span class="ad-activity-badge low">低频</span></td>
-                            <td class="trend-cell up">▲ 新上榜</td>
-                            <td class="company-cell">AEKPICO LEASING</td>
-                            <td class="store-rank"><span class="nb-rank">非银#10</span> <small style="color:var(--text-tertiary);font-size:0.7rem">(AS Finance #31 🆕)</small></td>
+                            <td class="trend-cell up">▲ +1位 (AS #27→#27)</td>
+                            <td class="company-cell">NICE PICO Company</td>
+                            <td class="store-rank"><span class="nb-rank">非银#10</span> <small style="color:var(--text-tertiary);font-size:0.7rem">(AS Finance #27 =)</small></td>
                         </tr><tr>
                             <td class="rank-cell">11</td>
-                            <td class="app-name-cell">Paypaya</td>
+                            <td class="app-name-cell">PROMISE</td>
                             <td><span class="ad-activity-badge medium">中频</span></td>
-                            <td class="trend-cell down">▼ -8位 (AS #29→#37)</td>
-                            <td class="company-cell">Akulaku X Company</td>
-                            <td class="store-rank"><span class="nb-rank">非银#11</span> <small style="color:var(--text-tertiary);font-size:0.7rem">(AS Finance #37 ▼8)</small></td>
+                            <td class="trend-cell up">▲ +2位 (AS #28→#30)</td>
+                            <td class="company-cell">Promise Thailand (SMBC)</td>
+                            <td class="store-rank"><span class="nb-rank">非银#11</span> <small style="color:var(--text-tertiary);font-size:0.7rem">(AS Finance #30 =)</small></td>
                         </tr><tr>
                             <td class="rank-cell">12</td>
-                            <td class="app-name-cell">Wing สินเชื่อสะดวกสบาย</td>
+                            <td class="app-name-cell">Paypaya</td>
                             <td><span class="ad-activity-badge medium">中频</span></td>
-                            <td class="trend-cell up">▲ +6位 (AS #39→#33)</td>
-                            <td class="company-cell">Wing Money Company Limited</td>
-                            <td class="store-rank"><span class="nb-rank">非银#12</span> <small style="color:var(--text-tertiary);font-size:0.7rem">(AS Finance #33 ▲6)</small></td>
+                            <td class="trend-cell stable">→ 持平 (AS #34)</td>
+                            <td class="company-cell">Akulaku X Company</td>
+                            <td class="store-rank"><span class="nb-rank">非银#12</span> <small style="color:var(--text-tertiary);font-size:0.7rem">(AS Finance #34 =)</small></td>
                         </tr><tr>
                             <td class="rank-cell">13</td>
-                            <td class="app-name-cell">Kredivo - ใช้ก่อน จ่ายทีหลัง</td>
+                            <td class="app-name-cell">Umay+ Application</td>
                             <td><span class="ad-activity-badge medium">中频</span></td>
-                            <td class="trend-cell up">▲ +14位 (AS #52→#38)</td>
-                            <td class="company-cell">Kredivo (Thailand) Co., Ltd</td>
-                            <td class="store-rank"><span class="nb-rank">非银#13</span> <small style="color:var(--text-tertiary);font-size:0.7rem">(AS Finance #38 ▲14 🔥)</small></td>
+                            <td class="trend-cell up">▲ +4位 (AS #32→#33)</td>
+                            <td class="company-cell">EASY BUY Public Co.</td>
+                            <td class="store-rank"><span class="nb-rank">非银#13</span> <small style="color:var(--text-tertiary);font-size:0.7rem">(AS Finance #33 ▲)</small></td>
                         </tr><tr>
                             <td class="rank-cell">14</td>
-                            <td class="app-name-cell">Loter เงินกู้</td>
-                            <td><span class="ad-activity-badge low">低频</span></td>
-                            <td class="trend-cell stable">→ 持平 (AS #42)</td>
-                            <td class="company-cell">PICO YODSAP 888</td>
-                            <td class="store-rank"><span class="nb-rank">非银#14</span> <small style="color:var(--text-tertiary);font-size:0.7rem">(AS Finance #42)</small></td>
+                            <td class="app-name-cell">Wing สินเชื่อสะดวกสบาย</td>
+                            <td><span class="ad-activity-badge medium">中频</span></td>
+                            <td class="trend-cell up">▲ +2位 (AS #36→#38)</td>
+                            <td class="company-cell">Wing Money (yocash)</td>
+                            <td class="store-rank"><span class="nb-rank">非银#14</span> <small style="color:var(--text-tertiary);font-size:0.7rem">(AS Finance #36 ▲)</small></td>
                         </tr><tr>
                             <td class="rank-cell">15</td>
-                            <td class="app-name-cell">แรบบิท แคช (Rabbit Cash)</td>
+                            <td class="app-name-cell">Loter เงินกู้</td>
                             <td><span class="ad-activity-badge low">低频</span></td>
-                            <td class="trend-cell down">▼ -34位 (AS #13→#47) ⚠️</td>
-                            <td class="company-cell">RABBIT CASH COMPANY LIMITED</td>
-                            <td class="store-rank"><span class="nb-rank">非银#15</span> <small style="color:var(--text-tertiary);font-size:0.7rem">(AS Finance #47 ▼34 ⚠️)</small></td>
+                            <td class="trend-cell up">▲ +2位 (AS #46→#44)</td>
+                            <td class="company-cell">PICO YODSAP 888</td>
+                            <td class="store-rank"><span class="nb-rank">非银#15</span> <small style="color:var(--text-tertiary);font-size:0.7rem">(AS Finance #44 ▲2)</small></td>
                         </tr></tbody>
                     </table>
                 </div>
             </div>
 
             <div class="ad-alert-box">
-                <b>⚠️ 本周投放异动预警（2026-09-22 周更）</b>
+                <b>⚠️ 本周投放异动预警（2026-09-29 周更）</b>
                 <ul>
-                    <li><b>⚠️ GP Finance Top 50 连续第3周全部出榜</b>：SimilarWeb 9月18日数据确认，<b>全部15家非银借贷APP均跌出GP Finance Top 50</b>。GP端借贷类APP自然流量被银行+支付+加密/交易类APP全面压制，Revolut(#11)、IBKR(#20)等交易类APP反而持续上升</li>
-                    <li><b>🔥 ไทยแนนซ์ (AS) 登顶非银#1</b>：App Store Finance排名升至 <b>#7（▲2位）</b>，超越MoneyThunder成为本周AS非银借贷APP第一名，KT TECHNOLOGIES投放持续加码</li>
-                    <li><b>🔥 MoneyThunder (AS) 持续反弹</b>：AS排名从 #29→<b>#21（▲8位）</b>，连续两周上升，SCBX生态AS端投放恢复</li>
-                    <li><b>🔥 Kredivo (AS) 大幅回升</b>：AS排名从 #52→<b>#38（▲14位）</b>，BNPL赛道回暖信号，Kredivo泰国端投放重新活跃</li>
-                    <li><b>⚠️ Rabbit Cash (AS) 暴跌</b>：AS排名从 #13→<b>#47（▼34位）</b>，单周跌幅异常，需排查是否暂停投放/下架/或被BoT打击非法APP波及</li>
-                    <li><b>🆕 TrustBaht 新上榜(AS)</b>：AEKPICO LEASING旗下APP首次进入非银TOP15（AS Finance #31），PICO牌照持有者继续加速AS端布局</li>
-                    <li><b>BoT打击非法借贷App持续</b>：本周BoT正式向Google Play/App Store提交下架报告（含Fineasy/Happy Loan），PDPC确认11款可疑APP中仅1款合法。对合规出海APP影响有限，但行业整体审查趋严</li>
-                    <li><b>Thong การเงิน</b>：投放量维持<b>高频</b>，GP/AS均未进入Finance Top 50，典型灰产投放模式（依赖广告而非自然排名），持续重点监控</li>
+                    <li><b>🔥 SabaideeCash (AS) 大幅攀升</b>：AS Finance排名从 #25→<b>#13（▲12位）</b>，POOLSUK PLUS旗下PICO借贷APP单周飙升12位，进入AS Finance Top 15，投放力度显著加大</li>
+                    <li><b>🔥 UCHOOSE (GP) 稳居Finance #11</b>：SimilarWeb 9/25确认UCHOOSE连续蝉联GP Finance #11，是GP端排名最高的非银借贷相关APP，Krungsri消费金融服务持续稳定</li>
+                    <li><b>⚠️ GP Finance Top 50 连续第4周全部出榜</b>：SimilarWeb 9月25日数据确认，<b>全部纯借贷类非银APP均跌出GP Finance Top 50</b>。GP端借贷类APP自然流量被银行+支付+加密/交易类APP全面压制</li>
+                    <li><b>⚠️ MoneyThunder (AS) 回落</b>：AS排名从 #21→<b>#35（▼14位）</b>，上周的大幅反弹（▲8位）未能持续，SCBX生态AS端投放波动明显</li>
+                    <li><b>📈 MoneyThunder 累计下载超2000万</b>：Thai Times 9/24报道Abacus Digital的AI信贷风控计划，MoneyThunder作为泰国首个AI驱动合规借贷APP，累计下载量突破2000万</li>
+                    <li><b>⚠️ 上周新上榜APP变化</b>：TrustBaht（AS #31→本周跌出Top 50）、Kredivo（AS #38→本周跌出Top 50）均回落出AS Finance Top 50，PICO/BNPL赛道AS端排名波动大</li>
+                    <li><b>📊 SAM PLUS 退出AS监控</b>：上周AS Finance #17的SUKHUMVIT ASSET MANAGEMENT旗下APP本周跌出Top 50，从非银TOP15中移除</li>
+                    <li><b>Thong การเงิน / ALPHABYTE</b>：投放量维持<b>高频</b>，GP/AS均未进入Finance Top 50，典型灰产投放模式（依赖广告而非自然排名），持续重点监控</li>
                 </ul>
             </div>
         </div>
@@ -4997,7 +4987,7 @@ body {
 
     // ── Theme Toggle ──
     var themeBtn = document.querySelector('.fab-theme');
-    var savedTheme = localStorage.getItem('policy-monitor-theme') || '';
+    var savedTheme = localStorage.getItem('policy-theme') || '';
     var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
     var currentTheme = savedTheme || (prefersDark ? 'dark' : 'light');
 
@@ -5025,7 +5015,7 @@ body {
             var isDark = document.documentElement.getAttribute('data-theme') === 'dark';
             var newTheme = isDark ? 'light' : 'dark';
             applyTheme(newTheme);
-            localStorage.setItem('policy-monitor-theme', newTheme);
+            localStorage.setItem('policy-theme', newTheme);
         });
     }
 
@@ -5278,6 +5268,9 @@ body {
 
 })();
 </script>
+<!-- Keyboard shortcut hint -->
+<div class="kbd-hint" id="kbdHint" role="button" tabindex="0" aria-label="显示键盘快捷键">⌨️ 快捷键</div>
+
 <!-- Keyboard shortcut modal -->
 <div class="kbd-modal-overlay" id="kbdOverlay">
     <div class="kbd-modal" role="dialog" aria-label="键盘快捷键">
@@ -5311,14 +5304,5 @@ function switchRankingTab(store) {
     }
 })();
 </script>
-
-<!-- Bottom Navigation v2 -->
-<nav class="bottom-nav">
-    <a href="/" class="nav-item"><span class="nav-icon">🏠</span><span>首页</span></a>
-    <a href="/payment-intel/" class="nav-item"><span class="nav-icon">💳</span><span>支付</span></a>
-    <a href="/policy-monitor/" class="nav-item active"><span class="nav-icon">🛡️</span><span>政策</span></a>
-    <a href="/stock-dash/" class="nav-item"><span class="nav-icon">📈</span><span>股市</span></a>
-</nav>
-
 </body>
 </html>
