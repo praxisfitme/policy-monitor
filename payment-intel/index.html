@@ -697,6 +697,9 @@ a{color:#333}
 .nav-item { display: flex; flex-direction: column; align-items: center; gap: 4px; text-decoration: none; color: var(--text-muted, #94a3b8); font-size: 0.6rem; font-weight: 500; padding: 4px 12px; border-radius: 12px; transition: color 0.2s, background 0.2s; }
 .nav-item.active { color: #f97316; background: rgba(249,115,22,0.12); }
 .nav-icon { font-size: 1.2rem; }
+[data-theme="light"] .bottom-nav { background: #fff; border-top-color: #e5e7eb; }
+[data-theme="light"] .nav-item { color: #64748b; }
+[data-theme="light"] .nav-item.active { color: #f97316; }
 @media (min-width: 768px) { .bottom-nav { max-width: 433px; left: 50%; transform: translateX(-50%); } }
 
 </style>
@@ -3316,14 +3319,22 @@ if(el){e.preventDefault();el.scrollIntoView({behavior:'smooth'});}
         var prefDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
         var theme = saved || (prefDark ? 'dark' : 'light');
         function apply(t) {
-            if (t === 'dark') { document.documentElement.setAttribute('data-theme','dark'); themeBtn.textContent='☀️'; }
-            else { document.documentElement.removeAttribute('data-theme'); themeBtn.textContent='🌙'; }
+            if (t === 'light') {
+                document.documentElement.setAttribute('data-theme', 'light');
+                themeBtn.textContent = '🌙';
+            } else {
+                document.documentElement.removeAttribute('data-theme');
+                themeBtn.textContent = '☀️';
+            }
         }
         apply(theme);
         themeBtn.addEventListener('click', function() {
-            var isDark = document.documentElement.getAttribute('data-theme') === 'dark';
-            var n = isDark ? 'light' : 'dark'; apply(n); localStorage.setItem('monitor-theme', n);
+            var isLight = document.documentElement.getAttribute('data-theme') === 'light';
+            var next = isLight ? 'dark' : 'light';
+            apply(next);
+            localStorage.setItem('payment-intel-theme', next);
         });
+    }
     }
     var fbBtn = document.querySelector('.fab-feedback');
     var fbOverlay = document.getElementById('feedbackOverlay');
