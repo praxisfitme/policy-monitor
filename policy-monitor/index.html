@@ -175,6 +175,7 @@ body {
     background: var(--bg);
     color: var(--text);
     line-height: 1.6;
+    padding-bottom: 70px;
     overscroll-behavior-y: contain;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -1054,7 +1055,7 @@ body {
 .fab-stack {
     position: fixed;
     right: 20px;
-    bottom: calc(20px + var(--safe-bottom));
+    bottom: calc(70px + var(--safe-bottom));
     z-index: 9999;
     display: flex;
     flex-direction: column;
@@ -1288,7 +1289,7 @@ body {
     .header .header-inner h1 { font-size: 0.875rem; }
     .header .subtitle { font-size: 0.8125rem; }
 
-    .container { padding: 16px 12px; padding-bottom: calc(20px + var(--safe-bottom)); }
+    .container { padding: 16px 12px; padding-bottom: calc(70px + var(--safe-bottom)); }
 
     .stats-grid { grid-template-columns: repeat(3, 1fr); gap: 8px; }
     .stat-card { padding: 12px 6px; }
@@ -1371,7 +1372,7 @@ body {
 /* ── Enhancements: keyboard shortcut hint ── */
 .kbd-hint {
     position: fixed;
-    bottom: calc(20px + var(--safe-bottom));
+    bottom: calc(70px + var(--safe-bottom));
     left: 20px;
     z-index: 9998;
     font-size: 0.75rem;
@@ -1458,6 +1459,15 @@ body {
 .ranking-panel { display:none; }
 .ranking-panel.active { display:block; }
 .nonbank-tag { display:inline-block; font-size:0.6rem; padding:1px 5px; border-radius:6px; background:rgba(124,58,237,0.12); color:#7c3aed; font-weight:600; margin-left:4px; vertical-align:middle; }
+
+/* ── Bottom Navigation v2 ── */
+.bottom-nav { position: fixed; bottom: 0; left: 0; right: 0; background: var(--card-bg, #fff); border-top: 1px solid var(--border); display: flex; justify-content: space-around; padding: 8px 0; padding-bottom: max(8px, env(safe-area-inset-bottom)); z-index: 100; }
+[data-theme="dark"] .bottom-nav { background: #0b0f1a; }
+.nav-item { display: flex; flex-direction: column; align-items: center; gap: 4px; text-decoration: none; color: var(--text-muted, #94a3b8); font-size: 0.6rem; font-weight: 500; padding: 4px 12px; border-radius: 12px; transition: color 0.2s, background 0.2s; }
+.nav-item.active { color: #3b82f6; background: rgba(59,130,246,0.12); }
+.nav-icon { font-size: 1.2rem; }
+@media (min-width: 768px) { .bottom-nav { max-width: 430px; left: 50%; transform: translateX(-50%); } }
+
 </style>
 </head>
 <body>
@@ -1485,7 +1495,7 @@ body {
                 追踪泰国央行(BoT)及监管机构针对 BNPL、Personal Loan、Pico Loan/Nano Finance 牌照发布的政策通知、利率上限调整(APR/综合融资成本)、合规要求变更、消费者保护规定等监管动态。
             </div>
             <div class="meta">
-                <span>📅 数据最后更新：<span class="last-updated-label">2026-09-30 19:00 (GMT+8)</span></span>
+                <span>📅 数据最后更新：<span class="last-updated-label">2026-10-01 19:00 (GMT+8)</span></span>
                 <span>🤖 自动更新：每日 09:30 / 19:00</span>
                 <span>📊 监控范围：泰国央行(BoT)、SEC、财政部、OCPB、NCB、SAM</span>
             </div>
@@ -1501,9 +1511,9 @@ body {
             <div class="tab" data-tab="relief">纾困计划</div>
         </div>
         <div class="stats-grid" id="thai-stats">
-            <div class="stat-card info">  <div class="number stat-total">62</div> <div class="label">监控条目</div> </div>
+            <div class="stat-card info">  <div class="number stat-total">63</div> <div class="label">监控条目</div> </div>
             <div class="stat-card high">  <div class="number stat-high">24</div>  <div class="label">紧急-高</div> </div>
-            <div class="stat-card medium"><div class="number stat-medium">32</div><div class="label">紧急-中</div> </div>
+            <div class="stat-card medium"><div class="number stat-medium">33</div><div class="label">紧急-中</div> </div>
             <div class="stat-card low">   <div class="number stat-low">5</div> <div class="label">紧急-低</div> </div>
             <div class="stat-card info">  <div class="number">8</div>  <div class="label">央行/监管机构</div> </div>
             <div class="stat-card info">  <div class="number">20</div> <div class="label">政策/银行/平台</div> </div>
@@ -1572,7 +1582,20 @@ body {
         </div>
         <div class="timeline thai-timeline">
             <!-- THAI DATA — kept in an IE-compatible structure -->
-            <div class="month-section" data-month="2026-09"><div class="month-title">2026年09月 (33 条)</div>
+            <div class="month-section" data-month="2026-09"><div class="month-title">2026年09月 (34 条)</div>
+<div class="policy-item" data-source-links='[{"label": "Thai Times - BoT BNPL regulatory tightening age credit caps (9/29)", "url": "https://thaitimes.com/bank-of-thailand-moves-to-regulate-buy-now-pay-later-sector-amid-systemic-risk-concerns"}, {"label": "Asian Banking & Finance - Thailand BNPL oversight (10/1)", "url": "https://asianbankingandfinance.net/cards-payments"}, {"label": "Tech in Asia - Grab/Atome: BoT restrictive on digital bank licenses (10/1)", "url": "https://www.techinasia.com/grab-paid-15b-atome-building-lending"}]' data-categories='国家监管,信贷环境,BNPL' data-business='BNPL,Personal Loan' data-urgency='中' data-status='拟议' data-verified='verified' data-date='2026-10-01'>
+  <div class="policy-header"><div class="tags"><span class="tag tag-urgency-medium">紧急-中</span><span class="tag tag-category">国家监管</span><span class="tag tag-category">信贷环境</span><span class="tag tag-category">BNPL</span><span class="tag tag-status-proposed">拟议</span><span class="tag tag-verified">✅ 3源交叉验证</span></div><div class="policy-date">2026-10-01</div></div>
+  <div class="policy-source">来源：Thai Times (9/29) / Asian Banking & Finance (10/1) / Tech in Asia (10/1)</div>
+  <div class="policy-title">BoT拟收紧BNPL监管：引入年龄限制与信用额度上限，将用AI+数据分析监控行业运营</div>
+  <div class="policy-desc">Asian Banking & Finance报道，<b>泰国央行(BoT)正在收紧BNPL(先买后付)监管</b>，核心措施包括：①引入<b>年龄限制</b>（防止未成年人过度借贷）；②设定<b>信用额度上限</b>（控制个人BNPL总敞口）；③使用<b>数据分析和AI</b>监控BNPL提供商的运营行为和风控实践。目标：标准化风险评估、增强透明度、确保 provider 采用审慎信贷管理。主要BNPL运营商（含电商平台关联的BNPL服务）将被纳入监管框架。<b>背景</b>：Grab以$15亿收购Atome 60%股权的交易（覆盖泰国在内的5个市场）进一步加速了BNPL市场的整合，BoT此举是对BNPL快速扩张的系统性回应。对出海机构：泰国BNPL合规门槛将提高，需关注年龄验证/额度管理/数据报告等新规要求。</div>
+  <div class="policy-tags">
+    <span class="tag tag-impact">影响：BNPL</span>
+    <span class="tag tag-tag">国家监管</span>
+    <span class="tag tag-tag">信贷环境</span>
+    <span class="tag tag-urgency-medium">紧急-中</span>
+    <span class="tag tag-date">📅 2026-10-01</span>
+  </div>
+</div>
 <div class="policy-item" data-source-links='[{"label": "Thailand Business News - BoT Framework Safeguarding Financial Sector (9/30)", "url": "https://thailandtv.news/thailand-business-news-bank-of-thailand-introduces-measures-to-protect-financial-sector-from-illegal-activities/"}, {"label": "Thai Times - BoT Tightens Mobile Banking Security (9/30)", "url": "https://thaitimes.com/bank-of-thailand-tightens-mobile-banking-security-regulations"}, {"label": "Thailand Business News - Banking Section (9/30)", "url": "https://www.thailand-business-news.com/top-news/banking"}]' data-categories='国家监管,信贷环境' data-business='Personal Loan,Pico Loan' data-urgency='高' data-status='已实施' data-verified='verified' data-date='2026-09-30'>
   <div class="policy-title">BoT行长Vitai联合金融服务商发布"金融领域防范非法活动框架"：要求机构建立明确治理策略，防止金融系统被利用于洗钱/欺诈</div>
   <div class="policy-desc">泰国央行行长<b>Vitai Ratanakorn</b>与受监管金融服务机构联合发布<b>"Framework for Safeguarding the Financial Sector from Illicit Activities"</b>框架。核心要求：①参与机构须建立清晰的战略方向、政策和治理安排，防止金融系统被用于任何非法活动；②确保金融系统稳定性、安全性和可信度；③保护公众免受金融服务滥用的伤害。框架覆盖所有受BoT监管的金融机构（含银行、non-bank、数字贷款运营商）。<b>与此前9/21-9/28非法APP下架行动形成组合拳</b>：从"打击非法APP"扩展到"全系统防非法活动治理框架"，监管颗粒度从产品级上升到治理级。对合规出海机构：需评估自身反洗钱/反欺诈治理是否符合框架新要求，特别是KYC/AML流程和异常交易监测。</div>
@@ -2244,7 +2267,7 @@ body {
                 不收录：非监管类市场新闻(融资/产品发布)、加密货币/区块链监管（除非与现金贷直接相关）。
             </div>
             <div class="meta">
-                <span>📅 数据最后更新：<span class="last-updated-label">2026-09-30 19:00 (GMT+8)</span></span>
+                <span>📅 数据最后更新：<span class="last-updated-label">2026-10-01 19:00 (GMT+8)</span></span>
                 <span>🤖 自动更新：每日 09:30</span>
                 <span>🌍 覆盖：东南亚 / 拉美 / 非洲 / 南亚 / 跨市场</span>
             </div>
@@ -2260,12 +2283,12 @@ body {
             <div class="tab" data-tab="cross">跨市场 (App审查/外汇)</div>
         </div>
         <div class="stats-grid" id="global-stats">
-            <div class="stat-card accent"> <div class="number stat-total">118</div> <div class="label">监控条目</div> </div>
-            <div class="stat-card high">   <div class="number stat-high">46</div>  <div class="label">紧急-高</div> </div>
-            <div class="stat-card medium"> <div class="number stat-medium">68</div><div class="label">紧急-中</div> </div>
-            <div class="stat-card low">    <div class="number stat-low">6</div> <div class="label">紧急-低</div> </div>
+            <div class="stat-card accent"> <div class="number stat-total">123</div> <div class="label">监控条目</div> </div>
+            <div class="stat-card high">   <div class="number stat-high">48</div>  <div class="label">紧急-高</div> </div>
+            <div class="stat-card medium"> <div class="number stat-medium">70</div><div class="label">紧急-中</div> </div>
+            <div class="stat-card low">    <div class="number stat-low">7</div> <div class="label">紧急-低</div> </div>
             <div class="stat-card info">   <div class="number">12</div> <div class="label">国家/地区</div> </div>
-            <div class="stat-card warn">   <div class="number stat-unverified">8</div><div class="label">⚠ 未交叉认证</div> </div>
+            <div class="stat-card warn">   <div class="number stat-unverified">9</div><div class="label">⚠ 未交叉认证</div> </div>
         </div>
         <div class="filters" id="global-filters">
             <div class="filters-header" onclick="this.parentElement.classList.toggle('expanded')"><span>🔧 筛选器</span><span class="arrow">▼</span></div>
@@ -2348,7 +2371,77 @@ body {
         </div>
         <div class="timeline global-timeline>
             <!-- ===== 2026-08 ===== -->
-            <div class="month-section" data-month="2026-09"><div class="month-title">2026年09月 (64 条)</div>
+            <div class="month-section" data-month="2026-09"><div class="month-title">2026年09月 (69 条)</div>
+<div class="policy-item" data-source-links='[{"label": "Tapchi Kinhte Tai Chinh - SBV Circular 50/2026 LDR 95% (10/1)", "url": "https://tapchikinhtetaichinh.vn/nang-ty-le-du-no-cho-vay-so-voi-tien-gui-toi-da-len-95-168473.html"}, {"label": "Lao Dong News - SBV extends lending ceiling to 95% (10/1)", "url": "https://news.laodong.vn/tien-te-dau-tu/ngan-hang-nha-nuoc-noi-tran-cho-vay-so-voi-tong-tien-gui-len-toi-95-1775947.ldo"}, {"label": "The Asian Banker - Vietnam consumer credit roundup (10/1)", "url": "https://www.theasianbanker.com/updates-and-articles/nubank-eyes-uk-banking-expansion-through-potential-monzo-acquisition"}]' data-region='越南' data-categories='国家监管,信贷环境' data-urgency='高' data-status='已确认待实施' data-verified='verified' data-date='2026-10-01'>
+  <div class="policy-header"><div class="tags"><span class="tag tag-urgency-high">紧急-高</span><span class="tag tag-region">🇻🇳 越南</span><span class="tag tag-category">国家监管</span><span class="tag tag-category">信贷环境</span><span class="tag tag-status-confirmed">已确认待实施</span><span class="tag tag-verified">✅ 3源交叉验证</span></div><div class="policy-date">2026-10-01</div></div>
+  <div class="policy-source">来源：Tapchi Kinh te Tai chinh (10/1) / Lao Dong News (10/1) / The Asian Banker (10/1)</div>
+  <div class="policy-title">🇻🇳 越南央行SBV通函50/2026：银行贷存比(LDR)上限从85%提至95%，12月1日生效</div>
+  <div class="policy-subtitle">9/30越南国家银行(SBV)行长签署<b>通函50/2026/TT-NHNN</b>，取代通函22/2019，核心变更：①银行<b>贷存比(LDR)上限从85%提升至95%</b>；②新增<b>流动性覆盖率(LCR)</b>和<b>净稳定资金比率(NSFR)</b>；③新增<b>杠杆比率</b>管理。12/1生效。LDR提升10个百分点意味着银行可释放更多信贷空间，直接影响fintech/数字借贷机构的银行合作方放贷意愿和能力。对出海现金贷：越南银行信贷供给能力增强，有利于资金端合作，但同时也需关注银行可能加大消费贷竞争。</div>
+  <div class="policy-tags">
+    <span class="tag tag-impact">影响：信贷环境</span>
+    <span class="tag tag-region">🇻🇳 越南</span>
+    <span class="tag tag-tag">国家监管</span>
+    <span class="tag tag-urgency-high">紧急-高</span>
+    <span class="tag tag-date">📅 2026-10-01</span>
+  </div>
+</div>
+
+<div class="policy-item" data-source-links='[{"label": "The Asian Banker - Egypt FRA Decision 2684 data links (10/1)", "url": "https://www.theasianbanker.com/updates-and-articles/nubank-eyes-uk-banking-expansion-through-potential-monzo-acquisition"}, {"label": "FRA Egypt Official (via Asian Banker coverage) (9/24)", "url": "https://www.fra.gov.ar"}, {"label": "CBE Governor IPN speech (10/1)", "url": "https://cbe.org,eg/en/news-publications/news/2026/10/01/08/19/the-50th-annual-meeting-of-the-council-of-arab-central-banks"}]' data-region='埃及' data-categories='国家监管,信贷环境' data-urgency='中' data-status='已实施' data-verified='verified' data-date='2026-10-01'>
+  <div class="policy-header"><div class="tags"><span class="tag tag-urgency-medium">紧急-中</span><span class="tag tag-region">🇪🇬 埃及</span><span class="tag tag-category">国家监管</span><span class="tag tag-category">信贷环境</span><span class="tag tag-status-active">已实施</span><span class="tag tag-verified">✅ 3源交叉验证</span></div><div class="policy-date">2026-10-01</div></div>
+  <div class="policy-source">来源：The Asian Banker (10/1) / FRA Decision 2684/2026 (9/24生效) / CBE (10/1)</div>
+  <div class="policy-title">🇪🇬 埃及FRA第2684号决定：消费金融公司须与监管建立实时数据库直连，6个月内实施</div>
+  <div class="policy-subtitle">9/24起生效，埃及金融监管局(FRA)发布<b>Decision 2684 of 2026</b>，要求持牌消费金融公司建立技术基础设施，<b>实时连接其数据库与FRA监管系统</b>。数据范围：①客户融资审批数据；②商品/服务购买记录；③还款记录；④公司偿付能力指标。实施细则将在6个月内出台。<b>市场规模</b>：2025年埃及持牌消费金融提供商贷款总额<b>EGP 963亿(~$19亿)</b>，覆盖<b>1080万+客户</b>。此举赋予FRA对消费金融活动的实时可视化监管能力。对出海机构：埃及消费金融市场数据透明度要求提升，合规报告成本增加。</div>
+  <div class="policy-tags">
+    <span class="tag tag-impact">影响：国家监管</span>
+    <span class="tag tag-region">🇪🇬 埃及</span>
+    <span class="tag tag-tag">信贷环境</span>
+    <span class="tag tag-urgency-medium">紧急-中</span>
+    <span class="tag tag-date">📅 2026-10-01</span>
+  </div>
+</div>
+
+<div class="policy-item" data-source-links='[{"label": "PulsoCapital - BCRA approves Revolut acquisition of Banco Cetelem (9/30)", "url": "https://pulsocapital.com/revolut-recibe-aprobacion-del-banco-central-argentino-para-comprar-banco-cetelem/"}, {"label": "bne IntelliNews - Revolut secures Argentina banking approval (9/29)", "url": "https://www.intellinews.com/revolut-secures-argentina-banking-approval-ahead-of-planned-2027-launch-471819/"}, {"label": "The Asian Banker - Revolut/Cetelem BCRA approval (10/1)", "url": "https://www.theasianbanker.com/updates-and-articles/nubank-eyes-uk-banking-expansion-through-potential-monzo-acquisition"}]' data-region='阿根廷' data-categories='国家监管,经营主体异动' data-urgency='中' data-status='已确认' data-verified='verified' data-date='2026-09-30'>
+  <div class="policy-header"><div class="tags"><span class="tag tag-urgency-medium">紧急-中</span><span class="tag tag-region">🇦🇷 阿根廷</span><span class="tag tag-category">国家监管</span><span class="tag tag-category">经营主体异动</span><span class="tag tag-status-confirmed">已确认</span><span class="tag tag-verified">✅ 4源交叉验证</span></div><div class="policy-date">2026-09-30</div></div>
+  <div class="policy-source">来源：PulsoCapital (9/30) / bne IntelliNews (9/29) / The Asian Banker (10/1) / TradersWeek (9/28)</div>
+  <div class="policy-title">🇦🇷 BCRA批准Revolut收购BNP Paribas旗下Banco Cetelem Argentina，获本地银行牌照</div>
+  <div class="policy-subtitle">9/24，阿根廷央行(BCRA)正式批准英国数字银行巨头<b>Revolut</b>从BNP Paribas Personal Finance手中收购<b>Banco Cetelem Argentina</b>。Revolut将获得阿根廷本地银行牌照，计划2027年正式在阿根廷运营。此举是Revolut拉美扩张战略的重要一步（已进入巴西、墨西哥）。[区域趋势] 对出海现金贷：阿根廷消费金融市场竞争格局变化，Revolut以数字银行模式进入，将在支付、存款和借贷领域与现有玩家展开竞争。BCRA对外资数字银行的态度值得关注。</div>
+  <div class="footer-note">📌 [区域趋势] 标注：阿根廷市场动态供出海参考，非泰国APP scope。</div>
+  <div class="policy-tags">
+    <span class="tag tag-impact">影响：信贷环境</span>
+    <span class="tag tag-region">🇦🇷 阿根廷</span>
+    <span class="tag tag-tag">国家监管</span>
+    <span class="tag tag-urgency-medium">紧急-中</span>
+    <span class="tag tag-date">📅 2026-09-30</span>
+  </div>
+</div>
+
+<div class="policy-item" data-source-links='[{"label": "TokenPost - Brazil BCB bars crypto settlement cross-border (9/30)", "url": "https://www.tokenpost.com/news/regulation/25990"}, {"label": "Cubed.run - Brazil Resolution BCB 561 stablecoin ban (10/1)", "url": "https://cubed.run/blog/brazil-s-resolution-bcb-561-bans-stablecoins-from-regulated-cross-border-payments"}, {"label": "Blockpass - Web3 Reg News BCB 561 (9/30)", "url": "https://www.blockpass.org/2026/09/30/web-3-reg-news-increasing-surveillance-and-international-oversight/"}]' data-region='巴西' data-categories='国家监管,跨市场' data-urgency='中' data-status='已实施' data-verified='verified' data-date='2026-10-01'>
+  <div class="policy-header"><div class="tags"><span class="tag tag-urgency-medium">紧急-中</span><span class="tag tag-region">🇧🇷 巴西</span><span class="tag tag-category">国家监管</span><span class="tag tag-category">跨市场</span><span class="tag tag-status-active">已实施</span><span class="tag tag-verified">✅ 4源交叉验证</span></div><div class="policy-date">2026-10-01</div></div>
+  <div class="policy-source">来源：TokenPost (9/30) / Cubed.run (10/1) / Blockpass (9/30) / CoinStats (10/1)</div>
+  <div class="policy-title">🇧🇷 BCB第561号决议10/1生效：禁止稳定币/加密资产用于跨境支付结算</div>
+  <div class="policy-subtitle">巴西央行(BCB)<b>Resolution BCB No. 561</b>于10/1正式生效，<b>禁止电子外汇(eFX)提供商使用稳定币和加密资产结算跨境支付</b>。适用对象：支付机构、电子货币发行方、收单方、eFX提供商。替代方案：必须通过传统外汇交易或非居民雷亚尔账户结算。个人购买/持有加密资产不受影响。<b>背景</b>：巴西稳定币跨境汇款流量显著，此规旨在维护货币主权和AML一致性。未取得eFX授权的机构须在2027年5月前申请。对出海机构：巴西fintech/支付公司若曾使用稳定币后端结算，须转向传统法币通道，可能增加汇款成本和时间。</div>
+  <div class="policy-tags">
+    <span class="tag tag-impact">影响：跨市场</span>
+    <span class="tag tag-region">🇧🇷 巴西</span>
+    <span class="tag tag-tag">国家监管</span>
+    <span class="tag tag-urgency-medium">紧急-中</span>
+    <span class="tag tag-date">📅 2026-10-01</span>
+  </div>
+</div>
+
+<div class="policy-item" data-source-links='[{"label": "The Financial Express BD - Online fraud on the rise (10/1)", "url": "https://today.thefinancialexpress.com.bd/public/editorial/online-fraud-on-the-rise-1790779765"}, {"label": "BFIU Bangladesh Bank notice on online fraud (5/2026)", "url": "https://www.justnewsbd.com/"}, {"label": "Financial Express BD - BSEC World Investor Week (10/1)", "url": "https://today.thefinancialexpress.com.bd/public/stock-corporate/world-investor-week-to-feature-awareness-drive-1790788075"}]' data-region='孟加拉' data-categories='风险预警,信贷环境' data-urgency='低' data-status='发展中' data-verified='unverified' data-date='2026-10-01'>
+  <div class="policy-header"><div class="tags"><span class="tag tag-urgency-low">紧急-低</span><span class="tag tag-region">🇧🇩 孟加拉</span><span class="tag tag-category">风险预警</span><span class="tag tag-category">信贷环境</span><span class="tag tag-status-progress">发展中</span><span class="tag tag-unverified">⚠ 2源交叉验证</span></div><div class="policy-date">2026-10-01</div></div>
+  <div class="policy-source">来源：The Financial Express BD (10/1) / BSEC World Investor Week (10/1)</div>
+  <div class="policy-title">🇧🇩 孟加拉国无牌在线借贷平台泛滥，BB/BFIU持续加强欺诈预警与投资者教育</div>
+  <div class="policy-subtitle">The Financial Express发表社论指出：孟加拉国<b>未经授权的在线借贷平台</b>持续泛滥。BB曾于2026年5月发布在线金融欺诈公告，后提供公众意识和投诉解决指导。BSEC结合World Investor Week 2026推进反欺诈教育。目前尚未出台类似印尼OJK或肯尼亚CBK的专项数字借贷监管框架，但信号表明监管关注度在上升。对出海机构：孟加拉市场合规不确定性较高，进入需密切关注BFIU后续政策动向。</div>
+  <div class="policy-tags">
+    <span class="tag tag-impact">影响：风险预警</span>
+    <span class="tag tag-region">🇧🇩 孟加拉</span>
+    <span class="tag tag-tag">信贷环境</span>
+    <span class="tag tag-urgency-low">紧急-低</span>
+    <span class="tag tag-date">📅 2026-10-01</span>
+  </div>
+</div>
 <div class="policy-item" data-source-links='[{"label": "Money254 - CBK approves 29 new DCPs (9/30)", "url": "https://www.money254.co.ke/post/cbk-approves-29-new-digital-lenders-list-news"}, {"label": "Eastleigh Voice - CBK licenses 29 more DCPs (9/30)", "url": "https://eastleighvoice.co.ke/news/406399/loans-issued-by-licensed-digital-lenders-hit-sh1651-billion-as-cbk-licenses-29-more-providers"}, {"label": "Tech-Hub Kenya - CBK licenses 29 new DCPs (9/30)", "url": "https://tech-hubkenya.com/cbk-licenses-29-new-digital-credit-providers/"}]' data-region='肯尼亚' data-categories='国家监管,信贷环境' data-urgency='高' data-status='已实施' data-verified='verified' data-date='2026-09-30'>
   <div class="policy-title">🇰🇪 CBK新批29家数字信贷提供商(DCP)，持牌总数达281家；截至8月已发放960万笔贷款价值Ksh1651亿</div>
   <div class="policy-subtitle">Money254/Eastleigh Voice/Tech-Hub Kenya (9/30) 报道：肯尼亚央行(CBK)依据《CBK法》第59(2)条，新批准<b>29家数字信贷提供商</b>（含Alba Capital、Credix DCP、Moneysta Capital等），持牌DCP总数从252家增至<b>281家</b>。关键数据：截至2026年8月，持牌DCP累计发放<b>9,596,509笔贷款、价值Ksh1,651亿（~$12.7亿）</b>。CBK自2022年3月以来已收到900+份申请，审核重点：商业模式、消费者保护、股东/董事适格性。CBK同时警告数字贷方禁止掠夺性放贷，公众可举报未受监管DCP。对出海现金贷：肯尼亚数字信贷市场持续扩容，281家持牌机构意味着竞争加剧但监管框架成熟；DCP牌照路径明确，值得有意进入东非市场的出海机构关注。</div>
@@ -3815,7 +3908,7 @@ body {
                 基础数据：可靠渠道投放量榜单 + SimilarWeb/icharts 商店排名交叉验证（2026-09-07 周更）。投放量原始数据停更期间，以商店排名变动和经营主体异动为主要更新依据。
             </div>
             <div class="meta">
-                <span>📅 数据最后更新：<span class="last-updated-label">2026-09-30 19:00 (GMT+8)</span></span>
+                <span>📅 数据最后更新：<span class="last-updated-label">2026-10-01 19:00 (GMT+8)</span></span>
                 <span>🤖 自动更新：每日 09:30 / 19:00</span>
                 <span>📱 监控范围：APP 投放 / 客户投诉 / 社媒 / 监管 / 风险信号 / 经营主体异动</span>
             </div>
@@ -5088,7 +5181,7 @@ body {
 
     // ── Theme Toggle ──
     var themeBtn = document.querySelector('.fab-theme');
-    var savedTheme = localStorage.getItem('policy-theme') || '';
+    var savedTheme = localStorage.getItem('policy-monitor-theme') || '';
     var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
     var currentTheme = savedTheme || (prefersDark ? 'dark' : 'light');
 
@@ -5116,7 +5209,7 @@ body {
             var isDark = document.documentElement.getAttribute('data-theme') === 'dark';
             var newTheme = isDark ? 'light' : 'dark';
             applyTheme(newTheme);
-            localStorage.setItem('policy-theme', newTheme);
+            localStorage.setItem('policy-monitor-theme', newTheme);
         });
     }
 
@@ -5369,9 +5462,6 @@ body {
 
 })();
 </script>
-<!-- Keyboard shortcut hint -->
-<div class="kbd-hint" id="kbdHint" role="button" tabindex="0" aria-label="显示键盘快捷键">⌨️ 快捷键</div>
-
 <!-- Keyboard shortcut modal -->
 <div class="kbd-modal-overlay" id="kbdOverlay">
     <div class="kbd-modal" role="dialog" aria-label="键盘快捷键">
@@ -5405,5 +5495,14 @@ function switchRankingTab(store) {
     }
 })();
 </script>
+
+<!-- Bottom Navigation v2 -->
+<nav class="bottom-nav">
+    <a href="/" class="nav-item"><span class="nav-icon">🏠</span><span>首页</span></a>
+    <a href="/payment-intel/" class="nav-item"><span class="nav-icon">💳</span><span>支付</span></a>
+    <a href="/policy-monitor/" class="nav-item active"><span class="nav-icon">🛡️</span><span>政策</span></a>
+    <a href="/stock-dash/" class="nav-item"><span class="nav-icon">📈</span><span>股市</span></a>
+</nav>
+
 </body>
 </html>
