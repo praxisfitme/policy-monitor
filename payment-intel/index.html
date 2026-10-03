@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>跨境支付情报监控 — 2026.10.03</title>
+<title>跨境支付情报监控 — 2026.10.04</title>
 <meta property="og:title" content="跨境支付情报监控">
 <meta property="og:description" content="全球跨境支付政策法规、Crypto监管动态、头部品牌战略与市场数据">
 <meta property="og:type" content="website">
@@ -34,8 +34,40 @@
 --primary:#ea580c;--accent:#f97316;--success:#059669;--warn:#D97706;--danger:#DC2626;
 --text:#1A202C;--text2:#4A5568;--text3:#718096;
 }
-[data-theme="light"] body{background:var(--bg);color:var(--text)    padding-bottom: 6rem;
+[data-theme="light"] body{background:var(--bg);color:var(--text)}
+[data-theme="light"] body::before{background:radial-gradient(ellipse at 30% 20%,rgba(249,115,22,.06) 0%,transparent 50%),radial-gradient(ellipse at 70% 80%,rgba(251,146,60,.04) 0%,transparent 50%)}
+[data-theme="light"] .header{background:rgba(245,247,250,.92);border-bottom:1px solid rgba(0,0,0,.08)}
+[data-theme="light"] .tabs{background:rgba(245,247,250,.92);border-bottom:1px solid rgba(0,0,0,.08)}
+[data-theme="light"] .card:hover{box-shadow:0 8px 32px rgba(0,0,0,.08)}
+[data-theme="light"] .tag-new{background:rgba(251,146,60,.1);color:var(--accent)}
+[data-theme="light"] .highlight-item{background:linear-gradient(135deg,rgba(249,115,22,.05),rgba(251,146,60,.03));border:1px solid rgba(0,0,0,.08)}
+[data-theme="light"] .kpi-value{background:linear-gradient(135deg,var(--text),var(--accent));-webkit-background-clip:text;background-clip:text}
+[data-theme="light"] .fab-portal{background:#fff;color:#333;border:1px solid #e5e7eb}
+[data-theme="light"] .fab-theme{background:#fff;color:#333;border:1px solid #e5e7eb}
+[data-theme="light"] .fab-feedback{background:#fff;color:#333;border:1px solid #e5e7eb}
+[data-theme="light"] .fab-feedback .fab-badge{border-color:#fff}
+[data-theme="light"] .feedback-modal{background:#fff;border:1px solid #e5e7eb;color:#1A202C;box-shadow:0 20px 40px rgba(0,0,0,.12)}
+[data-theme="light"] .feedback-modal .feedback-hint{color:#4A5568}
+[data-theme="light"] .feedback-modal textarea{background:#F7FAFC;color:#1A202C;border:1px solid #E2E8F0}
+[data-theme="light"] .feedback-modal textarea:focus{border-color:#ea580c}
+[data-theme="light"] .feedback-modal textarea::placeholder{color:#A0AEC0}
+[data-theme="light"] .feedback-btn-secondary{background:#F7FAFC;color:#1A202C;border:1px solid #E2E8F0}
+[data-theme="light"] .feedback-btn-close{color:#718096;border:1px solid #E2E8F0}
+[data-theme="light"] .feedback-modal .feedback-note{color:#A0AEC0}
+[data-theme="light"] .feedback-type-btn{border:1px solid #E2E8F0;background:#F7FAFC;color:#4A5568}
+[data-theme="light"] .footer{border-top:1px solid rgba(0,0,0,.08)}
+[data-theme="light"] .update-time{background:rgba(0,0,0,.04);border:1px solid rgba(0,0,0,.08)}
+[data-theme="light"] .card-source{border-top:1px solid rgba(0,0,0,.06)
 }
+
+/* ── Light Theme ── */
+[data-theme="light"]{
+--bg:#F5F7FA;--bg2:#FFFFFF;--glass:rgba(0,0,0,.03);--glass-hover:rgba(0,0,0,.06);
+--border:rgba(0,0,0,.08);--border-hover:rgba(0,0,0,.15);
+--primary:#ea580c;--accent:#f97316;--success:#059669;--warn:#D97706;--danger:#DC2626;
+--text:#1A202C;--text2:#4A5568;--text3:#718096;
+}
+[data-theme="light"] body{background:var(--bg);color:var(--text)}
 [data-theme="light"] body::before{background:radial-gradient(ellipse at 30% 20%,rgba(249,115,22,.06) 0%,transparent 50%),radial-gradient(ellipse at 70% 80%,rgba(251,146,60,.04) 0%,transparent 50%)}
 [data-theme="light"] .header{background:rgba(245,247,250,.92);border-bottom:1px solid rgba(0,0,0,.08)}
 [data-theme="light"] .tabs{background:rgba(245,247,250,.92);border-bottom:1px solid rgba(0,0,0,.08)}
@@ -1081,6 +1113,163 @@ a{color:#333}
     .feedback-btn { min-width: 100px; font-size: 0.8125rem; }
 }
 
+
+/* ── Floating Components ── */
+.fab-stack {
+    position: fixed;
+    right: 20px;
+    bottom: 24px;
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+}
+.fab {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.3);
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    -webkit-user-select: none;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+    z-index: 9999;
+}
+.fab:active { transform: scale(0.88); }
+.fab-portal {
+    background: var(--bg-card, #fff);
+    color: var(--text-primary, #333);
+    border: 1px solid var(--border, #e5e7eb);
+    text-decoration: none;
+}
+.fab-portal:active { transform: scale(0.88); }
+.fab-back {
+    background: var(--accent-blue, var(--accent, #3b82f6));
+    color: white;
+    opacity: 0;
+    pointer-events: none;
+}
+.fab-back.visible { opacity: 1; pointer-events: auto; }
+.fab-theme {
+    background: var(--bg-card, #111827);
+    color: var(--text-primary, #e2e8f0);
+    border: 1px solid var(--border, #1e293b);
+}
+.fab-theme:active { transform: scale(0.88) rotate(180deg); }
+.fab-feedback {
+    background: var(--bg-card, #111827);
+    color: var(--text-primary, #e2e8f0);
+    border: 1px solid var(--border, #1e293b);
+    position: relative;
+}
+.fab-feedback .fab-badge {
+    position: absolute;
+    top: -2px;
+    right: -2px;
+    width: 10px;
+    height: 10px;
+    background: #f43f5e;
+    border-radius: 50%;
+    border: 2px solid var(--bg-card, #111827);
+}
+.feedback-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.5);
+    z-index: 10000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s ease;
+    -webkit-backdrop-filter: blur(2px);
+    backdrop-filter: blur(2px);
+}
+.feedback-overlay.visible { opacity: 1; pointer-events: auto; }
+.feedback-modal {
+    background: var(--bg-card, #111827);
+    border-radius: 12px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+    max-width: 460px;
+    width: 100%;
+    padding: 24px 20px;
+    transform: scale(0.92) translateY(20px);
+    transition: transform 0.25s ease;
+    border: 1px solid var(--border, #1e293b);
+    color: var(--text-primary, #e2e8f0);
+}
+.feedback-overlay.visible .feedback-modal { transform: scale(1) translateY(0); }
+.feedback-modal h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 6px; }
+.feedback-modal .feedback-hint { font-size: 0.8125rem; color: var(--text-secondary, #94a3b8); margin-bottom: 14px; line-height: 1.6; }
+.feedback-modal textarea {
+    width: 100%;
+    min-height: 120px;
+    padding: 12px 14px;
+    border: 1px solid var(--border, #1e293b);
+    border-radius: 8px;
+    font-size: 0.875rem;
+    font-family: inherit;
+    resize: vertical;
+    outline: none;
+    background: var(--bg-card-hover, var(--bg-secondary, #1a2332));
+    color: var(--text-primary, #e2e8f0);
+    line-height: 1.6;
+    box-sizing: border-box;
+}
+.feedback-modal textarea:focus { border-color: var(--accent-blue, var(--accent, #3b82f6)); box-shadow: 0 0 0 3px rgba(59,130,246,0.15); }
+.feedback-modal textarea::placeholder { color: var(--text-muted, #64748b); }
+.feedback-modal .feedback-actions { display: flex; gap: 10px; margin-top: 16px; flex-wrap: wrap; }
+.feedback-btn {
+    flex: 1;
+    min-width: 120px;
+    padding: 12px 16px;
+    border-radius: 8px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    cursor: pointer;
+    border: none;
+    transition: all 0.2s ease;
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    text-decoration: none;
+}
+.feedback-btn:active { transform: scale(0.96); }
+.feedback-btn-primary { background: var(--accent-blue, var(--accent, #3b82f6)); color: white; }
+.feedback-btn-secondary { background: var(--bg-card-hover, var(--bg-secondary, #1a2332)); color: var(--text-primary, #e2e8f0); border: 1px solid var(--border, #1e293b); }
+.feedback-btn-close { background: transparent; color: var(--text-secondary, #94a3b8); border: 1px solid var(--border, #1e293b); flex: 0 0 auto; min-width: 44px; }
+.feedback-modal .feedback-note { margin-top: 12px; font-size: 0.75rem; color: var(--text-muted, #64748b); line-height: 1.5; }
+.feedback-modal .feedback-type { display: flex; gap: 8px; margin-bottom: 12px; }
+.feedback-type-btn {
+    padding: 8px 14px;
+    border-radius: 100px;
+    font-size: 0.8125rem;
+    font-weight: 500;
+    cursor: pointer;
+    border: 1px solid var(--border, #1e293b);
+    background: var(--bg-card-hover, var(--bg-secondary, #1a2332));
+    color: var(--text-secondary, #94a3b8);
+    transition: all 0.2s ease;
+}
+.feedback-type-btn.active { background: var(--accent-blue, var(--accent, #3b82f6)); color: white; border-color: var(--accent-blue, var(--accent, #3b82f6)); }
+@media (max-width: 768px) {
+    .fab-stack { right: 16px; gap: 8px; }
+    .feedback-modal { padding: 20px 16px; }
+    .feedback-btn { min-width: 100px; font-size: 0.8125rem; }
+}
+
 </style>
 </head>
 <body>
@@ -1148,9 +1337,29 @@ a{color:#333}
 <div class="section-header">
 <div class="section-icon insight">⚡</div>
 <h2 class="section-title">今日关键信号</h2>
-<span class="section-count">172条</span>
+<span class="section-count">177条</span>
 </div>
 <div class="highlight-bar">
+<div class="highlight-item">
+<div class="highlight-date">2026.10.04</div>
+<div class="highlight-title">🔴 巴西10/1起禁止eFX使用虚拟资产结算+10/30 VASP授权窗口关闭</div>
+<div class="highlight-desc">巴西央行(BCB)两项跨境支付新规同步落地：①Resolution BCB 561(10/1生效)禁止eFX服务商使用虚拟资产结算境外交易腿，扩大投资转账覆盖范围②Resolution BCB 519要求所有虚拟资产服务提供商(VASP)在2/2起270天内申请授权，窗口10/30关闭。对依赖加密通道进行拉美跨境结算的服务商形成直接冲击。企业须核查交易对手是否已获BCB授权</div>
+</div>
+<div class="highlight-item">
+<div class="highlight-date">2026.10.03</div>
+<div class="highlight-title">🔴 IMF Sibos演讲：AI智能体将重塑跨境支付基础设施+代币化存款前景$100万亿</div>
+<div class="highlight-desc">IMF第一副总裁Dan Katz在Sibos 2026发表主题演讲《AI与支付的未来》。三大核心观点：①AI智能体可自动比较费率/路由交易/执行合规报告，跨境支付效率将获质的提升②金融系统需为AI密集型世界重新工程化——更数字化/更互操作/更可编程③代币化存款2030年规模$100-140万亿(vs稳定币$1.9万亿)。CHIPS牵头多行代币化存款结算平台。ECB Pontes+BoE要求稳定币发行方持有央行存款</div>
+</div>
+<div class="highlight-item">
+<div class="highlight-date">2026.10.03</div>
+<div class="highlight-title">🔴 ECB认定Visa Europe Payment System为系统重要性支付系统+数字欧元试点扩招</div>
+<div class="highlight-desc">ECB理事会8-9月决策密集：①将Visa Europe Payment System认定为系统重要性支付系统(PSSIR框架)并纳入Eurosistem监测②数字欧元项目：9/15发起电商/移动商务商户试点招募(截止10/27)③9/28发布私有组织合作探索基础设施支持的意愿征集(截止11/9)④Eurosistem就MiCAR提供正式回复。支付系统监管边界持续扩展</div>
+</div>
+<div class="highlight-item">
+<div class="highlight-date">2026.10.04</div>
+<div class="highlight-title">🔴 连连×Visa智能体商务B2B首笔真实支付落地+Airwallex巴西PIX上线+PhotonPay非洲扩张</div>
+<div class="highlight-desc">品牌端密集动作：①连连LoopXPay智能体完成大中华区首笔B2B真实交易(Visa可信智能体名录)②Airwallex巴西本地付款正式支持PIX转账+Billing新增Direct Debit③PhotonPay在南非/尼日利亚/加纳/肯尼亚四国上线本地收款账户+与DFNS合作稳定币底层④XTransfer本地收款覆盖约60国/30+币种/171家金融机构</div>
+</div>
 <div class="highlight-item">
 <div class="highlight-date">2026.10.01</div>
 <div class="highlight-title">🔴 10月新规密集落地：外汇贷款专用账户管理+网络空间安全检查+严重失信主体名单管理</div>
@@ -1886,9 +2095,33 @@ a{color:#333}
 <div class="section-header">
 <div class="section-icon policy">🏛️</div>
 <h2 class="section-title">政策法规</h2>
-<span class="section-count">110条</span>
+<span class="section-count">114条</span>
 </div>
 <div class="cards-grid">
+<div class="card" data-type="policy">
+<span class="card-tag tag-new">🆕 巴西</span>
+<div class="card-title">巴西央行10/1禁止eFX虚拟资产结算+10/30 VASP授权窗口关闭</div>
+<div class="card-desc">巴西央行(BCB)两项决议同步生效：①Resolution BCB 561(10/1)禁止eFX服务商使用虚拟资产(含稳定币)结算境外交易腿，扩大至投资转账覆盖②Resolution BCB 519要求VASP在270天内(自2/2)申请授权，窗口10/30关闭。未申请或遭拒后30天内停止运营。IOF税率不变。对依赖加密通道进行拉美跨境结算的服务商形成直接冲击</div>
+<div class="card-source">来源：<a href="https://soulbit.io/pt/blog/regulacao/mudancas-pagamentos-internacionais-brasil-outubro-2026/" target="_blank" rel="noopener noreferrer">Soulbit/BCB</a> · 2026.10.01</div>
+</div>
+<div class="card" data-type="policy">
+<span class="card-tag tag-new">🆕 ECB</span>
+<div class="card-title">ECB认定Visa Europe为系统重要性支付系统+数字欧元商户试点招募(截止10/27)</div>
+<div class="card-desc">ECB理事会8-9月决策：①依据PSSIR认定Visa Europe Payment System为系统重要性支付系统，由Eurosistem监测(ECB主导)②数字欧元项目：9/15发起电商/移动商务商户试点招募(截止10/27)③9/28发布私有组织合作意愿征集(截止11/9)④Eurosistem就MiCAR监管提交正式回复。支付系统监管边界持续扩展</div>
+<div class="card-source">来源：<a href="https://www.ecb.europa.eu/press/govcdec/otherdec/2026/html/ecb.gc261002~54c6b5672b.ro.html" target="_blank" rel="noopener noreferrer">ECB</a> · 2026.10.02</div>
+</div>
+<div class="card" data-type="policy">
+<span class="card-tag tag-new">🆕 IMF</span>
+<div class="card-title">IMF第一副总裁Sibos演讲：AI将重塑跨境支付+金融系统需为AI密集世界重构</div>
+<div class="card-desc">Dan Katz在Sibos 2026演讲三大核心：①AI智能体可持续比较费率/自动路由/执行合规报告，跨境支付效率将获质的提升②金融系统需更数字化/互操作/可编程以适应AI时代③代币化存款2030年$100-140万亿。CHIPS牵头多行代币化结算平台。ECB Pontes+BoE稳定币央行存款要求。呼吁央行提供新公共基础设施(如代币化储备)但不锁定市场创新。跨境支付年规模近$1千万亿(1 quadrillion)</div>
+<div class="card-source">来源：<a href="https://www.imf.org/en/news/articles/2026/09/28/sp092826-ai-and-the-future-of-payments-policy" target="_blank" rel="noopener noreferrer">IMF</a> · 2026.09.28</div>
+</div>
+<div class="card" data-type="policy">
+<span class="card-tag tag-new">🆕 海南</span>
+<div class="card-title">外汇局海南陵水营管部开展"金融赋能·跨境共赢"汇政银企对接会</div>
+<div class="card-desc">9/16外汇局海南省分局陵水营管部联合县营商环境局/中国银行举办对接会。重点围绕汇率避险及EF账户、跨境人民币等政策深入研讨。15个政府部门+13家涉外企业参会。推动海南自贸港外汇管理便利化政策落地，以高质量外汇服务护航涉外企业"出海"</div>
+<div class="card-source">来源：<a href="http://www.safe.gov.cn/" target="_blank" rel="noopener noreferrer">国家外汇管理局海南省分局</a> · 2026.09.29</div>
+</div>
 <div class="card" data-type="policy">
 <span class="card-tag tag-hot">🔴 行刑衔接</span>
 <div class="card-title">最高检+外汇局联合印发《外汇领域行刑反向衔接工作指引》(18条)</div>
@@ -2554,9 +2787,21 @@ a{color:#333}
 <div class="section-header">
 <div class="section-icon crypto">🔗</div>
 <h2 class="section-title">Crypto / Web3</h2>
-<span class="section-count">62条</span>
+<span class="section-count">64条</span>
 </div>
 <div class="cards-grid">
+<div class="card" data-type="crypto">
+<span class="card-tag tag-new">🆕 IMF</span>
+<div class="card-title">IMF Sibos演讲：代币化存款2030年$100-140万亿+央行应提供代币化储备基础设施</div>
+<div class="card-desc">IMF第一副总裁Dan Katz在Sibos 2026明确表态：①代币化资产"天然可编程+几乎即时结算"特别适合AI智能体交易②CHIPS牵头多行代币化存款结算平台③ECB Project Pontes已启用+BoE要求特定稳定币发行方持有央行存款④央行应提供代币化储备等新公共基础设施，但不应锁定市场创新。警告：过度同质化的解决方案会抑制商业模式多样性，增加系统性风险。加密网络安全风险居首</div>
+<div class="card-source">来源：<a href="https://www.imf.org/en/news/articles/2026/09/28/sp092826-ai-and-the-future-of-payments-policy" target="_blank" rel="noopener noreferrer">IMF</a> · 2026.09.28</div>
+</div>
+<div class="card" data-type="crypto">
+<span class="card-tag tag-hot">🔴 巴西</span>
+<div class="card-title">巴西10/1起eFX禁止虚拟资产结算：稳定币跨境支付通道受直接冲击</div>
+<div class="card-desc">Resolution BCB 561(10/1生效)核心影响：①eFX服务商不得使用虚拟资产(含USDC/USDT等稳定币)结算境外交易腿②仅限直接持有虚拟资产的企业间交易不受影响(单笔≤$100,000上限)③配合10/30 VASP授权窗口关闭。对依赖加密通道进行拉美跨境结算的服务商(如Soulbit等)形成直接冲击。企业须核查交易对手BCB授权状态。IOF税率不变</div>
+<div class="card-source">来源：<a href="https://soulbit.io/pt/blog/regulacao/mudancas-pagamentos-internacionais-brasil-outubro-2026/" target="_blank" rel="noopener noreferrer">Soulbit/BCB</a> · 2026.10.01</div>
+</div>
 <div class="card" data-type="crypto">
 <span class="card-tag tag-hot">🔴 Fed提案</span>
 <div class="card-title">美联储发布GENIUS Act稳定币发行人监管框架两项提案(公开征求意见)</div>
@@ -2964,9 +3209,33 @@ a{color:#333}
 <div class="section-header">
 <div class="section-icon brand">🏢</div>
 <h2 class="section-title">品牌动态</h2>
-<span class="section-count">87条</span>
+<span class="section-count">91条</span>
 </div>
 <div class="cards-grid">
+<div class="card" data-type="brand">
+<span class="card-tag tag-new">🆕 Airwallex</span>
+<div class="card-title">Airwallex巴西本地付款支持PIX+Billing Direct Debit+九月产品密集更新</div>
+<div class="card-desc">空中云汇9月密集产品更新：①巴西本地付款正式支持PIX转账(巴西覆盖最广支付方式)②Billing新增Direct Debit直接扣款(覆盖一次性+周期性账单)③AI原生金融平台T:0正式上线④先买后付Affirm接入⑤PayPal钱包直接转账⑥法国结构化电子发票。从全球收单向"全栈金融操作系统"持续进化</div>
+<div class="card-source">来源：<a href="https://www.airwallex.com/cn/blog" target="_blank" rel="noopener noreferrer">Airwallex官方</a> · 2026.09.23</div>
+</div>
+<div class="card" data-type="brand">
+<span class="card-tag tag-new">🆕 连连数字</span>
+<div class="card-title">连连上线Shopee五站CNH回款+PayPal直付+多账户管理：9月三连击</div>
+<div class="card-desc">连连数字(2598.HK)9月密集产品更新：①打通Shopee菲律宾/马来/泰国/新加坡/台湾五站CNH(离岸人民币)回款，新卖家免费提现②上线PayPal直付(美国账户对公对私全场景)③推出多账户管理服务(一主多子架构，全球资金归集调拨+异常预警+集团统一对账)④率先打通OTTO收扣同卡。68项牌照/1330万+客户</div>
+<div class="card-source">来源：<a href="https://global.lianlianpay.com/news.html" target="_blank" rel="noopener noreferrer">连连数字官方</a> · 2026.09.11-16</div>
+</div>
+<div class="card" data-type="brand">
+<span class="card-tag tag-new">🆕 XTransfer</span>
+<div class="card-title">XTransfer B2B风控深度解析：本地收款覆盖60国+AI审核率98.5%+易企结单笔千万</div>
+<div class="card-desc">博通分析/东方财富网深度对比XTransfer/PingPong/万里汇：①本地收款覆盖约60国/30+币种/171家金融机构(远超PingPong 20余种/万里汇11个)②TradePilot风控大模型嵌入100+AI智能体/KYC/KYB/AML全流程③AI审核率约98.5%+300+风控专家④易企结单笔最高1000万元/以企业名义申报⑤约3000万企业知识图谱/1900万关联关系</div>
+<div class="card-source">来源：<a href="https://caifuhao.eastmoney.com/news/20260928160002601745560" target="_blank" rel="noopener noreferrer">东方财富网/博通分析</a> · 2026.09.28</div>
+</div>
+<div class="card" data-type="brand">
+<span class="card-tag tag-new">🆕 寻汇/iPayLinks</span>
+<div class="card-title">2026跨境支付风控横评：XTransfer/iPayLinks/寻汇四维度对比</div>
+<div class="card-desc">东方财富网风控维度对比：①XTransfer把判断嵌在收款环节(到账=判断同步)/关注"这笔生意"/知识图谱参照/复杂交易300+专家②iPayLinks先看资质/复杂款进补料流程/以企业主体分层③寻汇审核与收款分两段/到账后另行确认/平台内部记录参照。核心差异：判断前置vs后置、看生意vs看资质、图谱参照vs内部记录</div>
+<div class="card-source">来源：<a href="https://caifuhao.eastmoney.com/news/20260929131407127053450" target="_blank" rel="noopener noreferrer">东方财富网</a> · 2026.09.29</div>
+</div>
 <div class="card" data-type="brand">
 <span class="card-tag tag-new">🆕 空中云汇</span>
 <div class="card-title">空中云汇发布跨境电商旺季指南+与HUMAIN合作+推出AI支付产品Airi</div>
@@ -3659,9 +3928,21 @@ a{color:#333}
 <div class="section-header">
 <div class="section-icon market">📈</div>
 <h2 class="section-title">市场数据</h2>
-<span class="section-count">54条</span>
+<span class="section-count">56条</span>
 </div>
 <div class="cards-grid">
+<div class="card" data-type="market">
+<span class="card-tag tag-data">📊 巴西</span>
+<div class="card-title">巴西跨境支付监管双轨落地：eFX虚拟资产禁令+VASP授权窗口10/30关闭</div>
+<div class="card-desc">巴西央行9-10月密集新规重塑跨境支付格局：①Resolution BCB 561(10/1)禁止eFX使用虚拟资产结算+扩大投资转账覆盖②Resolution BCB 519 VASP授权窗口10/30关闭③2027.5/31前非授权eFX须申请支付机构注册。巴西作为拉美最大经济体，其监管动向对跨境支付服务商的合规策略和通道选择产生直接影响</div>
+<div class="card-source">来源：<a href="https://soulbit.io/pt/blog/regulacao/mudancas-pagamentos-internacionais-brasil-outubro-2026/" target="_blank" rel="noopener noreferrer">Soulbit/BCB</a> · 2026.10.01</div>
+</div>
+<div class="card" data-type="market">
+<span class="card-tag tag-data">📊 IMF</span>
+<div class="card-title">IMF：全球跨境支付年规模近$1千万亿(1 quadrillion)+AI可带来基点级效率提升</div>
+<div class="card-desc">IMF第一副总裁Dan Katz在Sibos 2026披露：全球跨境支付年流动规模接近$1 quadrillion(千万亿美元)。在此量级下，即使基点级别的效率提升也能转化为巨大的收益。AI智能体可持续比较费率/自动路由/执行合规，尤其对跨境零售支付的降费增效空间更大。配合Wise $2435亿/SWIFT 100+银行/秒级到账数据</div>
+<div class="card-source">来源：<a href="https://www.imf.org/en/news/articles/2026/09/28/sp092826-ai-and-the-future-of-payments-policy" target="_blank" rel="noopener noreferrer">IMF</a> · 2026.09.28</div>
+</div>
 <div class="card" data-type="market">
 <span class="card-tag tag-data">📊 菲律宾</span>
 <div class="card-title">菲律宾数字支付爆发：上半年交易42亿笔(+166%)/金额16.09万亿比索(+44.6%)</div>
@@ -4047,6 +4328,8 @@ if(el){e.preventDefault();el.scrollIntoView({behavior:'smooth'});}
 <!-- Floating Components (injected) -->
 
 <!-- Floating Components (injected) -->
+
+<!-- Floating Components (injected) -->
 <div class="fab-stack">
     <a class="fab fab-portal" href="/" aria-label="返回监控中枢" title="返回监控中枢">🏠</a>
     <button class="fab fab-feedback" aria-label="反馈与建议" title="反馈与建议">💬</button>
@@ -4109,7 +4392,8 @@ if(el){e.preventDefault();el.scrollIntoView({behavior:'smooth'});}
             apply(next);
             localStorage.setItem('payment-intel-theme', next);
         });
-    }var fbBtn = document.querySelector('.fab-feedback');
+    }
+    var fbBtn = document.querySelector('.fab-feedback');
     var fbOverlay = document.getElementById('feedbackOverlay');
     var fbClose = document.getElementById('feedbackClose');
     var fbText = document.getElementById('feedbackText');
@@ -4145,6 +4429,19 @@ if(el){e.preventDefault();el.scrollIntoView({behavior:'smooth'});}
     <a href="/policy-monitor/" class="nav-item"><span class="nav-icon">🛡️</span><span>政策</span></a>
     <a href="/stock-dash/" class="nav-item"><span class="nav-icon">📈</span><span>股市</span></a>
 </nav>
+
+
+<!-- Visitor Tracking v2 (counterapi.com) -->
+<script>
+(function() {
+    var key = 'payment';
+    fetch('https://counterapi.com/api/praxisfit.me/view/' + key + '?trackOnly=true').catch(function(){});
+    fetch('https://counterapi.com/api/praxisfit.me/view/' + key).then(function(r){return r.json()}).then(function(d){
+        var el = document.getElementById('visit-count');
+        if(el) el.textContent = d.value || d.count || 0;
+    }).catch(function(){});
+})();
+</script>
 
 
 <!-- Visitor Tracking v2 (counterapi.com) -->
