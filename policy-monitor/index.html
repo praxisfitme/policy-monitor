@@ -175,6 +175,7 @@ body {
     background: var(--bg);
     color: var(--text);
     line-height: 1.6;
+    padding-bottom: 70px;
     overscroll-behavior-y: contain;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -1054,7 +1055,7 @@ body {
 .fab-stack {
     position: fixed;
     right: 20px;
-    bottom: calc(20px + var(--safe-bottom));
+    bottom: calc(70px + var(--safe-bottom));
     z-index: 9999;
     display: flex;
     flex-direction: column;
@@ -1288,7 +1289,7 @@ body {
     .header .header-inner h1 { font-size: 0.875rem; }
     .header .subtitle { font-size: 0.8125rem; }
 
-    .container { padding: 16px 12px; padding-bottom: calc(20px + var(--safe-bottom)); }
+    .container { padding: 16px 12px; padding-bottom: calc(70px + var(--safe-bottom)); }
 
     .stats-grid { grid-template-columns: repeat(3, 1fr); gap: 8px; }
     .stat-card { padding: 12px 6px; }
@@ -1371,7 +1372,7 @@ body {
 /* ── Enhancements: keyboard shortcut hint ── */
 .kbd-hint {
     position: fixed;
-    bottom: calc(20px + var(--safe-bottom));
+    bottom: calc(70px + var(--safe-bottom));
     left: 20px;
     z-index: 9998;
     font-size: 0.75rem;
@@ -1458,6 +1459,15 @@ body {
 .ranking-panel { display:none; }
 .ranking-panel.active { display:block; }
 .nonbank-tag { display:inline-block; font-size:0.6rem; padding:1px 5px; border-radius:6px; background:rgba(124,58,237,0.12); color:#7c3aed; font-weight:600; margin-left:4px; vertical-align:middle; }
+
+/* ── Bottom Navigation v2 ── */
+.bottom-nav { position: fixed; bottom: 0; left: 0; right: 0; background: var(--card-bg, #fff); border-top: 1px solid var(--border); display: flex; justify-content: space-around; padding: 8px 0; padding-bottom: max(8px, env(safe-area-inset-bottom)); z-index: 100; }
+[data-theme="dark"] .bottom-nav { background: #0b0f1a; }
+.nav-item { display: flex; flex-direction: column; align-items: center; gap: 4px; text-decoration: none; color: var(--text-muted, #94a3b8); font-size: 0.6rem; font-weight: 500; padding: 4px 12px; border-radius: 12px; transition: color 0.2s, background 0.2s; }
+.nav-item.active { color: #3b82f6; background: rgba(59,130,246,0.12); }
+.nav-icon { font-size: 1.2rem; }
+@media (min-width: 768px) { .bottom-nav { max-width: 430px; left: 50%; transform: translateX(-50%); } }
+
 </style>
 </head>
 <body>
@@ -1485,7 +1495,7 @@ body {
                 追踪泰国央行(BoT)及监管机构针对 BNPL、Personal Loan、Pico Loan/Nano Finance 牌照发布的政策通知、利率上限调整(APR/综合融资成本)、合规要求变更、消费者保护规定等监管动态。
             </div>
             <div class="meta">
-                <span>📅 数据最后更新：<span class="last-updated-label">2026-10-05 19:00 (GMT+8)</span></span>
+                <span>📅 数据最后更新：<span class="last-updated-label">2026-10-06 19:00 (GMT+8)</span></span>
                 <span>🤖 自动更新：每日 09:30 / 19:00</span>
                 <span>📊 监控范围：泰国央行(BoT)、SEC、财政部、OCPB、NCB、SAM</span>
             </div>
@@ -2341,7 +2351,7 @@ body {
                 不收录：非监管类市场新闻(融资/产品发布)、加密货币/区块链监管（除非与现金贷直接相关）。
             </div>
             <div class="meta">
-                <span>📅 数据最后更新：<span class="last-updated-label">2026-10-05 19:00 (GMT+8)</span></span>
+                <span>📅 数据最后更新：<span class="last-updated-label">2026-10-06 19:00 (GMT+8)</span></span>
                 <span>🤖 自动更新：每日 09:30</span>
                 <span>🌍 覆盖：东南亚 / 拉美 / 非洲 / 南亚 / 跨市场</span>
             </div>
@@ -2357,12 +2367,12 @@ body {
             <div class="tab" data-tab="cross">跨市场 (App审查/外汇)</div>
         </div>
         <div class="stats-grid" id="global-stats">
-            <div class="stat-card accent"> <div class="number stat-total">128</div> <div class="label">监控条目</div> </div>
-            <div class="stat-card high">   <div class="number stat-high">48</div>  <div class="label">紧急-高</div> </div>
-            <div class="stat-card medium"> <div class="number stat-medium">75</div><div class="label">紧急-中</div> </div>
+            <div class="stat-card accent"> <div class="number stat-total">132</div> <div class="label">监控条目</div> </div>
+            <div class="stat-card high">   <div class="number stat-high">51</div>  <div class="label">紧急-高</div> </div>
+            <div class="stat-card medium"> <div class="number stat-medium">76</div><div class="label">紧急-中</div> </div>
             <div class="stat-card low">    <div class="number stat-low">7</div> <div class="label">紧急-低</div> </div>
             <div class="stat-card info">   <div class="number">12</div> <div class="label">国家/地区</div> </div>
-            <div class="stat-card warn">   <div class="number stat-unverified">9</div><div class="label">⚠ 未交叉认证</div> </div>
+            <div class="stat-card warn">   <div class="number stat-unverified">10</div><div class="label">⚠ 未交叉认证</div> </div>
         </div>
         <div class="filters" id="global-filters">
             <div class="filters-header" onclick="this.parentElement.classList.toggle('expanded')"><span>🔧 筛选器</span><span class="arrow">▼</span></div>
@@ -2445,7 +2455,64 @@ body {
         </div>
         <div class="timeline global-timeline>
             <!-- ===== 2026-10 ===== -->
-            <div class="month-section" data-month="2026-10"><div class="month-title">2026年10月 (5 条)</div>
+            <div class="month-section" data-month="2026-10"><div class="month-title">2026年10月 (9 条)</div>
+
+<div class="policy-item" data-source-links='[{"label": "Bisnis360 - Investree Dicabut Izin Usahanya (10/4)", "url": "https://bisnis360media.com/investree-bangkrut-ini-jejak-laku-pialang-investasi-terus-dicabut-oleh-ojk-K7b843L98a"}, {"label": "CNBC Indonesia - OJK cabut izin Investree (10/4)", "url": "https://www.cnbcindonesia.com/market-news/688822/alasan-ojk-cabut-izin-investree-hingga-bursa-batalkan-pencatatan-saham"}, {"label": "KartiniMedia - Investasi bodong merajalela (10/4)", "url": "https://kartinimedia.id/investasi-bodong-merajalela-ojk-kominfo-dan-bareskrim-diminta-bertindak/"}]' data-region='印尼' data-categories='国家监管,风险预警' data-urgency='高' data-status='发展中' data-verified='verified' data-date='2026-10-06'>
+  <div class="policy-header"><div class="tags"><span class="tag tag-urgency-high">紧急-高</span><span class="tag tag-region">🇮🇩 印尼</span><span class="tag tag-category">国家监管</span><span class="tag tag-category">风险预警</span><span class="tag tag-status-progress">发展中</span><span class="tag tag-verified">✅ 3源交叉验证</span></div><div class="policy-date">2026-10-06</div></div>
+  <div class="policy-source">来源：Bisnis360 (10/4) / CNBC Indonesia (10/4) / KartiniMedia (10/4)</div>
+  <div class="policy-title">🇮🇩 OJK正式吊销Investree P2P借贷牌照(CIU)：印尼第三家被撤照P2P平台，此前iGrow/KoinP2P已遭处置</div>
+  <div class="policy-desc">OJK执行董事Agusman确认已<b>吊销PT Investree Radhika Jaya的互联网金融创新交易业务牌照(CIU)</b>，依据<b>POJK 49/2024第40条</b>（监督、状态确定及后续跟进），因"未能及时补救"违规。这是继<b>iGrow（2026年2月）</b>和<b>KoinP2P（2026年7月）</b>之后，印尼<b>第三家被撤照的P2P借贷平台</b>。Investree此前已收到OJK整改命令（2025年12月/2026年3月/6月）和警告函。印尼证券交易所(BEI)同步取消Investree公司债券上市资格。<b>对出海现金贷</b>：OJK通过POJK 49/2024建立的"问题平台识别→整改→吊销"执行链条持续运转，持牌机构面临越来越严格的合规淘汰机制。Investree被吊销后，lender资金回收成为核心问题。</div>
+  <div class="policy-tags">
+    <span class="tag tag-impact">影响：信贷环境</span>
+    <span class="tag tag-region">🇮🇩 印尼</span>
+    <span class="tag tag-tag">国家监管</span>
+    <span class="tag tag-tag">风险预警</span>
+    <span class="tag tag-urgency-high">紧急-高</span>
+    <span class="tag tag-date">📅 2026-10-06</span>
+  </div>
+</div>
+<div class="policy-item" data-source-links='[{"label": "DigiBanglaTech - BB flags 22 payment aggregators (10/4)", "url": "https://www.digibanglatech.news/post/bangladesh-bank-red-flags-22-payment-aggregators-and-31-illegal-loan-apps-in-crackdown-on-unregulated-financial-services"}, {"label": "BanglaNews24 - BB flags 22 payment aggregators (10/4)", "url": "https://en.banglanews24.com/tech/news/BB-flags-22-payment-aggregators-in-unauthorised-mobile-banking-push"}, {"label": "DigiBanglaTech Thai - 31 illegal loan apps (10/3)", "url": "https://www.digibanglatech.news/post/bangladesh-bank-reissues-warning-against-31-unauthorized-digital-lending-apps-amid-surge-in-illegal-online-loans"}]' data-region='孟加拉' data-categories='国家监管,风险预警' data-urgency='高' data-status='发展中' data-verified='verified' data-date='2026-10-06'>
+  <div class="policy-header"><div class="tags"><span class="tag tag-urgency-high">紧急-高</span><span class="tag tag-region">🇧🇩 孟加拉</span><span class="tag tag-category">国家监管</span><span class="tag tag-category">风险预警</span><span class="tag tag-status-progress">发展中</span><span class="tag tag-verified">✅ 3源交叉验证</span></div><div class="policy-date">2026-10-06</div></div>
+  <div class="policy-source">来源：DigiBanglaTech (10/4) / BanglaNews24 (10/4) / PSSD公告</div>
+  <div class="policy-title">🇧🇩 孟加拉央行BB新标记22家无牌支付聚合商+重申31个非法借贷APP警告：涉及bKash/Nagad/Upay等主要MFS</div>
+  <div class="policy-desc">孟加拉银行金融情报部门(BFIU)发布<b>新一轮公告</b>，首次<b>标记22家无支付服务商(PSS)牌照的支付聚合商</b>——这些聚合商通过API接入<b>bKash、Nagad、Upay、Rocket、Tap</b>等主要移动金融服务(MFS)，处理<b>超过$500万/月</b>的无授权交易，违反<b>2025年支付服务提供商(牌照)条例</b>。同时重申此前<b>31个非法在线贷款APP</b>的警告名单（8/29、9/20已录入）。BB要求所有持牌金融机构<b>立即终止</b>与无牌聚合商的合作关系，未合规机构将面临《银行公司法1991》第60条处罚。<b>对出海现金贷</b>：孟加拉支付清算链条成为监管新焦点——通过聚合商接入MFS渠道的借贷APP面临支付通道中断风险。合规PSS合作方的价值凸显。</div>
+  <div class="policy-tags">
+    <span class="tag tag-impact">影响：信贷环境</span>
+    <span class="tag tag-region">🇧🇩 孟加拉</span>
+    <span class="tag tag-tag">国家监管</span>
+    <span class="tag tag-tag">风险预警</span>
+    <span class="tag tag-urgency-high">紧急-高</span>
+    <span class="tag tag-date">📅 2026-10-06</span>
+  </div>
+</div>
+<div class="policy-item" data-source-links='[{"label": "ThePressngr - FairMoney debt trap controversy (10/4)", "url": "https://thepressngr.com/fairmoney-reels-under-renewed-scrutiny-as-borrowers-decry-1-3m-to-6-8m-debt-trap/"}, {"label": "NewsExtra - CBN/FCCPC urged to probe FairMoney (10/4)", "url": "https://newsextra.com.ng/cbn-fccpc-urged-to-probe-fairmoney-as-borrowers-sink-into-1-3m-6-8m-debt-trap/"}, {"label": "TouchAHeart - FairMoney under pressure (10/4)", "url": "https://touchaheart.com.ng/fairmoney-under-pressure-after-1-3m-to-6-8m-naira-loan-controversy/"}]' data-region='尼日利亚' data-categories='国家监管,投诉舆情' data-urgency='高' data-status='发展中' data-verified='verified' data-date='2026-10-06'>
+  <div class="policy-header"><div class="tags"><span class="tag tag-urgency-high">紧急-高</span><span class="tag tag-region">🇳🇬 尼日利亚</span><span class="tag tag-category">国家监管</span><span class="tag tag-category">投诉舆情</span><span class="tag tag-status-progress">发展中</span><span class="tag tag-verified">✅ 3源交叉验证</span></div><div class="policy-date">2026-10-06</div></div>
+  <div class="policy-source">来源：ThePressngr (10/4) / NewsExtra (10/4) / TouchAHeart (10/4)</div>
+  <div class="policy-title">🇳🇬 FairMoney陷入₦130万→₦680万债务陷阱争议，消费者呼吁CBN/FCCPC调查</div>
+  <div class="policy-desc">多名FairMoney借款人投诉：<b>₦130万贷款在短期内滚至₦680万</b>，引发广泛媒体关注。消费者保护组织呼吁CBN和FCCPC联合调查。争议焦点：①<b>隐性费用</b>——贷款保险费、管理费未纳入APR公示；②<b>催收行为</b>——借款人反映被骚扰、威胁；③<b>债务螺旋</b>——低利率宣传与实际还款金额严重不符。FairMoney此前已通过FCCPC合规承诺嵌入消费者保护流程（8/31已录入），但此次争议表明<b>合规框架与实际执行之间存在巨大差距</b>。FCCPC此前已多次约谈包括FairMoney在内的数字贷款机构。<b>对出海现金贷</b>：尼日利亚消费者保护意识持续增强，FCCPC/CBN联合执法力度加大。即使已完成合规流程，实际运营中的催收行为和费率透明度仍是核心风险点。</div>
+  <div class="policy-tags">
+    <span class="tag tag-impact">影响：信贷环境</span>
+    <span class="tag tag-region">🇳🇬 尼日利亚</span>
+    <span class="tag tag-tag">国家监管</span>
+    <span class="tag tag-tag">投诉舆情</span>
+    <span class="tag tag-urgency-high">紧急-高</span>
+    <span class="tag tag-date">📅 2026-10-06</span>
+  </div>
+</div>
+<div class="policy-item" data-source-links='[{"label": "DolarHoy - BCRA aprobó licencia bancaria para Mercado Pago (10/4)", "url": "https://dolarhoy.ar/actualidad/banco-mercado-pago-argentina-licencia-bancaria-bcra-fintech-banco-central-repUBLICA-argentina"}]' data-region='阿根廷' data-categories='国家监管,信贷环境' data-urgency='中' data-status='已实施' data-verified='unverified'>
+  <div class="policy-header"><div class="tags"><span class="tag tag-urgency-medium">紧急-中</span><span class="tag tag-region">🇦🇷 阿根廷</span><span class="tag tag-category">国家监管</span><span class="tag tag-category">信贷环境</span><span class="tag tag-status-active">已实施</span><span class="tag tag-unverified">⚠️ 未充分验证</span></div><div class="policy-date">2026-10-06</div></div>
+  <div class="policy-source">来源：DolarHoy (10/4)</div>
+  <div class="policy-title">🇦🇷 阿根廷BCRA正式批准Mercado Pago获得银行牌照：拉美最大金融科技公司从支付机构升级为持牌银行</div>
+  <div class="policy-desc">阿根廷央行(BCRA)正式批准Mercado Libre旗下金融平台<b>Mercado Pago获得银行牌照</b>，使其可全面提供存款、贷款等传统银行服务。Mercado Pago当前<b>年放款额超$400亿比索</b>，拥有超过<b>4000万用户</b>（接近阿根廷全国人口），此前因存款规模限制无法将全部用户资金投入信贷。升级为银行后可自主放贷+吸收存款，不再受限于"支付机构"的监管框架。<b>对出海现金贷</b>：阿根廷fintech生态进入"超级平台"阶段——Mercado Pago银行化意味着信贷供给能力大幅提升，独立现金贷APP面临更强的平台型竞争。拉美fintech银行化趋势（此前Nubank在巴西已实现类似路径）值得关注。⚠️ 仅1个信源(DolarHoy)，未充分验证。</div>
+  <div class="policy-tags">
+    <span class="tag tag-impact">影响：信贷环境</span>
+    <span class="tag tag-region">🇦🇷 阿根廷</span>
+    <span class="tag tag-tag">国家监管</span>
+    <span class="tag tag-tag">信贷环境</span>
+    <span class="tag tag-urgency-medium">紧急-中</span>
+    <span class="tag tag-date">📅 2026-10-06</span>
+  </div>
+</div>
 <div class="policy-item" data-source-links='[{"label": "Bisnis360 - OJK Tetapkan Status Pengawasan Fintech P2P Lending (10/3)", "url": "https://bisnis360media.com/ojk-tetapkan-status-pengawasan-bagi-sejumlah-fintech-p2p-lending-yang-hadapi-gagal-bayar-Ih8Pa9xahb"}, {"label": "Kontan - iGrow/KoinP2P/Akseleran default monitoring (10/3)", "url": "https://www.kontan.co.id/news/"}, {"label": "OJK RDK written response (8/4/2026)", "url": "https://bisnis360media.com/ojk-tetapkan-status-pengawasan-bagi-sejumlah-fintech-p2p-lending-yang-hadapi-gagal-bayar-Ih8Pa9xahb"}]' data-region='印尼' data-categories='国家监管,风险预警' data-urgency='中' data-status='发展中' data-verified='verified' data-date='2026-10-05'>
   <div class="policy-header"><div class="tags"><span class="tag tag-urgency-medium">紧急-中</span><span class="tag tag-region">🇮🇩 印尼</span><span class="tag tag-category">国家监管</span><span class="tag tag-category">风险预警</span><span class="tag tag-status-progress">发展中</span><span class="tag tag-verified">✅ 2源交叉验证</span></div><div class="policy-date">2026-10-05</div></div>
   <div class="policy-source">来源：Bisnis360 (10/3) / OJK RDK书面答复</div>
@@ -4052,7 +4119,7 @@ body {
                 基础数据：可靠渠道投放量榜单 + SimilarWeb/icharts 商店排名交叉验证（2026-09-07 周更）。投放量原始数据停更期间，以商店排名变动和经营主体异动为主要更新依据。
             </div>
             <div class="meta">
-                <span>📅 数据最后更新：<span class="last-updated-label">2026-10-05 19:00 (GMT+8)</span></span>
+                <span>📅 数据最后更新：<span class="last-updated-label">2026-10-06 19:00 (GMT+8)</span></span>
                 <span>🤖 自动更新：每日 09:30 / 19:00</span>
                 <span>📱 监控范围：APP 投放 / 客户投诉 / 社媒 / 监管 / 风险信号 / 经营主体异动</span>
             </div>
@@ -4645,7 +4712,7 @@ body {
 
                 <div class="app-card" data-app="SmartCash">
                     <div class="app-card-header">
-                        <span class="app-rank">9</span>
+                        <span class="app-rank">10</span>
                         <span class="app-name">SmartCash</span>
                     </div>
                     <div class="app-meta"><b>公司：</b>运营商未公开 / 待核</div>
@@ -5347,7 +5414,7 @@ body {
 
     // ── Theme Toggle ──
     var themeBtn = document.querySelector('.fab-theme');
-    var savedTheme = localStorage.getItem('policy-theme') || '';
+    var savedTheme = localStorage.getItem('policy-monitor-theme') || '';
     var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
     var currentTheme = savedTheme || (prefersDark ? 'dark' : 'light');
 
@@ -5375,7 +5442,7 @@ body {
             var isDark = document.documentElement.getAttribute('data-theme') === 'dark';
             var newTheme = isDark ? 'light' : 'dark';
             applyTheme(newTheme);
-            localStorage.setItem('policy-theme', newTheme);
+            localStorage.setItem('policy-monitor-theme', newTheme);
         });
     }
 
@@ -5628,9 +5695,6 @@ body {
 
 })();
 </script>
-<!-- Keyboard shortcut hint -->
-<div class="kbd-hint" id="kbdHint" role="button" tabindex="0" aria-label="显示键盘快捷键">⌨️ 快捷键</div>
-
 <!-- Keyboard shortcut modal -->
 <div class="kbd-modal-overlay" id="kbdOverlay">
     <div class="kbd-modal" role="dialog" aria-label="键盘快捷键">
@@ -5664,5 +5728,14 @@ function switchRankingTab(store) {
     }
 })();
 </script>
+
+<!-- Bottom Navigation v2 -->
+<nav class="bottom-nav">
+    <a href="/" class="nav-item"><span class="nav-icon">🏠</span><span>首页</span></a>
+    <a href="/payment-intel/" class="nav-item"><span class="nav-icon">💳</span><span>支付</span></a>
+    <a href="/policy-monitor/" class="nav-item active"><span class="nav-icon">🛡️</span><span>政策</span></a>
+    <a href="/stock-dash/" class="nav-item"><span class="nav-icon">📈</span><span>股市</span></a>
+</nav>
+
 </body>
 </html>
