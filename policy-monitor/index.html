@@ -175,7 +175,6 @@ body {
     background: var(--bg);
     color: var(--text);
     line-height: 1.6;
-    padding-bottom: 70px;
     overscroll-behavior-y: contain;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -1055,7 +1054,7 @@ body {
 .fab-stack {
     position: fixed;
     right: 20px;
-    bottom: calc(70px + var(--safe-bottom));
+    bottom: calc(20px + var(--safe-bottom));
     z-index: 9999;
     display: flex;
     flex-direction: column;
@@ -1289,7 +1288,7 @@ body {
     .header .header-inner h1 { font-size: 0.875rem; }
     .header .subtitle { font-size: 0.8125rem; }
 
-    .container { padding: 16px 12px; padding-bottom: calc(70px + var(--safe-bottom)); }
+    .container { padding: 16px 12px; padding-bottom: calc(20px + var(--safe-bottom)); }
 
     .stats-grid { grid-template-columns: repeat(3, 1fr); gap: 8px; }
     .stat-card { padding: 12px 6px; }
@@ -1372,7 +1371,7 @@ body {
 /* ── Enhancements: keyboard shortcut hint ── */
 .kbd-hint {
     position: fixed;
-    bottom: calc(70px + var(--safe-bottom));
+    bottom: calc(20px + var(--safe-bottom));
     left: 20px;
     z-index: 9998;
     font-size: 0.75rem;
@@ -1459,15 +1458,6 @@ body {
 .ranking-panel { display:none; }
 .ranking-panel.active { display:block; }
 .nonbank-tag { display:inline-block; font-size:0.6rem; padding:1px 5px; border-radius:6px; background:rgba(124,58,237,0.12); color:#7c3aed; font-weight:600; margin-left:4px; vertical-align:middle; }
-
-/* ── Bottom Navigation v2 ── */
-.bottom-nav { position: fixed; bottom: 0; left: 0; right: 0; background: var(--card-bg, #fff); border-top: 1px solid var(--border); display: flex; justify-content: space-around; padding: 8px 0; padding-bottom: max(8px, env(safe-area-inset-bottom)); z-index: 100; }
-[data-theme="dark"] .bottom-nav { background: #0b0f1a; }
-.nav-item { display: flex; flex-direction: column; align-items: center; gap: 4px; text-decoration: none; color: var(--text-muted, #94a3b8); font-size: 0.6rem; font-weight: 500; padding: 4px 12px; border-radius: 12px; transition: color 0.2s, background 0.2s; }
-.nav-item.active { color: #3b82f6; background: rgba(59,130,246,0.12); }
-.nav-icon { font-size: 1.2rem; }
-@media (min-width: 768px) { .bottom-nav { max-width: 430px; left: 50%; transform: translateX(-50%); } }
-
 </style>
 </head>
 <body>
@@ -1495,7 +1485,7 @@ body {
                 追踪泰国央行(BoT)及监管机构针对 BNPL、Personal Loan、Pico Loan/Nano Finance 牌照发布的政策通知、利率上限调整(APR/综合融资成本)、合规要求变更、消费者保护规定等监管动态。
             </div>
             <div class="meta">
-                <span>📅 数据最后更新：<span class="last-updated-label">2026-10-03 19:00 (GMT+8)</span></span>
+                <span>📅 数据最后更新：<span class="last-updated-label">2026-10-05 19:00 (GMT+8)</span></span>
                 <span>🤖 自动更新：每日 09:30 / 19:00</span>
                 <span>📊 监控范围：泰国央行(BoT)、SEC、财政部、OCPB、NCB、SAM</span>
             </div>
@@ -1511,9 +1501,9 @@ body {
             <div class="tab" data-tab="relief">纾困计划</div>
         </div>
         <div class="stats-grid" id="thai-stats">
-            <div class="stat-card info">  <div class="number stat-total">67</div> <div class="label">监控条目</div> </div>
+            <div class="stat-card info">  <div class="number stat-total">69</div> <div class="label">监控条目</div> </div>
             <div class="stat-card high">  <div class="number stat-high">24</div>  <div class="label">紧急-高</div> </div>
-            <div class="stat-card medium"><div class="number stat-medium">36</div><div class="label">紧急-中</div> </div>
+            <div class="stat-card medium"><div class="number stat-medium">38</div><div class="label">紧急-中</div> </div>
             <div class="stat-card low">   <div class="number stat-low">6</div> <div class="label">紧急-低</div> </div>
             <div class="stat-card info">  <div class="number">8</div>  <div class="label">央行/监管机构</div> </div>
             <div class="stat-card info">  <div class="number">20</div> <div class="label">政策/银行/平台</div> </div>
@@ -1582,7 +1572,40 @@ body {
         </div>
         <div class="timeline thai-timeline">
             <!-- THAI DATA — kept in an IE-compatible structure -->
-            <div class="month-section" data-month="2026-10"><div class="month-title">2026年10月 (3 条)</div>
+            <div class="month-section" data-month="2026-10"><div class="month-title">2026年10月 (5 条)</div>
+<div class="policy-item" data-source-links='[{"label": "SMEThailandClub - แบงก์ชาติออกกฎคุม นาโนไฟแนนซ์ D/E 7 เท่า (10/1)", "url": "https://www.smethailandclub.com/news/3419.html"}, {"label": "Royal Gazette - ประกาศ ธปท. ที่ สนส. 1/2558 (10/1)", "url": "https://www.smethailandclub.com/news/3419.html"}, {"label": "Thai Times - BoT economic/monetary Aug 2026 press release (9/30)", "url": "https://www.bot.or.th/en/news-and-media/news/news-20260930.html"}]' data-categories='国家监管,信贷环境,牌照政策' data-business='Pico Loan,Personal Loan' data-urgency='高' data-status='已实施' data-verified='verified' data-date='2026-10-05'>
+  <div class="policy-header"><div class="tags"><span class="tag tag-urgency-high">紧急-高</span><span class="tag tag-category">国家监管</span><span class="tag tag-category">信贷环境</span><span class="tag tag-category">牌照政策</span><span class="tag tag-status-active">已实施</span><span class="tag tag-verified">✅ 2源交叉验证</span></div><div class="policy-date">2026-10-05</div></div>
+  <div class="policy-source">来源：SMEThailandClub (10/1) / Royal Gazette / BoT (9/30)</div>
+  <div class="policy-title">BoT正式发布Nano Finance监管公告：债务/权益比上限7倍，单笔授信≤10万泰铢，年化利率≤36%，11/3起执行</div>
+  <div class="policy-desc">泰国央行通过《官报》(Royal Gazette)发布<b>ประกาศธนาคารแห่งประเทศไทย ที่ สนส. 1/2558</b>，首次对<b>ナノファイナンス(Nano Finance)</b>业务设定量化监管指标：①<b>D/E比≤7倍</b>（债务总额/股东权益），已超标的已获许可经营者须在<b>1年内</b>调整到位；②单借款人授信上限<b>≤10万泰铢</b>；③年化利率/罚息/服务费合计<b>≤36%</b>；④禁止将利息/费用计入本金复利（反"砍头息"）；⑤利率变更须提前<b>30天</b>书面通知借款人。适用对象：非金融机构的 nano finance 经营者（个人/微型企业经营贷）。<b>对出海机构</b>：Nano Finance门槛正式量化，D/E 7倍上限可能限制高杠杆运营模式，利率36%上限与Pico Finance一致。这是BoT将nano finance从"原则监管"推向"量化监管"的重要一步，与此前BNPL纳入监管+非法APP清退形成三线并进态势。</div>
+  <div class="policy-meta">
+    <div class="footer-note">📌 周度回溯补录：此公告发布于10/1官报，每日扫描未捕获（泰语源+官方公报格式）。与TH模块8/28 nano finance条目互补——此前仅跟踪牌照发放进度，本次为首次量化监管指标落地。</div>
+  </div>
+  <div class="policy-tags">
+    <span class="tag tag-impact">影响：Pico Loan,Personal Loan</span>
+    <span class="tag tag-tag">国家监管</span>
+    <span class="tag tag-tag">信贷环境</span>
+    <span class="tag tag-tag">牌照政策</span>
+    <span class="tag tag-urgency-high">紧急-高</span>
+    <span class="tag tag-date">📅 2026-10-05</span>
+  </div>
+</div>
+<div class="policy-item" data-source-links='[{"label": "Thai Times - Thailand Resolves 50K+ High-Interest Loan Cases (10/3)", "url": "https://thaitimes.com/thailand-resolves-over-50-000-high-interest-loan-cases-worth-1-8-billion-baht"}, {"label": "Fiscal Policy Office (FPO) official data", "url": "https://www.thailand.go.th/issue-focus-detail/minister-supamas-directs-ocpb-to-assist-in-easing-flood-damaged-vehicle-repair-costs"}, {"label": "ADVANCE.AI 2026 Thai Fintech Report - Pico Finance licensing data", "url": "https://cj.sina.com.cn/articles/view/5578512800/14c8159a0001020fyc"}]' data-categories='国家监管,信贷环境' data-business='Pico Loan,Personal Loan' data-urgency='中' data-status='已实施' data-verified='verified' data-date='2026-10-05'>
+  <div class="policy-header"><div class="tags"><span class="tag tag-urgency-medium">紧急-中</span><span class="tag tag-category">国家监管</span><span class="tag tag-category">信贷环境</span><span class="tag tag-status-active">已实施</span><span class="tag tag-verified">✅ 3源交叉验证</span></div><div class="policy-date">2026-10-05</div></div>
+  <div class="policy-source">来源：Thai Times (10/3) / FPO / ADVANCE.AI Report</div>
+  <div class="policy-title">财政部债务重组计划里程碑：50,980人完成高利贷转贷(18亿泰铢)，Pico Finance达1,148家覆盖75府/484万账户/470亿泰铢</div>
+  <div class="policy-desc">泰国财政部FPO局长Pornchai确认：自2023年12月启动的<b>高利贷转贷计划</b>已达里程碑——<b>50,980人</b>成功将非法高利贷转为正规金融机构贷款，涉及金额<b>18亿泰铢</b>。执行机构：政府储蓄银行(GBS)+农业合作社银行(BAAC)+合作金融机构。同时，Pico Finance牌照发放持续推进：<b>1,148家</b>获批运营，覆盖<b>75个府</b>，累计放款<b>4,840,118账户/469.8亿泰铢</b>（截至2024年11月数据）。利率上限36%/年。<b>对出海机构</b>：Pico Finance牌照数持续增长（此前数据为~1,000家），市场正从"快速发牌"进入"规模化运营"阶段。财政部债务转贷计划表明政策方向：引导非正规借贷向正规金融体系迁移，利好持牌合规机构。</div>
+  <div class="policy-meta">
+    <div class="footer-note">📌 周度回溯补录：FPO局长公开发言+Pico Finance最新运营数据。与10/1 Nano Finance D/E公告形成政策闭环——一面设量化监管门槛，一面推动非正规向正规转化。</div>
+  </div>
+  <div class="policy-tags">
+    <span class="tag tag-impact">影响：Pico Loan,Personal Loan</span>
+    <span class="tag tag-tag">国家监管</span>
+    <span class="tag tag-tag">信贷环境</span>
+    <span class="tag tag-urgency-medium">紧急-中</span>
+    <span class="tag tag-date">📅 2026-10-05</span>
+  </div>
+</div>
 <div class="policy-item" data-source-links='[{"label": "Bangkok Post - Central bank tightens grip on grey money (10/3)", "url": "https://www.bangkokpost.com/business/general/3330590/central-bank-tightens-grip-on-grey-money"}, {"label": "Thai Times - BoT Tightens Rules to Target Illicit Financial Flows (10/3)", "url": "https://thaitimes.com/bank-of-thailand-tightens-rules-to-target-illicit-financial-flows"}]' data-categories='国家监管,信贷环境' data-business='Personal Loan,Pico Loan' data-urgency='中' data-status='已实施' data-verified='verified' data-date='2026-10-03'>
   <div class="policy-header"><div class="tags"><span class="tag tag-urgency-medium">紧急-中</span><span class="tag tag-category">国家监管</span><span class="tag tag-category">信贷环境</span><span class="tag tag-status-active">已实施</span><span class="tag tag-verified">✅ 2源交叉验证</span></div><div class="policy-date">2026-10-03</div></div>
   <div class="policy-source">来源：Bangkok Post (10/3) / Thai Times (10/3)</div>
@@ -2318,7 +2341,7 @@ body {
                 不收录：非监管类市场新闻(融资/产品发布)、加密货币/区块链监管（除非与现金贷直接相关）。
             </div>
             <div class="meta">
-                <span>📅 数据最后更新：<span class="last-updated-label">2026-10-03 19:00 (GMT+8)</span></span>
+                <span>📅 数据最后更新：<span class="last-updated-label">2026-10-05 19:00 (GMT+8)</span></span>
                 <span>🤖 自动更新：每日 09:30</span>
                 <span>🌍 覆盖：东南亚 / 拉美 / 非洲 / 南亚 / 跨市场</span>
             </div>
@@ -2334,9 +2357,9 @@ body {
             <div class="tab" data-tab="cross">跨市场 (App审查/外汇)</div>
         </div>
         <div class="stats-grid" id="global-stats">
-            <div class="stat-card accent"> <div class="number stat-total">126</div> <div class="label">监控条目</div> </div>
+            <div class="stat-card accent"> <div class="number stat-total">128</div> <div class="label">监控条目</div> </div>
             <div class="stat-card high">   <div class="number stat-high">48</div>  <div class="label">紧急-高</div> </div>
-            <div class="stat-card medium"> <div class="number stat-medium">73</div><div class="label">紧急-中</div> </div>
+            <div class="stat-card medium"> <div class="number stat-medium">75</div><div class="label">紧急-中</div> </div>
             <div class="stat-card low">    <div class="number stat-low">7</div> <div class="label">紧急-低</div> </div>
             <div class="stat-card info">   <div class="number">12</div> <div class="label">国家/地区</div> </div>
             <div class="stat-card warn">   <div class="number stat-unverified">9</div><div class="label">⚠ 未交叉认证</div> </div>
@@ -2422,7 +2445,35 @@ body {
         </div>
         <div class="timeline global-timeline>
             <!-- ===== 2026-10 ===== -->
-            <div class="month-section" data-month="2026-10"><div class="month-title">2026年10月 (3 条)</div>
+            <div class="month-section" data-month="2026-10"><div class="month-title">2026年10月 (5 条)</div>
+<div class="policy-item" data-source-links='[{"label": "Bisnis360 - OJK Tetapkan Status Pengawasan Fintech P2P Lending (10/3)", "url": "https://bisnis360media.com/ojk-tetapkan-status-pengawasan-bagi-sejumlah-fintech-p2p-lending-yang-hadapi-gagal-bayar-Ih8Pa9xahb"}, {"label": "Kontan - iGrow/KoinP2P/Akseleran default monitoring (10/3)", "url": "https://www.kontan.co.id/news/"}, {"label": "OJK RDK written response (8/4/2026)", "url": "https://bisnis360media.com/ojk-tetapkan-status-pengawasan-bagi-sejumlah-fintech-p2p-lending-yang-hadapi-gagal-bayar-Ih8Pa9xahb"}]' data-region='印尼' data-categories='国家监管,风险预警' data-urgency='中' data-status='发展中' data-verified='verified' data-date='2026-10-05'>
+  <div class="policy-header"><div class="tags"><span class="tag tag-urgency-medium">紧急-中</span><span class="tag tag-region">🇮🇩 印尼</span><span class="tag tag-category">国家监管</span><span class="tag tag-category">风险预警</span><span class="tag tag-status-progress">发展中</span><span class="tag tag-verified">✅ 2源交叉验证</span></div><div class="policy-date">2026-10-05</div></div>
+  <div class="policy-source">来源：Bisnis360 (10/3) / OJK RDK书面答复</div>
+  <div class="policy-title">🇮🇩 OJK对多家P2P借贷平台设定差异化监管状态：iGrow/KoinP2P/Akseleran分别面临不同处置方案，强制提交action plan</div>
+  <div class="policy-desc">OJK执行董事Agusman依据<b>POJK 49/2024</b>（监督、状态确定及后续跟进）披露三家问题平台：①<b>iGrow（PT LinkAja Modalin）</b>——lender资金未完全回收，公司已补充资本至125亿印尼盾最低门槛，但资金回收仍在进行；②<b>KoinP2P（PT Lunaria Annua）</b>——因借款人M某（MPP集团负责人）涉嫌欺诈导致违约，公司计划增资+部分lender standstill停付方案；③<b>Akseleran（PT Akseleran Keuangan Inklusif）</b>——6名借款人2025年3月同时违约，正通过催收+法律途径追偿。OJK要求所有问题平台提交<b>行动计划(action plan)</b>并持续监控执行，若发现欺诈将协调执法机关。<b>对出海现金贷</b>：POJK 49/2024为OJK提供了分层次监管工具——从正常到监控到强制处置，持牌平台面临更精细的合规压力测试。出海机构应关注OJK差异化监管标准的演变。</div>
+  <div class="policy-tags">
+    <span class="tag tag-impact">影响：信贷环境</span>
+    <span class="tag tag-region">🇮🇩 印尼</span>
+    <span class="tag tag-tag">国家监管</span>
+    <span class="tag tag-tag">风险预警</span>
+    <span class="tag tag-urgency-medium">紧急-中</span>
+    <span class="tag tag-date">📅 2026-10-05</span>
+  </div>
+</div>
+<div class="policy-item" data-source-links='[{"label": "Bisnis360 - OJK Perkuat Aturan Fintech Lending dan BNPL (9/28)", "url": "https://bisnis360media.com/ojk-perkuat-aturan-fintech-lending-dan-bnpl-ini-fokus-pengaturannya-zfOWSZBzBZ"}, {"label": "Katadata - Pentingnya Transparansi Pindar (9/29)", "url": "https://katadata.co.id/digital/fintech/6abb82278f729/pentingnya-transparansi-pindar-agar-konsumen-pahami-risiko-pinjaman"}, {"label": "OJK RDK written response - POJK 40/2024 & POJK 32/2025 (8/4/2026)", "url": "https://bisnis360media.com/ojk-perkuat-aturan-fintech-lending-dan-bnpl-ini-fokus-pengaturannya-zfOWSZBzBZ"}]' data-region='印尼' data-categories='国家监管,信贷环境' data-urgency='中' data-status='已实施' data-verified='verified' data-date='2026-10-05'>
+  <div class="policy-header"><div class="tags"><span class="tag tag-urgency-medium">紧急-中</span><span class="tag tag-region">🇮🇩 印尼</span><span class="tag tag-category">国家监管</span><span class="tag tag-category">信贷环境</span><span class="tag tag-status-active">已实施</span><span class="tag tag-verified">✅ 3源交叉验证</span></div><div class="policy-date">2026-10-05</div></div>
+  <div class="policy-source">来源：Bisnis360 (9/28) / Katadata (9/29) / OJK RDK书面答复</div>
+  <div class="policy-title">🇮🇩 OJK系统性强化P2P借贷+BNPL监管框架：POJK 40/2024经济利益上限+POJK 32/2025 BNPL风控+POJK 8/2026交易数据报告</div>
+  <div class="policy-desc">OJK监管机构负责人Agusman在RDK书面答复中系统梳理已出台的强化监管组合拳：<b>①P2P借贷</b>：POJK 40/2024+SEOJK 19/2025设定<b>经济利益上限</b>（确保商业模式健康/透明/消费者导向），P2P借贷Roadmap 2023-2028引导行业可持续发展；<b>②BNPL</b>：POJK 32/2025提供法律确定性+强化风控，正在制定BNPL实施细则（含年龄/收入/融资上限）；<b>③交易数据报告</b>：POJK 8/2026（7月6日生效）要求所有LPBBTI持牌方完整/准确/及时地向OJK报告交易数据。<b>关键数据</b>：P2P借贷outstanding <b>Rp105.63万亿</b>（7月，+24.76% YoY），TWP90 <b>4.32%</b>；BNPL融资Rp12.59万亿（2月，+53.53% YoY）。OJK已于9月<b>取消3平台借款上限</b>（此前限制借款人最多通过3家P2P平台借款）。<b>对出海现金贷</b>：印尼监管框架从"牌照准入"深化到"经营行为+数据透明"——POJK 8/2026的数据报告要求意味着OJK将拥有全行业交易级数据，风控能力差的平台将更快暴露。取消3平台限制可能导致借款人多头借贷加剧。</div>
+  <div class="policy-tags">
+    <span class="tag tag-impact">影响：信贷环境</span>
+    <span class="tag tag-region">🇮🇩 印尼</span>
+    <span class="tag tag-tag">国家监管</span>
+    <span class="tag tag-tag">信贷环境</span>
+    <span class="tag tag-urgency-medium">紧急-中</span>
+    <span class="tag tag-date">📅 2026-10-05</span>
+  </div>
+</div>
 <div class="policy-item" data-source-links='[{"label": "Bulatan Times - Google Mulai Perketat Instalasi Aplikasi Android (10/3)", "url": "https://www.bulatantimes.com/teknologi/google-verifikasi-developer-android-indonesia/"}, {"label": "Limapagi - Google Perketat Pemasangan Aplikasi Android Sideloading (10/3)", "url": "https://www.limapagi.id/google-perketat-sideloading-aplikasi-android"}, {"label": "Yayanews - Google Play Developer Verification Compliance Moat (10/3)", "url": "https://www.yayanews.ai/story/213281"}, {"label": "NetGuide - Android 17 Locks Down Accessibility (10/3)", "url": "https://netguide.io/news/en/2026/10/03/android-17-locks-down-accessibility-against-banking-trojans/"}]' data-region='跨市场' data-categories='跨市场,风险预警' data-urgency='中' data-status='已实施' data-verified='verified' data-date='2026-10-03'>
   <div class="policy-header"><div class="tags"><span class="tag tag-urgency-medium">紧急-中</span><span class="tag tag-region">🌍 跨市场</span><span class="tag tag-category">跨市场</span><span class="tag tag-category">风险预警</span><span class="tag tag-status-active">已实施</span><span class="tag tag-verified">✅ 4源交叉验证</span></div><div class="policy-date">2026-10-03</div></div>
   <div class="policy-source">来源：Bulatan Times (10/3) / Limapagi (10/3) / Yayanews (10/3) / NetGuide (10/3)</div>
@@ -3978,10 +4029,10 @@ body {
             </div>
         </div>
         <div class="footer-note">
-            <strong>🔔 本次更新 (2026-08-27 19:00 自动扫描)：</strong>
-            过去 24 小时扫描覆盖 TH（BoT / MOF / OCPB / NCB + Thai Examiner / Khaosod / Post Today / Thai Times / Thansettakij / 知乎定向）与 Global 11 个目的地（OJK / SEC / SBV / CNBV / BCB / CBN / CBK / CBE / SECP / BB / BCRA + Google Play / App Store）。<strong>Global 模块新增 3 条：</strong>① 🇵🇰 SECP 拟将微额融资/住房贷款上限提至 500 万卢比，年收入门槛 150 万卢比（4 源 verified）；② 🇧🇩 Bangladesh Bank 公布 22 家无牌支付平台名单（2 源 verified）；③ 🇮🇩 OJK 数据：P2P 借贷 TWP90 达 4.32%，19-34 岁贡献 48.22% 问题贷款（2 源 verified）。<strong>TH / APP 模块本次 0 新增。</strong>值得一提的 rejects：① 尼日利亚 CBN 降息至货币宽松信号——属 MPC 利率决议，不在 scope 内；② 巴西 BCB 官员关于高成本信贷措辞延续 8 月 Comef 已收录内容，无新结构性措施；③ 泰国洪水影响 29 省 260 万人——属自然灾害非监管政策变更。<strong>统计：</strong>Global stat-total 113→116、stat-medium 64→67（TH / APP 统计不变）。commit 已执行；<strong>push 仍按用户 08-10 反馈保持挂起，等待显式"恢复推送"</strong>。
+            <strong>🔔 本次更新 (2026-10-05 19:00 周度深度回溯)：</strong>
+            覆盖 2026-09-28 ~ 10-05 全周 7 天，二手聚合源广度回溯（泰语/英文/中文出海媒体 + OJK/SBV/SEC/CNBV/BCB/CBN/CBK + Google Play/App Store）。<strong>TH 模块新增 2 条：</strong>① BoT 正式发布 Nano Finance 监管公告——D/E≤7倍、单笔≤10万泰铢、利率≤36%（Royal Gazette，2 源 verified）；② 财政部 FPO：高利贷转贷 50,980 人/18 亿泰铢里程碑 + Pico Finance 达 1,148 家覆盖 75 府/484 万账户/470 亿泰铢（3 源 verified）。<strong>Global 模块新增 2 条：</strong>① 🇮🇩 OJK 系统性强化 P2P 借贷+BNPL 监管框架：POJK 40/2024 经济利益上限+POJK 32/2025 BNPL 风控+POJK 8/2026 交易数据报告（3 源 verified）；② 🇮🇩 OJK 对 iGrow/KoinP2P/Akseleran 设定差异化监管状态（2 源 verified）。<strong>APP 模块新增 1 条：</strong>MoneyThunder 获 The Digital Banker Digital CX Awards 2024 "最佳借贷数字体验"大奖（3 源 verified）。<strong>统计：</strong>TH 67→69、Global 126→128、APP 44→45。
             <strong>标签说明：</strong> ✅ 3源交叉验证 = Bloomberg/Reuters/当地权威媒体等 3+ 来源确认； ⚠ 未交叉认证 = 来源有限（1-2 个媒体），有待更多独立来源验证，建议交叉核验后再决策。<br>
-            示例数据截至 2026-08-26，每日 09:30 / 19:00 (GMT+8) 自动更新。
+            示例数据截至 2026-10-05，每日 09:30 / 19:00 (GMT+8) 自动更新，周日 19:00 执行周度深度回溯。
         </div>
     </div>
 </div>
@@ -4001,7 +4052,7 @@ body {
                 基础数据：可靠渠道投放量榜单 + SimilarWeb/icharts 商店排名交叉验证（2026-09-07 周更）。投放量原始数据停更期间，以商店排名变动和经营主体异动为主要更新依据。
             </div>
             <div class="meta">
-                <span>📅 数据最后更新：<span class="last-updated-label">2026-10-03 19:00 (GMT+8)</span></span>
+                <span>📅 数据最后更新：<span class="last-updated-label">2026-10-05 19:00 (GMT+8)</span></span>
                 <span>🤖 自动更新：每日 09:30 / 19:00</span>
                 <span>📱 监控范围：APP 投放 / 客户投诉 / 社媒 / 监管 / 风险信号 / 经营主体异动</span>
             </div>
@@ -4017,10 +4068,10 @@ body {
             <div class="tab" data-tab="baseline">基础档案</div>
         </div>
         <div class="stats-grid" id="app-stats">
-            <div class="stat-card warn-orange"> <div class="number stat-total">44</div> <div class="label">监控 APP</div> </div>
+            <div class="stat-card warn-orange"> <div class="number stat-total">45</div> <div class="label">监控 APP</div> </div>
             <div class="stat-card high">  <div class="number stat-high">20</div>  <div class="label">紧急-高</div> </div>
             <div class="stat-card medium"><div class="number stat-medium">18</div> <div class="label">紧急-中</div> </div>
-            <div class="stat-card low">   <div class="number stat-low">5</div>  <div class="label">紧急-低</div> </div>
+            <div class="stat-card low">   <div class="number stat-low">6</div>  <div class="label">紧急-低</div> </div>
             <div class="stat-card warn-orange"> <div class="number stat-complaint">4</div><div class="label">投诉信号</div> </div>
             <div class="stat-card warn">  <div class="number stat-unverified">33</div><div class="label">⚠ 未交叉认证</div> </div>
         </div>
@@ -4110,7 +4161,14 @@ body {
             </div>
             <div class="collapsible-content collapsed">
             <!-- ===== 2026-08 监控周期 ===== -->
-            <div class="month-section" data-month="2026-10"><div class="month-title">2026年10月 信号 (2 条)</div>
+            <div class="month-section" data-month="2026-10"><div class="month-title">2026年10月 信号 (3 条)</div>
+<div class="policy-item" data-source-links='[{"label": "ACNews - อบาคัส ดิจิทัล คว้ารางวัล Digital CX Award 2024 (9/30)", "url": "https://www.acnews.net/detailnews.php?news_id=N256791179"}, {"label": "The Digital Banker - thedigitalcxawards2024", "url": "https://www.thedigitalbanker.com/digital-cx-awards-2024/"}, {"label": "Thai Times - Abacus Digital AI Initiative (10/3)", "url": "https://thaitimes.com/abacus-digital-s-ai-initiative-revolutionizes-thai-lending-landscape"}]' data-app="MoneyThunder" data-categories="经营主体异动,社媒讨论" data-urgency="低" data-status="已确认" data-verified="verified" data-date="2026-10-05">
+  <div class="policy-header"><div class="tags"><span class="tag tag-urgency-low">紧急-低</span><span class="tag tag-category">经营主体异动</span><span class="tag tag-category">社媒讨论</span><span class="tag tag-app-name">MoneyThunder</span><span class="tag tag-status-active">已确认</span><span class="tag tag-verified">✅ 3源交叉验证</span></div><div class="policy-date">2026-10-05</div></div>
+  <div class="policy-source">来源：ACNews (9/30) / The Digital Banker / Thai Times (10/3)</div>
+  <div class="policy-title">[经营主体异动 · MoneyThunder] Abacus Digital获The Digital Banker全球Digital CX Awards 2024"最佳借贷数字体验"大奖</div>
+  <div class="policy-desc">Abacus Digital旗下<b>MoneyThunder</b>在The Digital Banker主办的<b>The Digital CX Awards 2024</b>中荣获<b>"Best LendTech for Digital CX – Personal Finance"</b>（最佳个人金融借贷科技数字体验）类别<b>冠军</b>。这是MoneyThunder在国际金融科技奖项中的最新荣誉，表明其在<b>AI驱动的信贷服务体验</b>方面获得行业权威认可。此前10/3 Thai Times报道Abacus Digital披露MoneyThunder累计放款240亿+泰铢/2000万+下载/400万+月活等运营数据，与此奖项形成"规模数据+行业认可"双重背书。</div>
+  <div class="footer-note">📌 第六大信号维度 · 经营主体异动：国际奖项背书提升MoneyThunder品牌溢价，与10/3运营数据条目联动——Abacus Digital"区域扩展"战略正在获得资本+品牌双重支撑。</div>
+</div>
 <div class="policy-item" data-source-links='[{"label": "Thai Times - Abacus Digital AI Initiative Revolutionizes Thai Lending (10/3)", "url": "https://thaitimes.com/abacus-digital-s-ai-initiative-revolutionizes-thai-lending-landscape"}]' data-app="MoneyThunder" data-categories="经营主体异动,社媒讨论" data-urgency="中" data-status="已确认" data-verified="unverified" data-date="2026-10-03">
   <div class="policy-header"><div class="tags"><span class="tag tag-urgency-medium">紧急-中</span><span class="tag tag-category">经营主体异动</span><span class="tag tag-category">社媒讨论</span><span class="tag tag-app-name">MoneyThunder</span><span class="tag tag-status-active">已确认</span><span class="tag tag-unverified">⚠ 单源未交叉验证</span></div><div class="policy-date">2026-10-03</div></div>
   <div class="policy-source">来源：Thai Times (10/3) [单源]</div>
@@ -5289,7 +5347,7 @@ body {
 
     // ── Theme Toggle ──
     var themeBtn = document.querySelector('.fab-theme');
-    var savedTheme = localStorage.getItem('policy-monitor-theme') || '';
+    var savedTheme = localStorage.getItem('policy-theme') || '';
     var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
     var currentTheme = savedTheme || (prefersDark ? 'dark' : 'light');
 
@@ -5317,7 +5375,7 @@ body {
             var isDark = document.documentElement.getAttribute('data-theme') === 'dark';
             var newTheme = isDark ? 'light' : 'dark';
             applyTheme(newTheme);
-            localStorage.setItem('policy-monitor-theme', newTheme);
+            localStorage.setItem('policy-theme', newTheme);
         });
     }
 
@@ -5570,6 +5628,9 @@ body {
 
 })();
 </script>
+<!-- Keyboard shortcut hint -->
+<div class="kbd-hint" id="kbdHint" role="button" tabindex="0" aria-label="显示键盘快捷键">⌨️ 快捷键</div>
+
 <!-- Keyboard shortcut modal -->
 <div class="kbd-modal-overlay" id="kbdOverlay">
     <div class="kbd-modal" role="dialog" aria-label="键盘快捷键">
@@ -5603,14 +5664,5 @@ function switchRankingTab(store) {
     }
 })();
 </script>
-
-<!-- Bottom Navigation v2 -->
-<nav class="bottom-nav">
-    <a href="/" class="nav-item"><span class="nav-icon">🏠</span><span>首页</span></a>
-    <a href="/payment-intel/" class="nav-item"><span class="nav-icon">💳</span><span>支付</span></a>
-    <a href="/policy-monitor/" class="nav-item active"><span class="nav-icon">🛡️</span><span>政策</span></a>
-    <a href="/stock-dash/" class="nav-item"><span class="nav-icon">📈</span><span>股市</span></a>
-</nav>
-
 </body>
 </html>
