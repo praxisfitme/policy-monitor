@@ -1460,6 +1460,7 @@ body {
 .ranking-panel.active { display:block; }
 .nonbank-tag { display:inline-block; font-size:0.6rem; padding:1px 5px; border-radius:6px; background:rgba(124,58,237,0.12); color:#7c3aed; font-weight:600; margin-left:4px; vertical-align:middle; }
 
+
 /* ── Bottom Navigation v2 ── */
 .bottom-nav { position: fixed; bottom: 0; left: 0; right: 0; background: #ffffff; border-top: 1px solid #e2e8f0; display: flex; justify-content: space-around; padding: 8px 0; padding-bottom: max(8px, env(safe-area-inset-bottom)); z-index: 1000; box-shadow: 0 -2px 10px rgba(0,0,0,0.05); }
 [data-theme="dark"] .bottom-nav { background: #181d2b; border-top-color: #2a3142; box-shadow: 0 -2px 10px rgba(0,0,0,0.4); }
@@ -5483,10 +5484,10 @@ body {
             if (metaTheme) metaTheme.setAttribute('content', '#2563eb');
         }
     }
-    applyTheme(currentTheme);
+    /* theme init moved to injected script */
 
     if (themeBtn) {
-        themeBtn.addEventListener('click', function() {
+        /* old theme click removed */; if(false) themeBtn.addEventListener('click', function() {
             var isDark = document.documentElement.getAttribute('data-theme') === 'dark';
             var newTheme = isDark ? 'light' : 'dark';
             applyTheme(newTheme);
@@ -5781,6 +5782,7 @@ function switchRankingTab(store) {
 </div>
 </div>
 
+
 <!-- ============================================================ -->
 <!--  FLOATING BUTTONS + FEEDBACK MODAL (injected by post_process)  -->
 <!-- ============================================================ -->
@@ -5817,6 +5819,29 @@ function switchRankingTab(store) {
     <a href="/policy-monitor/" class="nav-item active"><span class="nav-icon">🛡️</span><span>政策</span></a>
     <a href="/stock-dash/" class="nav-item"><span class="nav-icon">📈</span><span>股市</span></a>
 </nav>
+
+<script>
+// Theme toggle — runs after fab-stack HTML is in DOM
+(function() {
+    var btn = document.querySelector('.fab-theme');
+    if (!btn) return;
+    var key = 'policy-monitor-theme';
+    var saved = localStorage.getItem(key) || '';
+    var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    var isDark = saved ? saved === 'dark' : prefersDark;
+    function apply() {
+        document.documentElement.setAttribute('data-theme', isDark ? 'dark' : 'light');
+        btn.textContent = isDark ? '☀️' : '🌙';
+        btn.title = isDark ? '切换浅色模式' : '切换深色模式';
+    }
+    apply();
+    btn.addEventListener('click', function() {
+        isDark = !isDark;
+        localStorage.setItem(key, isDark ? 'dark' : 'light');
+        apply();
+    });
+})();
+</script>
 
 </body>
 </html>
