@@ -48,24 +48,28 @@
         .status-label { font-size: 0.6rem; opacity: 0.8; }
         .status-visits { display: flex; gap: 10px; font-size: 0.7rem; opacity: 0.9; font-variant-numeric: tabular-nums; }
         .status-visits span { font-weight: 700; }
-        /* quick-stats removed — visits now in status-bar */
         .section { margin: 0 20px 20px; }
         .section-title { font-size: 1rem; font-weight: 700; margin-bottom: 12px; }
-        .modules { display: flex; flex-direction: column; gap: 12px; }
-        .module { background: var(--card); border-radius: var(--radius); padding: 20px 16px; box-shadow: var(--shadow); text-decoration: none; color: var(--text); display: flex; align-items: flex-start; gap: 14px; transition: transform 0.2s, box-shadow 0.2s; cursor: pointer; position: relative; overflow: hidden; min-height: 100px; }
-        .module::after { content: '›'; position: absolute; right: 16px; top: 50%; transform: translateY(-50%); font-size: 1.5rem; color: var(--text-tertiary); font-weight: 300; }
+        .modules { display: flex; flex-direction: column; gap: 14px; }
+        .module { background: var(--card); border-radius: var(--radius); box-shadow: var(--shadow); text-decoration: none; color: var(--text); display: flex; flex-direction: column; transition: transform 0.2s, box-shadow 0.2s; cursor: pointer; position: relative; overflow: hidden; min-height: 180px; }
         .module:active { transform: scale(0.98); box-shadow: var(--shadow-lg); }
-        .module-icon { width: 48px; height: 48px; border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; flex-shrink: 0; margin-top: 2px; }
+        .module-accent { height: 4px; width: 100%; flex-shrink: 0; }
+        .module-payment .module-accent { background: linear-gradient(90deg, #f97316, #fb923c); }
+        .module-policy .module-accent { background: linear-gradient(90deg, #3b82f6, #60a5fa); }
+        .module-stock .module-accent { background: linear-gradient(90deg, #8b5cf6, #a78bfa); }
+        .module-body { flex: 1; display: flex; flex-direction: column; padding: 16px 18px 14px; }
+        .module-header { display: flex; align-items: center; gap: 12px; margin-bottom: 10px; }
+        .module-icon { width: 44px; height: 44px; border-radius: 13px; display: flex; align-items: center; justify-content: center; font-size: 1.4rem; flex-shrink: 0; }
         .module-payment .module-icon { background: var(--accent-orange-light); }
         .module-policy .module-icon { background: var(--accent-blue-light); }
         .module-stock .module-icon { background: var(--accent-purple-light); }
-        .module-info { flex: 1; min-width: 0; padding-right: 24px; }
-        .module-title { font-size: 0.95rem; font-weight: 700; margin-bottom: 4px; }
-        .module-desc { font-size: 0.72rem; color: var(--text-secondary); line-height: 1.5; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
-        .module-meta { display: flex; flex-direction: column; align-items: flex-end; gap: 4px; flex-shrink: 0; margin-top: 2px; }
-        .module-badge { font-size: 0.65rem; font-weight: 600; padding: 3px 8px; border-radius: 100px; background: var(--accent-green-light); color: #4d7c0f; }
+        .module-title { font-size: 1rem; font-weight: 700; }
+        .module-desc { font-size: 0.78rem; color: var(--text-secondary); line-height: 1.6; flex: 1; }
+        .module-footer { display: flex; align-items: center; justify-content: space-between; margin-top: auto; padding-top: 12px; border-top: 1px solid var(--border); }
+        .module-badge { font-size: 0.68rem; font-weight: 600; padding: 3px 10px; border-radius: 100px; background: var(--accent-green-light); color: #4d7c0f; }
         [data-theme="dark"] .module-badge { color: #84cc16; }
         .module-visits { font-size: 0.65rem; color: var(--text-tertiary); font-variant-numeric: tabular-nums; }
+        .module-arrow { font-size: 1.2rem; color: var(--text-tertiary); font-weight: 300; margin-left: 8px; }
 
         .bottom-nav { position: fixed; bottom: 0; left: 0; right: 0; background: var(--card); border-top: 1px solid var(--border); display: flex; justify-content: space-around; padding: 8px 0; padding-bottom: max(8px, env(safe-area-inset-bottom)); z-index: 100; }
         .nav-item { display: flex; flex-direction: column; align-items: center; gap: 4px; text-decoration: none; color: var(--text-tertiary); font-size: 0.6rem; font-weight: 500; padding: 4px 12px; border-radius: 12px; transition: color 0.2s, background 0.2s; }
@@ -96,19 +100,55 @@
         <div class="section-title">监控面板</div>
         <div class="modules">
             <a href="/payment-intel/" class="module module-payment">
-                <div class="module-icon">💳</div>
-                <div class="module-info"><div class="module-title">跨境支付情报</div><div class="module-desc">全球支付政策 · Crypto 监管 · 品牌战略</div></div>
-                <div class="module-meta"><span class="module-badge">107 条</span><span class="module-visits"> <span class="visit-count" data-page="payment">--</span></span></div>
+                <div class="module-accent"></div>
+                <div class="module-body">
+                    <div class="module-header">
+                        <div class="module-icon">💳</div>
+                        <div class="module-title">跨境支付情报</div>
+                    </div>
+                    <div class="module-desc">全球支付政策 · Crypto 监管 · 品牌战略</div>
+                    <div class="module-footer">
+                        <span class="module-badge">107 条</span>
+                        <div style="display:flex;align-items:center;gap:4px;">
+                            <span class="module-visits"><span class="visit-count" data-page="payment">--</span></span>
+                            <span class="module-arrow">›</span>
+                        </div>
+                    </div>
+                </div>
             </a>
             <a href="/policy-monitor/" class="module module-policy">
-                <div class="module-icon">🛡️</div>
-                <div class="module-info"><div class="module-title">泰国政策监控</div><div class="module-desc">BNPL · Personal Loan · 出海监管动态</div></div>
-                <div class="module-meta"><span class="module-badge">165 条</span><span class="module-visits">👁 <span class="visit-count" data-page="policy">--</span></span></div>
+                <div class="module-accent"></div>
+                <div class="module-body">
+                    <div class="module-header">
+                        <div class="module-icon">🛡️</div>
+                        <div class="module-title">泰国政策监控</div>
+                    </div>
+                    <div class="module-desc">BNPL · Personal Loan · 出海监管动态</div>
+                    <div class="module-footer">
+                        <span class="module-badge">165 条</span>
+                        <div style="display:flex;align-items:center;gap:4px;">
+                            <span class="module-visits"><span class="visit-count" data-page="policy">--</span></span>
+                            <span class="module-arrow">›</span>
+                        </div>
+                    </div>
+                </div>
             </a>
             <a href="/stock-dash/" class="module module-stock">
-                <div class="module-icon">📈</div>
-                <div class="module-info"><div class="module-title">股市盯盘看板</div><div class="module-desc">A 股·港股·美股 · 基金净值 · 宏观指标</div></div>
-                <div class="module-meta"><span class="module-badge">三市</span><span class="module-visits"> <span class="visit-count" data-page="stock">--</span></span></div>
+                <div class="module-accent"></div>
+                <div class="module-body">
+                    <div class="module-header">
+                        <div class="module-icon">📈</div>
+                        <div class="module-title">股市盯盘看板</div>
+                    </div>
+                    <div class="module-desc">A 股·港股·美股 · 基金净值 · 宏观指标</div>
+                    <div class="module-footer">
+                        <span class="module-badge">三市</span>
+                        <div style="display:flex;align-items:center;gap:4px;">
+                            <span class="module-visits"><span class="visit-count" data-page="stock">--</span></span>
+                            <span class="module-arrow">›</span>
+                        </div>
+                    </div>
+                </div>
             </a>
         </div>
     </div>
