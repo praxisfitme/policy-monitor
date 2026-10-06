@@ -66,15 +66,7 @@
         .module-badge { font-size: 0.65rem; font-weight: 600; padding: 3px 8px; border-radius: 100px; background: var(--accent-green-light); color: #4d7c0f; }
         [data-theme="dark"] .module-badge { color: #84cc16; }
         .module-visits { font-size: 0.65rem; color: var(--text-tertiary); font-variant-numeric: tabular-nums; }
-        .recent-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
-        .recent-item { background: var(--card); border-radius: var(--radius-sm); padding: 12px 10px; text-align: center; box-shadow: var(--shadow); }
-        .recent-dot { width: 6px; height: 6px; border-radius: 50%; margin: 0 auto 8px; }
-        .recent-dot.green { background: var(--accent-green); }
-        .recent-dot.blue { background: var(--accent-blue); }
-        .recent-dot.orange { background: var(--accent-orange); }
-        .recent-name { font-size: 0.7rem; font-weight: 600; margin-bottom: 4px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-        .recent-count { font-size: 0.9rem; font-weight: 800; color: var(--accent-green); font-variant-numeric: tabular-nums; }
-        .recent-time { font-size: 0.6rem; color: var(--text-tertiary); margin-top: 2px; }
+
         .bottom-nav { position: fixed; bottom: 0; left: 0; right: 0; background: var(--card); border-top: 1px solid var(--border); display: flex; justify-content: space-around; padding: 8px 0; padding-bottom: max(8px, env(safe-area-inset-bottom)); z-index: 100; }
         .nav-item { display: flex; flex-direction: column; align-items: center; gap: 4px; text-decoration: none; color: var(--text-tertiary); font-size: 0.6rem; font-weight: 500; padding: 4px 12px; border-radius: 12px; transition: color 0.2s, background 0.2s; }
         .nav-item.active { color: var(--accent-green); background: var(--accent-green-light); }
@@ -120,14 +112,7 @@
             </a>
         </div>
     </div>
-    <div class="section">
-        <div class="section-title">最近更新</div>
-        <div class="recent-grid">
-            <div class="recent-item"><div class="recent-dot blue"></div><div class="recent-name">泰国政策</div><div class="recent-count">165</div><div class="recent-time">今日 19:00</div></div>
-            <div class="recent-item"><div class="recent-dot orange"></div><div class="recent-name">跨境支付</div><div class="recent-count">107</div><div class="recent-time">今日</div></div>
-            <div class="recent-item"><div class="recent-dot green"></div><div class="recent-name">股市看板</div><div class="recent-count">--</div><div class="recent-time">9-21</div></div>
-        </div>
-    </div>
+
     <nav class="bottom-nav">
         <a href="/" class="nav-item active"><span class="nav-icon">🏠</span><span>首页</span></a>
         <a href="/payment-intel/" class="nav-item"><span class="nav-icon">💳</span><span>支付</span></a>
