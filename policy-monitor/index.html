@@ -1461,10 +1461,12 @@ body {
 .nonbank-tag { display:inline-block; font-size:0.6rem; padding:1px 5px; border-radius:6px; background:rgba(124,58,237,0.12); color:#7c3aed; font-weight:600; margin-left:4px; vertical-align:middle; }
 
 /* ── Bottom Navigation v2 ── */
-.bottom-nav { position: fixed; bottom: 0; left: 0; right: 0; background: var(--card-bg, #fff); border-top: 1px solid var(--border); display: flex; justify-content: space-around; padding: 8px 0; padding-bottom: max(8px, env(safe-area-inset-bottom)); z-index: 100; }
-[data-theme="dark"] .bottom-nav { background: #0b0f1a; }
-.nav-item { display: flex; flex-direction: column; align-items: center; gap: 4px; text-decoration: none; color: var(--text-muted, #94a3b8); font-size: 0.6rem; font-weight: 500; padding: 4px 12px; border-radius: 12px; transition: color 0.2s, background 0.2s; }
+.bottom-nav { position: fixed; bottom: 0; left: 0; right: 0; background: #ffffff; border-top: 1px solid #e2e8f0; display: flex; justify-content: space-around; padding: 8px 0; padding-bottom: max(8px, env(safe-area-inset-bottom)); z-index: 1000; box-shadow: 0 -2px 10px rgba(0,0,0,0.05); }
+[data-theme="dark"] .bottom-nav { background: #181d2b; border-top-color: #2a3142; box-shadow: 0 -2px 10px rgba(0,0,0,0.4); }
+.nav-item { display: flex; flex-direction: column; align-items: center; gap: 4px; text-decoration: none; color: #64748b; font-size: 0.65rem; font-weight: 500; padding: 4px 12px; border-radius: 12px; transition: color 0.2s, background 0.2s; }
 .nav-item.active { color: #3b82f6; background: rgba(59,130,246,0.12); }
+[data-theme="dark"] .nav-item { color: #94a3b8; }
+[data-theme="dark"] .nav-item.active { color: #60a5fa; background: rgba(96,165,250,0.18); }
 .nav-icon { font-size: 1.2rem; }
 @media (min-width: 768px) { .bottom-nav { max-width: 430px; left: 50%; transform: translateX(-50%); } }
 
@@ -1495,7 +1497,7 @@ body {
                 追踪泰国央行(BoT)及监管机构针对 BNPL、Personal Loan、Pico Loan/Nano Finance 牌照发布的政策通知、利率上限调整(APR/综合融资成本)、合规要求变更、消费者保护规定等监管动态。
             </div>
             <div class="meta">
-                <span>📅 数据最后更新：<span class="last-updated-label">2026-10-05 19:00 (GMT+8)</span></span>
+                <span>📅 数据最后更新：<span class="last-updated-label">2026-10-06 19:00 (GMT+8)</span></span>
                 <span>🤖 自动更新：每日 09:30 / 19:00</span>
                 <span>📊 监控范围：泰国央行(BoT)、SEC、财政部、OCPB、NCB、SAM</span>
             </div>
@@ -1511,9 +1513,9 @@ body {
             <div class="tab" data-tab="relief">纾困计划</div>
         </div>
         <div class="stats-grid" id="thai-stats">
-            <div class="stat-card info">  <div class="number stat-total">69</div> <div class="label">监控条目</div> </div>
+            <div class="stat-card info">  <div class="number stat-total">70</div> <div class="label">监控条目</div> </div>
             <div class="stat-card high">  <div class="number stat-high">24</div>  <div class="label">紧急-高</div> </div>
-            <div class="stat-card medium"><div class="number stat-medium">38</div><div class="label">紧急-中</div> </div>
+            <div class="stat-card medium"><div class="number stat-medium">39</div><div class="label">紧急-中</div> </div>
             <div class="stat-card low">   <div class="number stat-low">6</div> <div class="label">紧急-低</div> </div>
             <div class="stat-card info">  <div class="number">8</div>  <div class="label">央行/监管机构</div> </div>
             <div class="stat-card info">  <div class="number">20</div> <div class="label">政策/银行/平台</div> </div>
@@ -1582,7 +1584,19 @@ body {
         </div>
         <div class="timeline thai-timeline">
             <!-- THAI DATA — kept in an IE-compatible structure -->
-            <div class="month-section" data-month="2026-10"><div class="month-title">2026年10月 (5 条)</div>
+            <div class="month-section" data-month="2026-10"><div class="month-title">2026年10月 (6 条)</div>
+<div class="policy-item" data-source-links='[{"label": "Mondaq - Thailand Issues New Credit-Term Rules for Large Purchasers from SMEs (10/6)", "url": "https://www.mondaq.com/trade-regulation-practices/1851476/thailand-issues-new-credit-term-rules-for-large-purchasers-from-smes"}, {"label": "Thansettakij - กฎคุม Credit Term ประกาศราชกิจจาฯ (10/6)", "url": "https://www.thansettakij.com/economy/670772"}, {"label": "Bangkok Insight - กติกาใหม่เครดิตเทอม เริ่ม 2 พ.ย. (10/6)", "url": "https://www.thebangkokinsight.com/news/business/economics/1704883/"}, {"label": "Thailand Edition - SME Council Pushes 45-Day Credit Term (10/5)", "url": "https://thailandedition.com/i/sme-council-pushes-45-day-credit-term-legal-effect-00a16ac1aee8a0e0bc76dd23"}]' data-categories='信贷环境,消费者保护,国家监管' data-business='BNPL,Personal Loan,Pico Loan' data-urgency='中' data-status='已确认待实施' data-verified='verified' data-date='2026-10-06'>
+  <div class="policy-header"><div class="tags"><span class="tag tag-urgency-medium">紧急-中</span><span class="tag tag-category">信贷环境</span><span class="tag tag-category">消费者保护</span><span class="tag tag-category">国家监管</span><span class="tag tag-status-confirmed">已确认待实施</span><span class="tag tag-verified">✅ 4源交叉验证</span></div><div class="policy-date">2026-10-06</div></div>
+  <div class="policy-source">来源：Mondaq (10/6) / Thansettakij (10/6) / Bangkok Insight (10/6) / Thailand Edition (10/5)</div>
+  <div class="policy-title">OTCC发布Credit Term强制规则：大企业付SMEs款限30-45天，11/2生效，影响BNPL信贷周期</div>
+  <div class="policy-desc">泰国贸易竞争委员会(OTCC)在《皇家公报》发布强制令：<b>大型企业向SME采购商品/服务须在30天（农产品）或45天（一般贸易/服务）内付款</b>，禁止无故拖延或单方面修改付款条件（须提前60天书面通知）。违反者面临最高年收入10%行政罚款或2年监禁。<b>对出海机构</b>：此规则直接影响BNPL/供应链金融的资金周转周期——若SME供应商回款被压缩到30-45天，下游BNPL平台的应收账款融资模型需相应调整。同时，该规则强化了"公平贸易"监管信号，与BoT的Nano Finance量化监管+BNPL牌照框架形成三线并进态势。</div>
+  <div class="policy-tags">
+    <span class="tag tag-impact">影响：信贷环境</span>
+    <span class="tag tag-tag">信贷环境</span>
+    <span class="tag tag-tag">消费者保护</span>
+  </div>
+</div>
+
 <div class="policy-item" data-source-links='[{"label": "SMEThailandClub - แบงก์ชาติออกกฎคุม นาโนไฟแนนซ์ D/E 7 เท่า (10/1)", "url": "https://www.smethailandclub.com/news/3419.html"}, {"label": "Royal Gazette - ประกาศ ธปท. ที่ สนส. 1/2558 (10/1)", "url": "https://www.smethailandclub.com/news/3419.html"}, {"label": "Thai Times - BoT economic/monetary Aug 2026 press release (9/30)", "url": "https://www.bot.or.th/en/news-and-media/news/news-20260930.html"}]' data-categories='国家监管,信贷环境,牌照政策' data-business='Pico Loan,Personal Loan' data-urgency='高' data-status='已实施' data-verified='verified' data-date='2026-10-05'>
   <div class="policy-header"><div class="tags"><span class="tag tag-urgency-high">紧急-高</span><span class="tag tag-category">国家监管</span><span class="tag tag-category">信贷环境</span><span class="tag tag-category">牌照政策</span><span class="tag tag-status-active">已实施</span><span class="tag tag-verified">✅ 2源交叉验证</span></div><div class="policy-date">2026-10-05</div></div>
   <div class="policy-source">来源：SMEThailandClub (10/1) / Royal Gazette / BoT (9/30)</div>
@@ -2351,7 +2365,7 @@ body {
                 不收录：非监管类市场新闻(融资/产品发布)、加密货币/区块链监管（除非与现金贷直接相关）。
             </div>
             <div class="meta">
-                <span>📅 数据最后更新：<span class="last-updated-label">2026-10-05 19:00 (GMT+8)</span></span>
+                <span>📅 数据最后更新：<span class="last-updated-label">2026-10-06 19:00 (GMT+8)</span></span>
                 <span>🤖 自动更新：每日 09:30</span>
                 <span>🌍 覆盖：东南亚 / 拉美 / 非洲 / 南亚 / 跨市场</span>
             </div>
@@ -2367,9 +2381,9 @@ body {
             <div class="tab" data-tab="cross">跨市场 (App审查/外汇)</div>
         </div>
         <div class="stats-grid" id="global-stats">
-            <div class="stat-card accent"> <div class="number stat-total">135</div> <div class="label">监控条目</div> </div>
+            <div class="stat-card accent"> <div class="number stat-total">138</div> <div class="label">监控条目</div> </div>
             <div class="stat-card high">   <div class="number stat-high">51</div>  <div class="label">紧急-高</div> </div>
-            <div class="stat-card medium"> <div class="number stat-medium">79</div><div class="label">紧急-中</div> </div>
+            <div class="stat-card medium"> <div class="number stat-medium">82</div><div class="label">紧急-中</div> </div>
             <div class="stat-card low">    <div class="number stat-low">7</div> <div class="label">紧急-低</div> </div>
             <div class="stat-card info">   <div class="number">12</div> <div class="label">国家/地区</div> </div>
             <div class="stat-card warn">   <div class="number stat-unverified">10</div><div class="label">⚠ 未交叉认证</div> </div>
@@ -2455,7 +2469,40 @@ body {
         </div>
         <div class="timeline global-timeline>
             <!-- ===== 2026-10 ===== -->
-            <div class="month-section" data-month="2026-10"><div class="month-title">2026年10月 (12 条)</div>
+            <div class="month-section" data-month="2026-10"><div class="month-title">2026年10月 (15 条)</div>
+<div class="policy-item" data-source-links='[{"label": "Fintech News PH - SEC Draft Proposes Up to PHP 200,000 Fines for Unfair Debt Collection (10/5)", "url": "https://fintechnews.ph/73810/lending/sec-debt-collection-accreditation/"}, {"label": "TradersUnion - Philippines SEC proposes mandatory debt collector accreditation (10/4)", "url": "https://tradersunion.com/news/financial-news/show/3650955-philippines-sec-debt-collector-accreditation-lending/"}, {"label": "Context.ph - SEC to regulate third-party debt collectors (10/4)", "url": "https://context.ph/2026/10/04/sec-to-regulate-accredit-third-party-debt-collectors/"}]' data-region='菲律宾' data-categories='催收规范,消费者保护,国家监管' data-urgency='中' data-status='征求意见' data-verified='verified' data-date='2026-10-05'>
+  <div class="policy-header"><div class="tags"><span class="tag tag-urgency-medium">紧急-中</span><span class="tag tag-region">🇵🇭 菲律宾</span><span class="tag tag-category">催收规范</span><span class="tag tag-category">消费者保护</span><span class="tag tag-category">国家监管</span><span class="tag tag-status-proposed">征求意见</span><span class="tag tag-verified">✅ 3源交叉验证</span></div><div class="policy-date">2026-10-05</div></div>
+  <div class="policy-source">来源：Fintech News PH (10/5) / TradersUnion (10/4) / Context.ph (10/4)</div>
+  <div class="policy-title">🇵🇭 SEC发布催收机构强制认证草案：仅允许持牌第三方催收，违规罚款最高PHP 20万</div>
+  <div class="policy-desc">菲律宾SEC于9/30发布Memorandum Circular草案，要求<b>所有为融资/贷款公司服务的第三方催收机构(TPCA)必须经SEC认证</b>，同时规范in-house催收人员行为。核心要求：①TPCA须为SEC注册的股份公司；②所有催收人员须遵守统一行为准则；③违规罚款最高<b>PHP 200,000</b>。<b>对出海现金贷</b>：菲律宾催收合规成本将显著上升，尤其依赖外包催收的中国出海lender需重新评估催收合作方资质。这与SEC此前的12%月利率上限+NPC数据隐私形成三重合规压力。</div>
+  <div class="policy-tags">
+    <span class="tag tag-impact">影响：催收规范</span>
+    <span class="tag tag-region">🇵🇭 菲律宾</span>
+  </div>
+</div>
+
+<div class="policy-item" data-source-links='[{"label": "Khusoko - CBK Replaces Digital Lender Rules with Credit Regime (10/5)", "url": "https://khusoko.com/2026/10/05/cbk-non-deposit-taking-credit-providers-regulations-2026/"}, {"label": "TechTrendsKE - CBK sets Sh1m penalty for credit providers (10/5)", "url": "https://techtrendske.co.ke/2026/10/05/cbk-non-deposit-taking-credit-providers-regulations/"}, {"label": "tech-ish - CBK raises licensed lenders annual fee to KES 500,000 (10/4)", "url": "https://tech-ish.com/2026/10/04/cbk-raises-licensed-lenders-annual-fee-to-kes-500000-from-kes-20000/"}, {"label": "Business Daily Africa - CBK compliance fees (10/3)", "url": "https://www.businessdailyafrica.com/Corporate+News/"}]' data-region='肯尼亚' data-categories='牌照合规,国家监管,信贷环境' data-urgency='中' data-status='已实施' data-verified='verified' data-date='2026-10-05'>
+  <div class="policy-header"><div class="tags"><span class="tag tag-urgency-medium">紧急-中</span><span class="tag tag-region">🇰🇪 肯尼亚</span><span class="tag tag-category">牌照合规</span><span class="tag tag-category">国家监管</span><span class="tag tag-category">信贷环境</span><span class="tag tag-status-active">已实施</span><span class="tag tag-verified">✅ 4源交叉验证</span></div><div class="policy-date">2026-10-05</div></div>
+  <div class="policy-source">来源：Khusoko (10/5) / TechTrendsKE (10/5) / tech-ish (10/4) / Business Daily (10/3)</div>
+  <div class="policy-title">🇰🇪 CBK发布Non-Deposit Taking Credit Providers新规：改名+年费从2万→50万先令+逾期罚款100万先令</div>
+  <div class="policy-desc">肯尼亚央行(CBK)在官方公报发布<b>Non-Deposit Taking Credit Providers Regulations 2026</b>，取代此前的"Digital Credit Provider"框架。核心变化：①<b>名称变更</b>：从"Digital Credit Provider"改为"Non-Deposit Taking Credit Provider"，覆盖范围扩大至所有非存款类lender；②<b>年费暴涨</b>：从KES 20,000涨至<b>KES 500,000</b>（25倍增长）；③<b>逾期罚款</b>：未在12/31前缴费的，面临<b>KES 1,000,000</b>罚款；④<b>目录扩容</b>：9/28新增29家licensed lender，目录现共281家。<b>对出海现金贷</b>：合规门槛大幅提升，小型lender面临经营压力，CBK正在系统性提高行业准入壁垒。</div>
+  <div class="policy-tags">
+    <span class="tag tag-impact">影响：牌照合规</span>
+    <span class="tag tag-region">🇰🇪 肯尼亚</span>
+  </div>
+</div>
+
+<div class="policy-item" data-source-links='[{"label": "Punch Nigeria - Personal loans rise to N2tn (10/5)", "url": "https://punchng.com/personal-loans-rise-to-n2tn-as-nigerians-borrow-more/"}, {"label": "TheEconomy NG - Personal Loans Hit N2.06tn (10/5)", "url": "https://theeconomyng.com/personal-loans-hit-n2-06tn-as-nigerians-borrow-to-cope/"}, {"label": "BreakingNews NG - Nigerians owe N2.06 trillion (10/5)", "url": "https://breakingnews.com.ng/2026/10/nigerians-owe-n2-06-trillion-in-personal-loans-as-borrowing-to-survive-overtakes-borrowing-to-invest/"}]' data-region='尼日利亚' data-categories='信贷环境,消费者保护,国家监管' data-urgency='中' data-status='发展中' data-verified='verified' data-date='2026-10-05'>
+  <div class="policy-header"><div class="tags"><span class="tag tag-urgency-medium">紧急-中</span><span class="tag tag-region">🇳🇬 尼日利亚</span><span class="tag tag-category">信贷环境</span><span class="tag tag-category">消费者保护</span><span class="tag tag-category">国家监管</span><span class="tag tag-status-progress">发展中</span><span class="tag tag-verified">✅ 3源交叉验证</span></div><div class="policy-date">2026-10-05</div></div>
+  <div class="policy-source">来源：Punch (10/5) / TheEconomy NG (10/5) / BreakingNews NG (10/5)</div>
+  <div class="policy-title">🇳🇬 CBN经济报告：个人贷款升至N2.06万亿，40.8%借款人"生存性借贷"超生产性借贷（2023年31.7%）</div>
+  <div class="policy-desc">CBN 5月经济报告显示：<b>消费信贷总余额升至N3.18万亿</b>（环比+1.6%），其中<b>个人贷款占64.78%约N2.06万亿</b>。关键信号：EFInA 2026调查揭示<b>40.8%正式借款人用于"生存/消费"</b>（2023年仅31.7%），首次超过生产性借贷(34.3%)。同时<b>45.8%借款人报告有还款压力</b>，83.8%承受持续财务压力。正式借贷率从6%→10%（约1190万人），18-35岁借贷从4%→10%。CBN 9月已将MPR从26.5%降至23%。<b>对出海现金贷</b>：市场增长但质量恶化——"生存性借贷"占比上升+高还款压力=潜在NPL风险上升，lender端需审慎评估借款人还款能力而非仅看渗透率。</div>
+  <div class="policy-tags">
+    <span class="tag tag-impact">影响：信贷环境</span>
+    <span class="tag tag-region">🇳🇬 尼日利亚</span>
+  </div>
+</div>
+
 
 <div class="policy-item" data-source-links='[{"label": "ANTARA News - OJK: Outstanding pinjol Rp107T Aug 2026 (10/5)", "url": "https://m.antaranews.com/berita/5771861/ojk-pinjaman-online-tumbuh-22-persen-capai-rp107-triliun-per-agustus"}, {"label": "Kontan - Fintech lending outstanding Rp106.94T (10/5)", "url": "https://keuangan.kontan.co.id/news/tumbuh-2207-pembiayaan-fintech-lending-capai-rp-10694-triliun-per-agustus-2026"}, {"label": "GoNews - OJK sanksi 51 entitas Sep 2026 (10/5)", "url": "https://m.gonews.co/berita/baca/2026/10/05/ojk-catat-utang-pinjol-nasional-tembus-rp106-triliun-sanksi-menanti-entitas-pelanggar"}, {"label": "Bisnis360 - OJK siapkan RPOJK LPBBTI (10/4)", "url": "https://www.bisnis360media.com/ojk-siapkan-aturan-untuk-layanan-fintech-peer-to-peer-lending-mjBHNlFK65"}]' data-region='印尼' data-categories='国家监管,信贷环境,风险预警' data-urgency='中' data-status='发展中' data-verified='verified' data-date='2026-10-05'>
   <div class="policy-header"><div class="tags"><span class="tag tag-urgency-medium">紧急-中</span><span class="tag tag-region">🇮🇩 印尼</span><span class="tag tag-category">国家监管</span><span class="tag tag-category">信贷环境</span><span class="tag tag-category">风险预警</span><span class="tag tag-status-progress">发展中</span><span class="tag tag-verified">✅ 4源交叉验证</span></div><div class="policy-date">2026-10-05</div></div>
@@ -4166,7 +4213,7 @@ body {
                 基础数据：可靠渠道投放量榜单 + SimilarWeb/icharts 商店排名交叉验证（2026-09-07 周更）。投放量原始数据停更期间，以商店排名变动和经营主体异动为主要更新依据。
             </div>
             <div class="meta">
-                <span>📅 数据最后更新：<span class="last-updated-label">2026-10-05 19:00 (GMT+8)</span></span>
+                <span>📅 数据最后更新：<span class="last-updated-label">2026-10-06 19:00 (GMT+8)</span></span>
                 <span>🤖 自动更新：每日 09:30 / 19:00</span>
                 <span>📱 监控范围：APP 投放 / 客户投诉 / 社媒 / 监管 / 风险信号 / 经营主体异动</span>
             </div>
@@ -5168,578 +5215,7 @@ body {
 
         <div class="timeline app-timeline" data-app-timeline>
 
-<!-- ============================================================ -->
-<!--  FLOATING BUTTONS + FEEDBACK MODAL (must be before script)  -->
-<!-- ============================================================ -->
-<div class="fab-stack">
-    <a class="fab fab-portal" href="/" aria-label="返回监控中枢" title="返回监控中枢">🏠</a>
-    <button class="fab fab-feedback" aria-label="反馈与建议" title="反馈与建议">💬</button>
-    <button class="fab fab-theme" aria-label="切换深色模式" title="切换深色/浅色模式">🌙</button>
-    <button class="fab fab-back" aria-label="回到顶部" title="回到顶部">↑</button>
-</div>
 
-<!-- Feedback Modal -->
-<div class="feedback-overlay" id="feedbackOverlay">
-    <div class="feedback-modal" role="dialog" aria-labelledby="feedbackTitle">
-        <h3 id="feedbackTitle">📋 反馈与建议</h3>
-        <p class="feedback-hint">发现错误或有改进建议？请告诉我们，您的反馈会让这个面板更好。</p>
-        <div class="feedback-type">
-            <button class="feedback-type-btn active" data-type="bug">🐛 报告错误</button>
-            <button class="feedback-type-btn" data-type="suggestion">💡 功能建议</button>
-            <button class="feedback-type-btn" data-type="content">📝 内容补充</button>
-        </div>
-        <textarea id="feedbackText" placeholder="请描述您遇到的问题或建议……&#10;&#10;例如：某个政策条目的链接打不开 / 希望增加某国监管动态 / 页面显示异常等"></textarea>
-        <div class="feedback-actions">
-            <a class="feedback-btn feedback-btn-primary" id="feedbackGithub" href="#" target="_blank" rel="noopener">🔗 GitHub Issue</a>
-            <a class="feedback-btn feedback-btn-secondary" id="feedbackEmail" href="#">📧 邮件反馈</a>
-            <button class="feedback-btn feedback-btn-close" id="feedbackClose" aria-label="关闭">✕</button>
-        </div>
-        <p class="feedback-note">
-            💡 GitHub Issue 会直接通知仓库管理员；邮件反馈将打开您的邮件应用。反馈内容也会保存在本地浏览器中。
-        </p>
-    </div>
-</div>
-
-<!-- ============================================================ -->
-<!--  JAVASCRIPT                                                  -->
-<!-- ============================================================ -->
-<script>
-(function() {
-    // ── Debounce utility ──
-    function debounce(fn, delay) {
-        var timer;
-        return function() {
-            var ctx = this, args = arguments;
-            clearTimeout(timer);
-            timer = setTimeout(function() { fn.apply(ctx, args); }, delay);
-        };
-    }
-
-    // ── Module switching ──
-    document.querySelectorAll('.module-tab').forEach(btn => {
-        btn.addEventListener('click', function() {
-            document.querySelectorAll('.module-tab').forEach(b => b.classList.remove('active'));
-            document.querySelectorAll('.module-panel').forEach(p => p.classList.remove('active'));
-            this.classList.add('active');
-            document.getElementById('module-' + this.dataset.module).classList.add('active');
-        });
-    });
-
-    // ── Render source links from data-source-links ──
-    document.querySelectorAll('.policy-item').forEach(function(item) {
-        var raw = item.dataset.sourceLinks;
-        if (!raw) return;
-        try {
-            var links = JSON.parse(raw);
-            if (!links.length) return;
-            var linksDiv = document.createElement('div');
-            linksDiv.className = 'policy-links';
-            links.forEach(function(link) {
-                var a = document.createElement('a');
-                a.href = link.url;
-                a.target = '_blank';
-                a.rel = 'noopener';
-                a.textContent = ' ' + link.label;
-                linksDiv.appendChild(a);
-            });
-            item.appendChild(linksDiv);
-        } catch(e) { /* ignore parse errors */ }
-    });
-
-    // ── Generic filter logic ──
-    function bindFilters(panelSelector) {
-        var panel = document.querySelector(panelSelector);
-        if (!panel) return;
-
-        // Detect module type from panel id — avoids manual second argument
-        var moduleType = panelSelector.indexOf('thai') >= 0 ? 'thai'
-                       : panelSelector.indexOf('global') >= 0 ? 'global'
-                       : panelSelector.indexOf('app') >= 0 ? 'app'
-                       : 'other';
-
-        var tabsContainer = panel.querySelector('.tabs');
-        var filtersContainer = panel.querySelector('.filters');
-        var searchInput = panel.querySelector('.search-input');
-        var sortSelect = panel.querySelector('.sort-select');
-        var statsContainer = panel.querySelector('.stats-grid');
-        var timelineEl = panel.querySelector('.timeline');
-
-        // Tab clicks
-        if (tabsContainer) {
-            tabsContainer.querySelectorAll('.tab').forEach(t => {
-                t.addEventListener('click', function() {
-                    tabsContainer.querySelectorAll('.tab').forEach(x => x.classList.remove('active'));
-                    this.classList.add('active');
-                    runFilter();
-                });
-            });
-        }
-
-        // Chip clicks
-        if (filtersContainer) {
-            filtersContainer.querySelectorAll('.filter-options').forEach(group => {
-                group.querySelectorAll('.chip').forEach(chip => {
-                    chip.addEventListener('click', function() {
-                        group.querySelectorAll('.chip').forEach(c => c.classList.remove('active'));
-                        this.classList.add('active');
-                        runFilter();
-                    });
-                });
-            });
-        }
-
-        // Search input (with debounce)
-        if (searchInput) {
-            var debouncedRunFilter = debounce ? debounce(runFilter, 300) : runFilter;
-            searchInput.addEventListener('input', debouncedRunFilter);
-        }
-
-        // Sort select
-        if (sortSelect) {
-            sortSelect.addEventListener('change', runFilter);
-        }
-
-        // Expand / collapse all descriptions
-        var expandBtn = panel.querySelector('.expand-btn');
-        if (expandBtn && timelineEl) {
-            expandBtn.addEventListener('click', function() {
-                var collapsed = timelineEl.classList.toggle('collapsed');
-                expandBtn.textContent = collapsed ? '全部展开' : '全部收起';
-            });
-        }
-
-        function getActiveChipValue(filterAttr) {
-            var group = filtersContainer ? filtersContainer.querySelector('[data-filter="' + filterAttr + '"]') : null;
-            if (!group) return 'all';
-            var active = group.querySelector('.chip.active');
-            return active ? active.dataset.value : 'all';
-        }
-
-        function getActiveTab() {
-            if (!tabsContainer) return 'all';
-            var active = tabsContainer.querySelector('.tab.active');
-            return active ? active.dataset.tab : 'all';
-        }
-
-        function runFilter() {
-            var activeTab = getActiveTab();
-            var items = Array.from(timelineEl.querySelectorAll('.policy-item'));
-            var searchText = searchInput ? searchInput.value.toLowerCase() : '';
-            var sortMode = sortSelect ? sortSelect.value : 'newest';
-            var statTotal = 0, statHigh = 0, statMedium = 0, statLow = 0, statUnverified = 0, statComplaint = 0;
-
-            items.forEach(function(item) {
-                var region = item.dataset.region || '';
-                var categories = item.dataset.categories || '';
-                var urgency = item.dataset.urgency || '';
-                var status = item.dataset.status || '';
-                var verified = item.dataset.verified || '';
-                var dataApp = item.dataset.app || '';
-                var text = item.innerText.toLowerCase();
-
-                // Tab filtering — module-aware
-                var tabMatch = true;
-                if (moduleType === 'global') {
-                    if (activeTab === 'sea') tabMatch = /印尼|菲律宾|越南/.test(region);
-                    else if (activeTab === 'latam') tabMatch = /墨西哥|巴西|阿根廷/.test(region);
-                    else if (activeTab === 'africa') tabMatch = /尼日利亚|肯尼亚|埃及/.test(region);
-                    else if (activeTab === 'sasia') tabMatch = /巴基斯坦|孟加拉/.test(region);
-                    else if (activeTab === 'cross') tabMatch = /跨市场/.test(region);
-                } else if (moduleType === 'thai') {
-                    if (activeTab === 'bnpl') tabMatch = (item.dataset.business || '').includes('BNPL');
-                    else if (activeTab === 'ploan') tabMatch = (item.dataset.business || '').includes('Personal Loan');
-                    else if (activeTab === 'pico') tabMatch = (item.dataset.business || '').includes('Pico Loan') || (item.dataset.business || '').includes('Nano Finance');
-                    else if (activeTab === 'license') tabMatch = categories.includes('牌照政策');
-                    else if (activeTab === 'relief') tabMatch = categories.includes('债务纾困');
-                } else if (moduleType === 'app') {
-                    if (activeTab === 'complaint') tabMatch = categories.includes('客户投诉');
-                    else if (activeTab === 'social') tabMatch = categories.includes('社媒讨论');
-                    else if (activeTab === 'regulatory') tabMatch = categories.includes('监管政策');
-                    else if (activeTab === 'warning') tabMatch = categories.includes('风险预警');
-                    else if (activeTab === 'baseline') tabMatch = categories.includes('基础档案');
-                }
-
-                var regionFilter = getActiveChipValue('region');
-                var categoryFilter = getActiveChipValue('category');
-                var urgencyFilter = getActiveChipValue('urgency');
-                var statusFilter = getActiveChipValue('status');
-                var verifiedFilter = getActiveChipValue('verified');
-                var appFilter = getActiveChipValue('app');
-                var signalTypeFilter = getActiveChipValue('signalType');
-
-                var regionMatch = regionFilter === 'all' || region === regionFilter;
-                var categoryMatch = categoryFilter === 'all' || categories.includes(categoryFilter);
-                var urgencyMatch = urgencyFilter === 'all' || urgency === urgencyFilter;
-                var statusMatch = statusFilter === 'all' || status === statusFilter;
-                var verifiedMatch = verifiedFilter === 'all' || verified === verifiedFilter;
-                // App filter: exact match on data-app; "不指定" cross-app signals only match the "all" chip or no specific app selection
-                var appMatch = appFilter === 'all' || dataApp === appFilter;
-                var signalTypeMatch = signalTypeFilter === 'all' || categories.includes(signalTypeFilter);
-                var searchMatch = !searchText || text.includes(searchText);
-
-                if (tabMatch && regionMatch && categoryMatch && urgencyMatch && statusMatch && verifiedMatch && appMatch && signalTypeMatch && searchMatch) {
-                    item.classList.remove('hidden');
-                    statTotal++;
-                    if (urgency === '高') statHigh++;
-                    else if (urgency === '中') statMedium++;
-                    else if (urgency === '低') statLow++;
-                    if (verified === 'unverified') statUnverified++;
-                    if (categories.includes('客户投诉')) statComplaint++;
-                } else {
-                    item.classList.add('hidden');
-                }
-            });
-
-            // Update stats
-            if (statsContainer) {
-                var totalEl = statsContainer.querySelector('.stat-total');
-                var highEl = statsContainer.querySelector('.stat-high');
-                var mediumEl = statsContainer.querySelector('.stat-medium');
-                var lowEl = statsContainer.querySelector('.stat-low');
-                var unvEl = statsContainer.querySelector('.stat-unverified');
-                var complaintEl = statsContainer.querySelector('.stat-complaint');
-                if (totalEl) totalEl.textContent = statTotal;
-                if (highEl) highEl.textContent = statHigh;
-                if (mediumEl) mediumEl.textContent = statMedium;
-                if (lowEl) lowEl.textContent = statLow;
-                if (unvEl) unvEl.textContent = statUnverified;
-                if (complaintEl) complaintEl.textContent = statComplaint;
-            }
-
-            // Sort & reorder
-            timelineEl.querySelectorAll('.month-section').forEach(function(section) {
-                var vItems = Array.from(section.querySelectorAll('.policy-item:not(.hidden)'));
-                vItems.sort(function(a, b) {
-                    var ad = a.dataset.date, bd = b.dataset.date;
-                    if (sortMode === 'newest') return bd.localeCompare(ad);
-                    if (sortMode === 'oldest') return ad.localeCompare(bd);
-                    if (sortMode === 'urgency') {
-                        var map = {'高':3,'中':2,'低':1};
-                        return (map[b.dataset.urgency] || 0) - (map[a.dataset.urgency] || 0);
-                    }
-                    return 0;
-                });
-                vItems.forEach(function(item) { section.appendChild(item); });
-
-                var title = section.querySelector('.month-title');
-                var base = title.textContent.split('(')[0].trim();
-                if (vItems.length === 0) {
-                    section.classList.add('hidden');
-                } else {
-                    section.classList.remove('hidden');
-                    title.textContent = base + ' (' + vItems.length + ' 条)';
-                }
-            });
-        }
-
-        // Initial
-        runFilter();
-    }
-
-    // ── Back to top (click handler only; scroll handled below with rAF) ──
-    var backBtn = document.querySelector('.fab-back');
-    if (backBtn) {
-        backBtn.addEventListener('click', function() {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        });
-    }
-
-
-    // ── Theme Toggle ──
-    var themeBtn = document.querySelector('.fab-theme');
-    var savedTheme = localStorage.getItem('policy-monitor-theme') || '';
-    var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-    var currentTheme = savedTheme || (prefersDark ? 'dark' : 'light');
-
-    function applyTheme(theme) {
-        if (theme === 'dark') {
-            document.documentElement.setAttribute('data-theme', 'dark');
-            themeBtn.textContent = '☀️';
-            themeBtn.setAttribute('aria-label', '切换浅色模式');
-            themeBtn.setAttribute('title', '切换浅色模式');
-            var metaTheme = document.querySelector('meta[name="theme-color"]');
-            if (metaTheme) metaTheme.setAttribute('content', '#0b0f1a');
-        } else {
-            document.documentElement.removeAttribute('data-theme');
-            themeBtn.textContent = '🌙';
-            themeBtn.setAttribute('aria-label', '切换深色模式');
-            themeBtn.setAttribute('title', '切换深色/浅色模式');
-            var metaTheme = document.querySelector('meta[name="theme-color"]');
-            if (metaTheme) metaTheme.setAttribute('content', '#2563eb');
-        }
-    }
-    applyTheme(currentTheme);
-
-    if (themeBtn) {
-        themeBtn.addEventListener('click', function() {
-            var isDark = document.documentElement.getAttribute('data-theme') === 'dark';
-            var newTheme = isDark ? 'light' : 'dark';
-            applyTheme(newTheme);
-            localStorage.setItem('policy-monitor-theme', newTheme);
-        });
-    }
-
-    // ── Feedback Modal ──
-    var feedbackBtn = document.querySelector('.fab-feedback');
-    var feedbackOverlay = document.getElementById('feedbackOverlay');
-    var feedbackClose = document.getElementById('feedbackClose');
-    var feedbackText = document.getElementById('feedbackText');
-    var feedbackGithub = document.getElementById('feedbackGithub');
-    var feedbackEmail = document.getElementById('feedbackEmail');
-    var feedbackTypeBtns = document.querySelectorAll('.feedback-type-btn');
-    var feedbackType = 'bug';
-
-    feedbackTypeBtns.forEach(function(btn) {
-        btn.addEventListener('click', function() {
-            feedbackTypeBtns.forEach(function(b) { b.classList.remove('active'); });
-            this.classList.add('active');
-            feedbackType = this.dataset.type;
-            updateFeedbackLinks();
-        });
-    });
-
-    function updateFeedbackLinks() {
-        var text = feedbackText.value.trim() || '(未填写具体内容)';
-        var typeLabel = { bug: '报告错误', suggestion: '功能建议', content: '内容补充' }[feedbackType];
-        var prefix = '[' + typeLabel + '] ';
-        var encodedText = encodeURIComponent(prefix + text);
-        var encodedBody = encodeURIComponent(prefix + text + '\n\n---\n反馈来源: praxisfit.me\n时间: ' + new Date().toISOString());
-
-        // GitHub Issue link
-        feedbackGithub.href = 'https://github.com/praxisfitme/policy-monitor/issues/new?title=' + encodedText + '&body=' + encodedBody;
-
-        // Email link
-        feedbackEmail.href = 'mailto:veeliu@thaifintech.cn?subject=' + encodedText + '&body=' + encodedBody;
-    }
-
-    function openFeedback() {
-        feedbackOverlay.classList.add('visible');
-        setTimeout(function() { feedbackText.focus(); }, 300);
-    }
-    function closeFeedback() {
-        feedbackOverlay.classList.remove('visible');
-    }
-
-    if (feedbackBtn) {
-        feedbackBtn.addEventListener('click', openFeedback);
-    }
-    if (feedbackClose) {
-        feedbackClose.addEventListener('click', closeFeedback);
-    }
-    feedbackOverlay.addEventListener('click', function(e) {
-        if (e.target === feedbackOverlay) closeFeedback();
-    });
-    document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape' && feedbackOverlay.classList.contains('visible')) {
-            closeFeedback();
-        }
-    });
-    feedbackText.addEventListener('input', updateFeedbackLinks);
-    updateFeedbackLinks(); // Initialize links
-
-    // Save feedback to localStorage as backup
-    feedbackGithub.addEventListener('click', function() {
-        var text = feedbackText.value.trim();
-        if (text) {
-            try {
-                var log = JSON.parse(localStorage.getItem('policy-feedback-log') || '[]');
-                log.push({ type: feedbackType, text: text, time: new Date().toISOString(), channel: 'github' });
-                localStorage.setItem('policy-feedback-log', JSON.stringify(log));
-            } catch(e) {}
-        }
-    });
-    feedbackEmail.addEventListener('click', function() {
-        var text = feedbackText.value.trim();
-        if (text) {
-            try {
-                var log = JSON.parse(localStorage.getItem('policy-feedback-log') || '[]');
-                log.push({ type: feedbackType, text: text, time: new Date().toISOString(), channel: 'email' });
-                localStorage.setItem('policy-feedback-log', JSON.stringify(log));
-            } catch(e) {}
-        }
-    });
-
-
-    // Bind both modules
-    bindFilters('#module-thai');
-    bindFilters('#module-global');
-    bindFilters('#module-app');
-
-    // ── APP grid: click on card → set chip filter to that app & switch to 全部信号 tab ──
-    (function() {
-        var modulePanel = document.getElementById('module-app');
-        if (!modulePanel) return;
-        modulePanel.querySelectorAll('.app-card[data-app]').forEach(function(card) {
-            card.addEventListener('click', function() {
-                var appName = card.getAttribute('data-app');
-                // Switch to "全部信号" tab
-                var tabsContainer = modulePanel.querySelector('.tabs');
-                if (tabsContainer) {
-                    tabsContainer.querySelectorAll('.tab').forEach(function(t) {
-                        t.classList.toggle('active', t.dataset.tab === 'all');
-                    });
-                }
-                // Activate the chip
-                var group = modulePanel.querySelector('[data-filter="app"]');
-                if (group) {
-                    group.querySelectorAll('.chip').forEach(function(c) {
-                        c.classList.toggle('active', c.dataset.value === appName);
-                    });
-                }
-                // Expand filters (so user sees the chip selection)
-                var filtersWrap = modulePanel.querySelector('.filters');
-                if (filtersWrap) filtersWrap.classList.add('expanded');
-                // Run filter
-                var filterEvent = new Event('input', { bubbles: true });
-                var searchInput = modulePanel.querySelector('.search-input');
-                if (searchInput) searchInput.dispatchEvent(filterEvent);
-                // Scroll to timeline
-                var timeline = modulePanel.querySelector('.timeline');
-                if (timeline) timeline.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            });
-        });
-    })();
-
-
-    // ── Scroll: passive + rAF throttle for back-to-top ──
-    var backBtn = document.querySelector('.fab-back');
-    if (backBtn) {
-        var scrollTicking = false;
-        window.addEventListener('scroll', function() {
-            if (!scrollTicking) {
-                window.requestAnimationFrame(function() {
-                    if (window.scrollY > 400) backBtn.classList.add('visible');
-                    else backBtn.classList.remove('visible');
-                    scrollTicking = false;
-                });
-                scrollTicking = true;
-            }
-        }, { passive: true });
-    }
-
-    // ── Stat number bump animation ──
-    function animateStatNumbers() {
-        document.querySelectorAll('.stat-card .number').forEach(function(el) {
-            var val = el.textContent;
-            if (el._lastVal !== val) {
-                el._lastVal = val;
-                el.classList.add('bump');
-                setTimeout(function() { el.classList.remove('bump'); }, 300);
-            }
-        });
-    }
-    // Observe stat changes via MutationObserver
-    var statsObserver = new MutationObserver(function(mutations) {
-        mutations.forEach(function(m) {
-            if (m.type === 'characterData' || m.type === 'childList') {
-                animateStatNumbers();
-            }
-        });
-    });
-    document.querySelectorAll('.stats-grid').forEach(function(sg) {
-        statsObserver.observe(sg, { childList: true, characterData: true, subtree: true });
-    });
-
-    // ── Keyboard shortcuts ──
-    var kbdOverlay = document.getElementById('kbdOverlay');
-    var kbdHint = document.getElementById('kbdHint');
-    var moduleKeys = ['thai', 'global', 'app'];
-
-    function toggleKbdModal() {
-        kbdOverlay.classList.toggle('visible');
-    }
-
-    if (kbdHint) {
-        kbdHint.addEventListener('click', toggleKbdModal);
-        kbdHint.addEventListener('keydown', function(e) {
-            if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggleKbdModal(); }
-        });
-    }
-    if (kbdOverlay) {
-        kbdOverlay.addEventListener('click', function(e) {
-            if (e.target === kbdOverlay) toggleKbdModal();
-        });
-    }
-
-    document.addEventListener('keydown', function(e) {
-        // Skip if user is typing in input/textarea/select
-        var tag = (e.target.tagName || '').toLowerCase();
-        if (tag === 'input' || tag === 'textarea' || tag === 'select') {
-            // Esc still works in inputs
-            if (e.key === 'Escape') {
-                e.target.blur();
-            }
-            return;
-        }
-
-        if (e.key === '?' || (e.shiftKey && e.key === '/')) {
-            e.preventDefault();
-            toggleKbdModal();
-            return;
-        }
-
-        if (e.key === 'Escape') {
-            // Close kbd modal
-            if (kbdOverlay && kbdOverlay.classList.contains('visible')) {
-                toggleKbdModal();
-                return;
-            }
-            // Close feedback modal
-            var fbOverlay = document.getElementById('feedbackOverlay');
-            if (fbOverlay && fbOverlay.classList.contains('visible')) {
-                fbOverlay.classList.remove('visible');
-                return;
-            }
-            // Collapse active header
-            var activeHeader = document.querySelector('.module-panel.active .header.expanded');
-            if (activeHeader) activeHeader.classList.remove('expanded');
-            return;
-        }
-
-        // Module switching: 1, 2, 3
-        if (e.key === '1' || e.key === '2' || e.key === '3') {
-            var idx = parseInt(e.key) - 1;
-            var moduleKey = moduleKeys[idx];
-            if (moduleKey) {
-                document.querySelectorAll('.module-tab').forEach(function(b) {
-                    b.classList.toggle('active', b.dataset.module === moduleKey);
-                });
-                document.querySelectorAll('.module-panel').forEach(function(p) {
-                    p.classList.toggle('active', p.id === 'module-' + moduleKey);
-                });
-            }
-            return;
-        }
-
-        // "/" → focus search in active module
-        if (e.key === '/') {
-            var activePanel = document.querySelector('.module-panel.active');
-            if (activePanel) {
-                var searchIn = activePanel.querySelector('.search-input');
-                if (searchIn) {
-                    e.preventDefault();
-                    searchIn.focus();
-                }
-            }
-            return;
-        }
-    });
-
-
-})();
-</script>
-<!-- Keyboard shortcut modal -->
-<div class="kbd-modal-overlay" id="kbdOverlay">
-    <div class="kbd-modal" role="dialog" aria-label="键盘快捷键">
-        <h3>⌨️ 键盘快捷键</h3>
-        <div class="kbd-row"><span class="kbd-label">聚焦搜索框</span><span><kbd>/</kbd></span></div>
-        <div class="kbd-row"><span class="kbd-label">关闭弹窗 / 收起 header</span><span><kbd>Esc</kbd></span></div>
-        <div class="kbd-row"><span class="kbd-label">切换到泰国政策监控</span><span><kbd>1</kbd></span></div>
-        <div class="kbd-row"><span class="kbd-label">切换到全球出海监控</span><span><kbd>2</kbd></span></div>
-        <div class="kbd-row"><span class="kbd-label">切换到APP监控</span><span><kbd>3</kbd></span></div>
-        <div class="kbd-row"><span class="kbd-label">显示/隐藏快捷键帮助</span><span><kbd>?</kbd></span></div>
-    </div>
-</div>
 
 <script>
 function switchRankingTab(store) {
@@ -5761,6 +5237,36 @@ function switchRankingTab(store) {
     }
 })();
 </script>
+
+<!-- ============================================================ -->
+<!--  FLOATING BUTTONS + FEEDBACK MODAL (injected by post_process)  -->
+<!-- ============================================================ -->
+<div class="fab-stack">
+    <a class="fab fab-portal" href="/" aria-label="返回监控中枢" title="返回监控中枢">🏠</a>
+    <button class="fab fab-feedback" aria-label="反馈与建议" title="反馈与建议">💬</button>
+    <button class="fab fab-theme" aria-label="切换深色模式" title="切换深色/浅色模式">🌙</button>
+    <button class="fab fab-back" aria-label="回到顶部" title="回到顶部">↑</button>
+</div>
+
+<!-- Feedback Modal -->
+<div class="feedback-overlay" id="feedbackOverlay">
+    <div class="feedback-modal" role="dialog" aria-labelledby="feedbackTitle">
+        <h3 id="feedbackTitle">📋 反馈与建议</h3>
+        <p class="feedback-hint">发现错误或有改进建议？请告诉我们，您的反馈会让这个面板更好。</p>
+        <div class="feedback-type">
+            <button class="feedback-type-btn active" data-type="bug">🐛 报告错误</button>
+            <button class="feedback-type-btn" data-type="suggestion">💡 功能建议</button>
+            <button class="feedback-type-btn" data-type="content">📝 内容补充</button>
+        </div>
+        <textarea id="feedbackText" placeholder="请描述您遇到的问题或建议……&#10;&#10;例如：某个政策的链接失效了 / 建议增加 XX 功能"></textarea>
+        <div class="feedback-contact">也可邮件联系：<a href="mailto:minerva-owl@coze.email">minerva-owl@coze.email</a></div>
+        <div class="feedback-actions">
+            <button class="feedback-cancel" id="feedbackCancel">取消</button>
+            <button class="feedback-submit" id="feedbackSubmit">发送反馈</button>
+        </div>
+    </div>
+</div>
+
 
 <!-- Bottom Navigation v2 -->
 <nav class="bottom-nav">
