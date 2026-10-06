@@ -52,17 +52,17 @@
         .section { margin: 0 20px 20px; }
         .section-title { font-size: 1rem; font-weight: 700; margin-bottom: 12px; }
         .modules { display: flex; flex-direction: column; gap: 12px; }
-        .module { background: var(--card); border-radius: var(--radius); padding: 16px; box-shadow: var(--shadow); text-decoration: none; color: var(--text); display: flex; align-items: center; gap: 14px; transition: transform 0.2s, box-shadow 0.2s; cursor: pointer; position: relative; overflow: hidden; }
+        .module { background: var(--card); border-radius: var(--radius); padding: 20px 16px; box-shadow: var(--shadow); text-decoration: none; color: var(--text); display: flex; align-items: flex-start; gap: 14px; transition: transform 0.2s, box-shadow 0.2s; cursor: pointer; position: relative; overflow: hidden; min-height: 100px; }
         .module::after { content: '›'; position: absolute; right: 16px; top: 50%; transform: translateY(-50%); font-size: 1.5rem; color: var(--text-tertiary); font-weight: 300; }
         .module:active { transform: scale(0.98); box-shadow: var(--shadow-lg); }
-        .module-icon { width: 48px; height: 48px; border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; flex-shrink: 0; }
+        .module-icon { width: 48px; height: 48px; border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; flex-shrink: 0; margin-top: 2px; }
         .module-payment .module-icon { background: var(--accent-orange-light); }
         .module-policy .module-icon { background: var(--accent-blue-light); }
         .module-stock .module-icon { background: var(--accent-purple-light); }
         .module-info { flex: 1; min-width: 0; padding-right: 24px; }
         .module-title { font-size: 0.95rem; font-weight: 700; margin-bottom: 4px; }
-        .module-desc { font-size: 0.72rem; color: var(--text-secondary); line-height: 1.4; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-        .module-meta { display: flex; flex-direction: column; align-items: flex-end; gap: 4px; flex-shrink: 0; }
+        .module-desc { font-size: 0.72rem; color: var(--text-secondary); line-height: 1.5; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+        .module-meta { display: flex; flex-direction: column; align-items: flex-end; gap: 4px; flex-shrink: 0; margin-top: 2px; }
         .module-badge { font-size: 0.65rem; font-weight: 600; padding: 3px 8px; border-radius: 100px; background: var(--accent-green-light); color: #4d7c0f; }
         [data-theme="dark"] .module-badge { color: #84cc16; }
         .module-visits { font-size: 0.65rem; color: var(--text-tertiary); font-variant-numeric: tabular-nums; }
