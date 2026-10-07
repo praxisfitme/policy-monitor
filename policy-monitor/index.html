@@ -23,6 +23,1125 @@
     <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛡️</text></svg>">
     <link rel="manifest" href="data:application/manifest+json;charset=utf-8,%7B%22name%22%3A%22%E6%94%BF%E7%AD%96%E7%9B%91%E6%8E%A7%E9%9D%A2%E6%9D%BF%22%2C%22short_name%22%3A%22%E6%94%BF%E7%AD%96%E7%9B%91%E6%8E%A7%22%2C%22start_url%22%3A%22/%22%2C%22display%22%3A%22standalone%22%2C%22background_color%22%3A%22%230b0f1a%22%2C%22theme_color%22%3A%22%232563eb%22%2C%22icons%22%3A%5B%7B%22src%22%3A%22data%3Aimage%2Fsvg%2Bxml%2C%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20viewBox%3D%270%200%20100%20100%27%3E%3Ctext%20y%3D%27.9em%27%20font-size%3D%2790%27%3E%F0%9F%9B%A1%EF%B8%8F%3C%2Ftext%3E%3C%2Fsvg%3E%22%2C%22sizes%22%3A%22512x512%22%2C%22type%22%3A%22image%2Fsvg%2Bxml%22%7D%5D%7D">
     <style>
+/* ── Reset & Base ── */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+}
+
+:root {
+    /* Primary palette */
+    --primary: #2563eb;
+    --primary-dark: #1e3a8a;
+    --primary-light: #bfdbfe;
+    --primary-lighter: #eff6ff;
+    --accent: #7c3aed;
+    --accent-dark: #581c87;
+    --accent-light: #c4b5fd;
+    --accent-lighter: #f5f3ff;
+
+    /* Neutral palette */
+    --bg: #f8fafc;
+    --bg-secondary: #f1f5f9;
+    --card: #ffffff;
+    --text: #0f172a;
+    --text-secondary: #64748b;
+    --text-tertiary: #94a3b8;
+    --border: #e2e8f0;
+    --border-light: #f1f5f9;
+
+    /* Status colors — WCAG AA compliant */
+    --danger: #dc2626;
+    --danger-bg: #fef2f2;
+    --danger-text: #991b1b;
+    --warning: #ea580c;
+    --warning-bg: #fff7ed;
+    --warning-text: #9a3412;
+    --success: #16a34a;
+    --success-bg: #f0fdf4;
+    --success-text: #166534;
+    --info: #2563eb;
+    --info-bg: #eff6ff;
+
+    /* Shadows */
+    --shadow-xs: 0 1px 2px rgba(0,0,0,0.03);
+    --shadow-sm: 0 1px 3px rgba(0,0,0,0.04), 0 1px 2px rgba(0,0,0,0.03);
+    --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.07), 0 2px 4px -2px rgba(0,0,0,0.04);
+    --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.08), 0 4px 6px -4px rgba(0,0,0,0.04);
+
+    /* Layout */
+    --radius-sm: 8px;
+    --radius-md: 12px;
+    --radius-lg: 16px;
+    --max-width: 920px;
+
+    /* Safe areas */
+    --safe-top: env(safe-area-inset-top, 0px);
+    --safe-bottom: env(safe-area-inset-bottom, 0px);
+
+    /* Transitions */
+    --t: 0.2s ease;
+}
+/* ── Dark Theme (deep space) ── */
+[data-theme="dark"] {
+    /* Primary palette — brightened for dark bg visibility */
+    --primary: #60a5fa;
+    --primary-dark: #93c5fd;
+    --primary-light: #1e3a5f;
+    --primary-lighter: #0f1e3a;
+    --accent: #a78bfa;
+    --accent-dark: #c4b5fd;
+    --accent-light: #3b0764;
+    --accent-lighter: #1e1033;
+
+    /* Neutral palette — deep space dark */
+    --bg: #0b0f1a;
+    --bg-secondary: #131826;
+    --card: #181d2b;
+    --text: #e2e8f0;
+    --text-secondary: #94a3b8;
+    --text-tertiary: #64748b;
+    --border: #2a3142;
+    --border-light: #1e2533;
+
+    /* Status colors — brightened text, darkened bg tints */
+    --danger: #f87171;
+    --danger-bg: #2a0f0f;
+    --danger-text: #fca5a5;
+    --warning: #fb923c;
+    --warning-bg: #2a1a08;
+    --warning-text: #fdba74;
+    --success: #4ade80;
+    --success-bg: #0a2a14;
+    --success-text: #86efac;
+    --info: #60a5fa;
+    --info-bg: #0f1e3a;
+
+    /* Shadows — stronger for depth perception on dark surfaces */
+    --shadow-xs: 0 1px 2px rgba(0,0,0,0.4);
+    --shadow-sm: 0 1px 3px rgba(0,0,0,0.5), 0 1px 2px rgba(0,0,0,0.4);
+    --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.6), 0 2px 4px -2px rgba(0,0,0,0.4);
+    --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.6), 0 4px 6px -4px rgba(0,0,0,0.4);
+}
+
+/* Dark mode — hardcoded color overrides */
+[data-theme="dark"] .header {
+    background: linear-gradient(135deg, #0f1e3a 0%, #1e3a8a 100%);
+    box-shadow: 0 4px 15px rgba(96,165,250,0.08);
+}
+[data-theme="dark"] .header.global {
+    background: linear-gradient(135deg, #1e1033 0%, #4c1d95 100%);
+    box-shadow: 0 4px 15px rgba(167,139,250,0.08);
+}
+[data-theme="dark"] .policy-desc { color: #cbd5e1; }
+[data-theme="dark"] .tag-category { background: var(--info-bg); color: #93c5fd; }
+[data-theme="dark"] .tag-region { background: #1e1b4b; color: #a5b4fc; }
+[data-theme="dark"] .tag-status-proposed { background: #2e1065; color: #c4b5fd; }
+[data-theme="dark"] .tag-status-confirmed { background: #1e1b4b; color: #a5b4fc; }
+[data-theme="dark"] .policy-links a { background: var(--primary-lighter); color: #93c5fd; border-color: var(--primary-light); }
+[data-theme="dark"] .policy-links a:hover { background: var(--primary); color: #fff; }
+[data-theme="dark"] .panel-global .policy-links a { background: var(--accent-lighter); color: #c4b5fd; border-color: var(--accent-light); }
+[data-theme="dark"] .panel-global .policy-links a:hover { background: var(--accent); color: #fff; }
+[data-theme="dark"] .footer-note { background: var(--info-bg); color: #93c5fd; border-color: var(--primary-light); }
+[data-theme="dark"] .panel-global .footer-note { background: var(--accent-lighter); color: #c4b5fd; border-color: var(--accent-light); }
+[data-theme="dark"] .search-box input:focus { box-shadow: 0 0 0 3px rgba(96,165,250,0.15); }
+[data-theme="dark"] .panel-global .search-box input:focus { box-shadow: 0 0 0 3px rgba(167,139,250,0.15); }
+[data-theme="dark"] .tab.active { box-shadow: 0 2px 8px rgba(96,165,250,0.25); }
+[data-theme="dark"] .panel-global .tab.active { box-shadow: 0 2px 8px rgba(167,139,250,0.25); }
+[data-theme="dark"] .header .header-inner h1 { color: #f1f5f9; }
+[data-theme="dark"] .header .subtitle { color: #cbd5e1; }
+[data-theme="dark"] .header .meta { color: #94a3b8; }
+[data-theme="dark"] meta[name="theme-color"] { content: "#0b0f1a"; }
+
+/* Smooth theme transition */
+html { transition: background-color 0.3s ease; }
+body, .header, .module-nav, .stat-card, .tab, .policy-item, .timeline,
+.filter-row select, .search-box input, .sort-select, .expand-btn, .footer-note {
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+
+html {
+    font-size: 16px;
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC", "Microsoft YaHei", sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    overscroll-behavior-y: contain;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* ── Module Nav (sticky top) ── */
+.module-nav {
+    display: flex;
+    gap: 0;
+    background: var(--card);
+    border-bottom: 1px solid var(--border);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: var(--shadow-sm);
+    padding-top: var(--safe-top);
+}
+
+.module-tab {
+    flex: 1;
+    text-align: center;
+    padding: 14px 12px;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    cursor: pointer;
+    color: var(--text-secondary);
+    border-bottom: 3px solid transparent;
+    transition: var(--t);
+    background: transparent;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    min-height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+.module-tab:active { background: var(--bg-secondary); }
+.module-tab.active {
+    color: var(--primary);
+    border-bottom-color: var(--primary);
+    background: var(--primary-lighter);
+}
+.module-tab.global.active {
+    color: var(--accent);
+    border-bottom-color: var(--accent);
+    background: var(--accent-lighter);
+}
+.module-tab.app.active {
+    color: #ea580c;
+    border-bottom-color: #ea580c;
+    background: #fff7ed;
+}
+
+/* ── Header (collapsible) ── */
+.header {
+    padding: 10px 20px;
+    border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+    color: white;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(37,99,235,0.10);
+    background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%);
+    transition: padding 0.3s, box-shadow 0.3s, border-radius 0.3s;
+}
+.header.global {
+    background: linear-gradient(135deg, #581c87 0%, #7c3aed 100%);
+    box-shadow: 0 4px 15px rgba(124,58,237,0.10);
+}
+.header.app {
+    background: linear-gradient(135deg, #92400e 0%, #ea580c 100%);
+    box-shadow: 0 4px 15px rgba(234,88,12,0.12);
+}
+.header .header-inner {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    user-select: none;
+    min-height: 44px;
+}
+.header .header-inner h1 {
+    font-size: 1rem;
+    font-weight: 700;
+    margin: 0;
+    flex: 1;
+    line-height: 1.4;
+}
+.header .header-inner .toggle-arrow {
+    width: 32px; height: 32px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.875rem;
+    opacity: 0.8;
+    transition: transform 0.3s;
+    flex-shrink: 0;
+}
+.header.expanded .header-inner .toggle-arrow { transform: rotate(180deg); }
+.header .header-body {
+    max-height: 0; overflow: hidden;
+    transition: max-height 0.35s ease, opacity 0.25s ease, margin 0.3s;
+    opacity: 0;
+}
+.header.expanded .header-body { max-height: 400px; opacity: 1; }
+.header .subtitle { font-size: 0.875rem; opacity: 0.92; line-height: 1.7; }
+.header .meta {
+    margin-top: 12px; font-size: 0.8125rem; opacity: 0.85;
+    display: flex; gap: 20px; flex-wrap: wrap;
+}
+.header.expanded {
+    padding: 16px 20px;
+    border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+    box-shadow: var(--shadow-lg);
+}
+.header.global.expanded { box-shadow: 0 10px 30px rgba(124,58,237,0.18); }
+.header.app.expanded { box-shadow: 0 10px 30px rgba(234,88,12,0.20); }
+
+/* ── Container ── */
+.container {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 20px 16px;
+    padding-bottom: calc(24px + var(--safe-bottom));
+}
+.module-panel { display: none; }
+.module-panel.active { display: block; }
+
+/* ── Sub Tabs (horizontal scroll) ── */
+.tabs {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 16px;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    padding-bottom: 2px;
+}
+.tabs::-webkit-scrollbar { display: none; }
+
+.tab {
+    padding: 10px 16px;
+    border-radius: 100px;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    cursor: pointer;
+    background: var(--card);
+    color: var(--text-secondary);
+    border: 1px solid var(--border);
+    transition: var(--t);
+    white-space: nowrap;
+    min-height: 40px;
+    display: flex;
+    align-items: center;
+    -webkit-user-select: none;
+    user-select: none;
+}
+.tab:active { transform: scale(0.96); }
+.tab:hover { background: var(--primary-lighter); border-color: var(--primary-light); }
+.tab.active {
+    background: var(--primary);
+    color: white;
+    border-color: var(--primary);
+    box-shadow: 0 2px 8px rgba(37,99,235,0.22);
+}
+.panel-global .tab:hover { background: var(--accent-lighter); border-color: var(--accent-light); }
+.panel-global .tab.active {
+    background: var(--accent);
+    color: white;
+    border-color: var(--accent);
+    box-shadow: 0 2px 8px rgba(124,58,237,0.22);
+}
+
+/* ── Stats Grid ── */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin-bottom: 16px;
+}
+.stat-card {
+    background: var(--card);
+    border-radius: var(--radius-md);
+    padding: 14px 8px;
+    text-align: center;
+    box-shadow: var(--shadow-xs);
+    border: 1px solid var(--border);
+}
+.stat-card .number {
+    font-size: 1.5rem;
+    font-weight: 800;
+    margin-bottom: 2px;
+    line-height: 1.2;
+    font-variant-numeric: tabular-nums;
+}
+.stat-card .label {
+    font-size: 0.6875rem;
+    color: var(--text-secondary);
+    line-height: 1.3;
+}
+.stat-card.high .number { color: var(--danger); }
+.stat-card.medium .number { color: var(--warning); }
+.stat-card.low .number { color: var(--success); }
+.stat-card.info .number { color: var(--info); }
+.stat-card.accent .number { color: var(--accent); }
+.stat-card.warn .number { color: var(--warning); }
+
+/* ── Filters (collapsible on mobile) ── */
+.filters {
+    background: var(--card);
+    border-radius: var(--radius-md);
+    margin-bottom: 16px;
+    border: 1px solid var(--border);
+    overflow: hidden;
+}
+.filters-header {
+    display: none;
+    padding: 12px 16px;
+    cursor: pointer;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--text);
+    align-items: center;
+    justify-content: space-between;
+    min-height: 48px;
+    -webkit-user-select: none;
+    user-select: none;
+}
+.filters-header:active { background: var(--bg-secondary); }
+.filters-header .arrow { transition: transform 0.3s; font-size: 0.75rem; color: var(--text-secondary); }
+.filters.expanded .filters-header .arrow { transform: rotate(180deg); }
+.filters-body { padding: 16px; }
+
+.filter-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 10px;
+    flex-wrap: wrap;
+}
+.filter-row:last-child { margin-bottom: 0; }
+.filter-label {
+    font-size: 0.8125rem;
+    color: var(--text-secondary);
+    min-width: 60px;
+    white-space: nowrap;
+    font-weight: 500;
+}
+.filter-options {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+}
+.chip {
+    padding: 8px 14px;
+    border-radius: 100px;
+    font-size: 0.8125rem;
+    cursor: pointer;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border);
+    color: var(--text);
+    transition: var(--t);
+    white-space: nowrap;
+    min-height: 36px;
+    display: inline-flex;
+    align-items: center;
+    -webkit-user-select: none;
+    user-select: none;
+}
+.chip:active { transform: scale(0.95); }
+.chip:hover { background: var(--primary-lighter); border-color: var(--primary-light); }
+.chip.active {
+    background: var(--primary);
+    color: white;
+    border-color: var(--primary);
+}
+.panel-global .chip:hover { background: var(--accent-lighter); border-color: var(--accent-light); }
+.panel-global .chip.active {
+    background: var(--accent);
+    color: white;
+    border-color: var(--accent);
+}
+.panel-app .chip:hover { background: #fff7ed; border-color: #fed7aa; }
+.panel-app .chip.active {
+    background: #ea580c;
+    color: white;
+    border-color: #ea580c;
+}
+
+.search-box {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex: 1;
+    min-width: 200px;
+}
+.search-box input {
+    flex: 1;
+    padding: 10px 14px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    font-size: 0.875rem;
+    outline: none;
+    transition: var(--t);
+    min-height: 44px;
+    background: var(--bg-secondary);
+    color: var(--text);
+}
+.search-box input:focus {
+    border-color: var(--primary);
+    background: var(--card);
+    box-shadow: 0 0 0 3px rgba(37,99,235,0.1);
+}
+.panel-global .search-box input:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(124,58,237,0.1);
+}
+.panel-app .search-box input:focus {
+    border-color: #ea580c;
+    box-shadow: 0 0 0 3px rgba(234,88,12,0.1);
+}
+
+/* ── View Toggle ── */
+.view-toggle {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 14px;
+}
+.expand-btn {
+    padding: 8px 14px;
+    border-radius: var(--radius-sm);
+    font-size: 0.8125rem;
+    cursor: pointer;
+    background: var(--card);
+    border: 1px solid var(--border);
+    color: var(--text-secondary);
+    min-height: 40px;
+    -webkit-user-select: none;
+    user-select: none;
+    transition: var(--t);
+}
+.expand-btn:hover { border-color: var(--primary); color: var(--text); }
+.panel-global .expand-btn:hover { border-color: var(--accent); }
+.panel-app .expand-btn:hover { border-color: #ea580c; }
+.expand-btn:active { transform: scale(0.96); }
+
+/* ── Collapsible Sections (APP tab: timeline + app-overview) ── */
+.collapsible-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    user-select: none;
+    -webkit-user-select: none;
+    padding: 2px 0;
+    flex: 1;
+}
+.collapsible-toggle {
+    font-size: 0.75rem;
+    color: var(--text-tertiary);
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 2px 10px;
+    cursor: pointer;
+    transition: all 0.2s;
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+.collapsible-toggle:hover {
+    border-color: #ea580c;
+    color: #ea580c;
+}
+.collapsible-content {
+    overflow: hidden;
+    transition: max-height 0.35s ease, opacity 0.25s ease;
+    max-height: 50000px;
+    opacity: 1;
+}
+.collapsible-content.collapsed {
+    max-height: 0 !important;
+    opacity: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+/* collapse all descriptions toggle */
+.timeline.collapsed .policy-desc { display: none; }
+
+.sort-select {
+    padding: 8px 12px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    font-size: 0.8125rem;
+    background: var(--card);
+    color: var(--text);
+    min-height: 40px;
+    cursor: pointer;
+}
+
+/* ── Timeline / Cards ── */
+.timeline {
+    background: var(--card);
+    border-radius: var(--radius-md);
+    padding: 20px;
+    border: 1px solid var(--border);
+}
+.month-section { margin-bottom: 24px; }
+.month-section:last-child { margin-bottom: 0; }
+.month-title {
+    font-size: 0.9375rem;
+    font-weight: 700;
+    color: var(--primary-dark);
+    margin-bottom: 12px;
+    padding-left: 10px;
+    border-left: 3px solid var(--primary);
+}
+.panel-global .month-title {
+    color: var(--accent-dark);
+    border-left-color: var(--accent);
+}
+.panel-app .month-title {
+    color: #9a3412;
+    border-left-color: #ea580c;
+}
+
+.policy-item {
+    padding: 16px;
+    border-radius: var(--radius-md);
+    background: var(--bg);
+    margin-bottom: 12px;
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--border);
+    transition: var(--t);
+}
+.policy-item:hover {
+    box-shadow: var(--shadow-md);
+    border-color: var(--primary-light);
+}
+/* Urgency accent — left border */
+.policy-item[data-urgency="高"] { border-left-color: var(--danger); }
+.policy-item[data-urgency="中"] { border-left-color: var(--warning); }
+.policy-item[data-urgency="低"] { border-left-color: var(--success); }
+.policy-item.hidden { display: none; }
+
+.policy-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 8px;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+.policy-date {
+    font-size: 0.8125rem;
+    color: var(--text-secondary);
+    white-space: nowrap;
+    font-variant-numeric: tabular-nums;
+}
+.tags { display: flex; gap: 6px; flex-wrap: wrap; }
+
+/* Tag colors */
+.tag {
+    padding: 3px 8px;
+    border-radius: 6px;
+    font-size: 0.6875rem;
+    font-weight: 500;
+    white-space: nowrap;
+    line-height: 1.5;
+}
+.tag-urgency-high { background: var(--danger-bg); color: var(--danger-text); }
+.tag-urgency-medium { background: var(--warning-bg); color: var(--warning-text); }
+.tag-urgency-low { background: var(--success-bg); color: var(--success-text); }
+.tag-category { background: var(--info-bg); color: #1e40af; }
+.tag-region { background: #e0e7ff; color: #3730a3; font-weight: 600; }
+.tag-status-proposed { background: #f3e8ff; color: #6b21a8; }
+.tag-status-confirmed { background: #e0e7ff; color: #3730a3; }
+.tag-status-active { background: var(--success-bg); color: var(--success-text); }
+.tag-new { background: var(--danger); color: white; font-weight: 700; }
+.tag-verified { background: var(--success-bg); color: var(--success-text); font-weight: 600; }
+.tag-unverified { background: var(--warning-bg); color: var(--warning-text); font-weight: 600; }
+.tag-app-type-complaint { background: #fef2f2; color: #991b1b; font-weight: 600; }
+.tag-app-type-social { background: #e0e7ff; color: #3730a3; font-weight: 600; }
+.tag-app-type-regulatory { background: #fff7ed; color: #9a3412; font-weight: 600; }
+.tag-app-type-warning { background: #fef3c7; color: #92400e; font-weight: 600; }
+.tag-app-type-baseline { background: var(--bg-secondary); color: var(--text-secondary); }
+.tag-app-name { background: #ffedd5; color: #c2410c; font-weight: 600; }
+
+.policy-source {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    margin-bottom: 6px;
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+.policy-title {
+    font-size: 0.9375rem;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 6px;
+    line-height: 1.5;
+}
+.policy-desc {
+    font-size: 0.875rem;
+    color: #334155;
+    line-height: 1.7;
+}
+.policy-links {
+    margin-top: 10px;
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+}
+.policy-links a {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 0.75rem;
+    text-decoration: none;
+    font-weight: 500;
+    background: var(--primary-lighter);
+    color: #1d4ed8;
+    border: 1px solid var(--primary-light);
+    transition: var(--t);
+    min-height: 32px;
+}
+.policy-links a:active { transform: scale(0.95); }
+.policy-links a:hover { background: var(--primary); color: #fff; }
+.panel-global .policy-links a {
+    background: var(--accent-lighter);
+    color: #6d28d9;
+    border-color: var(--accent-light);
+}
+.panel-global .policy-links a:hover { background: var(--accent); color: #fff; }
+.panel-app .policy-links a {
+    background: #fff7ed;
+    color: #9a3412;
+    border-color: #fed7aa;
+}
+.panel-app .policy-links a:hover { background: #ea580c; color: #fff; }
+
+.impact-badge {
+    font-size: 0.6875rem;
+    padding: 2px 8px;
+    border-radius: 4px;
+}
+.impact-badge.severe { background: var(--danger-bg); color: var(--danger-text); font-weight: 600; }
+.impact-badge.moderate { background: var(--warning-bg); color: var(--warning-text); font-weight: 600; }
+.impact-badge.mild { background: var(--success-bg); color: var(--success-text); }
+
+/* ── APP Overview Grid (APP监控 tab 顶部) ── */
+.app-overview {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    padding: 16px;
+    margin-bottom: 16px;
+}
+.app-overview-title {
+    font-size: 0.9375rem;
+    font-weight: 700;
+    color: #9a3412;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+.app-overview-title small {
+    font-weight: 400;
+    color: var(--text-tertiary);
+    font-size: 0.75rem;
+}
+.app-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 10px;
+}
+.app-card {
+    padding: 12px 14px;
+    border: 1px solid var(--border);
+    border-left: 3px solid #ea580c;
+    border-radius: var(--radius-sm);
+    background: var(--bg);
+    transition: var(--t);
+    cursor: pointer;
+    -webkit-user-select: none;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+}
+.app-card:active { transform: scale(0.99); }
+.app-card:hover {
+    box-shadow: var(--shadow-md);
+    border-color: #fed7aa;
+    background: var(--card);
+}
+.app-card-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 6px;
+}
+.app-rank {
+    width: 24px; height: 24px;
+    border-radius: 6px;
+    background: #fff7ed;
+    color: #9a3412;
+    font-weight: 700;
+    font-size: 0.8125rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-variant-numeric: tabular-nums;
+}
+.app-rank.top1 { background: #fde68a; color: #92400e; }
+.app-rank.top2 { background: #fed7aa; color: #9a3412; }
+.app-rank.top3 { background: #ffedd5; color: #c2410c; }
+.app-name {
+    font-weight: 700;
+    font-size: 0.875rem;
+    color: var(--text);
+    flex: 1;
+    line-height: 1.3;
+    word-break: break-word;
+}
+.app-meta {
+    font-size: 0.6875rem;
+    color: var(--text-secondary);
+    margin-bottom: 6px;
+    line-height: 1.5;
+}
+.app-meta b { font-weight: 600; color: var(--text); }
+.app-stats {
+    display: flex;
+    align-items: baseline;
+    gap: 6px;
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    flex-wrap: wrap;
+}
+.app-stat-num {
+    font-weight: 700;
+    font-size: 1rem;
+    color: #ea580c;
+    font-variant-numeric: tabular-nums;
+}
+.app-stat-delta {
+    font-size: 0.6875rem;
+    padding: 1px 6px;
+    border-radius: 4px;
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+}
+.app-stat-delta.up { background: var(--success-bg); color: var(--success-text); }
+.app-stat-delta.down { background: var(--danger-bg); color: var(--danger-text); }
+.app-stat-delta.flat { background: var(--bg-secondary); color: var(--text-secondary); }
+.app-fee {
+    font-size: 0.6875rem;
+    color: var(--text-tertiary);
+    margin-top: 6px;
+    line-height: 1.5;
+    border-top: 1px dashed var(--border);
+    padding-top: 6px;
+}
+.app-fee b { color: var(--text-secondary); font-weight: 600; }
+.app-pulse {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--danger);
+    display: inline-block;
+    animation: appPulse 1.6s infinite;
+}
+@keyframes appPulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.4; transform: scale(1.25); }
+}
+.app-expansion-list {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    padding: 14px 16px;
+    margin-bottom: 16px;
+    font-size: 0.8125rem;
+    color: var(--text-secondary);
+    line-height: 1.7;
+}
+.app-expansion-list b { color: #9a3412; }
+.app-expansion-list ul {
+    margin: 8px 0 0;
+    padding-left: 18px;
+}
+.app-expansion-list li { margin-bottom: 4px; }
+
+/* ── Jump to Ranking Shortcut ── */
+.jump-to-ranking {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 16px;
+    margin-bottom: 16px;
+    background: linear-gradient(135deg, rgba(124,58,237,0.08), rgba(124,58,237,0.15));
+    border: 1px solid rgba(124,58,237,0.25);
+    border-radius: var(--radius-md, 10px);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-decoration: none;
+    color: inherit;
+}
+.jump-to-ranking:hover {
+    background: linear-gradient(135deg, rgba(124,58,237,0.12), rgba(124,58,237,0.22));
+    border-color: rgba(124,58,237,0.4);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(124,58,237,0.15);
+}
+.jump-to-ranking:active { transform: scale(0.98); }
+.jump-to-ranking .jump-icon { font-size: 1.25rem; }
+.jump-to-ranking .jump-text {
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: #7c3aed;
+}
+.jump-to-ranking .jump-hint {
+    margin-left: auto;
+    font-size: 0.6875rem;
+    color: var(--text-tertiary, #9ca3af);
+    opacity: 0.8;
+}
+
+/* ── Ad Ranking Table (竞品投放排行榜) ── */
+.ad-ranking-section {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    padding: 16px;
+    margin-bottom: 16px;
+}
+.ad-ranking-title {
+    font-size: 0.9375rem;
+    font-weight: 700;
+    color: #7c3aed;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+.ad-ranking-title small {
+    font-weight: 400;
+    color: var(--text-tertiary);
+    font-size: 0.75rem;
+}
+.ranking-table-wrapper {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    margin-bottom: 12px;
+}
+.ranking-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.8125rem;
+    min-width: 600px;
+}
+.ranking-table th {
+    background: var(--bg-secondary);
+    color: var(--text-primary);
+    font-weight: 600;
+    text-align: left;
+    padding: 10px 12px;
+    border-bottom: 2px solid var(--border);
+    white-space: nowrap;
+    font-size: 0.75rem;
+}
+.ranking-table td {
+    padding: 10px 12px;
+    border-bottom: 1px solid var(--border);
+    vertical-align: middle;
+}
+.ranking-table tr:hover td {
+    background: var(--bg-secondary);
+}
+.ranking-table .rank-cell {
+    font-weight: 700;
+    color: #7c3aed;
+    font-variant-numeric: tabular-nums;
+    width: 40px;
+}
+.ranking-table .rank-cell.top1 { color: #dc2626; }
+.ranking-table .rank-cell.top2 { color: #ea580c; }
+.ranking-table .rank-cell.top3 { color: #d97706; }
+.ranking-table .app-name-cell {
+    font-weight: 600;
+    color: var(--text-primary);
+}
+.ranking-table .company-cell {
+    font-size: 0.75rem;
+    color: var(--text-tertiary);
+    max-width: 150px;
+}
+.ranking-table .store-rank {
+    font-weight: 600;
+    color: #059669;
+    font-variant-numeric: tabular-nums;
+}
+.ranking-table .download-cell {
+    font-weight: 600;
+    color: var(--text-primary);
+    font-variant-numeric: tabular-nums;
+}
+.ad-activity-badge {
+    display: inline-block;
+    padding: 3px 8px;
+    border-radius: 12px;
+    font-size: 0.6875rem;
+    font-weight: 600;
+}
+.ad-activity-badge.high { background: #fef2f2; color: #dc2626; }
+.ad-activity-badge.medium { background: #fff7ed; color: #ea580c; }
+.ad-activity-badge.low { background: #f0fdf4; color: #16a34a; }
+.trend-cell {
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+.trend-cell.up { color: #dc2626; }
+.trend-cell.down { color: #16a34a; }
+.trend-cell.stable { color: var(--text-tertiary); }
+.ad-alert-box {
+    background: #fef3c7;
+    border: 1px solid #fbbf24;
+    border-radius: var(--radius-sm);
+    padding: 12px 14px;
+    font-size: 0.8125rem;
+    color: #92400e;
+    line-height: 1.6;
+}
+.ad-alert-box b { color: #78350f; }
+.ad-alert-box ul {
+    margin: 8px 0 0;
+    padding-left: 18px;
+}
+.ad-alert-box li { margin-bottom: 4px; }
+@media (max-width: 640px) {
+    .ranking-table { font-size: 0.75rem; }
+    .ranking-table th, .ranking-table td { padding: 8px 10px; }
+}
+
+/* Soft warning stat card variant */
+.stat-card.warn-orange { background: #fff7ed; }
+.stat-card.warn-orange .number { color: #ea580c; }
+.stat-card.warn-orange .label { color: #9a3412; }
+
+.footer-note {
+    margin-top: 20px;
+    padding: 14px 16px;
+    border-radius: var(--radius-md);
+    font-size: 0.8125rem;
+    background: var(--info-bg);
+    color: #1e40af;
+    border: 1px solid var(--primary-light);
+    line-height: 1.7;
+}
+.panel-global .footer-note {
+    background: var(--accent-lighter);
+    color: var(--accent-dark);
+    border-color: var(--accent-light);
+}
+.panel-app .footer-note {
+    background: #fff7ed;
+    color: #9a3412;
+    border-color: #fed7aa;
+}
+
+/* ── Floating Action Buttons ── */
+.fab-stack {
+    position: fixed;
+    right: 20px;
+    bottom: calc(20px + var(--safe-bottom));
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+}
+.fab {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    box-shadow: var(--shadow-lg);
+    transition: var(--t);
+    -webkit-user-select: none;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+    -webkit-touch-callout: none;
+    z-index: 9999;
+}
+.fab:active { transform: scale(0.88); }
+.fab-portal {
+        background: var(--bg-card, #fff);
+        color: var(--text-primary, #333);
+        border: 1px solid var(--border, #e5e7eb);
+        text-decoration: none;
+    }
+    .fab-portal:active { transform: scale(0.88); }
+    .fab-back {
+    background: var(--primary);
+    color: white;
+    opacity: 0;
+    pointer-events: none;
+}
+.fab-back.visible { opacity: 1; pointer-events: auto; }
+.panel-global ~ .fab-stack .fab-back { background: var(--accent); }
+.panel-app ~ .fab-stack .fab-back { background: #ea580c; }
+
+.fab-theme {
+    background: var(--card);
+    color: var(--text);
+    border: 1px solid var(--border);
+}
+.fab-theme:active { transform: scale(0.88) rotate(180deg); }
+
+.fab-feedback {
+    background: var(--card);
+    color: var(--text);
+    border: 1px solid var(--border);
+    position: relative;
+}
+.fab-feedback .fab-badge {
+    position: absolute;
+    top: -2px;
+    right: -2px;
+    width: 10px;
+    height: 10px;
+    background: var(--danger);
+    border-radius: 50%;
+    border: 2px solid var(--card);
+}
+
+/* ── Feedback Modal ── */
+.feedback-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.5);
+    z-index: 200;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s ease;
+    -webkit-backdrop-filter: blur(2px);
+    backdrop-filter: blur(2px);
+}
+.feedback-overlay.visible {
+    opacity: 1;
+    pointer-events: auto;
+}
 .feedback-modal {
     background: var(--card);
     border-radius: var(--radius-lg);
@@ -33,6 +1152,9 @@
     transform: scale(0.92) translateY(20px);
     transition: transform 0.25s ease;
     border: 1px solid var(--border);
+}
+.feedback-overlay.visible .feedback-modal {
+    transform: scale(1) translateY(0);
 }
 .feedback-modal h3 {
     font-size: 1.1rem;
@@ -144,6 +1266,7 @@
 }
 
 @media (max-width: 768px) {
+    .fab-stack { right: 16px; gap: 8px; }
     .feedback-modal { padding: 20px 16px; }
     .feedback-modal h3 { font-size: 1rem; }
     .feedback-btn { min-width: 100px; font-size: 0.8125rem; }
@@ -335,14 +1458,6 @@
 .ranking-panel { display:none; }
 .ranking-panel.active { display:block; }
 .nonbank-tag { display:inline-block; font-size:0.6rem; padding:1px 5px; border-radius:6px; background:rgba(124,58,237,0.12); color:#7c3aed; font-weight:600; margin-left:4px; vertical-align:middle; }
-
-/* ── Bottom Navigation v2 ── */
-.bottom-nav { position: fixed; bottom: 0; left: 0; right: 0; background: #ffffff; border-top: 1px solid #e2e8f0; display: flex; justify-content: space-around; padding: 8px 0; padding-bottom: max(8px, env(safe-area-inset-bottom)); z-index: 1000; box-shadow: 0 -2px 10px rgba(0,0,0,0.05); }
-.nav-item { display: flex; flex-direction: column; align-items: center; gap: 4px; text-decoration: none; color: #64748b; font-size: 0.65rem; font-weight: 500; padding: 4px 12px; border-radius: 12px; transition: color 0.2s, background 0.2s; }
-.nav-item.active { color: #3b82f6; background: rgba(59,130,246,0.12); }
-.nav-icon { font-size: 1.2rem; }
-@media (min-width: 768px) { .bottom-nav { max-width: 430px; left: 50%; transform: translateX(-50%); } }
-
 </style>
 </head>
 <body>
@@ -370,7 +1485,7 @@
                 追踪泰国央行(BoT)及监管机构针对 BNPL、Personal Loan、Pico Loan/Nano Finance 牌照发布的政策通知、利率上限调整(APR/综合融资成本)、合规要求变更、消费者保护规定等监管动态。
             </div>
             <div class="meta">
-                <span>📅 数据最后更新：<span class="last-updated-label">2026-10-06 19:00 (GMT+8)</span></span>
+                <span>📅 数据最后更新：<span class="last-updated-label">2026-10-07 19:00 (GMT+8)</span></span>
                 <span>🤖 自动更新：每日 09:30 / 19:00</span>
                 <span>📊 监控范围：泰国央行(BoT)、SEC、财政部、OCPB、NCB、SAM</span>
             </div>
@@ -386,10 +1501,10 @@
             <div class="tab" data-tab="relief">纾困计划</div>
         </div>
         <div class="stats-grid" id="thai-stats">
-            <div class="stat-card info">  <div class="number stat-total">70</div> <div class="label">监控条目</div> </div>
-            <div class="stat-card high">  <div class="number stat-high">24</div>  <div class="label">紧急-高</div> </div>
-            <div class="stat-card medium"><div class="number stat-medium">39</div><div class="label">紧急-中</div> </div>
-            <div class="stat-card low">   <div class="number stat-low">6</div> <div class="label">紧急-低</div> </div>
+            <div class="stat-card info">  <div class="number stat-total">73</div> <div class="label">监控条目</div> </div>
+            <div class="stat-card high">  <div class="number stat-high">26</div>  <div class="label">紧急-高</div> </div>
+            <div class="stat-card medium"><div class="number stat-medium">40</div><div class="label">紧急-中</div> </div>
+            <div class="stat-card low">   <div class="number stat-low">7</div> <div class="label">紧急-低</div> </div>
             <div class="stat-card info">  <div class="number">8</div>  <div class="label">央行/监管机构</div> </div>
             <div class="stat-card info">  <div class="number">20</div> <div class="label">政策/银行/平台</div> </div>
         </div>
@@ -457,7 +1572,38 @@
         </div>
         <div class="timeline thai-timeline">
             <!-- THAI DATA — kept in an IE-compatible structure -->
-            <div class="month-section" data-month="2026-10"><div class="month-title">2026年10月 (6 条)</div>
+            <div class="month-section" data-month="2026-10"><div class="month-title">2026年10月 (9 条)</div>
+<div class="policy-item" data-source-links='[{"label": "Thai Times - BoT Targets Unauthorized Loan Applications (10/7)", "url": "https://thaitimes.com/bank-of-thailand-targets-unauthorized-loan-applications"}, {"label": "Bangkok Post - Mother, daughters found dead after loan scam (10/7)", "url": "https://bangkokpost-xkgxtn.cdn.byteark.com/thailand/general/3332530/mother-daughters-found-dead-after-loan-scam"}, {"label": "Chiang Rai Times - Loan Scam Leads to Suicide (10/7)", "url": "https://www.chiangraitimes.com/thailand-news/loan-scam-family-suicide/"}]' data-categories='国家监管,消费者保护,信贷环境' data-business='Personal Loan,Pico Loan,Digital Lending' data-urgency='高' data-status='已实施' data-verified='verified' data-date='2026-10-07'>
+  <div class="policy-header"><div class="tags"><span class="tag tag-urgency-high">紧急-高</span><span class="tag tag-category">国家监管</span><span class="tag tag-category">消费者保护</span><span class="tag tag-category">信贷环境</span><span class="tag tag-status-confirmed">已实施</span><span class="tag tag-verified">✅ 3源交叉验证</span></div><div class="policy-date">2026-10-07</div></div>
+  <div class="policy-source">来源：Thai Times (10/7) / Bangkok Post (10/7) / Chiang Rai Times (10/7)</div>
+  <div class="policy-title">BoT联合DES下架10款未授权借贷APP：Oppo/Realme预装Fineasy/Happy Loan，Pathum Thani贷款诈骗致3人死亡</div>
+  <div class="policy-desc">泰国央行(BoT)金融体系监管发展部高级总监Peerachit Padmasuta确认，BoT近期审查11款借贷应用后认定<b>10款未获授权</b>，已正式通知数字经济与社会部(DES)要求从<b>Apple App Store和Google Play下架</b>。此前DES发现Google Play上11款可疑应用，经查Oppo及子品牌Realme在部分机型<b>预装了Fineasy、Happy Loan等未获BoT批准的借贷APP</b>，两公司已致歉。同日，Pathum Thani发生悲剧：一名单亲母亲因使用<b>虚假贷款APP被骗走最后1,000泰铢</b>后与两个女儿身亡，警方已下令网络犯罪部门追查。BoT强调：提供个人贷款APP须先获BoT授权，再向财政部申请牌照。消费者可通过bot.or.th"Check loan app"功能验证。</div>
+  <div class="policy-tags">
+    <span class="tag tag-impact">影响：信贷环境</span>
+    <span class="tag tag-tag">消费者保护</span>
+  </div>
+</div>
+<div class="policy-item" data-source-links='[{"label": "Thai Times - Thailand Extends You Fight We Help Debt Relief (10/6)", "url": "https://thaitimes.com/thailand-extends-you-fight-we-help-debt-relief-scheme-for-small-non-bank-debtors"}, {"label": "Thai Government Announcement - Cabinet approves two measures (10/6)", "url": "https://thaitimes.com/thailand-extends-you-fight-we-help-debt-relief-scheme-for-small-non-bank-debtors"}]' data-categories='国家监管,债务纾困,信贷环境' data-business='Personal Loan,Pico Loan,Nano Finance' data-urgency='中' data-status='已实施' data-verified='verified' data-date='2026-10-06'>
+  <div class="policy-header"><div class="tags"><span class="tag tag-urgency-medium">紧急-中</span><span class="tag tag-category">国家监管</span><span class="tag tag-category">债务纾困</span><span class="tag tag-category">信贷环境</span><span class="tag tag-status-confirmed">已实施</span><span class="tag tag-verified">✅ 2源交叉验证</span></div><div class="policy-date">2026-10-06</div></div>
+  <div class="policy-source">来源：Thai Times (10/6) / 泰国政府内阁公告 (10/6)</div>
+  <div class="policy-title">内阁延长"You Fight We Help"非银债务人纾困计划：数字个人贷≤2万/.nano finance≤5万纳入，GSB提供500亿泰铢软贷</div>
+  <div class="policy-desc">泰国副总理兼财政部长Phaophum Rojanasakul宣布内阁批准两项措施：<b>①"Pay Directly, Preserve Assets"</b>：截至2024/10/31逾期的非银债务人（含<b>数字个人贷款≤2万泰铢、nano finance≤5万泰铢</b>、摩托车贷≤5万、受监管个人贷≤10-20万、车贷≤80万），还款减至原额70%/3年期/利率降10个百分点；<b>②"Pay, Close, Finish"</b>：违约且余额≤5,000泰铢者仅需偿还10%即可清债。财政部从<b>政府储蓄银行(GSB)获得500亿泰铢软贷额度</b>，按各非银机构参与计划收入损失分配。申请截止2027/4/30。此计划直接覆盖Pico Finance和Digital Lending客群。</div>
+  <div class="policy-tags">
+    <span class="tag tag-impact">影响：信贷环境</span>
+    <span class="tag tag-tag">债务纾困</span>
+  </div>
+</div>
+<div class="policy-item" data-source-links='[{"label": "Thai Times - BoT White-Label ATM Network (10/7)", "url": "https://thaitimes.com/thailand-s-central-bank-to-open-atm-network-to-fintechs-and-payment-providers"}, {"label": "BoT Financial Landscape 2025 Directional Paper", "url": "https://thaitimes.com/thailand-s-central-bank-to-open-atm-network-to-fintechs-and-payment-providers"}]' data-categories='国家监管,牌照政策,信贷环境' data-business='Personal Loan,Pico Loan,Digital Lending' data-urgency='低' data-status='拟议/征求意见' data-verified='verified' data-date='2026-10-06'>
+  <div class="policy-header"><div class="tags"><span class="tag tag-urgency-low">紧急-低</span><span class="tag tag-category">国家监管</span><span class="tag tag-category">牌照政策</span><span class="tag tag-category">信贷环境</span><span class="tag tag-status-proposed">拟议/征求意见</span><span class="tag tag-verified">✅ 2源交叉验证</span></div><div class="policy-date">2026-10-06</div></div>
+  <div class="policy-source">来源：Thai Times (10/7) / BoT Financial Landscape 2025</div>
+  <div class="policy-title">BoT拟开放白标ATM牌照：允许fintech/非银运营ATM，覆盖全国6万台，2026年底前实施</div>
+  <div class="policy-desc">BoT助理行长Daranee Saeju（支付体系政策与消费者保护部门）披露，BoT计划在"Financial Landscape 2025"方向文件下推出<b>"白标ATM"牌照</b>，允许银行及非银运营商（含fintech公司、ATM厂商）以自有品牌运营ATM。覆盖泰国约<b>60,000台ATM</b>。基础交易费率维持现有水平，"创新金融服务"可收取更高费用。目标：强化农村和欠发达地区金融普惠。目前现金交易仍占银行业务约31%，BoT预计3-5年内降至10-20%。对出海机构：此政策为<b>非银机构进入物理金融触达渠道</b>打开新窗口，Pico Finance/Nano Finance运营商可评估ATM网络作为线下获客+还款入口的可行性。</div>
+  <div class="policy-tags">
+    <span class="tag tag-impact">影响：信贷环境</span>
+    <span class="tag tag-tag">牌照政策</span>
+  </div>
+</div>
+
 <div class="policy-item" data-source-links='[{"label": "Mondaq - Thailand Issues New Credit-Term Rules for Large Purchasers from SMEs (10/6)", "url": "https://www.mondaq.com/trade-regulation-practices/1851476/thailand-issues-new-credit-term-rules-for-large-purchasers-from-smes"}, {"label": "Thansettakij - กฎคุม Credit Term ประกาศราชกิจจาฯ (10/6)", "url": "https://www.thansettakij.com/economy/670772"}, {"label": "Bangkok Insight - กติกาใหม่เครดิตเทอม เริ่ม 2 พ.ย. (10/6)", "url": "https://www.thebangkokinsight.com/news/business/economics/1704883/"}, {"label": "Thailand Edition - SME Council Pushes 45-Day Credit Term (10/5)", "url": "https://thailandedition.com/i/sme-council-pushes-45-day-credit-term-legal-effect-00a16ac1aee8a0e0bc76dd23"}]' data-categories='信贷环境,消费者保护,国家监管' data-business='BNPL,Personal Loan,Pico Loan' data-urgency='中' data-status='已确认待实施' data-verified='verified' data-date='2026-10-06'>
   <div class="policy-header"><div class="tags"><span class="tag tag-urgency-medium">紧急-中</span><span class="tag tag-category">信贷环境</span><span class="tag tag-category">消费者保护</span><span class="tag tag-category">国家监管</span><span class="tag tag-status-confirmed">已确认待实施</span><span class="tag tag-verified">✅ 4源交叉验证</span></div><div class="policy-date">2026-10-06</div></div>
   <div class="policy-source">来源：Mondaq (10/6) / Thansettakij (10/6) / Bangkok Insight (10/6) / Thailand Edition (10/5)</div>
@@ -1238,7 +2384,7 @@
                 不收录：非监管类市场新闻(融资/产品发布)、加密货币/区块链监管（除非与现金贷直接相关）。
             </div>
             <div class="meta">
-                <span>📅 数据最后更新：<span class="last-updated-label">2026-10-06 19:00 (GMT+8)</span></span>
+                <span>📅 数据最后更新：<span class="last-updated-label">2026-10-07 19:00 (GMT+8)</span></span>
                 <span>🤖 自动更新：每日 09:30</span>
                 <span>🌍 覆盖：东南亚 / 拉美 / 非洲 / 南亚 / 跨市场</span>
             </div>
@@ -1254,12 +2400,12 @@
             <div class="tab" data-tab="cross">跨市场 (App审查/外汇)</div>
         </div>
         <div class="stats-grid" id="global-stats">
-            <div class="stat-card accent"> <div class="number stat-total">138</div> <div class="label">监控条目</div> </div>
-            <div class="stat-card high">   <div class="number stat-high">51</div>  <div class="label">紧急-高</div> </div>
-            <div class="stat-card medium"> <div class="number stat-medium">82</div><div class="label">紧急-中</div> </div>
+            <div class="stat-card accent"> <div class="number stat-total">145</div> <div class="label">监控条目</div> </div>
+            <div class="stat-card high">   <div class="number stat-high">54</div>  <div class="label">紧急-高</div> </div>
+            <div class="stat-card medium"> <div class="number stat-medium">86</div><div class="label">紧急-中</div> </div>
             <div class="stat-card low">    <div class="number stat-low">7</div> <div class="label">紧急-低</div> </div>
             <div class="stat-card info">   <div class="number">12</div> <div class="label">国家/地区</div> </div>
-            <div class="stat-card warn">   <div class="number stat-unverified">10</div><div class="label">⚠ 未交叉认证</div> </div>
+            <div class="stat-card warn">   <div class="number stat-unverified">11</div><div class="label">⚠ 未交叉认证</div> </div>
         </div>
         <div class="filters" id="global-filters">
             <div class="filters-header" onclick="this.parentElement.classList.toggle('expanded')"><span>🔧 筛选器</span><span class="arrow">▼</span></div>
@@ -1342,7 +2488,78 @@
         </div>
         <div class="timeline global-timeline>
             <!-- ===== 2026-10 ===== -->
-            <div class="month-section" data-month="2026-10"><div class="month-title">2026年10月 (15 条)</div>
+            <div class="month-section" data-month="2026-10"><div class="month-title">2026年10月 (22 条)</div>
+<div class="policy-item" data-source-links='[{"label": "PakEra - NCCIA Arrests 39 at Lahore Call Centre (10/7)", "url": "https://pakera.pk/nccia-lahore-fake-loan-app-blackmail-39-arrested/"}, {"label": "SECP Licensed Digital Lending Apps White List", "url": "https://pakera.pk/nccia-lahore-fake-loan-app-blackmail-39-arrested/"}]' data-region='巴基斯坦' data-categories='消费者保护,信贷环境,国家监管' data-urgency='高' data-status='已实施' data-verified='unverified' data-date='2026-10-07'>
+  <div class="policy-header"><div class="tags"><span class="tag tag-urgency-high">紧急-高</span><span class="tag tag-region">🇵🇰 巴基斯坦</span><span class="tag tag-category">消费者保护</span><span class="tag tag-category">信贷环境</span><span class="tag tag-category">国家监管</span><span class="tag tag-status-confirmed">已实施</span><span class="tag tag-unverified">⚠ 未交叉认证</span></div><div class="policy-date">2026-10-07</div></div>
+  <div class="policy-source">来源：PakEra (10/7)</div>
+  <div class="policy-title">🇵🇰 NCCIA在拉合尔突击非法借贷APP呼叫中心：逮捕39人，SECP发布持牌数字借贷白名单</div>
+  <div class="policy-desc">巴基斯坦国家网络犯罪调查局(NCCIA)在拉合尔突击一处<b>非法借贷APP呼叫中心</b>，逮捕39名涉案人员，该团伙通过fake loan app进行<b>敲诈勒索</b>。SECP提醒公众在安装借贷APP前应核查是否在其发布的<b>持牌数字借贷白名单</b>上。此事件反映巴基斯坦非法借贷APP问题持续恶化，与SECP加强NBFI监管的方向一致。</div>
+  <div class="policy-tags">
+    <span class="tag tag-impact">影响：消费者保护</span>
+    <span class="tag tag-region">🇵🇰 巴基斯坦</span>
+  </div>
+</div>
+<div class="policy-item" data-source-links='[{"label": "El Destape - Senado aprueba reforma Carta Orgánica BCRA (10/7)", "url": "https://www.eldestapeweb.com/politica/milei-reune-netanyahu-diserta-club-economico-new-york-202692465448"}, {"label": "El Cronista - BCRA: la mora dejó de ser un lastre (10/5)", "url": "https://www.cronista.com/finanzas-mercados/para-el-bcra-la-mora-dejo-de-ser-un-lastre-para-el-credito-y-el-ahorro-en-dolares-no-es-desestabilizador/"}, {"label": "Diario Huarpe - Piden auditar algoritmos de Mercado Pago/Ualá/Naranja X (10/6)", "url": "https://www.diariohuarpe.com/nota/piden-auditar-los-algoritmos-de-credito-de-mercado-pago-uala-y-naranja-x-202681822510"}]' data-region='阿根廷' data-categories='国家监管,信贷环境,消费者保护' data-urgency='高' data-status='已确认待实施' data-verified='verified' data-date='2026-10-07'>
+  <div class="policy-header"><div class="tags"><span class="tag tag-urgency-high">紧急-高</span><span class="tag tag-region">🇦🇷 阿根廷</span><span class="tag tag-category">国家监管</span><span class="tag tag-category">信贷环境</span><span class="tag tag-category">消费者保护</span><span class="tag tag-status-confirmed">已确认待实施</span><span class="tag tag-verified">✅ 3源交叉验证</span></div><div class="policy-date">2026-10-07</div></div>
+  <div class="policy-source">来源：El Destape (10/7) / El Cronista (10/5) / Diario Huarpe (10/6)</div>
+  <div class="policy-title">🇦🇷 参议院通过BCRA央行组织法改革+议员要求审计Mercado Pago/Ualá/Naranja X算法：TEA高达700%</div>
+  <div class="policy-desc">阿根廷参议院以46:22通过<b>BCRA央行组织法改革</b>（返回众议院审议）：①央行行长由参议院<b>绝对多数</b>任命（非2/3）；②<b>禁止直接向财政部货币融资</b>；③行长任期6年。同时，Peronismo Federal议员联盟向国家竞争局(ANC)提交正式投诉，要求对<b>91个数字钱包+687个非金融信贷供应商</b>（含Mercado Pago、Ualá、Naranja X、Personal Pay、Prex等）进行<b>算法审计</b>，指控TEA高达<b>700%</b>、利用交易数据进行价格歧视、阻止用户信用声誉迁移。550万+阿根廷人为数字借贷债务人。<b>对出海现金贷</b>：阿根廷数字借贷监管收紧信号明确，算法透明度和利率合理性将成为新一轮合规焦点。</div>
+  <div class="policy-tags">
+    <span class="tag tag-impact">影响：信贷环境</span>
+    <span class="tag tag-region">🇦🇷 阿根廷</span>
+  </div>
+</div>
+<div class="policy-item" data-source-links='[{"label": "ANTARA - OJK: Pinjol tumbuh 22% capai Rp107 triliun (10/5)", "url": "https://m.antaranews.com/berita/5771861/ojk-pinjaman-online-tumbuh-22-persen-capai-rp107-triliun-per-agustus"}, {"label": "Pasardana - Utang Pinjol Tembus Rp106,94 Triliun (10/6)", "url": "https://pasardana.id/news/2026/10/6/naik-22-02-persen-utang-pinjol-wni-tembus-rp-106-94-triliun"}, {"label": "Koridor - OJK Catat Utang Pinjol Tembus (10/6)", "url": "https://koridor.co.id/ojk-catat-utang-pinjol-tembus-106-triliun"}, {"label": "Merdeka - Utang Pinjol WNI Capai Rp106,94T (10/5)", "url": "https://www.merdeka.com/uang/read/8306484/utang-pinjol-wni-capai-rp-10694-triliun"}]' data-region='印尼' data-categories='信贷环境,国家监管,消费者保护' data-urgency='中' data-status='发展中' data-verified='verified' data-date='2026-10-06'>
+  <div class="policy-header"><div class="tags"><span class="tag tag-urgency-medium">紧急-中</span><span class="tag tag-region">🇮🇩 印尼</span><span class="tag tag-category">信贷环境</span><span class="tag tag-category">国家监管</span><span class="tag tag-category">消费者保护</span><span class="tag tag-status-developing">发展中</span><span class="tag tag-verified">✅ 4源交叉验证</span></div><div class="policy-date">2026-10-06</div></div>
+  <div class="policy-source">来源：ANTARA (10/5) / Pasardana (10/6) / Koridor (10/6) / Merdeka (10/5)</div>
+  <div class="policy-title">🇮🇩 OJK：Pinjol余额达Rp106.94万亿(+22% YoY)，TWP90升至4.73%，RPOJK LPBBTI强化投资者保护</div>
+  <div class="policy-desc">OJK PVML执行主席Agusman在RDKB月度发布会上披露：①2026年8月<b>pinjol outstanding达Rp106.94万亿</b>（同比+22.07%）；②<b>TWP90从4.32%升至4.73%</b>（去年同期仅2.60%）；③Gen Z(19-34岁)占不良贷款的<b>48.22%</b>；④94家pinjol中<b>10家未达最低资本Rp125亿</b>，144家multifinance中7家未达核心资本Rp1000亿；⑤9月对35家multifinance+8家venture capital+<b>8家pinjol实施行政处罚</b>。OJK正制定<b>RPOJK LPBBTI新规</b>强化投资者保护。对出海现金贷：印尼pinjol增速快但资产质量恶化趋势明显，监管收紧方向明确。</div>
+  <div class="policy-tags">
+    <span class="tag tag-impact">影响：信贷环境</span>
+    <span class="tag tag-region">🇮🇩 印尼</span>
+  </div>
+</div>
+<div class="policy-item" data-source-links='[{"label": "Mondaq - Vietnam Recognizes Cross-Border Payment for Offshore Credit Institutions (10/7)", "url": "https://www.mondaq.com/financial-services/1852066/vietnam-recognizes-cross-border-payment-activities-for-offshore-credit-institutions"}, {"label": "SBV Circular 39/2026/TT-NHNN amending Circular 16/2014/TT-NHNN", "url": "https://www.mondaq.com/financial-services/1852066/vietnam-recognizes-cross-border-payment-activities-for-offshore-credit-institutions"}]' data-region='越南' data-categories='市场准入,牌照合规,信贷环境' data-urgency='中' data-status='已实施' data-verified='verified' data-date='2026-10-06'>
+  <div class="policy-header"><div class="tags"><span class="tag tag-urgency-medium">紧急-中</span><span class="tag tag-region">🇻🇳 越南</span><span class="tag tag-category">市场准入</span><span class="tag tag-category">牌照合规</span><span class="tag tag-category">信贷环境</span><span class="tag tag-status-confirmed">已实施</span><span class="tag tag-verified">✅ 2源交叉验证</span></div><div class="policy-date">2026-10-06</div></div>
+  <div class="policy-source">来源：Mondaq/Tilleke & Gibbins (10/7) / SBV Circular 39/2026</div>
+  <div class="policy-title">🇻🇳 SBV Circular 39正式生效：允许境外信贷机构通过越南银行账户开展跨境支付服务</div>
+  <div class="policy-desc">越南国家银行(SBV)2026/8/5发布<b>Circular 39/2026/TT-NHNN</b>（9/19生效），修订Circular 16/2014，明确<b>允许境外信贷机构</b>使用其在越南持牌银行开设的外币和VND账户开展<b>跨境支付活动</b>，包括：①处理客户国际支付和资金转账；②通过这些账户进行收付款交易。此前，境外机构只能用这些账户进行自身许可交易，不能为第三方提供跨境支付。<b>对出海现金贷</b>：为跨境支付合作提供更明确的法律框架，外国fintech和信贷机构可更有信心地搭建与越南本地银行的合作架构。同时，P2P借贷监管沙盒(Decree 94/2025)效果有限——16份申请中仅2份已处理，13份仍在评估。</div>
+  <div class="policy-tags">
+    <span class="tag tag-impact">影响：市场准入</span>
+    <span class="tag tag-region">🇻🇳 越南</span>
+  </div>
+</div>
+<div class="policy-item" data-source-links='[{"label": "TechTrendsKE - CBK Non-Deposit-Taking Credit Providers Regulations (10/5)", "url": "https://techtrendske.co.ke/2026/10/05/cbk-non-deposit-taking-credit-providers-regulations/"}, {"label": "Tech-ish - CBK raises annual fee to KES 500,000 (10/5)", "url": "https://tech-ish.com/2026/10/05/cbk-raises-licensed-lenders-annual-fees-to-kes-500000-from-kes-20000/"}, {"label": "CBK Official - 27 more DCPs licensed (9/30)", "url": "https://www.centralbank.go.ke/2024/10/01/10799/"}]' data-region='肯尼亚' data-categories='国家监管,牌照合规,信贷环境' data-urgency='高' data-status='已实施' data-verified='verified' data-date='2026-10-05'>
+  <div class="policy-header"><div class="tags"><span class="tag tag-urgency-high">紧急-高</span><span class="tag tag-region">🇰🇪 肯尼亚</span><span class="tag tag-category">国家监管</span><span class="tag tag-category">牌照合规</span><span class="tag tag-category">信贷环境</span><span class="tag tag-status-confirmed">已实施</span><span class="tag tag-verified">✅ 3源交叉验证</span></div><div class="policy-date">2026-10-05</div></div>
+  <div class="policy-source">来源：TechTrendsKE (10/5) / Tech-ish (10/5) / CBK Official (9/30)</div>
+  <div class="policy-title">🇰🇪 CBK发布Non-Deposit Credit Provider新规：年费从KES 2万升至50万，已持牌DCP自动过渡，总持牌281家</div>
+  <div class="policy-desc">CBK发布<b>2026年Non-Deposit-Taking Credit Providers新规</b>，替代2022年DCP规则。核心变化：①<b>年度牌照费从KES 20,000大幅升至KES 500,000</b>（25倍增长）；②2022规则下持牌lender自动视为新规下持牌；③CBK 9/30新增29家DCP牌照，总持牌数达<b>281家</b>；④新规赋予CBK更广泛的制裁权力。申请人在2027/3/29前可继续经营。<b>对出海现金贷</b>：肯尼亚数字借贷市场准入门槛大幅提高，年费增长25倍释放明确的"提高合规质量"信号。281家持牌机构的竞争格局将因成本上升而加速整合。</div>
+  <div class="policy-tags">
+    <span class="tag tag-impact">影响：牌照合规</span>
+    <span class="tag tag-region">🇰🇪 肯尼亚</span>
+  </div>
+</div>
+<div class="policy-item" data-source-links='[{"label": "Punch - Personal loans rise to N2tn (10/5)", "url": "https://punchng.com/personal-loans-rise-to-n2tn-as-nigerians-borrow-more/"}, {"label": "CNBC Africa - Nigerians switch to borrowing (10/6)", "url": "https://www.cnbcafrica.com/media/7791295855167/nigerians-switch-to-borrowing-on-mounting-cost-pressure"}, {"label": "BreakingNews.ng - N2.06tn personal loans (10/5)", "url": "https://breakingnews.com.ng/2026/10/nigerians-owe-n2-06-trillion-in-personal-loans-as-borrowing-to-survive-overtakes-borrowing-to-invest/"}]' data-region='尼日利亚' data-categories='信贷环境,消费者保护,国家监管' data-urgency='中' data-status='发展中' data-verified='verified' data-date='2026-10-05'>
+  <div class="policy-header"><div class="tags"><span class="tag tag-urgency-medium">紧急-中</span><span class="tag tag-region">🇳🇬 尼日利亚</span><span class="tag tag-category">信贷环境</span><span class="tag tag-category">消费者保护</span><span class="tag tag-category">国家监管</span><span class="tag tag-status-developing">发展中</span><span class="tag tag-verified">✅ 3源交叉验证</span></div><div class="policy-date">2026-10-05</div></div>
+  <div class="policy-source">来源：Punch (10/5) / CNBC Africa (10/6) / BreakingNews.ng (10/5)</div>
+  <div class="policy-title">🇳🇬 CBN报告：个人贷款达N2.06万亿，40.8%借款人"为生存借贷"，45.8%面临还款压力</div>
+  <div class="policy-desc">CBN 2026年5月经济报告显示：①<b>消费者信贷总额N3.18万亿</b>（月增1.6%），其中<b>个人贷款N2.06万亿（占64.78%）</b>；②2026 Access to Financial Services调查发现<b>40.8%的正规借款人用于"应对/消费"</b>（2023年仅31.7%），首次超过生产性企业借贷（34.3%）；③<b>45.8%的正规借款人报告"部分或严重还款压力"</b>，83.8%经历持续性财务压力；④正规信贷使用率从2023年6%升至2026年10%（约1190万人），非正规就业者借贷从5%升至15%。PMI连续低于50（49.6），通胀15.93%。<b>对出海现金贷</b>：尼日利亚消费信贷市场快速增长但"生存型借贷"占比过高，社会舆论对过度负债的批评升温，CBN可能跟进更严格的借款人保护规则。</div>
+  <div class="policy-tags">
+    <span class="tag tag-impact">影响：信贷环境</span>
+    <span class="tag tag-region">🇳🇬 尼日利亚</span>
+  </div>
+</div>
+<div class="policy-item" data-source-links='[{"label": "SpaceMoney - Ajuste regulatório das fintechs cria teses legais (10/6)", "url": "https://www.spacemoney.com.br/economia/legislacao/ajuste-regulatorio-fintechs-riscos-legais/"}, {"label": "Monitor do Mercado - Ajustes das fintechs sinalizam riscos (10/6)", "url": "https://monitordomercado.com.br/noticias/economia/429831-opiniao-ajustes-das-fintechs-sinalizam-riscos-legais/"}, {"label": "CoinsKid - Brazil crypto under BCB supervision (10/5)", "url": "https://www.coinskid.com/answers/24199/brazil-votes-under-new-10k-crypto-rules/"}]' data-region='巴西' data-categories='国家监管,牌照合规,信贷环境' data-urgency='低' data-status='发展中' data-verified='verified' data-date='2026-10-06'>
+  <div class="policy-header"><div class="tags"><span class="tag tag-urgency-low">紧急-低</span><span class="tag tag-region">🇧🇷 巴西</span><span class="tag tag-category">国家监管</span><span class="tag tag-category">牌照合规</span><span class="tag tag-category">信贷环境</span><span class="tag tag-status-developing">发展中</span><span class="tag tag-verified">✅ 3源交叉验证</span></div><div class="policy-date">2026-10-06</div></div>
+  <div class="policy-source">来源：SpaceMoney (10/6) / Monitor do Mercado (10/6) / CoinsKid (10/5)</div>
+  <div class="policy-title">🇧🇷 BCB推进fintech监管调整：Resolution 498创设IT服务提供商认证+加密资产纳入审慎监管框架</div>
+  <div class="policy-desc">巴西央行(BCB)近期多项监管调整：①<b>Resolution BCB 498创设IT服务提供商(PSTIs)认证制度</b>，fintech合规窗口压缩为2026年5月单月；②<b>Resolução BCB 580/2026</b>将虚拟资产服务提供商纳入BCB审慎监管框架——"不是禁止加密，而是将其纳入国内监管"。对出海现金贷：BCB持续收紧fintech合规要求，IT服务提供商须取得认证，加密支付渠道面临新的报告义务。</div>
+  <div class="policy-tags">
+    <span class="tag tag-impact">影响：牌照合规</span>
+    <span class="tag tag-region">🇧🇷 巴西</span>
+  </div>
+</div>
+
 <div class="policy-item" data-source-links='[{"label": "Fintech News PH - SEC Draft Proposes Up to PHP 200,000 Fines for Unfair Debt Collection (10/5)", "url": "https://fintechnews.ph/73810/lending/sec-debt-collection-accreditation/"}, {"label": "TradersUnion - Philippines SEC proposes mandatory debt collector accreditation (10/4)", "url": "https://tradersunion.com/news/financial-news/show/3650955-philippines-sec-debt-collector-accreditation-lending/"}, {"label": "Context.ph - SEC to regulate third-party debt collectors (10/4)", "url": "https://context.ph/2026/10/04/sec-to-regulate-accredit-third-party-debt-collectors/"}]' data-region='菲律宾' data-categories='催收规范,消费者保护,国家监管' data-urgency='中' data-status='征求意见' data-verified='verified' data-date='2026-10-05'>
   <div class="policy-header"><div class="tags"><span class="tag tag-urgency-medium">紧急-中</span><span class="tag tag-region">🇵🇭 菲律宾</span><span class="tag tag-category">催收规范</span><span class="tag tag-category">消费者保护</span><span class="tag tag-category">国家监管</span><span class="tag tag-status-proposed">征求意见</span><span class="tag tag-verified">✅ 3源交叉验证</span></div><div class="policy-date">2026-10-05</div></div>
   <div class="policy-source">来源：Fintech News PH (10/5) / TradersUnion (10/4) / Context.ph (10/4)</div>
@@ -3086,7 +4303,7 @@
                 基础数据：可靠渠道投放量榜单 + SimilarWeb/icharts 商店排名交叉验证（2026-09-07 周更）。投放量原始数据停更期间，以商店排名变动和经营主体异动为主要更新依据。
             </div>
             <div class="meta">
-                <span>📅 数据最后更新：<span class="last-updated-label">2026-10-06 19:00 (GMT+8)</span></span>
+                <span>📅 数据最后更新：<span class="last-updated-label">2026-10-07 19:00 (GMT+8)</span></span>
                 <span>🤖 自动更新：每日 09:30 / 19:00</span>
                 <span>📱 监控范围：APP 投放 / 客户投诉 / 社媒 / 监管 / 风险信号 / 经营主体异动</span>
             </div>
@@ -3102,9 +4319,9 @@
             <div class="tab" data-tab="baseline">基础档案</div>
         </div>
         <div class="stats-grid" id="app-stats">
-            <div class="stat-card warn-orange"> <div class="number stat-total">45</div> <div class="label">监控 APP</div> </div>
-            <div class="stat-card high">  <div class="number stat-high">20</div>  <div class="label">紧急-高</div> </div>
-            <div class="stat-card medium"><div class="number stat-medium">18</div> <div class="label">紧急-中</div> </div>
+            <div class="stat-card warn-orange"> <div class="number stat-total">47</div> <div class="label">监控 APP</div> </div>
+            <div class="stat-card high">  <div class="number stat-high">21</div>  <div class="label">紧急-高</div> </div>
+            <div class="stat-card medium"><div class="number stat-medium">19</div> <div class="label">紧急-中</div> </div>
             <div class="stat-card low">   <div class="number stat-low">6</div>  <div class="label">紧急-低</div> </div>
             <div class="stat-card warn-orange"> <div class="number stat-complaint">4</div><div class="label">投诉信号</div> </div>
             <div class="stat-card warn">  <div class="number stat-unverified">33</div><div class="label">⚠ 未交叉认证</div> </div>
@@ -3195,7 +4412,14 @@
             </div>
             <div class="collapsible-content collapsed">
             <!-- ===== 2026-08 监控周期 ===== -->
-            <div class="month-section" data-month="2026-10"><div class="month-title">2026年10月 信号 (3 条)</div>
+            <div class="month-section" data-month="2026-10"><div class="month-title">2026年10月 信号 (5 条)</div>
+<div class="policy-item" data-source-links='[{"label": "Pantip - ทำไมแอปเงินกู้มหาโหดถึงยังลอยนวล (10/7)", "url": "https://m.pantip.com/topic/44250436"}, {"label": "Thai Times - BoT Targets Unauthorized Loan Applications (10/7)", "url": "https://thaitimes.com/bank-of-thailand-targets-unauthorized-loan-applications"}, {"label": "Bangkok Post - Mother daughters found dead after loan scam (10/7)", "url": "https://bangkokpost-xkgxtn.cdn.byteark.com/thailand/general/3332530/mother-daughters-found-dead-after-loan-scam"}]' data-app="金格方" data-categories="风险预警,客户投诉,社媒讨论" data-urgency="高" data-status="已确认" data-verified="verified" data-date="2026-10-07">
+  <div class="policy-header"><div class="tags"><span class="tag tag-urgency-high">紧急-高</span><span class="tag tag-category">风险预警</span><span class="tag tag-category">客户投诉</span><span class="tag tag-category">社媒讨论</span><span class="tag tag-app-name">全行业</span><span class="tag tag-status-active">已确认</span><span class="tag tag-verified">✅ 3源交叉验证</span></div><div class="policy-date">2026-10-07</div></div>
+  <div class="policy-source">来源：Pantip (10/7) / Thai Times (10/7) / Bangkok Post (10/7)</div>
+  <div class="policy-title">[风险预警 · 全行业] Pantip热帖控诉Pico Finance伪装合法+非法APP"借5000到手3000"，Pathum Thani悲剧引发全民声讨</div>
+  <div class="policy-desc">Pantip出现高热帖(10/7)：<b>用户控诉Pico Finance牌照被"伪装合法"</b>——以合法牌照为幌子，实际通过"隐藏手续费"、强制购买优惠券/套餐等方式规避36%利率上限。同时，<b>非法APP"借5000到手3000"</b>（砍头息40%），逾期后群发骚扰通讯录。Pathum Thani贷款诈骗致3人死亡事件（Bangkok Post 10/7报道）进一步激化社会情绪。帖子质疑政府监管不力，呼吁"冻结mule账户、锁死非法APP、吊销伪装Pico Finance牌照"。BoT同日宣布下架10款未授权借贷APP。<b>影响评估</b>：社会舆论对借贷APP的信任度持续下降，可能推动BoT/DES加速APP审查立法。</div>
+  <div class="footer-note">📌 第六大信号维度 · 行业风险信号：Pantip投诉+Pathum Thani悲剧+BoT执法行动三者联动，反映泰国社会对非法/灰产借贷APP的容忍度已降至临界点。</div>
+
 <div class="policy-item" data-source-links='[{"label": "ACNews - อบาคัส ดิจิทัล คว้ารางวัล Digital CX Award 2024 (9/30)", "url": "https://www.acnews.net/detailnews.php?news_id=N256791179"}, {"label": "The Digital Banker - thedigitalcxawards2024", "url": "https://www.thedigitalbanker.com/digital-cx-awards-2024/"}, {"label": "Thai Times - Abacus Digital AI Initiative (10/3)", "url": "https://thaitimes.com/abacus-digital-s-ai-initiative-revolutionizes-thai-lending-landscape"}]' data-app="MoneyThunder" data-categories="经营主体异动,社媒讨论" data-urgency="低" data-status="已确认" data-verified="verified" data-date="2026-10-05">
   <div class="policy-header"><div class="tags"><span class="tag tag-urgency-low">紧急-低</span><span class="tag tag-category">经营主体异动</span><span class="tag tag-category">社媒讨论</span><span class="tag tag-app-name">MoneyThunder</span><span class="tag tag-status-active">已确认</span><span class="tag tag-verified">✅ 3源交叉验证</span></div><div class="policy-date">2026-10-05</div></div>
   <div class="policy-source">来源：ACNews (9/30) / The Digital Banker / Thai Times (10/3)</div>
@@ -4089,6 +5313,38 @@
         <div class="timeline app-timeline" data-app-timeline>
 
 <!-- ============================================================ -->
+<!--  FLOATING BUTTONS + FEEDBACK MODAL (must be before script)  -->
+<!-- ============================================================ -->
+<div class="fab-stack">
+    <a class="fab fab-portal" href="/" aria-label="返回监控中枢" title="返回监控中枢">🏠</a>
+    <button class="fab fab-feedback" aria-label="反馈与建议" title="反馈与建议">💬</button>
+    <button class="fab fab-theme" aria-label="切换深色模式" title="切换深色/浅色模式">🌙</button>
+    <button class="fab fab-back" aria-label="回到顶部" title="回到顶部">↑</button>
+</div>
+
+<!-- Feedback Modal -->
+<div class="feedback-overlay" id="feedbackOverlay">
+    <div class="feedback-modal" role="dialog" aria-labelledby="feedbackTitle">
+        <h3 id="feedbackTitle">📋 反馈与建议</h3>
+        <p class="feedback-hint">发现错误或有改进建议？请告诉我们，您的反馈会让这个面板更好。</p>
+        <div class="feedback-type">
+            <button class="feedback-type-btn active" data-type="bug">🐛 报告错误</button>
+            <button class="feedback-type-btn" data-type="suggestion">💡 功能建议</button>
+            <button class="feedback-type-btn" data-type="content">📝 内容补充</button>
+        </div>
+        <textarea id="feedbackText" placeholder="请描述您遇到的问题或建议……&#10;&#10;例如：某个政策条目的链接打不开 / 希望增加某国监管动态 / 页面显示异常等"></textarea>
+        <div class="feedback-actions">
+            <a class="feedback-btn feedback-btn-primary" id="feedbackGithub" href="#" target="_blank" rel="noopener">🔗 GitHub Issue</a>
+            <a class="feedback-btn feedback-btn-secondary" id="feedbackEmail" href="#">📧 邮件反馈</a>
+            <button class="feedback-btn feedback-btn-close" id="feedbackClose" aria-label="关闭">✕</button>
+        </div>
+        <p class="feedback-note">
+            💡 GitHub Issue 会直接通知仓库管理员；邮件反馈将打开您的邮件应用。反馈内容也会保存在本地浏览器中。
+        </p>
+    </div>
+</div>
+
+<!-- ============================================================ -->
 <!--  JAVASCRIPT                                                  -->
 <!-- ============================================================ -->
 <script>
@@ -4324,7 +5580,183 @@
         runFilter();
     }
 
-    ;
+    // ── Back to top (click handler only; scroll handled below with rAF) ──
+    var backBtn = document.querySelector('.fab-back');
+    if (backBtn) {
+        backBtn.addEventListener('click', function() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    }
+
+
+    // ── Theme Toggle ──
+    var themeBtn = document.querySelector('.fab-theme');
+    var savedTheme = localStorage.getItem('policy-theme') || '';
+    var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    var currentTheme = savedTheme || (prefersDark ? 'dark' : 'light');
+
+    function applyTheme(theme) {
+        if (theme === 'dark') {
+            document.documentElement.setAttribute('data-theme', 'dark');
+            themeBtn.textContent = '☀️';
+            themeBtn.setAttribute('aria-label', '切换浅色模式');
+            themeBtn.setAttribute('title', '切换浅色模式');
+            var metaTheme = document.querySelector('meta[name="theme-color"]');
+            if (metaTheme) metaTheme.setAttribute('content', '#0b0f1a');
+        } else {
+            document.documentElement.removeAttribute('data-theme');
+            themeBtn.textContent = '🌙';
+            themeBtn.setAttribute('aria-label', '切换深色模式');
+            themeBtn.setAttribute('title', '切换深色/浅色模式');
+            var metaTheme = document.querySelector('meta[name="theme-color"]');
+            if (metaTheme) metaTheme.setAttribute('content', '#2563eb');
+        }
+    }
+    applyTheme(currentTheme);
+
+    if (themeBtn) {
+        themeBtn.addEventListener('click', function() {
+            var isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+            var newTheme = isDark ? 'light' : 'dark';
+            applyTheme(newTheme);
+            localStorage.setItem('policy-theme', newTheme);
+        });
+    }
+
+    // ── Feedback Modal ──
+    var feedbackBtn = document.querySelector('.fab-feedback');
+    var feedbackOverlay = document.getElementById('feedbackOverlay');
+    var feedbackClose = document.getElementById('feedbackClose');
+    var feedbackText = document.getElementById('feedbackText');
+    var feedbackGithub = document.getElementById('feedbackGithub');
+    var feedbackEmail = document.getElementById('feedbackEmail');
+    var feedbackTypeBtns = document.querySelectorAll('.feedback-type-btn');
+    var feedbackType = 'bug';
+
+    feedbackTypeBtns.forEach(function(btn) {
+        btn.addEventListener('click', function() {
+            feedbackTypeBtns.forEach(function(b) { b.classList.remove('active'); });
+            this.classList.add('active');
+            feedbackType = this.dataset.type;
+            updateFeedbackLinks();
+        });
+    });
+
+    function updateFeedbackLinks() {
+        var text = feedbackText.value.trim() || '(未填写具体内容)';
+        var typeLabel = { bug: '报告错误', suggestion: '功能建议', content: '内容补充' }[feedbackType];
+        var prefix = '[' + typeLabel + '] ';
+        var encodedText = encodeURIComponent(prefix + text);
+        var encodedBody = encodeURIComponent(prefix + text + '\n\n---\n反馈来源: praxisfit.me\n时间: ' + new Date().toISOString());
+
+        // GitHub Issue link
+        feedbackGithub.href = 'https://github.com/praxisfitme/policy-monitor/issues/new?title=' + encodedText + '&body=' + encodedBody;
+
+        // Email link
+        feedbackEmail.href = 'mailto:veeliu@thaifintech.cn?subject=' + encodedText + '&body=' + encodedBody;
+    }
+
+    function openFeedback() {
+        feedbackOverlay.classList.add('visible');
+        setTimeout(function() { feedbackText.focus(); }, 300);
+    }
+    function closeFeedback() {
+        feedbackOverlay.classList.remove('visible');
+    }
+
+    if (feedbackBtn) {
+        feedbackBtn.addEventListener('click', openFeedback);
+    }
+    if (feedbackClose) {
+        feedbackClose.addEventListener('click', closeFeedback);
+    }
+    feedbackOverlay.addEventListener('click', function(e) {
+        if (e.target === feedbackOverlay) closeFeedback();
+    });
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && feedbackOverlay.classList.contains('visible')) {
+            closeFeedback();
+        }
+    });
+    feedbackText.addEventListener('input', updateFeedbackLinks);
+    updateFeedbackLinks(); // Initialize links
+
+    // Save feedback to localStorage as backup
+    feedbackGithub.addEventListener('click', function() {
+        var text = feedbackText.value.trim();
+        if (text) {
+            try {
+                var log = JSON.parse(localStorage.getItem('policy-feedback-log') || '[]');
+                log.push({ type: feedbackType, text: text, time: new Date().toISOString(), channel: 'github' });
+                localStorage.setItem('policy-feedback-log', JSON.stringify(log));
+            } catch(e) {}
+        }
+    });
+    feedbackEmail.addEventListener('click', function() {
+        var text = feedbackText.value.trim();
+        if (text) {
+            try {
+                var log = JSON.parse(localStorage.getItem('policy-feedback-log') || '[]');
+                log.push({ type: feedbackType, text: text, time: new Date().toISOString(), channel: 'email' });
+                localStorage.setItem('policy-feedback-log', JSON.stringify(log));
+            } catch(e) {}
+        }
+    });
+
+
+    // Bind both modules
+    bindFilters('#module-thai');
+    bindFilters('#module-global');
+    bindFilters('#module-app');
+
+    // ── APP grid: click on card → set chip filter to that app & switch to 全部信号 tab ──
+    (function() {
+        var modulePanel = document.getElementById('module-app');
+        if (!modulePanel) return;
+        modulePanel.querySelectorAll('.app-card[data-app]').forEach(function(card) {
+            card.addEventListener('click', function() {
+                var appName = card.getAttribute('data-app');
+                // Switch to "全部信号" tab
+                var tabsContainer = modulePanel.querySelector('.tabs');
+                if (tabsContainer) {
+                    tabsContainer.querySelectorAll('.tab').forEach(function(t) {
+                        t.classList.toggle('active', t.dataset.tab === 'all');
+                    });
+                }
+                // Activate the chip
+                var group = modulePanel.querySelector('[data-filter="app"]');
+                if (group) {
+                    group.querySelectorAll('.chip').forEach(function(c) {
+                        c.classList.toggle('active', c.dataset.value === appName);
+                    });
+                }
+                // Expand filters (so user sees the chip selection)
+                var filtersWrap = modulePanel.querySelector('.filters');
+                if (filtersWrap) filtersWrap.classList.add('expanded');
+                // Run filter
+                var filterEvent = new Event('input', { bubbles: true });
+                var searchInput = modulePanel.querySelector('.search-input');
+                if (searchInput) searchInput.dispatchEvent(filterEvent);
+                // Scroll to timeline
+                var timeline = modulePanel.querySelector('.timeline');
+                if (timeline) timeline.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            });
+        });
+    })();
+
+
+    // ── Scroll: passive + rAF throttle for back-to-top ──
+    var backBtn = document.querySelector('.fab-back');
+    if (backBtn) {
+        var scrollTicking = false;
+        window.addEventListener('scroll', function() {
+            if (!scrollTicking) {
+                window.requestAnimationFrame(function() {
+                    if (window.scrollY > 400) backBtn.classList.add('visible');
+                    else backBtn.classList.remove('visible');
+                    scrollTicking = false;
+                });
+                scrollTicking = true;
             }
         }, { passive: true });
     }
@@ -4396,4 +5828,85 @@
                 toggleKbdModal();
                 return;
             }
-            
+            // Close feedback modal
+            var fbOverlay = document.getElementById('feedbackOverlay');
+            if (fbOverlay && fbOverlay.classList.contains('visible')) {
+                fbOverlay.classList.remove('visible');
+                return;
+            }
+            // Collapse active header
+            var activeHeader = document.querySelector('.module-panel.active .header.expanded');
+            if (activeHeader) activeHeader.classList.remove('expanded');
+            return;
+        }
+
+        // Module switching: 1, 2, 3
+        if (e.key === '1' || e.key === '2' || e.key === '3') {
+            var idx = parseInt(e.key) - 1;
+            var moduleKey = moduleKeys[idx];
+            if (moduleKey) {
+                document.querySelectorAll('.module-tab').forEach(function(b) {
+                    b.classList.toggle('active', b.dataset.module === moduleKey);
+                });
+                document.querySelectorAll('.module-panel').forEach(function(p) {
+                    p.classList.toggle('active', p.id === 'module-' + moduleKey);
+                });
+            }
+            return;
+        }
+
+        // "/" → focus search in active module
+        if (e.key === '/') {
+            var activePanel = document.querySelector('.module-panel.active');
+            if (activePanel) {
+                var searchIn = activePanel.querySelector('.search-input');
+                if (searchIn) {
+                    e.preventDefault();
+                    searchIn.focus();
+                }
+            }
+            return;
+        }
+    });
+
+
+})();
+</script>
+<!-- Keyboard shortcut hint -->
+<div class="kbd-hint" id="kbdHint" role="button" tabindex="0" aria-label="显示键盘快捷键">⌨️ 快捷键</div>
+
+<!-- Keyboard shortcut modal -->
+<div class="kbd-modal-overlay" id="kbdOverlay">
+    <div class="kbd-modal" role="dialog" aria-label="键盘快捷键">
+        <h3>⌨️ 键盘快捷键</h3>
+        <div class="kbd-row"><span class="kbd-label">聚焦搜索框</span><span><kbd>/</kbd></span></div>
+        <div class="kbd-row"><span class="kbd-label">关闭弹窗 / 收起 header</span><span><kbd>Esc</kbd></span></div>
+        <div class="kbd-row"><span class="kbd-label">切换到泰国政策监控</span><span><kbd>1</kbd></span></div>
+        <div class="kbd-row"><span class="kbd-label">切换到全球出海监控</span><span><kbd>2</kbd></span></div>
+        <div class="kbd-row"><span class="kbd-label">切换到APP监控</span><span><kbd>3</kbd></span></div>
+        <div class="kbd-row"><span class="kbd-label">显示/隐藏快捷键帮助</span><span><kbd>?</kbd></span></div>
+    </div>
+</div>
+
+<script>
+function switchRankingTab(store) {
+    document.querySelectorAll('.ranking-tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.ranking-panel').forEach(p => p.classList.remove('active'));
+    document.getElementById('tab-' + store).classList.add('active');
+    document.getElementById('panel-' + store).classList.add('active');
+}
+</script>
+
+<!-- Visitor Tracking (counterapi.com) — 每浏览器每天计1次 -->
+<script>
+(function(){
+    var today = new Date().toISOString().slice(0,10);
+    var key = 'policy-monitor';
+    if (localStorage.getItem('pv_' + key + '_date') !== today) {
+        fetch('https://counterapi.com/api/praxisfit.me/view/' + key + '?trackOnly=true').catch(function(){});
+        localStorage.setItem('pv_' + key + '_date', today);
+    }
+})();
+</script>
+</body>
+</html>
