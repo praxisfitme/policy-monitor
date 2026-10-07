@@ -28,7 +28,8 @@
 }
 
 html{font-size:15px;scroll-behavior:smooth}
-body{font-family:var(--font);background:var(--bg);color:var(--text);line-height:1.6;min-height:100vh;overflow-x:hidden}
+body{font-family:var(--font);background:var(--bg);color:var(--text);line-height:1.6;min-height:100vh;overflow-x:hidden    padding-bottom: 6rem;
+}
 body::before{content:'';position:fixed;top:-50%;left:-50%;width:200%;height:200%;background:radial-gradient(ellipse at 30% 20%,rgba(249,115,22,.08) 0%,transparent 50%),radial-gradient(ellipse at 70% 80%,rgba(251,146,60,.05) 0%,transparent 50%);pointer-events:none;z-index:0}
 a{color:var(--accent);text-decoration:none;transition:color .2s}
 a:hover{color:#fff}
@@ -3620,21 +3621,27 @@ if(el){e.preventDefault();el.scrollIntoView({behavior:'smooth'});}
         backBtn.addEventListener('click', function() { window.scrollTo({ top: 0, behavior: 'smooth' }); });
     }
     var themeBtn = document.querySelector('.fab-theme');
-    function apply(theme) {
-        document.documentElement.setAttribute('data-theme', theme || 'light');
-        if (theme === 'light') document.documentElement.setAttribute('data-theme', 'light');
-        try { localStorage.setItem('theme', theme); } catch(e) {}
-        if (themeBtn) { themeBtn.textContent = theme === 'dark' ? '☀️' : '🌙'; }
-    }
-    var saved = 'light';
-    try { saved = localStorage.getItem('theme') || 'light'; } catch(e) {}
-    apply(saved);
     if (themeBtn) {
+        var saved = localStorage.getItem('payment-intel-theme') || '';
+        var prefDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+        var theme = saved || (prefDark ? 'dark' : 'light');
+        function apply(t) {
+            if (t === 'light') {
+                document.documentElement.setAttribute('data-theme', 'light');
+                themeBtn.textContent = '🌙';
+            } else {
+                document.documentElement.removeAttribute('data-theme');
+                themeBtn.textContent = '☀️';
+            }
+        }
+        apply(theme);
         themeBtn.addEventListener('click', function() {
-            var isDark = document.documentElement.getAttribute('data-theme') === 'dark';
-            var n = isDark ? 'light' : 'dark'; apply(n); });
-    }
-    var fbBtn = document.querySelector('.fab-feedback');
+            var isLight = document.documentElement.getAttribute('data-theme') === 'light';
+            var next = isLight ? 'dark' : 'light';
+            apply(next);
+            localStorage.setItem('payment-intel-theme', next);
+        });
+    }var fbBtn = document.querySelector('.fab-feedback');
     var fbOverlay = document.getElementById('feedbackOverlay');
     var fbClose = document.getElementById('feedbackClose');
     var fbText = document.getElementById('feedbackText');
