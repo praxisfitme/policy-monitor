@@ -217,17 +217,33 @@ def apply_design(html_path):
     # 移除 fab-theme 按钮 HTML
     html = re.sub(r'<button[^>]*class="fab fab-theme"[^>]*>[^<]*</button>\s*', '', html)
 
-    # 5. 清理旧 bottom-nav CSS 并注入新版（仅浅色）
+    # 7. 修复源文件中的 HTML 结构错误
+    # 7a. 修复 global-timeline 缺少闭合引号: class="timeline global-timeline> → class="timeline global-timeline">
+    html = html.replace(
+        'class="timeline global-timeline>',
+        'class="timeline global-timeline">'
+    )
+    # 7b. 移除 module-app 中 timeline 和 collapsible-content 上的 collapsed class，确保内容可见
+    html = html.replace(
+        'class="timeline app-timeline collapsed"',
+        'class="timeline app-timeline"'
+    )
+    html = html.replace(
+        'class="collapsible-content collapsed"',
+        'class="collapsible-content"'
+    )
+
+    # 8. 清理旧 bottom-nav CSS 并注入新版（仅浅色）
     html = remove_old_bottom_nav_css(html)
     html = html.replace('</style>', BOTTOM_NAV_CSS + '\n</style>', 1)
 
-    # 6. 闭合未关闭的 div 标签
+    # 9. 闭合未关闭的 div 标签
     html = close_unclosed_divs(html)
 
-    # 7. 在 </body> 直下级仅注入 bottom-nav（无 fab-stack、无 feedback、无 theme）
+    # 10. 在 </body> 直下级仅注入 bottom-nav（无 fab-stack、无 feedback、无 theme）
     html = html.replace('</body>', '\n' + BOTTOM_NAV_HTML + '\n\n</body>', 1)
 
-    # 8. body padding-bottom
+    # 11. body padding-bottom
     if 'padding-bottom: 70px' not in html and 'padding-bottom:70px' not in html:
         html = html.replace(
             'overscroll-behavior-y: contain;',
