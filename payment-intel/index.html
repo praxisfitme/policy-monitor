@@ -18,29 +18,28 @@
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
---bg:#070A14;--bg2:#0D1225;--glass:rgba(255,255,255,.06);--glass-hover:rgba(255,255,255,.1);
---border:rgba(255,255,255,.08);--border-hover:rgba(255,255,255,.15);
---primary:#f97316;--accent:#fb923c;--success:#62FAD3;--warn:#FFB86C;--danger:#FF6B8A;
---text:#F7FAFF;--text2:#9AA7C7;--text3:#6B7A99;
+--bg:#ffffff;--bg2:#f8fafc;--glass:rgba(0,0,0,.03);--glass-hover:rgba(0,0,0,.06);
+--border:rgba(0,0,0,.08);--border-hover:rgba(0,0,0,.15);
+--primary:#f97316;--accent:#fb923c;--success:#10b981;--warn:#FFB86C;--danger:#FF6B8A;
+--text:#0f172a;--text2:#475569;--text3:#94a3b8;
 --font:'Inter','SF Pro Display','PingFang SC','Microsoft YaHei',system-ui,sans-serif;
 --radius:12px;--radius-sm:8px;--radius-lg:16px;
 
 }
 
 html{font-size:15px;scroll-behavior:smooth}
-body{font-family:var(--font);background:var(--bg);color:var(--text);line-height:1.6;min-height:100vh;overflow-x:hidden    padding-bottom: 6rem;
-}
-body::before{content:'';position:fixed;top:-50%;left:-50%;width:200%;height:200%;background:radial-gradient(ellipse at 30% 20%,rgba(249,115,22,.08) 0%,transparent 50%),radial-gradient(ellipse at 70% 80%,rgba(251,146,60,.05) 0%,transparent 50%);pointer-events:none;z-index:0}
+body{font-family:var(--font);background:var(--bg);color:var(--text);line-height:1.6;min-height:100vh;overflow-x:hidden}
+body::before{content:'';position:fixed;top:-50%;left:-50%;width:200%;height:200%;background:radial-gradient(ellipse at 30% 20%,rgba(249,115,22,.04) 0%,transparent 50%),radial-gradient(ellipse at 70% 80%,rgba(251,146,60,.03) 0%,transparent 50%);pointer-events:none;z-index:0}
 a{color:var(--accent);text-decoration:none;transition:color .2s}
-a:hover{color:#fff}
-.header{position:sticky;top:0;z-index:100;backdrop-filter:blur(20px);background:rgba(7,10,20,.9);border-bottom:1px solid var(--border);padding:.75rem 1rem}
+a:hover{color:#ea580c}
+.header{position:sticky;top:0;z-index:100;backdrop-filter:blur(20px);background:rgba(255,255,255,.9);border-bottom:1px solid var(--border);padding:.75rem 1rem}
 .header-inner{max-width:1400px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:.75rem;flex-wrap:wrap}
 .logo{display:flex;align-items:center;gap:.6rem}
 .logo-icon{width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,var(--primary),var(--accent));display:flex;align-items:center;justify-content:center;font-size:1rem}
 .logo h1{font-size:.95rem;font-weight:700;letter-spacing:-.02em}
 .logo .subtitle{font-size:.68rem;color:var(--text3);font-weight:400}
 .update-time{font-size:.68rem;color:var(--text3);background:var(--glass);padding:.3rem .65rem;border-radius:20px;border:1px solid var(--border)}
-.tabs{position:sticky;top:52px;z-index:99;backdrop-filter:blur(20px);background:rgba(7,10,20,.88);border-bottom:1px solid var(--border)}
+.tabs{position:sticky;top:52px;z-index:99;backdrop-filter:blur(20px);background:rgba(255,255,255,.88);border-bottom:1px solid var(--border)}
 .tabs-inner{max-width:1400px;margin:0 auto;display:flex;gap:0;padding:0 1rem;overflow-x:auto;-webkit-overflow-scrolling:touch}
 .tab-btn{flex-shrink:0;padding:.85rem 1.5rem;font-size:.85rem;font-weight:600;color:var(--text3);background:none;border:none;border-bottom:2px solid transparent;cursor:pointer;transition:all .2s;white-space:nowrap;font-family:var(--font)}
 .tab-btn:hover{color:var(--text2)}
@@ -85,7 +84,7 @@ main{max-width:1400px;margin:0 auto;padding:1.5rem 1rem 4rem;position:relative;z
 .card-source a{color:var(--text3);font-size:.6rem}
 .card-source a:hover{color:var(--accent)}
 .highlight-bar{display:flex;gap:.75rem;margin-bottom:1.5rem;overflow-x:auto;padding-bottom:.5rem}
-.highlight-item{flex-shrink:0;min-width:260px;background:linear-gradient(135deg,rgba(249,115,22,.08),rgba(251,146,60,.05));border:1px solid var(--border);border-radius:var(--radius);padding:1rem;position:relative}
+.highlight-item{flex-shrink:0;min-width:260px;background:linear-gradient(135deg,rgba(249,115,22,.04),rgba(251,146,60,.03));border:1px solid var(--border);border-radius:var(--radius);padding:1rem;position:relative}
 .highlight-item::after{content:'';position:absolute;top:0;left:0;width:3px;height:100%;background:linear-gradient(180deg,var(--primary),var(--accent));border-radius:3px 0 0 3px}
 .highlight-date{font-size:.6rem;color:var(--accent);font-weight:600;letter-spacing:.04em;margin-bottom:.35rem}
 .highlight-title{font-size:.8rem;font-weight:700;margin-bottom:.3rem;line-height:1.4}
@@ -3603,72 +3602,7 @@ if(el){e.preventDefault();el.scrollIntoView({behavior:'smooth'});}
 <!-- Floating Components (injected) -->
 
 
-<script>
-// ── Floating Components (injected) ──
-(function() {
-    var backBtn = document.querySelector('.fab-back');
-    var ticking = false;
-    if (backBtn) {
-        window.addEventListener('scroll', function() {
-            if (!ticking) {
-                window.requestAnimationFrame(function() {
-                    backBtn.classList.toggle('visible', window.scrollY > 300);
-                    ticking = false;
-                });
-                ticking = true;
-            }
-        }, { passive: true });
-        backBtn.addEventListener('click', function() { window.scrollTo({ top: 0, behavior: 'smooth' }); });
-    }
-    var themeBtn = document.querySelector('.fab-theme');
-    if (themeBtn) {
-        var saved = localStorage.getItem('payment-intel-theme') || '';
-        var prefDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-        var theme = saved || (prefDark ? 'dark' : 'light');
-        function apply(t) {
-            if (t === 'light') {
-                document.documentElement.setAttribute('data-theme', 'light');
-                themeBtn.textContent = '🌙';
-            } else {
-                document.documentElement.removeAttribute('data-theme');
-                themeBtn.textContent = '☀️';
-            }
-        }
-        apply(theme);
-        themeBtn.addEventListener('click', function() {
-            var isLight = document.documentElement.getAttribute('data-theme') === 'light';
-            var next = isLight ? 'dark' : 'light';
-            apply(next);
-            localStorage.setItem('payment-intel-theme', next);
-        });
-    }var fbBtn = document.querySelector('.fab-feedback');
-    var fbOverlay = document.getElementById('feedbackOverlay');
-    var fbClose = document.getElementById('feedbackClose');
-    var fbText = document.getElementById('feedbackText');
-    var fbGithub = document.getElementById('feedbackGithub');
-    var fbEmail = document.getElementById('feedbackEmail');
-    var fbTypes = document.querySelectorAll('.feedback-type-btn');
-    var fbType = 'bug';
-    fbTypes.forEach(function(b) { b.addEventListener('click', function() {
-        fbTypes.forEach(function(x) { x.classList.remove('active'); });
-        this.classList.add('active'); fbType = this.dataset.type; updateLinks();
-    }); });
-    function updateLinks() {
-        var t = fbText ? fbText.value.trim() || '(未填写)' : '';
-        var label = {bug:'报告错误',suggestion:'功能建议',content:'内容补充'}[fbType]||'反馈';
-        var enc = encodeURIComponent('[跨境支付] '+label+': '+t);
-        var body = encodeURIComponent('[跨境支付] '+label+': '+t+'\n\n---\n来源: praxisfit.me/payment-intel\n时间: '+new Date().toISOString());
-        if (fbGithub) fbGithub.href = 'https://github.com/praxisfitme/policy-monitor/issues/new?title='+enc+'&body='+body;
-        if (fbEmail) fbEmail.href = 'mailto:victor8989@qq.com?subject='+enc+'&body='+body;
-    }
-    if (fbBtn) fbBtn.addEventListener('click', function() { fbOverlay.classList.add('visible'); setTimeout(function(){if(fbText)fbText.focus();},300); });
-    if (fbClose) fbClose.addEventListener('click', function() { fbOverlay.classList.remove('visible'); });
-    if (fbOverlay) fbOverlay.addEventListener('click', function(e) { if (e.target === fbOverlay) fbOverlay.classList.remove('visible'); });
-    if (fbText) fbText.addEventListener('input', updateLinks);
-    document.addEventListener('keydown', function(e) { if (e.key === 'Escape' && fbOverlay.classList.contains('visible')) fbOverlay.classList.remove('visible'); });
-    updateLinks();
-})();
-</script>
+
 
 <!-- Bottom Navigation v2 -->
 <nav class="bottom-nav">
@@ -3677,6 +3611,19 @@ if(el){e.preventDefault();el.scrollIntoView({behavior:'smooth'});}
     <a href="/policy-monitor/" class="nav-item"><span class="nav-icon">🛡️</span><span>政策</span></a>
     <a href="/stock-dash/" class="nav-item"><span class="nav-icon">📈</span><span>股市</span></a>
 </nav>
+
+
+<!-- Visitor Tracking v2 (counterapi.com) -->
+<script>
+(function() {
+    var key = 'payment';
+    fetch('https://counterapi.com/api/praxisfit.me/view/' + key + '?trackOnly=true').catch(function(){});
+    fetch('https://counterapi.com/api/praxisfit.me/view/' + key).then(function(r){return r.json()}).then(function(d){
+        var el = document.getElementById('visit-count');
+        if(el) el.textContent = d.value || d.count || 0;
+    }).catch(function(){});
+})();
+</script>
 
 
 <!-- Visitor Tracking v2 (counterapi.com) -->
