@@ -85,12 +85,6 @@
     /* Transitions */
     --t: 0.2s ease;
 }
-
-
-
-
-
-
 html { transition: background-color 0.3s ease; }
 body, .header, .module-nav, .stat-card, .tab, .policy-item, .timeline,
 .filter-row select, .search-box input, .sort-select, .expand-btn, .footer-note {
@@ -109,6 +103,7 @@ body {
     background: var(--bg);
     color: var(--text);
     line-height: 1.6;
+    padding-bottom: 70px;
     overscroll-behavior-y: contain;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -984,35 +979,130 @@ body {
     border-color: #fed7aa;
 }
 
-
-.fab {
-    width: 44px;
-    height: 44px;
-    border-radius: 50%;
-    border: none;
+.feedback-modal {
+    background: var(--card);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-lg);
+    max-width: 460px;
+    width: 100%;
+    padding: 24px 20px;
+    transform: scale(0.92) translateY(20px);
+    transition: transform 0.25s ease;
+    border: 1px solid var(--border);
+}
+.feedback-modal h3 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 6px;
+    color: var(--text);
+}
+.feedback-modal .feedback-hint {
+    font-size: 0.8125rem;
+    color: var(--text-secondary);
+    margin-bottom: 14px;
+    line-height: 1.6;
+}
+.feedback-modal textarea {
+    width: 100%;
+    min-height: 120px;
+    padding: 12px 14px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    font-size: 0.875rem;
+    font-family: inherit;
+    resize: vertical;
+    outline: none;
+    transition: var(--t);
+    background: var(--bg-secondary);
+    color: var(--text);
+    line-height: 1.6;
+}
+.feedback-modal textarea:focus {
+    border-color: var(--primary);
+    background: var(--card);
+    box-shadow: 0 0 0 3px rgba(37,99,235,0.1);
+}
+.feedback-modal textarea::placeholder { color: var(--text-tertiary); }
+.feedback-modal .feedback-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 16px;
+    flex-wrap: wrap;
+}
+.feedback-btn {
+    flex: 1;
+    min-width: 130px;
+    padding: 12px 16px;
+    border-radius: var(--radius-sm);
+    font-size: 0.875rem;
+    font-weight: 600;
     cursor: pointer;
+    border: none;
+    transition: var(--t);
+    min-height: 44px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1.2rem;
-    box-shadow: var(--shadow-lg);
-    transition: var(--t);
+    gap: 6px;
+    text-decoration: none;
     -webkit-user-select: none;
     user-select: none;
     -webkit-tap-highlight-color: transparent;
     touch-action: manipulation;
-    -webkit-touch-callout: none;
-    z-index: 9999;
 }
-.fab:active { transform: scale(0.88); }
-.panel-global ~
-.panel-app ~
-
-
-
-
+.feedback-btn:active { transform: scale(0.96); }
+.feedback-btn-primary {
+    background: var(--primary);
+    color: white;
+}
+.feedback-btn-primary:active { background: var(--primary-dark); }
+.feedback-btn-secondary {
+    background: var(--bg-secondary);
+    color: var(--text);
+    border: 1px solid var(--border);
+}
+.feedback-btn-close {
+    background: transparent;
+    color: var(--text-secondary);
+    border: 1px solid var(--border);
+    flex: 0 0 auto;
+    min-width: 44px;
+}
+.feedback-modal .feedback-note {
+    margin-top: 12px;
+    font-size: 0.75rem;
+    color: var(--text-tertiary);
+    line-height: 1.5;
+}
+.feedback-modal .feedback-type {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 12px;
+}
+.feedback-type-btn {
+    padding: 8px 14px;
+    border-radius: 100px;
+    font-size: 0.8125rem;
+    font-weight: 500;
+    cursor: pointer;
+    border: 1px solid var(--border);
+    background: var(--bg-secondary);
+    color: var(--text-secondary);
+    transition: var(--t);
+    min-height: 36px;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+}
+.feedback-type-btn.active {
+    background: var(--primary);
+    color: white;
+    border-color: var(--primary);
+}
 
 @media (max-width: 768px) {
+    .feedback-modal { padding: 20px 16px; }
+    .feedback-modal h3 { font-size: 1rem; }
+    .feedback-btn { min-width: 100px; font-size: 0.8125rem; }
 }
 
 
@@ -1202,11 +1292,13 @@ body {
 .ranking-panel.active { display:block; }
 .nonbank-tag { display:inline-block; font-size:0.6rem; padding:1px 5px; border-radius:6px; background:rgba(124,58,237,0.12); color:#7c3aed; font-weight:600; margin-left:4px; vertical-align:middle; }
 
-.bottom-nav { position: fixed; bottom: 0; left: 0; right: 0; background: #fff; border-top: 1px solid #e2e8f0; display: flex; justify-content: space-around; padding: 8px 0; padding-bottom: max(8px, env(safe-area-inset-bottom)); z-index: 1000; box-shadow: 0 -2px 10px rgba(0,0,0,0.05); }
+/* ── Bottom Navigation v2 ── */
+.bottom-nav { position: fixed; bottom: 0; left: 0; right: 0; background: #ffffff; border-top: 1px solid #e2e8f0; display: flex; justify-content: space-around; padding: 8px 0; padding-bottom: max(8px, env(safe-area-inset-bottom)); z-index: 1000; box-shadow: 0 -2px 10px rgba(0,0,0,0.05); }
 .nav-item { display: flex; flex-direction: column; align-items: center; gap: 4px; text-decoration: none; color: #64748b; font-size: 0.65rem; font-weight: 500; padding: 4px 12px; border-radius: 12px; transition: color 0.2s, background 0.2s; }
-.nav-item.active { color: #2563eb; background: rgba(37,99,235,0.12); }
+.nav-item.active { color: #3b82f6; background: rgba(59,130,246,0.12); }
 .nav-icon { font-size: 1.2rem; }
 @media (min-width: 768px) { .bottom-nav { max-width: 430px; left: 50%; transform: translateX(-50%); } }
+
 </style>
 </head>
 <body>
@@ -5062,16 +5154,8 @@ body {
         <div class="timeline app-timeline" data-app-timeline>
 
 <!-- ============================================================ -->
-<!--  FLOATING BUTTONS + FEEDBACK MODAL (must be before script)  -->
-<!-- ============================================================ -->
-
-<!-- Feedback Modal -->
-
-<!-- ============================================================ -->
 <!--  JAVASCRIPT                                                  -->
 <!-- ============================================================ -->
-<!-- Keyboard shortcut hint -->
-<div class="kbd-hint" id="kbdHint" role="button" tabindex="0" aria-label="显示键盘快捷键">⌨️ 快捷键</div>
 
 <!-- Keyboard shortcut modal -->
 <div class="kbd-modal-overlay" id="kbdOverlay">
@@ -5106,12 +5190,19 @@ function switchRankingTab(store) {
     }
 })();
 </script>
+</div>
+</div>
+</div>
+</div>
+</div>
 
+<!-- Bottom Navigation v2 -->
 <nav class="bottom-nav">
     <a href="/" class="nav-item"><span class="nav-icon">🏠</span><span>首页</span></a>
     <a href="/payment-intel/" class="nav-item"><span class="nav-icon">💳</span><span>支付</span></a>
     <a href="/policy-monitor/" class="nav-item active"><span class="nav-icon">🛡️</span><span>政策</span></a>
     <a href="/stock-dash/" class="nav-item"><span class="nav-icon">📈</span><span>股市</span></a>
 </nav>
+
 </body>
 </html>
