@@ -4200,309 +4200,53 @@
 <!-- ============================================================ -->
 <!--  JAVASCRIPT                                                  -->
 <!-- ============================================================ -->
+
+<!-- Keyboard shortcut modal -->
+<div class="kbd-modal-overlay" id="kbdOverlay">
+    <div class="kbd-modal" role="dialog" aria-label="键盘快捷键">
+        <h3>⌨️ 键盘快捷键</h3>
+        <div class="kbd-row"><span class="kbd-label">聚焦搜索框</span><span><kbd>/</kbd></span></div>
+        <div class="kbd-row"><span class="kbd-label">关闭弹窗 / 收起 header</span><span><kbd>Esc</kbd></span></div>
+        <div class="kbd-row"><span class="kbd-label">切换到泰国政策监控</span><span><kbd>1</kbd></span></div>
+        <div class="kbd-row"><span class="kbd-label">切换到全球出海监控</span><span><kbd>2</kbd></span></div>
+        <div class="kbd-row"><span class="kbd-label">切换到APP监控</span><span><kbd>3</kbd></span></div>
+        <div class="kbd-row"><span class="kbd-label">显示/隐藏快捷键帮助</span><span><kbd>?</kbd></span></div>
+    </div>
+</div>
+
 <script>
-(function() {
-    // ── Debounce utility ──
-    function debounce(fn, delay) {
-        var timer;
-        return function() {
-            var ctx = this, args = arguments;
-            clearTimeout(timer);
-            timer = setTimeout(function() { fn.apply(ctx, args); }, delay);
-        };
+function switchRankingTab(store) {
+    document.querySelectorAll('.ranking-tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.ranking-panel').forEach(p => p.classList.remove('active'));
+    document.getElementById('tab-' + store).classList.add('active');
+    document.getElementById('panel-' + store).classList.add('active');
+}
+</script>
+
+<!-- Visitor Tracking (counterapi.com) — 每浏览器每天计1次 -->
+<script>
+(function(){
+    var today = new Date().toISOString().slice(0,10);
+    var key = 'policy-monitor';
+    if (localStorage.getItem('pv_' + key + '_date') !== today) {
+        fetch('https://counterapi.com/api/praxisfit.me/view/' + key + '?trackOnly=true').catch(function(){});
+        localStorage.setItem('pv_' + key + '_date', today);
     }
+})();
+</script>
+</div>
+</div>
+</div>
+</div>
+</div>
 
-    // ── Module switching ──
-    document.querySelectorAll('.module-tab').forEach(btn => {
-        btn.addEventListener('click', function() {
-            document.querySelectorAll('.module-tab').forEach(b => b.classList.remove('active'));
-            document.querySelectorAll('.module-panel').forEach(p => p.classList.remove('active'));
-            this.classList.add('active');
-            document.getElementById('module-' + this.dataset.module).classList.add('active');
-        });
-    });
+<!-- Bottom Navigation v2 -->
+<nav class="bottom-nav">
+    <a href="/" class="nav-item"><span class="nav-icon">🏠</span><span>首页</span></a>
+    <a href="/payment-intel/" class="nav-item"><span class="nav-icon">💳</span><span>支付</span></a>
+    <a href="/policy-monitor/" class="nav-item active"><span class="nav-icon">🛡️</span><span>政策</span></a>
+    <a href="/stock-dash/" class="nav-item"><span class="nav-icon">📈</span><span>股市</span></a>
+</nav>
 
-    // ── Render source links from data-source-links ──
-    document.querySelectorAll('.policy-item').forEach(function(item) {
-        var raw = item.dataset.sourceLinks;
-        if (!raw) return;
-        try {
-            var links = JSON.parse(raw);
-            if (!links.length) return;
-            var linksDiv = document.createElement('div');
-            linksDiv.className = 'policy-links';
-            links.forEach(function(link) {
-                var a = document.createElement('a');
-                a.href = link.url;
-                a.target = '_blank';
-                a.rel = 'noopener';
-                a.textContent = ' ' + link.label;
-                linksDiv.appendChild(a);
-            });
-            item.appendChild(linksDiv);
-        } catch(e) { /* ignore parse errors */ }
-    });
-
-    // ── Generic filter logic ──
-    function bindFilters(panelSelector) {
-        var panel = document.querySelector(panelSelector);
-        if (!panel) return;
-
-        // Detect module type from panel id — avoids manual second argument
-        var moduleType = panelSelector.indexOf('thai') >= 0 ? 'thai'
-                       : panelSelector.indexOf('global') >= 0 ? 'global'
-                       : panelSelector.indexOf('app') >= 0 ? 'app'
-                       : 'other';
-
-        var tabsContainer = panel.querySelector('.tabs');
-        var filtersContainer = panel.querySelector('.filters');
-        var searchInput = panel.querySelector('.search-input');
-        var sortSelect = panel.querySelector('.sort-select');
-        var statsContainer = panel.querySelector('.stats-grid');
-        var timelineEl = panel.querySelector('.timeline');
-
-        // Tab clicks
-        if (tabsContainer) {
-            tabsContainer.querySelectorAll('.tab').forEach(t => {
-                t.addEventListener('click', function() {
-                    tabsContainer.querySelectorAll('.tab').forEach(x => x.classList.remove('active'));
-                    this.classList.add('active');
-                    runFilter();
-                });
-            });
-        }
-
-        // Chip clicks
-        if (filtersContainer) {
-            filtersContainer.querySelectorAll('.filter-options').forEach(group => {
-                group.querySelectorAll('.chip').forEach(chip => {
-                    chip.addEventListener('click', function() {
-                        group.querySelectorAll('.chip').forEach(c => c.classList.remove('active'));
-                        this.classList.add('active');
-                        runFilter();
-                    });
-                });
-            });
-        }
-
-        // Search input (with debounce)
-        if (searchInput) {
-            var debouncedRunFilter = debounce ? debounce(runFilter, 300) : runFilter;
-            searchInput.addEventListener('input', debouncedRunFilter);
-        }
-
-        // Sort select
-        if (sortSelect) {
-            sortSelect.addEventListener('change', runFilter);
-        }
-
-        // Expand / collapse all descriptions
-        var expandBtn = panel.querySelector('.expand-btn');
-        if (expandBtn && timelineEl) {
-            expandBtn.addEventListener('click', function() {
-                var collapsed = timelineEl.classList.toggle('collapsed');
-                expandBtn.textContent = collapsed ? '全部展开' : '全部收起';
-            });
-        }
-
-        function getActiveChipValue(filterAttr) {
-            var group = filtersContainer ? filtersContainer.querySelector('[data-filter="' + filterAttr + '"]') : null;
-            if (!group) return 'all';
-            var active = group.querySelector('.chip.active');
-            return active ? active.dataset.value : 'all';
-        }
-
-        function getActiveTab() {
-            if (!tabsContainer) return 'all';
-            var active = tabsContainer.querySelector('.tab.active');
-            return active ? active.dataset.tab : 'all';
-        }
-
-        function runFilter() {
-            var activeTab = getActiveTab();
-            var items = Array.from(timelineEl.querySelectorAll('.policy-item'));
-            var searchText = searchInput ? searchInput.value.toLowerCase() : '';
-            var sortMode = sortSelect ? sortSelect.value : 'newest';
-            var statTotal = 0, statHigh = 0, statMedium = 0, statLow = 0, statUnverified = 0, statComplaint = 0;
-
-            items.forEach(function(item) {
-                var region = item.dataset.region || '';
-                var categories = item.dataset.categories || '';
-                var urgency = item.dataset.urgency || '';
-                var status = item.dataset.status || '';
-                var verified = item.dataset.verified || '';
-                var dataApp = item.dataset.app || '';
-                var text = item.innerText.toLowerCase();
-
-                // Tab filtering — module-aware
-                var tabMatch = true;
-                if (moduleType === 'global') {
-                    if (activeTab === 'sea') tabMatch = /印尼|菲律宾|越南/.test(region);
-                    else if (activeTab === 'latam') tabMatch = /墨西哥|巴西|阿根廷/.test(region);
-                    else if (activeTab === 'africa') tabMatch = /尼日利亚|肯尼亚|埃及/.test(region);
-                    else if (activeTab === 'sasia') tabMatch = /巴基斯坦|孟加拉/.test(region);
-                    else if (activeTab === 'cross') tabMatch = /跨市场/.test(region);
-                } else if (moduleType === 'thai') {
-                    if (activeTab === 'bnpl') tabMatch = (item.dataset.business || '').includes('BNPL');
-                    else if (activeTab === 'ploan') tabMatch = (item.dataset.business || '').includes('Personal Loan');
-                    else if (activeTab === 'pico') tabMatch = (item.dataset.business || '').includes('Pico Loan') || (item.dataset.business || '').includes('Nano Finance');
-                    else if (activeTab === 'license') tabMatch = categories.includes('牌照政策');
-                    else if (activeTab === 'relief') tabMatch = categories.includes('债务纾困');
-                } else if (moduleType === 'app') {
-                    if (activeTab === 'complaint') tabMatch = categories.includes('客户投诉');
-                    else if (activeTab === 'social') tabMatch = categories.includes('社媒讨论');
-                    else if (activeTab === 'regulatory') tabMatch = categories.includes('监管政策');
-                    else if (activeTab === 'warning') tabMatch = categories.includes('风险预警');
-                    else if (activeTab === 'baseline') tabMatch = categories.includes('基础档案');
-                }
-
-                var regionFilter = getActiveChipValue('region');
-                var categoryFilter = getActiveChipValue('category');
-                var urgencyFilter = getActiveChipValue('urgency');
-                var statusFilter = getActiveChipValue('status');
-                var verifiedFilter = getActiveChipValue('verified');
-                var appFilter = getActiveChipValue('app');
-                var signalTypeFilter = getActiveChipValue('signalType');
-
-                var regionMatch = regionFilter === 'all' || region === regionFilter;
-                var categoryMatch = categoryFilter === 'all' || categories.includes(categoryFilter);
-                var urgencyMatch = urgencyFilter === 'all' || urgency === urgencyFilter;
-                var statusMatch = statusFilter === 'all' || status === statusFilter;
-                var verifiedMatch = verifiedFilter === 'all' || verified === verifiedFilter;
-                // App filter: exact match on data-app; "不指定" cross-app signals only match the "all" chip or no specific app selection
-                var appMatch = appFilter === 'all' || dataApp === appFilter;
-                var signalTypeMatch = signalTypeFilter === 'all' || categories.includes(signalTypeFilter);
-                var searchMatch = !searchText || text.includes(searchText);
-
-                if (tabMatch && regionMatch && categoryMatch && urgencyMatch && statusMatch && verifiedMatch && appMatch && signalTypeMatch && searchMatch) {
-                    item.classList.remove('hidden');
-                    statTotal++;
-                    if (urgency === '高') statHigh++;
-                    else if (urgency === '中') statMedium++;
-                    else if (urgency === '低') statLow++;
-                    if (verified === 'unverified') statUnverified++;
-                    if (categories.includes('客户投诉')) statComplaint++;
-                } else {
-                    item.classList.add('hidden');
-                }
-            });
-
-            // Update stats
-            if (statsContainer) {
-                var totalEl = statsContainer.querySelector('.stat-total');
-                var highEl = statsContainer.querySelector('.stat-high');
-                var mediumEl = statsContainer.querySelector('.stat-medium');
-                var lowEl = statsContainer.querySelector('.stat-low');
-                var unvEl = statsContainer.querySelector('.stat-unverified');
-                var complaintEl = statsContainer.querySelector('.stat-complaint');
-                if (totalEl) totalEl.textContent = statTotal;
-                if (highEl) highEl.textContent = statHigh;
-                if (mediumEl) mediumEl.textContent = statMedium;
-                if (lowEl) lowEl.textContent = statLow;
-                if (unvEl) unvEl.textContent = statUnverified;
-                if (complaintEl) complaintEl.textContent = statComplaint;
-            }
-
-            // Sort & reorder
-            timelineEl.querySelectorAll('.month-section').forEach(function(section) {
-                var vItems = Array.from(section.querySelectorAll('.policy-item:not(.hidden)'));
-                vItems.sort(function(a, b) {
-                    var ad = a.dataset.date, bd = b.dataset.date;
-                    if (sortMode === 'newest') return bd.localeCompare(ad);
-                    if (sortMode === 'oldest') return ad.localeCompare(bd);
-                    if (sortMode === 'urgency') {
-                        var map = {'高':3,'中':2,'低':1};
-                        return (map[b.dataset.urgency] || 0) - (map[a.dataset.urgency] || 0);
-                    }
-                    return 0;
-                });
-                vItems.forEach(function(item) { section.appendChild(item); });
-
-                var title = section.querySelector('.month-title');
-                var base = title.textContent.split('(')[0].trim();
-                if (vItems.length === 0) {
-                    section.classList.add('hidden');
-                } else {
-                    section.classList.remove('hidden');
-                    title.textContent = base + ' (' + vItems.length + ' 条)';
-                }
-            });
-        }
-
-        // Initial
-        runFilter();
-    }
-
-    ;
-            }
-        }, { passive: true });
-    }
-
-    // ── Stat number bump animation ──
-    function animateStatNumbers() {
-        document.querySelectorAll('.stat-card .number').forEach(function(el) {
-            var val = el.textContent;
-            if (el._lastVal !== val) {
-                el._lastVal = val;
-                el.classList.add('bump');
-                setTimeout(function() { el.classList.remove('bump'); }, 300);
-            }
-        });
-    }
-    // Observe stat changes via MutationObserver
-    var statsObserver = new MutationObserver(function(mutations) {
-        mutations.forEach(function(m) {
-            if (m.type === 'characterData' || m.type === 'childList') {
-                animateStatNumbers();
-            }
-        });
-    });
-    document.querySelectorAll('.stats-grid').forEach(function(sg) {
-        statsObserver.observe(sg, { childList: true, characterData: true, subtree: true });
-    });
-
-    // ── Keyboard shortcuts ──
-    var kbdOverlay = document.getElementById('kbdOverlay');
-    var kbdHint = document.getElementById('kbdHint');
-    var moduleKeys = ['thai', 'global', 'app'];
-
-    function toggleKbdModal() {
-        kbdOverlay.classList.toggle('visible');
-    }
-
-    if (kbdHint) {
-        kbdHint.addEventListener('click', toggleKbdModal);
-        kbdHint.addEventListener('keydown', function(e) {
-            if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggleKbdModal(); }
-        });
-    }
-    if (kbdOverlay) {
-        kbdOverlay.addEventListener('click', function(e) {
-            if (e.target === kbdOverlay) toggleKbdModal();
-        });
-    }
-
-    document.addEventListener('keydown', function(e) {
-        // Skip if user is typing in input/textarea/select
-        var tag = (e.target.tagName || '').toLowerCase();
-        if (tag === 'input' || tag === 'textarea' || tag === 'select') {
-            // Esc still works in inputs
-            if (e.key === 'Escape') {
-                e.target.blur();
-            }
-            return;
-        }
-
-        if (e.key === '?' || (e.shiftKey && e.key === '/')) {
-            e.preventDefault();
-            toggleKbdModal();
-            return;
-        }
-
-        if (e.key === 'Escape') {
-            // Close kbd modal
-            if (kbdOverlay && kbdOverlay.classList.contains('visible')) {
-                toggleKbdModal();
-                return;
-            }
-            
+</body>
+</html>
