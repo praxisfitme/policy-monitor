@@ -979,26 +979,131 @@ body {
     border-color: #fed7aa;
 }
 
+.feedback-modal {
+    background: var(--card);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-lg);
+    max-width: 460px;
+    width: 100%;
+    padding: 24px 20px;
+    transform: scale(0.92) translateY(20px);
+    transition: transform 0.25s ease;
+    border: 1px solid var(--border);
+}
+.feedback-modal h3 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 6px;
+    color: var(--text);
+}
+.feedback-modal .feedback-hint {
+    font-size: 0.8125rem;
+    color: var(--text-secondary);
+    margin-bottom: 14px;
+    line-height: 1.6;
+}
+.feedback-modal textarea {
+    width: 100%;
+    min-height: 120px;
+    padding: 12px 14px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    font-size: 0.875rem;
+    font-family: inherit;
+    resize: vertical;
+    outline: none;
+    transition: var(--t);
+    background: var(--bg-secondary);
+    color: var(--text);
+    line-height: 1.6;
+}
 .feedback-modal textarea:focus {
     border-color: var(--primary);
     background: var(--card);
     box-shadow: 0 0 0 3px rgba(37,99,235,0.1);
 }
 .feedback-modal textarea::placeholder { color: var(--text-tertiary); }
-.feedback-modal .feedback-btn:active { transform: scale(0.96); }
+.feedback-modal .feedback-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 16px;
+    flex-wrap: wrap;
+}
+.feedback-btn {
+    flex: 1;
+    min-width: 130px;
+    padding: 12px 16px;
+    border-radius: var(--radius-sm);
+    font-size: 0.875rem;
+    font-weight: 600;
+    cursor: pointer;
+    border: none;
+    transition: var(--t);
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    text-decoration: none;
+    -webkit-user-select: none;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+}
+.feedback-btn:active { transform: scale(0.96); }
 .feedback-btn-primary {
     background: var(--primary);
     color: white;
 }
 .feedback-btn-primary:active { background: var(--primary-dark); }
-.feedback-modal .feedback-type-btn.active {
+.feedback-btn-secondary {
+    background: var(--bg-secondary);
+    color: var(--text);
+    border: 1px solid var(--border);
+}
+.feedback-btn-close {
+    background: transparent;
+    color: var(--text-secondary);
+    border: 1px solid var(--border);
+    flex: 0 0 auto;
+    min-width: 44px;
+}
+.feedback-modal .feedback-note {
+    margin-top: 12px;
+    font-size: 0.75rem;
+    color: var(--text-tertiary);
+    line-height: 1.5;
+}
+.feedback-modal .feedback-type {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 12px;
+}
+.feedback-type-btn {
+    padding: 8px 14px;
+    border-radius: 100px;
+    font-size: 0.8125rem;
+    font-weight: 500;
+    cursor: pointer;
+    border: 1px solid var(--border);
+    background: var(--bg-secondary);
+    color: var(--text-secondary);
+    transition: var(--t);
+    min-height: 36px;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+}
+.feedback-type-btn.active {
     background: var(--primary);
     color: white;
     border-color: var(--primary);
 }
 
 @media (max-width: 768px) {
-    }
+    .feedback-modal { padding: 20px 16px; }
+    .feedback-modal h3 { font-size: 1rem; }
+    .feedback-btn { min-width: 100px; font-size: 0.8125rem; }
+}
 
 
 /* ── Focus visible (accessibility) ── */
@@ -4575,7 +4680,7 @@ body {
                 </span>
                 <button class="collapsible-toggle" onclick="var c=this.parentElement.nextElementSibling;c.classList.toggle('collapsed');this.textContent=c.classList.contains('collapsed')?'展开':'收拢'">展开</button>
             </div>
-            <div class="app-grid collapsible-content collapsed">
+            <div class="app-grid collapsible-content">
 
                 <div class="app-card" data-app="ไทยแบงค์">
                     <div class="app-card-header">
@@ -5528,10 +5633,6 @@ function switchRankingTab(store) {
 </div>
 </div>
 </div>
-
-
-
-
 
 <!-- Bottom Navigation v2 -->
 <nav class="bottom-nav">
