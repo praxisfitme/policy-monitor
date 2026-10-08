@@ -191,7 +191,7 @@ def apply_design(html_path):
             _sections_to_remove = [
                 ('// ── Back to top', '// ── Theme Toggle'),
                 ('// ── Theme Toggle', '// ── Feedback Modal'),
-                ('// ── Feedback Modal', '// ── APP grid'),
+                ('// ── Feedback Modal', "// Bind both modules"),
                 ('// ── Scroll: passive', '// ── Stat number bump'),
             ]
             for _from_marker, _to_marker in _sections_to_remove:

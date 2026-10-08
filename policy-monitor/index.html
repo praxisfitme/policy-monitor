@@ -5389,6 +5389,11 @@ body {
         runFilter();
     }
 
+    // Bind both modules
+    bindFilters('#module-thai');
+    bindFilters('#module-global');
+    bindFilters('#module-app');
+
     // ── APP grid: click on card → set chip filter to that app & switch to 全部信号 tab ──
     (function() {
         var modulePanel = document.getElementById('module-app');
