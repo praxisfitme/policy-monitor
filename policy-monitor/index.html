@@ -2327,7 +2327,7 @@ body {
                 <option value="urgency">紧急程度：高 → 低</option>
             </select>
         </div>
-        <div class="timeline global-timeline>
+        <div class="timeline global-timeline">
             <!-- ===== 2026-10 ===== -->
             <div class="month-section" data-month="2026-10"><div class="month-title">2026年10月 (22 条)</div>
 <div class="policy-item" data-source-links='[{"label": "PakEra - NCCIA Arrests 39 at Lahore Call Centre (10/7)", "url": "https://pakera.pk/nccia-lahore-fake-loan-app-blackmail-39-arrested/"}, {"label": "SECP Licensed Digital Lending Apps White List", "url": "https://pakera.pk/nccia-lahore-fake-loan-app-blackmail-39-arrested/"}]' data-region='巴基斯坦' data-categories='消费者保护,信贷环境,国家监管' data-urgency='高' data-status='已实施' data-verified='unverified' data-date='2026-10-07'>
@@ -4246,12 +4246,12 @@ body {
             </div>
             </div>
         </div>
-        <div class="timeline app-timeline collapsed" data-app-timeline>
+        <div class="timeline app-timeline" data-app-timeline>
             <div class="collapsible-header" onclick="var c=this.nextElementSibling;c.classList.toggle('collapsed');this.querySelector('.collapsible-toggle').textContent=c.classList.contains('collapsed')?'展开':'收拢'">
                 <span>🕐 APP监控时间轴</span>
                 <button class="collapsible-toggle" onclick="event.stopPropagation();var c=this.closest('.collapsible-header').nextElementSibling;c.classList.toggle('collapsed');this.textContent=c.classList.contains('collapsed')?'展开':'收拢'">展开</button>
             </div>
-            <div class="collapsible-content collapsed">
+            <div class="collapsible-content">
             <!-- ===== 2026-08 监控周期 ===== -->
             <div class="month-section" data-month="2026-10"><div class="month-title">2026年10月 信号 (5 条)</div>
 <div class="policy-item" data-source-links='[{"label": "Pantip - ทำไมแอปเงินกู้มหาโหดถึงยังลอยนวล (10/7)", "url": "https://m.pantip.com/topic/44250436"}, {"label": "Thai Times - BoT Targets Unauthorized Loan Applications (10/7)", "url": "https://thaitimes.com/bank-of-thailand-targets-unauthorized-loan-applications"}, {"label": "Bangkok Post - Mother daughters found dead after loan scam (10/7)", "url": "https://bangkokpost-xkgxtn.cdn.byteark.com/thailand/general/3332530/mother-daughters-found-dead-after-loan-scam"}]' data-app="金格方" data-categories="风险预警,客户投诉,社媒讨论" data-urgency="高" data-status="已确认" data-verified="verified" data-date="2026-10-07">
@@ -5156,7 +5156,380 @@ body {
 <!-- ============================================================ -->
 <!--  JAVASCRIPT                                                  -->
 <!-- ============================================================ -->
+<script>
+(function() {
+    // ── Debounce utility ──
+    function debounce(fn, delay) {
+        var timer;
+        return function() {
+            var ctx = this, args = arguments;
+            clearTimeout(timer);
+            timer = setTimeout(function() { fn.apply(ctx, args); }, delay);
+        };
+    }
 
+    // ── Module switching ──
+    document.querySelectorAll('.module-tab').forEach(btn => {
+        btn.addEventListener('click', function() {
+            document.querySelectorAll('.module-tab').forEach(b => b.classList.remove('active'));
+            document.querySelectorAll('.module-panel').forEach(p => p.classList.remove('active'));
+            this.classList.add('active');
+            document.getElementById('module-' + this.dataset.module).classList.add('active');
+        });
+    });
+
+    // ── Render source links from data-source-links ──
+    document.querySelectorAll('.policy-item').forEach(function(item) {
+        var raw = item.dataset.sourceLinks;
+        if (!raw) return;
+        try {
+            var links = JSON.parse(raw);
+            if (!links.length) return;
+            var linksDiv = document.createElement('div');
+            linksDiv.className = 'policy-links';
+            links.forEach(function(link) {
+                var a = document.createElement('a');
+                a.href = link.url;
+                a.target = '_blank';
+                a.rel = 'noopener';
+                a.textContent = ' ' + link.label;
+                linksDiv.appendChild(a);
+            });
+            item.appendChild(linksDiv);
+        } catch(e) { /* ignore parse errors */ }
+    });
+
+    // ── Generic filter logic ──
+    function bindFilters(panelSelector) {
+        var panel = document.querySelector(panelSelector);
+        if (!panel) return;
+
+        // Detect module type from panel id — avoids manual second argument
+        var moduleType = panelSelector.indexOf('thai') >= 0 ? 'thai'
+                       : panelSelector.indexOf('global') >= 0 ? 'global'
+                       : panelSelector.indexOf('app') >= 0 ? 'app'
+                       : 'other';
+
+        var tabsContainer = panel.querySelector('.tabs');
+        var filtersContainer = panel.querySelector('.filters');
+        var searchInput = panel.querySelector('.search-input');
+        var sortSelect = panel.querySelector('.sort-select');
+        var statsContainer = panel.querySelector('.stats-grid');
+        var timelineEl = panel.querySelector('.timeline');
+
+        // Tab clicks
+        if (tabsContainer) {
+            tabsContainer.querySelectorAll('.tab').forEach(t => {
+                t.addEventListener('click', function() {
+                    tabsContainer.querySelectorAll('.tab').forEach(x => x.classList.remove('active'));
+                    this.classList.add('active');
+                    runFilter();
+                });
+            });
+        }
+
+        // Chip clicks
+        if (filtersContainer) {
+            filtersContainer.querySelectorAll('.filter-options').forEach(group => {
+                group.querySelectorAll('.chip').forEach(chip => {
+                    chip.addEventListener('click', function() {
+                        group.querySelectorAll('.chip').forEach(c => c.classList.remove('active'));
+                        this.classList.add('active');
+                        runFilter();
+                    });
+                });
+            });
+        }
+
+        // Search input (with debounce)
+        if (searchInput) {
+            var debouncedRunFilter = debounce ? debounce(runFilter, 300) : runFilter;
+            searchInput.addEventListener('input', debouncedRunFilter);
+        }
+
+        // Sort select
+        if (sortSelect) {
+            sortSelect.addEventListener('change', runFilter);
+        }
+
+        // Expand / collapse all descriptions
+        var expandBtn = panel.querySelector('.expand-btn');
+        if (expandBtn && timelineEl) {
+            expandBtn.addEventListener('click', function() {
+                var collapsed = timelineEl.classList.toggle('collapsed');
+                expandBtn.textContent = collapsed ? '全部展开' : '全部收起';
+            });
+        }
+
+        function getActiveChipValue(filterAttr) {
+            var group = filtersContainer ? filtersContainer.querySelector('[data-filter="' + filterAttr + '"]') : null;
+            if (!group) return 'all';
+            var active = group.querySelector('.chip.active');
+            return active ? active.dataset.value : 'all';
+        }
+
+        function getActiveTab() {
+            if (!tabsContainer) return 'all';
+            var active = tabsContainer.querySelector('.tab.active');
+            return active ? active.dataset.tab : 'all';
+        }
+
+        function runFilter() {
+            var activeTab = getActiveTab();
+            var items = Array.from(timelineEl.querySelectorAll('.policy-item'));
+            var searchText = searchInput ? searchInput.value.toLowerCase() : '';
+            var sortMode = sortSelect ? sortSelect.value : 'newest';
+            var statTotal = 0, statHigh = 0, statMedium = 0, statLow = 0, statUnverified = 0, statComplaint = 0;
+
+            items.forEach(function(item) {
+                var region = item.dataset.region || '';
+                var categories = item.dataset.categories || '';
+                var urgency = item.dataset.urgency || '';
+                var status = item.dataset.status || '';
+                var verified = item.dataset.verified || '';
+                var dataApp = item.dataset.app || '';
+                var text = item.innerText.toLowerCase();
+
+                // Tab filtering — module-aware
+                var tabMatch = true;
+                if (moduleType === 'global') {
+                    if (activeTab === 'sea') tabMatch = /印尼|菲律宾|越南/.test(region);
+                    else if (activeTab === 'latam') tabMatch = /墨西哥|巴西|阿根廷/.test(region);
+                    else if (activeTab === 'africa') tabMatch = /尼日利亚|肯尼亚|埃及/.test(region);
+                    else if (activeTab === 'sasia') tabMatch = /巴基斯坦|孟加拉/.test(region);
+                    else if (activeTab === 'cross') tabMatch = /跨市场/.test(region);
+                } else if (moduleType === 'thai') {
+                    if (activeTab === 'bnpl') tabMatch = (item.dataset.business || '').includes('BNPL');
+                    else if (activeTab === 'ploan') tabMatch = (item.dataset.business || '').includes('Personal Loan');
+                    else if (activeTab === 'pico') tabMatch = (item.dataset.business || '').includes('Pico Loan') || (item.dataset.business || '').includes('Nano Finance');
+                    else if (activeTab === 'license') tabMatch = categories.includes('牌照政策');
+                    else if (activeTab === 'relief') tabMatch = categories.includes('债务纾困');
+                } else if (moduleType === 'app') {
+                    if (activeTab === 'complaint') tabMatch = categories.includes('客户投诉');
+                    else if (activeTab === 'social') tabMatch = categories.includes('社媒讨论');
+                    else if (activeTab === 'regulatory') tabMatch = categories.includes('监管政策');
+                    else if (activeTab === 'warning') tabMatch = categories.includes('风险预警');
+                    else if (activeTab === 'baseline') tabMatch = categories.includes('基础档案');
+                }
+
+                var regionFilter = getActiveChipValue('region');
+                var categoryFilter = getActiveChipValue('category');
+                var urgencyFilter = getActiveChipValue('urgency');
+                var statusFilter = getActiveChipValue('status');
+                var verifiedFilter = getActiveChipValue('verified');
+                var appFilter = getActiveChipValue('app');
+                var signalTypeFilter = getActiveChipValue('signalType');
+
+                var regionMatch = regionFilter === 'all' || region === regionFilter;
+                var categoryMatch = categoryFilter === 'all' || categories.includes(categoryFilter);
+                var urgencyMatch = urgencyFilter === 'all' || urgency === urgencyFilter;
+                var statusMatch = statusFilter === 'all' || status === statusFilter;
+                var verifiedMatch = verifiedFilter === 'all' || verified === verifiedFilter;
+                // App filter: exact match on data-app; "不指定" cross-app signals only match the "all" chip or no specific app selection
+                var appMatch = appFilter === 'all' || dataApp === appFilter;
+                var signalTypeMatch = signalTypeFilter === 'all' || categories.includes(signalTypeFilter);
+                var searchMatch = !searchText || text.includes(searchText);
+
+                if (tabMatch && regionMatch && categoryMatch && urgencyMatch && statusMatch && verifiedMatch && appMatch && signalTypeMatch && searchMatch) {
+                    item.classList.remove('hidden');
+                    statTotal++;
+                    if (urgency === '高') statHigh++;
+                    else if (urgency === '中') statMedium++;
+                    else if (urgency === '低') statLow++;
+                    if (verified === 'unverified') statUnverified++;
+                    if (categories.includes('客户投诉')) statComplaint++;
+                } else {
+                    item.classList.add('hidden');
+                }
+            });
+
+            // Update stats
+            if (statsContainer) {
+                var totalEl = statsContainer.querySelector('.stat-total');
+                var highEl = statsContainer.querySelector('.stat-high');
+                var mediumEl = statsContainer.querySelector('.stat-medium');
+                var lowEl = statsContainer.querySelector('.stat-low');
+                var unvEl = statsContainer.querySelector('.stat-unverified');
+                var complaintEl = statsContainer.querySelector('.stat-complaint');
+                if (totalEl) totalEl.textContent = statTotal;
+                if (highEl) highEl.textContent = statHigh;
+                if (mediumEl) mediumEl.textContent = statMedium;
+                if (lowEl) lowEl.textContent = statLow;
+                if (unvEl) unvEl.textContent = statUnverified;
+                if (complaintEl) complaintEl.textContent = statComplaint;
+            }
+
+            // Sort & reorder
+            timelineEl.querySelectorAll('.month-section').forEach(function(section) {
+                var vItems = Array.from(section.querySelectorAll('.policy-item:not(.hidden)'));
+                vItems.sort(function(a, b) {
+                    var ad = a.dataset.date, bd = b.dataset.date;
+                    if (sortMode === 'newest') return bd.localeCompare(ad);
+                    if (sortMode === 'oldest') return ad.localeCompare(bd);
+                    if (sortMode === 'urgency') {
+                        var map = {'高':3,'中':2,'低':1};
+                        return (map[b.dataset.urgency] || 0) - (map[a.dataset.urgency] || 0);
+                    }
+                    return 0;
+                });
+                vItems.forEach(function(item) { section.appendChild(item); });
+
+                var title = section.querySelector('.month-title');
+                var base = title.textContent.split('(')[0].trim();
+                if (vItems.length === 0) {
+                    section.classList.add('hidden');
+                } else {
+                    section.classList.remove('hidden');
+                    title.textContent = base + ' (' + vItems.length + ' 条)';
+                }
+            });
+        }
+
+        // Initial
+        runFilter();
+    }
+
+    // ── APP grid: click on card → set chip filter to that app & switch to 全部信号 tab ──
+    (function() {
+        var modulePanel = document.getElementById('module-app');
+        if (!modulePanel) return;
+        modulePanel.querySelectorAll('.app-card[data-app]').forEach(function(card) {
+            card.addEventListener('click', function() {
+                var appName = card.getAttribute('data-app');
+                // Switch to "全部信号" tab
+                var tabsContainer = modulePanel.querySelector('.tabs');
+                if (tabsContainer) {
+                    tabsContainer.querySelectorAll('.tab').forEach(function(t) {
+                        t.classList.toggle('active', t.dataset.tab === 'all');
+                    });
+                }
+                // Activate the chip
+                var group = modulePanel.querySelector('[data-filter="app"]');
+                if (group) {
+                    group.querySelectorAll('.chip').forEach(function(c) {
+                        c.classList.toggle('active', c.dataset.value === appName);
+                    });
+                }
+                // Expand filters (so user sees the chip selection)
+                var filtersWrap = modulePanel.querySelector('.filters');
+                if (filtersWrap) filtersWrap.classList.add('expanded');
+                // Run filter
+                var filterEvent = new Event('input', { bubbles: true });
+                var searchInput = modulePanel.querySelector('.search-input');
+                if (searchInput) searchInput.dispatchEvent(filterEvent);
+                // Scroll to timeline
+                var timeline = modulePanel.querySelector('.timeline');
+                if (timeline) timeline.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            });
+        });
+    })();
+
+
+    // ── Stat number bump animation ──
+    function animateStatNumbers() {
+        document.querySelectorAll('.stat-card .number').forEach(function(el) {
+            var val = el.textContent;
+            if (el._lastVal !== val) {
+                el._lastVal = val;
+                el.classList.add('bump');
+                setTimeout(function() { el.classList.remove('bump'); }, 300);
+            }
+        });
+    }
+    // Observe stat changes via MutationObserver
+    var statsObserver = new MutationObserver(function(mutations) {
+        mutations.forEach(function(m) {
+            if (m.type === 'characterData' || m.type === 'childList') {
+                animateStatNumbers();
+            }
+        });
+    });
+    document.querySelectorAll('.stats-grid').forEach(function(sg) {
+        statsObserver.observe(sg, { childList: true, characterData: true, subtree: true });
+    });
+
+    // ── Keyboard shortcuts ──
+    var kbdOverlay = document.getElementById('kbdOverlay');
+    var kbdHint = document.getElementById('kbdHint');
+    var moduleKeys = ['thai', 'global', 'app'];
+
+    function toggleKbdModal() {
+        kbdOverlay.classList.toggle('visible');
+    }
+
+    if (kbdHint) {
+        kbdHint.addEventListener('click', toggleKbdModal);
+        kbdHint.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggleKbdModal(); }
+        });
+    }
+    if (kbdOverlay) {
+        kbdOverlay.addEventListener('click', function(e) {
+            if (e.target === kbdOverlay) toggleKbdModal();
+        });
+    }
+
+    document.addEventListener('keydown', function(e) {
+        // Skip if user is typing in input/textarea/select
+        var tag = (e.target.tagName || '').toLowerCase();
+        if (tag === 'input' || tag === 'textarea' || tag === 'select') {
+            // Esc still works in inputs
+            if (e.key === 'Escape') {
+                e.target.blur();
+            }
+            return;
+        }
+
+        if (e.key === '?' || (e.shiftKey && e.key === '/')) {
+            e.preventDefault();
+            toggleKbdModal();
+            return;
+        }
+
+        if (e.key === 'Escape') {
+            // Close kbd modal
+            if (kbdOverlay && kbdOverlay.classList.contains('visible')) {
+                toggleKbdModal();
+                return;
+            }
+            // Collapse active header
+            var activeHeader = document.querySelector('.module-panel.active .header.expanded');
+            if (activeHeader) activeHeader.classList.remove('expanded');
+            return;
+        }
+
+        // Module switching: 1, 2, 3
+        if (e.key === '1' || e.key === '2' || e.key === '3') {
+            var idx = parseInt(e.key) - 1;
+            var moduleKey = moduleKeys[idx];
+            if (moduleKey) {
+                document.querySelectorAll('.module-tab').forEach(function(b) {
+                    b.classList.toggle('active', b.dataset.module === moduleKey);
+                });
+                document.querySelectorAll('.module-panel').forEach(function(p) {
+                    p.classList.toggle('active', p.id === 'module-' + moduleKey);
+                });
+            }
+            return;
+        }
+
+        // "/" → focus search in active module
+        if (e.key === '/') {
+            var activePanel = document.querySelector('.module-panel.active');
+            if (activePanel) {
+                var searchIn = activePanel.querySelector('.search-input');
+                if (searchIn) {
+                    e.preventDefault();
+                    searchIn.focus();
+                }
+            }
+            return;
+        }
+    });
+
+
+})();
+</script>
 <!-- Keyboard shortcut modal -->
 <div class="kbd-modal-overlay" id="kbdOverlay">
     <div class="kbd-modal" role="dialog" aria-label="键盘快捷键">
