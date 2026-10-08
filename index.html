@@ -85,78 +85,6 @@
     /* Transitions */
     --t: 0.2s ease;
 }
-/* ── Dark Theme (deep space) ── */
-[data-theme="dark"] {
-    /* Primary palette — brightened for dark bg visibility */
-    --primary: #60a5fa;
-    --primary-dark: #93c5fd;
-    --primary-light: #1e3a5f;
-    --primary-lighter: #0f1e3a;
-    --accent: #a78bfa;
-    --accent-dark: #c4b5fd;
-    --accent-light: #3b0764;
-    --accent-lighter: #1e1033;
-
-    /* Neutral palette — deep space dark */
-    --bg: #0b0f1a;
-    --bg-secondary: #131826;
-    --card: #181d2b;
-    --text: #e2e8f0;
-    --text-secondary: #94a3b8;
-    --text-tertiary: #64748b;
-    --border: #2a3142;
-    --border-light: #1e2533;
-
-    /* Status colors — brightened text, darkened bg tints */
-    --danger: #f87171;
-    --danger-bg: #2a0f0f;
-    --danger-text: #fca5a5;
-    --warning: #fb923c;
-    --warning-bg: #2a1a08;
-    --warning-text: #fdba74;
-    --success: #4ade80;
-    --success-bg: #0a2a14;
-    --success-text: #86efac;
-    --info: #60a5fa;
-    --info-bg: #0f1e3a;
-
-    /* Shadows — stronger for depth perception on dark surfaces */
-    --shadow-xs: 0 1px 2px rgba(0,0,0,0.4);
-    --shadow-sm: 0 1px 3px rgba(0,0,0,0.5), 0 1px 2px rgba(0,0,0,0.4);
-    --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.6), 0 2px 4px -2px rgba(0,0,0,0.4);
-    --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.6), 0 4px 6px -4px rgba(0,0,0,0.4);
-}
-
-/* Dark mode — hardcoded color overrides */
-[data-theme="dark"] .header {
-    background: linear-gradient(135deg, #0f1e3a 0%, #1e3a8a 100%);
-    box-shadow: 0 4px 15px rgba(96,165,250,0.08);
-}
-[data-theme="dark"] .header.global {
-    background: linear-gradient(135deg, #1e1033 0%, #4c1d95 100%);
-    box-shadow: 0 4px 15px rgba(167,139,250,0.08);
-}
-[data-theme="dark"] .policy-desc { color: #cbd5e1; }
-[data-theme="dark"] .tag-category { background: var(--info-bg); color: #93c5fd; }
-[data-theme="dark"] .tag-region { background: #1e1b4b; color: #a5b4fc; }
-[data-theme="dark"] .tag-status-proposed { background: #2e1065; color: #c4b5fd; }
-[data-theme="dark"] .tag-status-confirmed { background: #1e1b4b; color: #a5b4fc; }
-[data-theme="dark"] .policy-links a { background: var(--primary-lighter); color: #93c5fd; border-color: var(--primary-light); }
-[data-theme="dark"] .policy-links a:hover { background: var(--primary); color: #fff; }
-[data-theme="dark"] .panel-global .policy-links a { background: var(--accent-lighter); color: #c4b5fd; border-color: var(--accent-light); }
-[data-theme="dark"] .panel-global .policy-links a:hover { background: var(--accent); color: #fff; }
-[data-theme="dark"] .footer-note { background: var(--info-bg); color: #93c5fd; border-color: var(--primary-light); }
-[data-theme="dark"] .panel-global .footer-note { background: var(--accent-lighter); color: #c4b5fd; border-color: var(--accent-light); }
-[data-theme="dark"] .search-box input:focus { box-shadow: 0 0 0 3px rgba(96,165,250,0.15); }
-[data-theme="dark"] .panel-global .search-box input:focus { box-shadow: 0 0 0 3px rgba(167,139,250,0.15); }
-[data-theme="dark"] .tab.active { box-shadow: 0 2px 8px rgba(96,165,250,0.25); }
-[data-theme="dark"] .panel-global .tab.active { box-shadow: 0 2px 8px rgba(167,139,250,0.25); }
-[data-theme="dark"] .header .header-inner h1 { color: #f1f5f9; }
-[data-theme="dark"] .header .subtitle { color: #cbd5e1; }
-[data-theme="dark"] .header .meta { color: #94a3b8; }
-[data-theme="dark"] meta[name="theme-color"] { content: "#0b0f1a"; }
-
-/* Smooth theme transition */
 html { transition: background-color 0.3s ease; }
 body, .header, .module-nav, .stat-card, .tab, .policy-item, .timeline,
 .filter-row select, .search-box input, .sort-select, .expand-btn, .footer-note {
@@ -175,6 +103,7 @@ body {
     background: var(--bg);
     color: var(--text);
     line-height: 1.6;
+    padding-bottom: 70px;
     overscroll-behavior-y: contain;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -1050,98 +979,6 @@ body {
     border-color: #fed7aa;
 }
 
-/* ── Floating Action Buttons ── */
-.fab-stack {
-    position: fixed;
-    right: 20px;
-    bottom: calc(20px + var(--safe-bottom));
-    z-index: 9999;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    align-items: center;
-}
-.fab {
-    width: 44px;
-    height: 44px;
-    border-radius: 50%;
-    border: none;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.2rem;
-    box-shadow: var(--shadow-lg);
-    transition: var(--t);
-    -webkit-user-select: none;
-    user-select: none;
-    -webkit-tap-highlight-color: transparent;
-    touch-action: manipulation;
-    -webkit-touch-callout: none;
-    z-index: 9999;
-}
-.fab:active { transform: scale(0.88); }
-.fab-portal {
-        background: var(--bg-card, #fff);
-        color: var(--text-primary, #333);
-        border: 1px solid var(--border, #e5e7eb);
-        text-decoration: none;
-    }
-    .fab-portal:active { transform: scale(0.88); }
-    .fab-back {
-    background: var(--primary);
-    color: white;
-    opacity: 0;
-    pointer-events: none;
-}
-.fab-back.visible { opacity: 1; pointer-events: auto; }
-.panel-global ~ .fab-stack .fab-back { background: var(--accent); }
-.panel-app ~ .fab-stack .fab-back { background: #ea580c; }
-
-.fab-theme {
-    background: var(--card);
-    color: var(--text);
-    border: 1px solid var(--border);
-}
-.fab-theme:active { transform: scale(0.88) rotate(180deg); }
-
-.fab-feedback {
-    background: var(--card);
-    color: var(--text);
-    border: 1px solid var(--border);
-    position: relative;
-}
-.fab-feedback .fab-badge {
-    position: absolute;
-    top: -2px;
-    right: -2px;
-    width: 10px;
-    height: 10px;
-    background: var(--danger);
-    border-radius: 50%;
-    border: 2px solid var(--card);
-}
-
-/* ── Feedback Modal ── */
-.feedback-overlay {
-    position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,0.5);
-    z-index: 200;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.25s ease;
-    -webkit-backdrop-filter: blur(2px);
-    backdrop-filter: blur(2px);
-}
-.feedback-overlay.visible {
-    opacity: 1;
-    pointer-events: auto;
-}
 .feedback-modal {
     background: var(--card);
     border-radius: var(--radius-lg);
@@ -1152,9 +989,6 @@ body {
     transform: scale(0.92) translateY(20px);
     transition: transform 0.25s ease;
     border: 1px solid var(--border);
-}
-.feedback-overlay.visible .feedback-modal {
-    transform: scale(1) translateY(0);
 }
 .feedback-modal h3 {
     font-size: 1.1rem;
@@ -1266,7 +1100,6 @@ body {
 }
 
 @media (max-width: 768px) {
-    .fab-stack { right: 16px; gap: 8px; }
     .feedback-modal { padding: 20px 16px; }
     .feedback-modal h3 { font-size: 1rem; }
     .feedback-btn { min-width: 100px; font-size: 0.8125rem; }
@@ -1458,6 +1291,14 @@ body {
 .ranking-panel { display:none; }
 .ranking-panel.active { display:block; }
 .nonbank-tag { display:inline-block; font-size:0.6rem; padding:1px 5px; border-radius:6px; background:rgba(124,58,237,0.12); color:#7c3aed; font-weight:600; margin-left:4px; vertical-align:middle; }
+
+/* ── Bottom Navigation v2 ── */
+.bottom-nav { position: fixed; bottom: 0; left: 0; right: 0; background: #ffffff; border-top: 1px solid #e2e8f0; display: flex; justify-content: space-around; padding: 8px 0; padding-bottom: max(8px, env(safe-area-inset-bottom)); z-index: 1000; box-shadow: 0 -2px 10px rgba(0,0,0,0.05); }
+.nav-item { display: flex; flex-direction: column; align-items: center; gap: 4px; text-decoration: none; color: #64748b; font-size: 0.65rem; font-weight: 500; padding: 4px 12px; border-radius: 12px; transition: color 0.2s, background 0.2s; }
+.nav-item.active { color: #3b82f6; background: rgba(59,130,246,0.12); }
+.nav-icon { font-size: 1.2rem; }
+@media (min-width: 768px) { .bottom-nav { max-width: 430px; left: 50%; transform: translateX(-50%); } }
+
 </style>
 </head>
 <body>
@@ -5313,9 +5154,388 @@ body {
         <div class="timeline app-timeline" data-app-timeline>
 
 <!-- ============================================================ -->
-<!--  FLOATING BUTTONS + FEEDBACK MODAL (must be before script)  -->
+<!--  JAVASCRIPT                                                  -->
 <!-- ============================================================ -->
-<div class="kbd-row"><span class="kbd-label">关闭弹窗 / 收起 header</span><span><kbd>Esc</kbd></span></div>
+<script>
+(function() {
+    // ── Debounce utility ──
+    function debounce(fn, delay) {
+        var timer;
+        return function() {
+            var ctx = this, args = arguments;
+            clearTimeout(timer);
+            timer = setTimeout(function() { fn.apply(ctx, args); }, delay);
+        };
+    }
+
+    // ── Module switching ──
+    document.querySelectorAll('.module-tab').forEach(btn => {
+        btn.addEventListener('click', function() {
+            document.querySelectorAll('.module-tab').forEach(b => b.classList.remove('active'));
+            document.querySelectorAll('.module-panel').forEach(p => p.classList.remove('active'));
+            this.classList.add('active');
+            document.getElementById('module-' + this.dataset.module).classList.add('active');
+        });
+    });
+
+    // ── Render source links from data-source-links ──
+    document.querySelectorAll('.policy-item').forEach(function(item) {
+        var raw = item.dataset.sourceLinks;
+        if (!raw) return;
+        try {
+            var links = JSON.parse(raw);
+            if (!links.length) return;
+            var linksDiv = document.createElement('div');
+            linksDiv.className = 'policy-links';
+            links.forEach(function(link) {
+                var a = document.createElement('a');
+                a.href = link.url;
+                a.target = '_blank';
+                a.rel = 'noopener';
+                a.textContent = ' ' + link.label;
+                linksDiv.appendChild(a);
+            });
+            item.appendChild(linksDiv);
+        } catch(e) { /* ignore parse errors */ }
+    });
+
+    // ── Generic filter logic ──
+    function bindFilters(panelSelector) {
+        var panel = document.querySelector(panelSelector);
+        if (!panel) return;
+
+        // Detect module type from panel id — avoids manual second argument
+        var moduleType = panelSelector.indexOf('thai') >= 0 ? 'thai'
+                       : panelSelector.indexOf('global') >= 0 ? 'global'
+                       : panelSelector.indexOf('app') >= 0 ? 'app'
+                       : 'other';
+
+        var tabsContainer = panel.querySelector('.tabs');
+        var filtersContainer = panel.querySelector('.filters');
+        var searchInput = panel.querySelector('.search-input');
+        var sortSelect = panel.querySelector('.sort-select');
+        var statsContainer = panel.querySelector('.stats-grid');
+        var timelineEl = panel.querySelector('.timeline');
+
+        // Tab clicks
+        if (tabsContainer) {
+            tabsContainer.querySelectorAll('.tab').forEach(t => {
+                t.addEventListener('click', function() {
+                    tabsContainer.querySelectorAll('.tab').forEach(x => x.classList.remove('active'));
+                    this.classList.add('active');
+                    runFilter();
+                });
+            });
+        }
+
+        // Chip clicks
+        if (filtersContainer) {
+            filtersContainer.querySelectorAll('.filter-options').forEach(group => {
+                group.querySelectorAll('.chip').forEach(chip => {
+                    chip.addEventListener('click', function() {
+                        group.querySelectorAll('.chip').forEach(c => c.classList.remove('active'));
+                        this.classList.add('active');
+                        runFilter();
+                    });
+                });
+            });
+        }
+
+        // Search input (with debounce)
+        if (searchInput) {
+            var debouncedRunFilter = debounce ? debounce(runFilter, 300) : runFilter;
+            searchInput.addEventListener('input', debouncedRunFilter);
+        }
+
+        // Sort select
+        if (sortSelect) {
+            sortSelect.addEventListener('change', runFilter);
+        }
+
+        // Expand / collapse all descriptions
+        var expandBtn = panel.querySelector('.expand-btn');
+        if (expandBtn && timelineEl) {
+            expandBtn.addEventListener('click', function() {
+                var collapsed = timelineEl.classList.toggle('collapsed');
+                expandBtn.textContent = collapsed ? '全部展开' : '全部收起';
+            });
+        }
+
+        function getActiveChipValue(filterAttr) {
+            var group = filtersContainer ? filtersContainer.querySelector('[data-filter="' + filterAttr + '"]') : null;
+            if (!group) return 'all';
+            var active = group.querySelector('.chip.active');
+            return active ? active.dataset.value : 'all';
+        }
+
+        function getActiveTab() {
+            if (!tabsContainer) return 'all';
+            var active = tabsContainer.querySelector('.tab.active');
+            return active ? active.dataset.tab : 'all';
+        }
+
+        function runFilter() {
+            var activeTab = getActiveTab();
+            var items = Array.from(timelineEl.querySelectorAll('.policy-item'));
+            var searchText = searchInput ? searchInput.value.toLowerCase() : '';
+            var sortMode = sortSelect ? sortSelect.value : 'newest';
+            var statTotal = 0, statHigh = 0, statMedium = 0, statLow = 0, statUnverified = 0, statComplaint = 0;
+
+            items.forEach(function(item) {
+                var region = item.dataset.region || '';
+                var categories = item.dataset.categories || '';
+                var urgency = item.dataset.urgency || '';
+                var status = item.dataset.status || '';
+                var verified = item.dataset.verified || '';
+                var dataApp = item.dataset.app || '';
+                var text = item.innerText.toLowerCase();
+
+                // Tab filtering — module-aware
+                var tabMatch = true;
+                if (moduleType === 'global') {
+                    if (activeTab === 'sea') tabMatch = /印尼|菲律宾|越南/.test(region);
+                    else if (activeTab === 'latam') tabMatch = /墨西哥|巴西|阿根廷/.test(region);
+                    else if (activeTab === 'africa') tabMatch = /尼日利亚|肯尼亚|埃及/.test(region);
+                    else if (activeTab === 'sasia') tabMatch = /巴基斯坦|孟加拉/.test(region);
+                    else if (activeTab === 'cross') tabMatch = /跨市场/.test(region);
+                } else if (moduleType === 'thai') {
+                    if (activeTab === 'bnpl') tabMatch = (item.dataset.business || '').includes('BNPL');
+                    else if (activeTab === 'ploan') tabMatch = (item.dataset.business || '').includes('Personal Loan');
+                    else if (activeTab === 'pico') tabMatch = (item.dataset.business || '').includes('Pico Loan') || (item.dataset.business || '').includes('Nano Finance');
+                    else if (activeTab === 'license') tabMatch = categories.includes('牌照政策');
+                    else if (activeTab === 'relief') tabMatch = categories.includes('债务纾困');
+                } else if (moduleType === 'app') {
+                    if (activeTab === 'complaint') tabMatch = categories.includes('客户投诉');
+                    else if (activeTab === 'social') tabMatch = categories.includes('社媒讨论');
+                    else if (activeTab === 'regulatory') tabMatch = categories.includes('监管政策');
+                    else if (activeTab === 'warning') tabMatch = categories.includes('风险预警');
+                    else if (activeTab === 'baseline') tabMatch = categories.includes('基础档案');
+                }
+
+                var regionFilter = getActiveChipValue('region');
+                var categoryFilter = getActiveChipValue('category');
+                var urgencyFilter = getActiveChipValue('urgency');
+                var statusFilter = getActiveChipValue('status');
+                var verifiedFilter = getActiveChipValue('verified');
+                var appFilter = getActiveChipValue('app');
+                var signalTypeFilter = getActiveChipValue('signalType');
+
+                var regionMatch = regionFilter === 'all' || region === regionFilter;
+                var categoryMatch = categoryFilter === 'all' || categories.includes(categoryFilter);
+                var urgencyMatch = urgencyFilter === 'all' || urgency === urgencyFilter;
+                var statusMatch = statusFilter === 'all' || status === statusFilter;
+                var verifiedMatch = verifiedFilter === 'all' || verified === verifiedFilter;
+                // App filter: exact match on data-app; "不指定" cross-app signals only match the "all" chip or no specific app selection
+                var appMatch = appFilter === 'all' || dataApp === appFilter;
+                var signalTypeMatch = signalTypeFilter === 'all' || categories.includes(signalTypeFilter);
+                var searchMatch = !searchText || text.includes(searchText);
+
+                if (tabMatch && regionMatch && categoryMatch && urgencyMatch && statusMatch && verifiedMatch && appMatch && signalTypeMatch && searchMatch) {
+                    item.classList.remove('hidden');
+                    statTotal++;
+                    if (urgency === '高') statHigh++;
+                    else if (urgency === '中') statMedium++;
+                    else if (urgency === '低') statLow++;
+                    if (verified === 'unverified') statUnverified++;
+                    if (categories.includes('客户投诉')) statComplaint++;
+                } else {
+                    item.classList.add('hidden');
+                }
+            });
+
+            // Update stats
+            if (statsContainer) {
+                var totalEl = statsContainer.querySelector('.stat-total');
+                var highEl = statsContainer.querySelector('.stat-high');
+                var mediumEl = statsContainer.querySelector('.stat-medium');
+                var lowEl = statsContainer.querySelector('.stat-low');
+                var unvEl = statsContainer.querySelector('.stat-unverified');
+                var complaintEl = statsContainer.querySelector('.stat-complaint');
+                if (totalEl) totalEl.textContent = statTotal;
+                if (highEl) highEl.textContent = statHigh;
+                if (mediumEl) mediumEl.textContent = statMedium;
+                if (lowEl) lowEl.textContent = statLow;
+                if (unvEl) unvEl.textContent = statUnverified;
+                if (complaintEl) complaintEl.textContent = statComplaint;
+            }
+
+            // Sort & reorder
+            timelineEl.querySelectorAll('.month-section').forEach(function(section) {
+                var vItems = Array.from(section.querySelectorAll('.policy-item:not(.hidden)'));
+                vItems.sort(function(a, b) {
+                    var ad = a.dataset.date, bd = b.dataset.date;
+                    if (sortMode === 'newest') return bd.localeCompare(ad);
+                    if (sortMode === 'oldest') return ad.localeCompare(bd);
+                    if (sortMode === 'urgency') {
+                        var map = {'高':3,'中':2,'低':1};
+                        return (map[b.dataset.urgency] || 0) - (map[a.dataset.urgency] || 0);
+                    }
+                    return 0;
+                });
+                vItems.forEach(function(item) { section.appendChild(item); });
+
+                var title = section.querySelector('.month-title');
+                var base = title.textContent.split('(')[0].trim();
+                if (vItems.length === 0) {
+                    section.classList.add('hidden');
+                } else {
+                    section.classList.remove('hidden');
+                    title.textContent = base + ' (' + vItems.length + ' 条)';
+                }
+            });
+        }
+
+        // Initial
+        runFilter();
+    }
+
+    // ── APP grid: click on card → set chip filter to that app & switch to 全部信号 tab ──
+    (function() {
+        var modulePanel = document.getElementById('module-app');
+        if (!modulePanel) return;
+        modulePanel.querySelectorAll('.app-card[data-app]').forEach(function(card) {
+            card.addEventListener('click', function() {
+                var appName = card.getAttribute('data-app');
+                // Switch to "全部信号" tab
+                var tabsContainer = modulePanel.querySelector('.tabs');
+                if (tabsContainer) {
+                    tabsContainer.querySelectorAll('.tab').forEach(function(t) {
+                        t.classList.toggle('active', t.dataset.tab === 'all');
+                    });
+                }
+                // Activate the chip
+                var group = modulePanel.querySelector('[data-filter="app"]');
+                if (group) {
+                    group.querySelectorAll('.chip').forEach(function(c) {
+                        c.classList.toggle('active', c.dataset.value === appName);
+                    });
+                }
+                // Expand filters (so user sees the chip selection)
+                var filtersWrap = modulePanel.querySelector('.filters');
+                if (filtersWrap) filtersWrap.classList.add('expanded');
+                // Run filter
+                var filterEvent = new Event('input', { bubbles: true });
+                var searchInput = modulePanel.querySelector('.search-input');
+                if (searchInput) searchInput.dispatchEvent(filterEvent);
+                // Scroll to timeline
+                var timeline = modulePanel.querySelector('.timeline');
+                if (timeline) timeline.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            });
+        });
+    })();
+
+
+    // ── Stat number bump animation ──
+    function animateStatNumbers() {
+        document.querySelectorAll('.stat-card .number').forEach(function(el) {
+            var val = el.textContent;
+            if (el._lastVal !== val) {
+                el._lastVal = val;
+                el.classList.add('bump');
+                setTimeout(function() { el.classList.remove('bump'); }, 300);
+            }
+        });
+    }
+    // Observe stat changes via MutationObserver
+    var statsObserver = new MutationObserver(function(mutations) {
+        mutations.forEach(function(m) {
+            if (m.type === 'characterData' || m.type === 'childList') {
+                animateStatNumbers();
+            }
+        });
+    });
+    document.querySelectorAll('.stats-grid').forEach(function(sg) {
+        statsObserver.observe(sg, { childList: true, characterData: true, subtree: true });
+    });
+
+    // ── Keyboard shortcuts ──
+    var kbdOverlay = document.getElementById('kbdOverlay');
+    var kbdHint = document.getElementById('kbdHint');
+    var moduleKeys = ['thai', 'global', 'app'];
+
+    function toggleKbdModal() {
+        kbdOverlay.classList.toggle('visible');
+    }
+
+    if (kbdHint) {
+        kbdHint.addEventListener('click', toggleKbdModal);
+        kbdHint.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggleKbdModal(); }
+        });
+    }
+    if (kbdOverlay) {
+        kbdOverlay.addEventListener('click', function(e) {
+            if (e.target === kbdOverlay) toggleKbdModal();
+        });
+    }
+
+    document.addEventListener('keydown', function(e) {
+        // Skip if user is typing in input/textarea/select
+        var tag = (e.target.tagName || '').toLowerCase();
+        if (tag === 'input' || tag === 'textarea' || tag === 'select') {
+            // Esc still works in inputs
+            if (e.key === 'Escape') {
+                e.target.blur();
+            }
+            return;
+        }
+
+        if (e.key === '?' || (e.shiftKey && e.key === '/')) {
+            e.preventDefault();
+            toggleKbdModal();
+            return;
+        }
+
+        if (e.key === 'Escape') {
+            // Close kbd modal
+            if (kbdOverlay && kbdOverlay.classList.contains('visible')) {
+                toggleKbdModal();
+                return;
+            }
+            // Collapse active header
+            var activeHeader = document.querySelector('.module-panel.active .header.expanded');
+            if (activeHeader) activeHeader.classList.remove('expanded');
+            return;
+        }
+
+        // Module switching: 1, 2, 3
+        if (e.key === '1' || e.key === '2' || e.key === '3') {
+            var idx = parseInt(e.key) - 1;
+            var moduleKey = moduleKeys[idx];
+            if (moduleKey) {
+                document.querySelectorAll('.module-tab').forEach(function(b) {
+                    b.classList.toggle('active', b.dataset.module === moduleKey);
+                });
+                document.querySelectorAll('.module-panel').forEach(function(p) {
+                    p.classList.toggle('active', p.id === 'module-' + moduleKey);
+                });
+            }
+            return;
+        }
+
+        // "/" → focus search in active module
+        if (e.key === '/') {
+            var activePanel = document.querySelector('.module-panel.active');
+            if (activePanel) {
+                var searchIn = activePanel.querySelector('.search-input');
+                if (searchIn) {
+                    e.preventDefault();
+                    searchIn.focus();
+                }
+            }
+            return;
+        }
+    });
+
+
+})();
+</script>
+<!-- Keyboard shortcut modal -->
+<div class="kbd-modal-overlay" id="kbdOverlay">
+    <div class="kbd-modal" role="dialog" aria-label="键盘快捷键">
+        <h3>⌨️ 键盘快捷键</h3>
+        <div class="kbd-row"><span class="kbd-label">聚焦搜索框</span><span><kbd>/</kbd></span></div>
+        <div class="kbd-row"><span class="kbd-label">关闭弹窗 / 收起 header</span><span><kbd>Esc</kbd></span></div>
         <div class="kbd-row"><span class="kbd-label">切换到泰国政策监控</span><span><kbd>1</kbd></span></div>
         <div class="kbd-row"><span class="kbd-label">切换到全球出海监控</span><span><kbd>2</kbd></span></div>
         <div class="kbd-row"><span class="kbd-label">切换到APP监控</span><span><kbd>3</kbd></span></div>
@@ -5343,25 +5563,19 @@ function switchRankingTab(store) {
     }
 })();
 </script>
+</div>
+</div>
+</div>
+</div>
+</div>
 
-<!-- Bottom Navigation -->
-<nav style="position:fixed;bottom:0;left:0;right:0;z-index:9999;background:#fff;border-top:1px solid #e2e8f0;display:flex;justify-content:space-around;align-items:center;height:56px;box-shadow:0 -2px 8px rgba(0,0,0,.06);">
-  <a href="/portal/" style="text-decoration:none;display:flex;flex-direction:column;align-items:center;gap:2px;color:#64748b;font-size:11px;">
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-    首页
-  </a>
-  <a href="/policy-monitor/" style="text-decoration:none;display:flex;flex-direction:column;align-items:center;gap:2px;color:#2563eb;font-weight:600;font-size:11px;">
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
-    政策
-  </a>
-  <a href="/payment-intel/" style="text-decoration:none;display:flex;flex-direction:column;align-items:center;gap:2px;color:#64748b;font-size:11px;">
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
-    支付
-  </a>
-  <a href="/stock-dash/" style="text-decoration:none;display:flex;flex-direction:column;align-items:center;gap:2px;color:#64748b;font-size:11px;">
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
-    行情
-  </a>
+<!-- Bottom Navigation v2 -->
+<nav class="bottom-nav">
+    <a href="/" class="nav-item"><span class="nav-icon">🏠</span><span>首页</span></a>
+    <a href="/payment-intel/" class="nav-item"><span class="nav-icon">💳</span><span>支付</span></a>
+    <a href="/policy-monitor/" class="nav-item active"><span class="nav-icon">🛡️</span><span>政策</span></a>
+    <a href="/stock-dash/" class="nav-item"><span class="nav-icon">📈</span><span>股市</span></a>
 </nav>
+
 </body>
 </html>
