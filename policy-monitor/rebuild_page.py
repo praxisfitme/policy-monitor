@@ -128,11 +128,17 @@ def extract_jump_to_ranking(content):
 
 
 def extract_app_grid_from(html, start=0):
-    """Extract the <div class="app-grid..."> section."""
+    """Extract the <div class="app-grid..."> section, removing collapsed/collapsible classes."""
     result, end = find_div_by_class(html, 'class="app-grid', start)
     if result:
-        result = re.sub(r'\s*collapsed\s*', ' ', result)
-        result = re.sub(r'class="([^"]*) "', r'class="\1"', result)
+        # Remove collapsed keyword from class
+        result = re.sub(r'\bcollapsed\b', '', result)
+        # Remove collapsible-content class
+        result = re.sub(r'\bcollapsible-content\b', '', result)
+        # Clean up extra spaces in class attributes
+        result = re.sub(r'class="\s*', 'class="', result)
+        result = re.sub(r'\s*"', '"', result)
+        result = re.sub(r'  +', ' ', result)
     return result or ''
 
 
@@ -284,6 +290,14 @@ def clean_css(css_text):
 
     # 8. Remove .collapsible-content.collapsed rule
     css_text = re.sub(r'\.collapsible-content\.collapsed\s*\{[^}]*\}\s*', '', css_text)
+
+    # 8b. Remove .collapsed .policy-desc rule (hides descriptions when collapsed)
+    css_text = re.sub(r'\.collapsed\s+\.policy-desc\s*\{[^}]*\}\s*', '', css_text)
+
+    # 8c. Remove remaining kbd-related CSS (compound selectors)
+    css_text = re.sub(r'/\*\s*─+\s*Enhancements:\s*keyboard[^*]*\*/[^}]*(?:\{[^}]*\}[^}]*)*', '', css_text, flags=re.DOTALL)
+    css_text = re.sub(r'\.kbd-hint[^{]*\{[^}]*\}\s*', '', css_text)
+    css_text = re.sub(r'\.kbd-modal[^{]*\{[^}]*\}\s*', '', css_text)
 
     # 9. Clean up multiple blank lines
     css_text = re.sub(r'\n{3,}', '\n\n', css_text)
@@ -781,6 +795,9 @@ def main():
         parts.append(app_view_toggle + '\n')
     parts.append(app_timeline + '\n')
     if app_grid:
+        # Clean collapsible-header onclick handlers from app_grid content
+        app_grid = re.sub(r"onclick=\"var c=this\.parentElement\.nextElementSibling.*?收拢'\"", '', app_grid)
+        app_grid = re.sub(r'<button class="collapsible-toggle".*?</button>', '', app_grid, flags=re.DOTALL)
         parts.append('\n<!-- APP 概况卡片 -->\n')
         parts.append(app_grid + '\n')
     parts.append('</div>\n')  # close container
