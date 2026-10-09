@@ -477,9 +477,7 @@ body {
     opacity: 1;
 }
 /* collapse all descriptions toggle */
-.timeline.collapsed .policy-desc { display: none; }
-
-.sort-select {
+.timeline.sort-select {
     padding: 8px 12px;
     border: 1px solid var(--border);
     border-radius: var(--radius-sm);
@@ -1085,12 +1083,8 @@ body {
     transform: scale(1.15);
 }
 
-/* ── Enhancements: keyboard shortcut hint ── */
-.kbd-hint:hover { color: var(--text-secondary); border-color: var(--primary); }
+}
 
-.kbd-modal .kbd-modal .kbd-row:last-child { border-bottom: none; }
-.kbd-modal /* Ranking Store Tabs */
-.ranking-tabs { display:flex; gap:4px; margin-bottom:16px; border-bottom:2px solid var(--border); padding-bottom:0; }
 .ranking-tab { padding:10px 20px; border:none; background:transparent; color:var(--text-tertiary); font-size:0.9rem; font-weight:600; cursor:pointer; border-bottom:3px solid transparent; margin-bottom:-2px; transition:all 0.2s ease; display:flex; align-items:center; gap:6px; }
 .ranking-tab:hover { color:var(--text-primary); background:var(--bg-secondary); }
 .ranking-tab.active { color:#7c3aed; border-bottom-color:#7c3aed; }
@@ -5028,234 +5022,234 @@ body {
 </div>
 
 <!-- APP 概况卡片 -->
-<div class="app-grid collapsible-content">
+<div class="app-grid">
 
-                <div class="app-card" data-app="ไทยแบงค์">
-                    <div class="app-card-header">
-                        <span class="app-rank top1">1</span>
-                        <span class="app-name">ไทยแบงค์</span>
-                    </div>
-                    <div class="app-meta"><b>公司：</b>运营商未公开 / 待核</div>
-                    <div class="app-stats">
-                        <span class="app-stat-num">32,727</span>
-                        <span class="app-stat-delta down">▼ 1,912</span>
-                        <span class="app-stat-delta flat">-5.5%</span>
-                        <span class="app-pulse" title="需主动核查"></span>
-                    </div>
-                    <div class="app-fee"><b>费率：</b>第1期还款95%含套餐费53% · 借1,700还2,890 (1.2x-1.8x) · 最高THB 2,100 · 2期</div>
-                </div>
+ <div class="app-card" data-app="ไทยแบงค์">
+ <div class="app-card-header">
+ <span class="app-rank top1">1</span>
+ <span class="app-name">ไทยแบงค์</span>
+ </div>
+ <div class="app-meta"><b>公司：</b>运营商未公开 / 待核</div>
+ <div class="app-stats">
+ <span class="app-stat-num">32,727</span>
+ <span class="app-stat-delta down">▼ 1,912</span>
+ <span class="app-stat-delta flat">-5.5%</span>
+ <span class="app-pulse" title="需主动核查"></span>
+ </div>
+ <div class="app-fee"><b>费率：</b>第1期还款95%含套餐费53% · 借1,700还2,890 (1.2x-1.8x) · 最高THB 2,100 · 2期</div>
+ </div>
 
-                <div class="app-card" data-app="ALPHABYTE">
-                    <div class="app-card-header">
-                        <span class="app-rank top2">2</span>
-                        <span class="app-name">ALPHABYTE</span>
-                    </div>
-                    <div class="app-meta"><b>公司：</b>运营商未公开 / 待核</div>
-                    <div class="app-stats">
-                        <span class="app-stat-num">25,957</span>
-                        <span class="app-stat-delta up">▲ 562</span>
-                        <span class="app-stat-delta flat">+2.2%</span>
-                        <span class="app-pulse" title="需主动核查"></span>
-                    </div>
-                    <div class="app-fee"><b>费率：</b>含隐藏服务费 + E-new 费用 · 最低/最高 THB 5,000 · 90-180 天</div>
-                </div>
+ <div class="app-card" data-app="ALPHABYTE">
+ <div class="app-card-header">
+ <span class="app-rank top2">2</span>
+ <span class="app-name">ALPHABYTE</span>
+ </div>
+ <div class="app-meta"><b>公司：</b>运营商未公开 / 待核</div>
+ <div class="app-stats">
+ <span class="app-stat-num">25,957</span>
+ <span class="app-stat-delta up">▲ 562</span>
+ <span class="app-stat-delta flat">+2.2%</span>
+ <span class="app-pulse" title="需主动核查"></span>
+ </div>
+ <div class="app-fee"><b>费率：</b>含隐藏服务费 + E-new 费用 · 最低/最高 THB 5,000 · 90-180 天</div>
+ </div>
 
-                <div class="app-card" data-app="FINNIX-循环贷">
-                    <div class="app-card-header">
-                        <span class="app-rank top3">3</span>
-                        <span class="app-name">FINNIX-循环贷</span>
-                    </div>
-                    <div class="app-meta"><b>公司：</b>运营商未公开 / 待核</div>
-                    <div class="app-stats">
-                        <span class="app-stat-num">18,468</span>
-                        <span class="app-stat-delta up">▲ 2,407</span>
-                        <span class="app-stat-delta flat">+15.0%</span>
-                        <span class="app-pulse" title="需主动核查"></span>
-                    </div>
-                    <div class="app-fee"><b>费率：</b>栏目未披露（待 App Store / 应用内核算）</div>
-                </div>
+ <div class="app-card" data-app="FINNIX-循环贷">
+ <div class="app-card-header">
+ <span class="app-rank top3">3</span>
+ <span class="app-name">FINNIX-循环贷</span>
+ </div>
+ <div class="app-meta"><b>公司：</b>运营商未公开 / 待核</div>
+ <div class="app-stats">
+ <span class="app-stat-num">18,468</span>
+ <span class="app-stat-delta up">▲ 2,407</span>
+ <span class="app-stat-delta flat">+15.0%</span>
+ <span class="app-pulse" title="需主动核查"></span>
+ </div>
+ <div class="app-fee"><b>费率：</b>栏目未披露（待 App Store / 应用内核算）</div>
+ </div>
 
-                <div class="app-card" data-app="Pico Link">
-                    <div class="app-card-header">
-                        <span class="app-rank">4</span>
-                        <span class="app-name">Pico Link</span>
-                    </div>
-                    <div class="app-meta"><b>公司：</b>运营商未公开 / 待核</div>
-                    <div class="app-stats">
-                        <span class="app-stat-num">17,706</span>
-                        <span class="app-stat-delta down">▼ 3,508</span>
-                        <span class="app-stat-delta flat">-16.5%</span>
-                        <span class="app-pulse" title="需主动核查"></span>
-                    </div>
-                    <div class="app-fee"><b>费率：</b>借 1,000 还 1,600，每 14 天（约 60% 周期利率） · 最低 THB 1,000</div>
-                </div>
+ <div class="app-card" data-app="Pico Link">
+ <div class="app-card-header">
+ <span class="app-rank">4</span>
+ <span class="app-name">Pico Link</span>
+ </div>
+ <div class="app-meta"><b>公司：</b>运营商未公开 / 待核</div>
+ <div class="app-stats">
+ <span class="app-stat-num">17,706</span>
+ <span class="app-stat-delta down">▼ 3,508</span>
+ <span class="app-stat-delta flat">-16.5%</span>
+ <span class="app-pulse" title="需主动核查"></span>
+ </div>
+ <div class="app-fee"><b>费率：</b>借 1,000 还 1,600，每 14 天（约 60% 周期利率） · 最低 THB 1,000</div>
+ </div>
 
-                <div class="app-card" data-app="Promise(循环贷)">
-                    <div class="app-card-header">
-                        <span class="app-rank">5</span>
-                        <span class="app-name">Promise(循环贷)</span>
-                    </div>
-                    <div class="app-meta"><b>公司：</b>运营商未公开 / 待核</div>
-                    <div class="app-stats">
-                        <span class="app-stat-num">16,418</span>
-                        <span class="app-stat-delta down">▼ 1,835</span>
-                        <span class="app-stat-delta flat">-10.1%</span>
-                        <span class="app-pulse" title="需主动核查"></span>
-                    </div>
-                    <div class="app-fee"><b>费率：</b>栏目未披露（待 App Store / 应用内核算）</div>
-                </div>
+ <div class="app-card" data-app="Promise(循环贷)">
+ <div class="app-card-header">
+ <span class="app-rank">5</span>
+ <span class="app-name">Promise(循环贷)</span>
+ </div>
+ <div class="app-meta"><b>公司：</b>运营商未公开 / 待核</div>
+ <div class="app-stats">
+ <span class="app-stat-num">16,418</span>
+ <span class="app-stat-delta down">▼ 1,835</span>
+ <span class="app-stat-delta flat">-10.1%</span>
+ <span class="app-pulse" title="需主动核查"></span>
+ </div>
+ <div class="app-fee"><b>费率：</b>栏目未披露（待 App Store / 应用内核算）</div>
+ </div>
 
-                <div class="app-card" data-app="มีมีแคช">
-                    <div class="app-card-header">
-                        <span class="app-rank">6</span>
-                        <span class="app-name">มีมีแคช (Mimi Cash)</span>
-                    </div>
-                    <div class="app-meta"><b>公司：</b>运营商未公开 / 待核</div>
-                    <div class="app-stats">
-                        <span class="app-stat-num">16,090</span>
-                        <span class="app-stat-delta down">▼ 1,055</span>
-                        <span class="app-stat-delta flat">-6.2%</span>
-                        <span class="app-pulse" title="需主动核查"></span>
-                    </div>
-                    <div class="app-fee"><b>费率：</b>栏目未披露（待 App Store / 应用内核算）</div>
-                </div>
+ <div class="app-card" data-app="มีมีแคช">
+ <div class="app-card-header">
+ <span class="app-rank">6</span>
+ <span class="app-name">มีมีแคช (Mimi Cash)</span>
+ </div>
+ <div class="app-meta"><b>公司：</b>运营商未公开 / 待核</div>
+ <div class="app-stats">
+ <span class="app-stat-num">16,090</span>
+ <span class="app-stat-delta down">▼ 1,055</span>
+ <span class="app-stat-delta flat">-6.2%</span>
+ <span class="app-pulse" title="需主动核查"></span>
+ </div>
+ <div class="app-fee"><b>费率：</b>栏目未披露（待 App Store / 应用内核算）</div>
+ </div>
 
-                <div class="app-card" data-app="ลูนาแคช">
-                    <div class="app-card-header">
-                        <span class="app-rank">7</span>
-                        <span class="app-name">ลูนาแคช : คู่มือกู้กยุมาวย (Luna Cash)</span>
-                    </div>
-                    <div class="app-meta"><b>公司：</b>运营商未公开 / 待核</div>
-                    <div class="app-stats">
-                        <span class="app-stat-num">15,571</span>
-                        <span class="app-stat-delta down">▼ 3,002</span>
-                        <span class="app-stat-delta flat">-16.2%</span>
-                        <span class="app-pulse" title="需主动核查"></span>
-                    </div>
-                    <div class="app-fee"><b>费率：</b>借贷费 1,800-3,000 / 7天（约 67% 周期利率） · 7 天</div>
-                </div>
+ <div class="app-card" data-app="ลูนาแคช">
+ <div class="app-card-header">
+ <span class="app-rank">7</span>
+ <span class="app-name">ลูนาแคช : คู่มือกู้กยุมาวย (Luna Cash)</span>
+ </div>
+ <div class="app-meta"><b>公司：</b>运营商未公开 / 待核</div>
+ <div class="app-stats">
+ <span class="app-stat-num">15,571</span>
+ <span class="app-stat-delta down">▼ 3,002</span>
+ <span class="app-stat-delta flat">-16.2%</span>
+ <span class="app-pulse" title="需主动核查"></span>
+ </div>
+ <div class="app-fee"><b>费率：</b>借贷费 1,800-3,000 / 7天（约 67% 周期利率） · 7 天</div>
+ </div>
 
-                <div class="app-card" data-app="金格方">
-                    <div class="app-card-header">
-                        <span class="app-rank">8</span>
-                        <span class="app-name">金格方</span>
-                    </div>
-                    <div class="app-meta"><b>公司：</b>运营商未公开 / 待核</div>
-                    <div class="app-stats">
-                        <span class="app-stat-num">15,266</span>
-                        <span class="app-stat-delta down">▼ 1,268</span>
-                        <span class="app-stat-delta flat">-7.7%</span>
-                        <span class="app-pulse" title="需主动核查"></span>
-                    </div>
-                    <div class="app-fee"><b>费率：</b>费率/广告不符 · 含数千铢"服务费购买费"</div>
-                </div>
+ <div class="app-card" data-app="金格方">
+ <div class="app-card-header">
+ <span class="app-rank">8</span>
+ <span class="app-name">金格方</span>
+ </div>
+ <div class="app-meta"><b>公司：</b>运营商未公开 / 待核</div>
+ <div class="app-stats">
+ <span class="app-stat-num">15,266</span>
+ <span class="app-stat-delta down">▼ 1,268</span>
+ <span class="app-stat-delta flat">-7.7%</span>
+ <span class="app-pulse" title="需主动核查"></span>
+ </div>
+ <div class="app-fee"><b>费率：</b>费率/广告不符 · 含数千铢"服务费购买费"</div>
+ </div>
 
-                <div class="app-card" data-app="SmartCash">
-                    <div class="app-card-header">
-                        <span class="app-rank">10</span>
-                        <span class="app-name">SmartCash</span>
-                    </div>
-                    <div class="app-meta"><b>公司：</b>运营商未公开 / 待核</div>
-                    <div class="app-stats">
-                        <span class="app-stat-num">15,265</span>
-                        <span class="app-stat-delta down">▼ 3,385</span>
-                        <span class="app-stat-delta flat">-18.2%</span>
-                        <span class="app-pulse" title="需主动核查"></span>
-                    </div>
-                    <div class="app-fee"><b>费率：</b>借 1,000 收 588.27 baht / 7天（≈58.8% / 7天） · 最高 THB 1,000 · 7 天</div>
-                </div>
+ <div class="app-card" data-app="SmartCash">
+ <div class="app-card-header">
+ <span class="app-rank">10</span>
+ <span class="app-name">SmartCash</span>
+ </div>
+ <div class="app-meta"><b>公司：</b>运营商未公开 / 待核</div>
+ <div class="app-stats">
+ <span class="app-stat-num">15,265</span>
+ <span class="app-stat-delta down">▼ 3,385</span>
+ <span class="app-stat-delta flat">-18.2%</span>
+ <span class="app-pulse" title="需主动核查"></span>
+ </div>
+ <div class="app-fee"><b>费率：</b>借 1,000 收 588.27 baht / 7天（≈58.8% / 7天） · 最高 THB 1,000 · 7 天</div>
+ </div>
 
-                <div class="app-card" data-app="Good Money">
-                    <div class="app-card-header">
-                        <span class="app-rank">10</span>
-                        <span class="app-name">Good Money</span>
-                    </div>
-                    <div class="app-meta"><b>公司：</b>运营商未公开 / 待核</div>
-                    <div class="app-stats">
-                        <span class="app-stat-num">14,416</span>
-                        <span class="app-stat-delta down">▼ 2,996</span>
-                        <span class="app-stat-delta flat">-17.2%</span>
-                        <span class="app-pulse" title="需主动核查"></span>
-                    </div>
-                    <div class="app-fee"><b>费率：</b>最高 THB 50,000（栏目未披露完整费率结构）</div>
-                </div>
+ <div class="app-card" data-app="Good Money">
+ <div class="app-card-header">
+ <span class="app-rank">10</span>
+ <span class="app-name">Good Money</span>
+ </div>
+ <div class="app-meta"><b>公司：</b>运营商未公开 / 待核</div>
+ <div class="app-stats">
+ <span class="app-stat-num">14,416</span>
+ <span class="app-stat-delta down">▼ 2,996</span>
+ <span class="app-stat-delta flat">-17.2%</span>
+ <span class="app-pulse" title="需主动核查"></span>
+ </div>
+ <div class="app-fee"><b>费率：</b>最高 THB 50,000（栏目未披露完整费率结构）</div>
+ </div>
 
-                <div class="app-card" data-app="FlyingMoney">
-                    <div class="app-card-header">
-                        <span class="app-rank">11</span>
-                        <span class="app-name">FlyingMoney</span>
-                    </div>
-                    <div class="app-meta"><b>公司：</b>运营商未公开 / 待核</div>
-                    <div class="app-stats">
-                        <span class="app-stat-num">13,176</span>
-                        <span class="app-stat-delta up">▲ 943</span>
-                        <span class="app-stat-delta flat">+7.7%</span>
-                        <span class="app-pulse" title="需主动核查"></span>
-                    </div>
-                    <div class="app-fee"><b>费率：</b>借 3,600 实得 2,520（前置扣 30%） · 最低 THB 2,520 · 15 天</div>
-                </div>
+ <div class="app-card" data-app="FlyingMoney">
+ <div class="app-card-header">
+ <span class="app-rank">11</span>
+ <span class="app-name">FlyingMoney</span>
+ </div>
+ <div class="app-meta"><b>公司：</b>运营商未公开 / 待核</div>
+ <div class="app-stats">
+ <span class="app-stat-num">13,176</span>
+ <span class="app-stat-delta up">▲ 943</span>
+ <span class="app-stat-delta flat">+7.7%</span>
+ <span class="app-pulse" title="需主动核查"></span>
+ </div>
+ <div class="app-fee"><b>费率：</b>借 3,600 实得 2,520（前置扣 30%） · 最低 THB 2,520 · 15 天</div>
+ </div>
 
-                <div class="app-card" data-app="siamr">
-                    <div class="app-card-header">
-                        <span class="app-rank">12</span>
-                        <span class="app-name">siamr</span>
-                    </div>
-                    <div class="app-meta"><b>公司：</b>运营商未公开 / 待核</div>
-                    <div class="app-stats">
-                        <span class="app-stat-num">12,927</span>
-                        <span class="app-stat-delta down">▼ 5,566</span>
-                        <span class="app-stat-delta flat">-30.1%</span>
-                        <span class="app-pulse" title="需主动核查"></span>
-                    </div>
-                    <div class="app-fee"><b>费率：</b>标注"利率极高"，栏目未披露完整结构</div>
-                </div>
+ <div class="app-card" data-app="siamr">
+ <div class="app-card-header">
+ <span class="app-rank">12</span>
+ <span class="app-name">siamr</span>
+ </div>
+ <div class="app-meta"><b>公司：</b>运营商未公开 / 待核</div>
+ <div class="app-stats">
+ <span class="app-stat-num">12,927</span>
+ <span class="app-stat-delta down">▼ 5,566</span>
+ <span class="app-stat-delta flat">-30.1%</span>
+ <span class="app-pulse" title="需主动核查"></span>
+ </div>
+ <div class="app-fee"><b>费率：</b>标注"利率极高"，栏目未披露完整结构</div>
+ </div>
 
-                <div class="app-card" data-app="Loan Hub">
-                    <div class="app-card-header">
-                        <span class="app-rank">13</span>
-                        <span class="app-name">Loan Hub</span>
-                    </div>
-                    <div class="app-meta"><b>公司：</b>运营商未公开 / 待核</div>
-                    <div class="app-stats">
-                        <span class="app-stat-num">12,829</span>
-                        <span class="app-stat-delta up">▲ 345</span>
-                        <span class="app-stat-delta flat">+2.8%</span>
-                        <span class="app-pulse" title="需主动核查"></span>
-                    </div>
-                    <div class="app-fee"><b>费率：</b>日息 100 泰铢/天（例：借 1,300 一周还 2,000） · 最高 THB 20,000-50,000 · 6 天</div>
-                </div>
+ <div class="app-card" data-app="Loan Hub">
+ <div class="app-card-header">
+ <span class="app-rank">13</span>
+ <span class="app-name">Loan Hub</span>
+ </div>
+ <div class="app-meta"><b>公司：</b>运营商未公开 / 待核</div>
+ <div class="app-stats">
+ <span class="app-stat-num">12,829</span>
+ <span class="app-stat-delta up">▲ 345</span>
+ <span class="app-stat-delta flat">+2.8%</span>
+ <span class="app-pulse" title="需主动核查"></span>
+ </div>
+ <div class="app-fee"><b>费率：</b>日息 100 泰铢/天（例：借 1,300 一周还 2,000） · 最高 THB 20,000-50,000 · 6 天</div>
+ </div>
 
-                <div class="app-card" data-app="EASY">
-                    <div class="app-card-header">
-                        <span class="app-rank">14</span>
-                        <span class="app-name">EASY</span>
-                    </div>
-                    <div class="app-meta"><b>公司：</b>运营商未公开 / 待核</div>
-                    <div class="app-stats">
-                        <span class="app-stat-num">12,514</span>
-                        <span class="app-stat-delta down">▼ 309</span>
-                        <span class="app-stat-delta flat">-2.4%</span>
-                        <span class="app-pulse" title="需主动核查"></span>
-                    </div>
-                    <div class="app-fee"><b>费率：</b>月息约 30%（借 15,000 还 24,000 推算） · 最高 THB 15,000 · 超过 3 个月</div>
-                </div>
+ <div class="app-card" data-app="EASY">
+ <div class="app-card-header">
+ <span class="app-rank">14</span>
+ <span class="app-name">EASY</span>
+ </div>
+ <div class="app-meta"><b>公司：</b>运营商未公开 / 待核</div>
+ <div class="app-stats">
+ <span class="app-stat-num">12,514</span>
+ <span class="app-stat-delta down">▼ 309</span>
+ <span class="app-stat-delta flat">-2.4%</span>
+ <span class="app-pulse" title="需主动核查"></span>
+ </div>
+ <div class="app-fee"><b>费率：</b>月息约 30%（借 15,000 还 24,000 推算） · 最高 THB 15,000 · 超过 3 个月</div>
+ </div>
 
-                <div class="app-card" data-app="Thong การเงิน">
-                    <div class="app-card-header">
-                        <span class="app-rank">15</span>
-                        <span class="app-name">Thong การเงิน (Thong Finance)</span>
-                    </div>
-                    <div class="app-meta"><b>公司：</b>运营商未公开 / 待核</div>
-                    <div class="app-stats">
-                        <span class="app-stat-num">12,478</span>
-                        <span class="app-stat-delta up">▲ 6,359</span>
-                        <span class="app-stat-delta flat">+103.9%</span>
-                        <span class="app-pulse" title="需主动核查"></span>
-                    </div>
-                    <div class="app-fee"><b>费率：</b>栏目未披露（本周新增暴涨 103.9%，重点观察）</div>
-                </div>
+ <div class="app-card" data-app="Thong การเงิน">
+ <div class="app-card-header">
+ <span class="app-rank">15</span>
+ <span class="app-name">Thong การเงิน (Thong Finance)</span>
+ </div>
+ <div class="app-meta"><b>公司：</b>运营商未公开 / 待核</div>
+ <div class="app-stats">
+ <span class="app-stat-num">12,478</span>
+ <span class="app-stat-delta up">▲ 6,359</span>
+ <span class="app-stat-delta flat">+103.9%</span>
+ <span class="app-pulse" title="需主动核查"></span>
+ </div>
+ <div class="app-fee"><b>费率：</b>栏目未披露（本周新增暴涨 103.9%，重点观察）</div>
+ </div>
 
-            </div>
+ </div>
 </div>
 </div>
 
