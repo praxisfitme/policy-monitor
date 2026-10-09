@@ -39,8 +39,30 @@ def fix_unclosed_divs(html):
     closes = len(re.findall(r'</div>', html))
     diff = opens - closes
     if diff > 0:
-        # 在末尾补齐
         html = html + '\n' + ('</div>\n' * diff)
+    return html
+
+
+def move_date_below_title(html):
+    """将 .policy-date 从 .policy-header 移到 .policy-title 之后"""
+    # Step 1: 移除 header 中的 date div
+    html = re.sub(
+        r'(<div\s+class="policy-header"[^>]*>.*?)\s*<div\s+class="policy-date"[^>]*>.*?</div>',
+        r'\1',
+        html, flags=re.DOTALL
+    )
+    # Step 2: 在每个 policy-item 的 title 后插入对应日期（从 data-date 属性取）
+    def insert_after_title(m):
+        full = m.group(0)
+        date_m = re.search(r'data-date=["\']([^"\']+)["\']', full)
+        if date_m:
+            return full + '\n  <div class="policy-date">' + date_m.group(1) + '</div>'
+        return full
+    html = re.sub(
+        r'<div\s+class="policy-item"[^>]*>.*?<div\s+class="policy-title"[^>]*>.*?</div>',
+        insert_after_title,
+        html, flags=re.DOTALL
+    )
     return html
 
 
@@ -537,7 +559,9 @@ def rebuild_page(source_path, output_path):
         raw = fix_broken_quotes(raw)
         # 2. 移除 collapsed 类
         raw = simple_clean_collapsed(raw)
-        # 3. 补齐未闭合的 div
+        # 3. 将日期从 header 移到 title 下方
+        raw = move_date_below_title(raw)
+        # 4. 补齐未闭合的 div
         raw = fix_unclosed_divs(raw)
         
         items = raw.count('class="policy-item"')
