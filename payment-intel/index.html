@@ -28,7 +28,8 @@
 }
 
 html{font-size:15px;scroll-behavior:smooth}
-body{font-family:var(--font);background:var(--bg);color:var(--text);line-height:1.6;min-height:100vh;overflow-x:hidden}
+body{font-family:var(--font);background:var(--bg);color:var(--text);line-height:1.6;min-height:100vh;overflow-x:hidden    padding-bottom: 6rem;
+}
 body::before{content:'';position:fixed;top:-50%;left:-50%;width:200%;height:200%;background:radial-gradient(ellipse at 30% 20%,rgba(249,115,22,.04) 0%,transparent 50%),radial-gradient(ellipse at 70% 80%,rgba(251,146,60,.03) 0%,transparent 50%);pointer-events:none;z-index:0}
 a{color:var(--accent);text-decoration:none;transition:color .2s}
 a:hover{color:#ea580c}
@@ -3794,5 +3795,18 @@ if(el){e.preventDefault();el.scrollIntoView({behavior:'smooth'});}
 
 <!-- Theme initialization -->
 <script>document.documentElement.setAttribute('data-theme', 'light');</script>
+
+<!-- Visitor Tracking v2 (counterapi.com) -->
+<script>
+(function() {
+    var key = 'payment';
+    fetch('https://counterapi.com/api/praxisfit.me/view/' + key + '?trackOnly=true').catch(function(){});
+    fetch('https://counterapi.com/api/praxisfit.me/view/' + key).then(function(r){return r.json()}).then(function(d){
+        var el = document.getElementById('visit-count');
+        if(el) el.textContent = d.value || d.count || 0;
+    }).catch(function(){});
+})();
+</script>
+
 </body>
 </html>
