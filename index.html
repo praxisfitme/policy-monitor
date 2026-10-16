@@ -151,12 +151,59 @@
         <a href="/stock-dash/" class="nav-item"><span class="nav-icon">📈</span><span>股市</span></a>
     </nav>
     <script>
+        /* ── 访问统计 v2 ──────────────────────────
+           portal       → 总PV（每次加载递增）
+           portal-today → 今日UV（每浏览器每天递增一次）
+           pv_{page}    → 子页面每日UV（卡片展示）
+        ─────────────────────────────────────────── */
         (function() {
-            fetch('https://counterapi.com/api/praxisfit.me/view/portal').then(r => r.json()).then(d => { document.getElementById('stat-total').textContent = d.value || d.count || 0; }).catch(() => {});
-            fetch('https://counterapi.com/api/praxisfit.me/view/portal-today').then(r => r.json()).then(d => { document.getElementById('stat-today').textContent = d.value || d.count || 0; }).catch(() => {});
-            document.querySelectorAll('.visit-count').forEach(el => { const page = el.dataset.page; fetch(`https://counterapi.com/api/praxisfit.me/view/${page}`).then(r => r.json()).then(d => { el.textContent = d.value || d.count || 0; }).catch(() => { el.textContent = '--'; }); });
+            var BASE = 'https://counterapi.com/api/praxisfit.me/view/';
+            var today = new Date().toISOString().slice(0, 10);
+
+            // ① 总访问：每次页面加载都递增
+            fetch(BASE + 'portal')
+                .then(function(r) { return r.json(); })
+                .then(function(d) {
+                    document.getElementById('stat-total').textContent = d.value || d.count || 0;
+                })
+                .catch(function() {});
+
+            // ② 今日访问：每个浏览器每天只递增一次
+            if (localStorage.getItem('pv_portal_date') !== today) {
+                fetch(BASE + 'portal-today')
+                    .then(function(r) { return r.json(); })
+                    .then(function(d) {
+                        document.getElementById('stat-today').textContent = d.value || d.count || 0;
+                    })
+                    .catch(function() {});
+                localStorage.setItem('pv_portal_date', today);
+            } else {
+                fetch(BASE + 'portal-today')
+                    .then(function(r) { return r.json(); })
+                    .then(function(d) {
+                        document.getElementById('stat-today').textContent = d.value || d.count || 0;
+                    })
+                    .catch(function() {});
+            }
+
+            // ③ 子页面卡片访问数
+            document.querySelectorAll('.visit-count').forEach(function(el) {
+                var page = el.dataset.page;
+                var key = 'pv_' + page;
+                if (localStorage.getItem(key) !== today) {
+                    fetch(BASE + page)
+                        .then(function(r) { return r.json(); })
+                        .then(function(d) { el.textContent = d.value || d.count || 0; })
+                        .catch(function() { el.textContent = '--'; });
+                    localStorage.setItem(key, today);
+                } else {
+                    fetch(BASE + page)
+                        .then(function(r) { return r.json(); })
+                        .then(function(d) { el.textContent = d.value || d.count || 0; })
+                        .catch(function() { el.textContent = '--'; });
+                }
+            });
         })();
-        (function() { const today = new Date().toISOString().slice(0, 10); if (localStorage.getItem('pv_portal_date') !== today) { fetch('https://counterapi.com/api/praxisfit.me/view/portal?trackOnly=true').catch(() => {}); localStorage.setItem('pv_portal_date', today); } })();
     </script>
 </body>
 </html>
