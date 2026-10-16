@@ -186,22 +186,15 @@
                     .catch(function() {});
             }
 
-            // ③ 子页面卡片访问数
+            // ③ 子页面卡片访问数（只读，不递增，计数器由子页面自身维护）
+            var PAGE_KEYS = { payment: 'payment', policy: 'policy-monitor', stock: 'stock-dash' };
             document.querySelectorAll('.visit-count').forEach(function(el) {
                 var page = el.dataset.page;
-                var key = 'pv_' + page;
-                if (localStorage.getItem(key) !== today) {
-                    fetch(BASE + page)
-                        .then(function(r) { return r.json(); })
-                        .then(function(d) { el.textContent = d.value || d.count || 0; })
-                        .catch(function() { el.textContent = '--'; });
-                    localStorage.setItem(key, today);
-                } else {
-                    fetch(BASE + page)
-                        .then(function(r) { return r.json(); })
-                        .then(function(d) { el.textContent = d.value || d.count || 0; })
-                        .catch(function() { el.textContent = '--'; });
-                }
+                var key = PAGE_KEYS[page] || page;
+                fetch(BASE + key)
+                    .then(function(r) { return r.json(); })
+                    .then(function(d) { el.textContent = d.value || d.count || 0; })
+                    .catch(function() { el.textContent = '--'; });
             });
         })();
     </script>
