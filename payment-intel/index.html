@@ -28,7 +28,8 @@
 }
 
 html{font-size:15px;scroll-behavior:smooth}
-body{font-family:var(--font);background:var(--bg);color:var(--text);line-height:1.6;min-height:100vh;overflow-x:hidden}
+body{font-family:var(--font);background:var(--bg);color:var(--text);line-height:1.6;min-height:100vh;overflow-x:hidden    padding-bottom: 6rem;
+}
 body::before{content:'';position:fixed;top:-50%;left:-50%;width:200%;height:200%;background:radial-gradient(ellipse at 30% 20%,rgba(249,115,22,.04) 0%,transparent 50%),radial-gradient(ellipse at 70% 80%,rgba(251,146,60,.03) 0%,transparent 50%);pointer-events:none;z-index:0}
 a{color:var(--accent);text-decoration:none;transition:color .2s}
 a:hover{color:#ea580c}
@@ -4244,6 +4245,9 @@ if(el){e.preventDefault();el.scrollIntoView({behavior:'smooth'});}
 <script></script>
 
 
+<script>document.documentElement.setAttribute('data-theme', 'light');</script>
+
+
 <!-- Bottom Navigation v2 -->
 <nav class="bottom-nav">
     <a href="/" class="nav-item"><span class="nav-icon">🏠</span><span>首页</span></a>
@@ -4264,8 +4268,6 @@ if(el){e.preventDefault();el.scrollIntoView({behavior:'smooth'});}
     }).catch(function(){});
 })();
 </script>
-
-<script>document.documentElement.setAttribute('data-theme', 'light');</script>
 
 </body>
 </html>
