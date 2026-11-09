@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>股市盯盘看板 | 2026-09-22</title>
+<title>股市盯盘看板 | 2026-11-09</title>
 <meta name="description" content="A股·港股·美股每日盯盘看板，覆盖基金、宏观指标、市场情绪与关键新闻。">
 <meta property="og:title" content="股市盯盘看板 — A股·港股·美股">
 <meta property="og:description" content="A股·港股·美股每日盯盘看板，覆盖基金、宏观指标、市场情绪与关键新闻。">
@@ -568,7 +568,6 @@ table { width: 100%; border-collapse: collapse; }
 </style>
 </head>
 <body>
-
 <!-- ===== Header ===== -->
 <header class="header">
   <div class="header-top">
@@ -577,447 +576,196 @@ table { width: 100%; border-collapse: collapse; }
       <span class="header-title">股市盯盘</span>
     </div>
     <div class="header-right">
-      <button class="header-btn" onclick="document.getElementById('searchBox')&&document.getElementById('searchBox').scrollIntoView({behavior:'smooth'})">🔍</button>
+      <button class="header-btn" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
     </div>
   </div>
   <div class="header-sub">
-    <span class="status-dot"></span>2026-09-22 · A股已收盘
+    <span class="status-dot"></span>2026-11-09 · A股盘中
   </div>
 </header>
 
 <!-- ===== Ticker Scroll ===== -->
 <div class="ticker-wrap">
   <div class="ticker-track" id="tickerTrack">
-    <div class="ticker-item"><span class="ticker-name">上证指数</span><span class="ticker-val">3,879.43</span><span class="ticker-chg down">-1.27%</span></div>
-    <div class="ticker-item"><span class="ticker-name">创业板指</span><span class="ticker-val">3,361.01</span><span class="ticker-chg down">-1.68%</span></div>
-    <div class="ticker-item"><span class="ticker-name">标普500</span><span class="ticker-val">7,730.99</span><span class="ticker-chg up">+0.72%</span></div>
-    <div class="ticker-item"><span class="ticker-name">纳指</span><span class="ticker-val">26,541</span><span class="ticker-chg up">+1.57%</span></div>
-    <div class="ticker-item"><span class="ticker-name">费城半导体</span><span class="ticker-val">--</span><span class="ticker-chg up">+2.33%</span></div>
-    <div class="ticker-item"><span class="ticker-name">NVDA</span><span class="ticker-val">$227.98</span><span class="ticker-chg up">+8.74%</span></div>
-    <div class="ticker-item"><span class="ticker-name">现货黄金</span><span class="ticker-val">$4,326</span><span class="ticker-chg down">-1.18%</span></div>
-    <div class="ticker-item"><span class="ticker-name">BTC</span><span class="ticker-val">$84,217</span><span class="ticker-chg up">+5%</span></div>
+    <div class="ticker-item"><span class="ticker-name">上证指数</span><span class="ticker-val">3,671.88</span><span class="ticker-chg up">+0.62%</span></div>
+    <div class="ticker-item"><span class="ticker-name">深证成指</span><span class="ticker-val">11,236.78</span><span class="ticker-chg up">+0.55%</span></div>
+    <div class="ticker-item"><span class="ticker-name">创业板指</span><span class="ticker-val">2,488.46</span><span class="ticker-chg up">+0.94%</span></div>
+    <div class="ticker-item"><span class="ticker-name">恒生指数</span><span class="ticker-val">24,632.02</span><span class="ticker-chg up">+0.61%</span></div>
+    <div class="ticker-item"><span class="ticker-name">标普500</span><span class="ticker-val">$7,376.86</span><span class="ticker-chg up">+0.31%</span></div>
+    <div class="ticker-item"><span class="ticker-name">纳斯达克</span><span class="ticker-val">$24,579.42</span><span class="ticker-chg up">+1.09%</span></div>
+    <div class="ticker-item"><span class="ticker-name">黄金ETF华安</span><span class="ticker-val">8.42</span><span class="ticker-chg up">+2.05%</span></div>
+    <div class="ticker-item"><span class="ticker-name">沪深300</span><span class="ticker-val">4,069.59</span><span class="ticker-chg up">+0.38%</span></div>
     <!-- duplicate for seamless scroll -->
-    <div class="ticker-item"><span class="ticker-name">上证指数</span><span class="ticker-val">3,879.43</span><span class="ticker-chg down">-1.27%</span></div>
-    <div class="ticker-item"><span class="ticker-name">创业板指</span><span class="ticker-val">3,361.01</span><span class="ticker-chg down">-1.68%</span></div>
-    <div class="ticker-item"><span class="ticker-name">标普500</span><span class="ticker-val">7,730.99</span><span class="ticker-chg up">+0.72%</span></div>
-    <div class="ticker-item"><span class="ticker-name">纳指</span><span class="ticker-val">26,541</span><span class="ticker-chg up">+1.57%</span></div>
-    <div class="ticker-item"><span class="ticker-name">费城半导体</span><span class="ticker-val">--</span><span class="ticker-chg up">+2.33%</span></div>
-    <div class="ticker-item"><span class="ticker-name">NVDA</span><span class="ticker-val">$227.98</span><span class="ticker-chg up">+8.74%</span></div>
-    <div class="ticker-item"><span class="ticker-name">现货黄金</span><span class="ticker-val">$4,326</span><span class="ticker-chg down">-1.18%</span></div>
-    <div class="ticker-item"><span class="ticker-name">BTC</span><span class="ticker-val">$84,217</span><span class="ticker-chg up">+5%</span></div>
+    <div class="ticker-item"><span class="ticker-name">上证指数</span><span class="ticker-val">3,671.88</span><span class="ticker-chg up">+0.62%</span></div>
+    <div class="ticker-item"><span class="ticker-name">深证成指</span><span class="ticker-val">11,236.78</span><span class="ticker-chg up">+0.55%</span></div>
+    <div class="ticker-item"><span class="ticker-name">创业板指</span><span class="ticker-val">2,488.46</span><span class="ticker-chg up">+0.94%</span></div>
+    <div class="ticker-item"><span class="ticker-name">恒生指数</span><span class="ticker-val">24,632.02</span><span class="ticker-chg up">+0.61%</span></div>
+    <div class="ticker-item"><span class="ticker-name">标普500</span><span class="ticker-val">$7,376.86</span><span class="ticker-chg up">+0.31%</span></div>
+    <div class="ticker-item"><span class="ticker-name">纳斯达克</span><span class="ticker-val">$24,579.42</span><span class="ticker-chg up">+1.09%</span></div>
+    <div class="ticker-item"><span class="ticker-name">黄金ETF华安</span><span class="ticker-val">8.42</span><span class="ticker-chg up">+2.05%</span></div>
+    <div class="ticker-item"><span class="ticker-name">沪深300</span><span class="ticker-val">4,069.59</span><span class="ticker-chg up">+0.38%</span></div>
   </div>
 </div>
 
 <!-- ===== Quick Stats ===== -->
 <div class="quick-stats">
-  <div class="stat-card">
-    <div class="stat-label">两市成交</div>
-    <div class="stat-value">缩量</div>
-    <div class="stat-sub">量能持续萎缩</div>
-  </div>
-  <div class="stat-card">
-    <div class="stat-label">涨跌家数</div>
-    <div class="stat-value" style="color:var(--loss)">跌多涨少</div>
-    <div class="stat-sub">创业板 -1.68%</div>
-  </div>
-  <div class="stat-card">
-    <div class="stat-label">WTI 原油</div>
-    <div class="stat-value" style="color:var(--loss)">$92.73</div>
-    <div class="stat-sub">暴跌 3%+ 核心变量</div>
-  </div>
-  <div class="stat-card">
-    <div class="stat-label">10月加息概率</div>
-    <div class="stat-value" style="color:var(--gold)">50.9%</div>
-    <div class="stat-sub">高盛：市场定价偏多</div>
-  </div>
+  <div class="stat-card"><div class="stat-label">两市成交</div><div class="stat-value" style="color:var(--text-primary)">0.72 万亿</div><div class="stat-sub">沪 3239 亿 + 深 3969 亿</div></div>
+  <div class="stat-card"><div class="stat-label">上证指数</div><div class="stat-value" style="color:var(--gain)">3,671.88</div><div class="stat-sub">+0.62%</div></div>
+  <div class="stat-card"><div class="stat-label">今日最强</div><div class="stat-value" style="color:var(--primary)">纳斯达克</div><div class="stat-sub">+1.09%</div></div>
+  <div class="stat-card"><div class="stat-label">黄金ETF</div><div class="stat-value" style="color:var(--gold)">8.422 元</div><div class="stat-sub">+2.05%</div></div>
 </div>
 
 <!-- ===== Tab Navigation ===== -->
 <div class="tab-nav" id="tabNav">
   <button class="tab-btn active" data-tab="ashare">A股</button>
-  <button class="tab-btn" data-tab="usstock">美股</button>
   <button class="tab-btn" data-tab="hkstock">港股</button>
-  <button class="tab-btn" data-tab="fund">持仓基金</button>
-  <button class="tab-btn" data-tab="macro">宏观·黄金</button>
-  <button class="tab-btn" data-tab="events">本周事件</button>
+  <button class="tab-btn" data-tab="usstock">美股</button>
+  <button class="tab-btn" data-tab="fund">基金·黄金</button>
+  <button class="tab-btn" data-tab="board">板块热榜</button>
 </div>
 
 <!-- ===== A股 Tab ===== -->
 <div class="tab-content active" id="tab-ashare">
   <div class="conclusion-card">
-    <p><strong>核心结论：</strong>A股延续调整，上证 -1.27% 至 3,879，创业板 -1.68%。<strong>油价暴跌是核心变量</strong>——WTI 持续低于 $95 → 通胀压力缓解 → 加息预期降温，利好成长股估值修复。地产板块连续涨停但不追高，基本面未确认改善。<strong>9/30 PCE 数据为关键验证节点。</strong></p>
+    <p><strong>盘面速览（2026-11-09 10:22，A股盘中）：</strong>上证 3,671.88（+0.62%）、深证 11,236.78（+0.55%）、创业板 2,488.46（+0.94%）、沪深300（+0.38%）、科创50（+0.89%）；两市成交 0.72 万亿元。A股 5 大指数中 5 个上涨。行业涨幅居前：航天装备Ⅱ（+7.19%）、焦炭Ⅱ（+3.65%）、通信设备（+3.61%）。</p>
   </div>
 
   <div class="card">
     <div class="card-title"><span class="icon">📊</span> 指数行情</div>
     <table class="data-table">
-      <thead><tr><th>指数</th><th>收盘</th><th>涨跌幅</th></tr></thead>
+      <thead><tr><th>指数</th><th>最新</th><th>涨跌幅</th></tr></thead>
       <tbody>
-        <tr><td class="name-col">上证指数</td><td>3,879.43</td><td class="val-down">-1.27%</td></tr>
-        <tr><td class="name-col">深证成指</td><td>13,595.13</td><td class="val-down">-1.61%</td></tr>
-        <tr><td class="name-col">创业板指</td><td>3,361.01</td><td class="val-down">-1.68%</td></tr>
+        <tr><td class="name-col">上证指数</td><td>3,671.88</td><td class="val-up">+0.62%</td></tr>
+        <tr><td class="name-col">深证成指</td><td>11,236.78</td><td class="val-up">+0.55%</td></tr>
+        <tr><td class="name-col">创业板指</td><td>2,488.46</td><td class="val-up">+0.94%</td></tr>
+        <tr><td class="name-col">沪深300</td><td>4,069.59</td><td class="val-up">+0.38%</td></tr>
+        <tr><td class="name-col">科创50</td><td>1,264.31</td><td class="val-up">+0.89%</td></tr>
       </tbody>
     </table>
   </div>
 
   <div class="card">
-    <div class="card-title"><span class="icon">🔥</span> 板块热点</div>
-    <div class="pill-grid">
-      <span class="pill up">地产 涨停潮</span>
-      <span class="pill down">半导体 回调</span>
-      <span class="pill neutral">AI 分化</span>
-      <span class="pill up">油气 受益</span>
-      <span class="pill down">消费电子 承压</span>
-    </div>
-  </div>
-
-  <div class="card">
-    <div class="card-title"><span class="icon">💰</span> 关键资金信号</div>
+    <div class="card-title"><span class="icon">🔥</span> 领涨行业</div>
     <table class="data-table">
-      <thead><tr><th>信号</th><th>状态</th><th>判断</th></tr></thead>
+      <thead><tr><th>板块</th><th>今日</th><th>5日</th><th>领涨股</th></tr></thead>
       <tbody>
-        <tr><td class="name-col">成交量</td><td>缩量</td><td class="val-flat">观望</td></tr>
-        <tr><td class="name-col">地产板块</td><td>连续涨停</td><td style="color:var(--gold);font-weight:600">不追高</td></tr>
-        <tr><td class="name-col">半导体</td><td>回调中</td><td class="val-down">高位不加仓</td></tr>
+        <tr><td class="name-col">航天装备Ⅱ</td><td class="val-up">+7.19%</td><td class="val-flat">7.13%</td><td style="font-size:11px;color:var(--text-muted)">中国卫星(10.00)</td></tr>
+        <tr><td class="name-col">焦炭Ⅱ</td><td class="val-up">+3.65%</td><td class="val-flat">3.46%</td><td style="font-size:11px;color:var(--text-muted)">安泰集团(9.93)</td></tr>
+        <tr><td class="name-col">通信设备</td><td class="val-up">+3.61%</td><td class="val-flat">-5.80%</td><td style="font-size:11px;color:var(--text-muted)">通则康威(20.00)</td></tr>
+        <tr><td class="name-col">元件</td><td class="val-up">+3.56%</td><td class="val-flat">-5.40%</td><td style="font-size:11px;color:var(--text-muted)">世运电路(9.99)</td></tr>
+        <tr><td class="name-col">数字媒体</td><td class="val-up">+2.96%</td><td class="val-flat">13.77%</td><td style="font-size:11px;color:var(--text-muted)">凡拓数创(13.42)</td></tr>
+        <tr><td class="name-col">塑料</td><td class="val-up">+2.84%</td><td class="val-flat">4.11%</td><td style="font-size:11px;color:var(--text-muted)">上纬新材(19.10)</td></tr>
       </tbody>
     </table>
-  </div>
-
-  <div class="grid-2">
-    <div class="mini-card">
-      <div class="mc-title">📢 油价暴跌</div>
-      <div class="mc-value val-down">WTI $92.73</div>
-      <div class="mc-sub">通胀缓解信号</div>
-    </div>
-    <div class="mini-card">
-      <div class="mc-title">🏠 地产涨停</div>
-      <div class="mc-value" style="color:var(--gold)">不追高</div>
-      <div class="mc-sub">基本面未确认</div>
-    </div>
-    <div class="mini-card">
-      <div class="mc-title">🇮🇷 伊朗赴美</div>
-      <div class="mc-value" style="font-size:14px">UNGA和谈</div>
-      <div class="mc-sub">中东关键窗口</div>
-    </div>
-    <div class="mini-card">
-      <div class="mc-title">🚀 SpaceX</div>
-      <div class="mc-value" style="font-size:14px">星舰第14次</div>
-      <div class="mc-sub">首次尝试入轨</div>
-    </div>
-  </div>
-
-  <div class="risk-card">
-    <div class="risk-title">⚠️ 风险提示</div>
-    <ul>
-      <li>10月加息概率 50.9% 仍是悬剑</li>
-      <li>地产涨停潮——基本面未确认改善，不追高</li>
-      <li>9/30 PCE 数据将决定后续方向</li>
-      <li>量能持续萎缩，市场信心不足</li>
-    </ul>
   </div>
 
   <div class="summary-quote">
-    <strong>总结：</strong>油价暴跌 → 通胀缓解 → 加息预期降温，对成长股估值修复有利。但 10 月加息 50.9% 概率仍悬而未决，<strong>9/30 PCE 数据是关键验证节点</strong>。当前策略：60%+ 现金仓位为最优安全垫，不追地产涨停，半导体高位不新增仓位。
-  </div>
-</div>
-
-<!-- ===== 美股 Tab ===== -->
-<div class="tab-content" id="tab-usstock">
-  <div class="conclusion-card">
-    <p><strong>核心结论（9/19收盘）：</strong>美股反弹，标普500 +0.72% 至 7,730.99，纳指 +1.57%，费城半导体 +2.33%。<strong>NVDA 单日暴涨 +8.74%</strong> 至 $227.98 领涨科技板块。油价暴跌缓解通胀忧虑，但 10 月加息概率仍在 50% 附近，市场博弈加剧。</p>
-  </div>
-
-  <div class="card">
-    <div class="card-title"><span class="icon">📈</span> 主要指数（9/19 收盘）</div>
-    <table class="data-table">
-      <thead><tr><th>指数</th><th>点位</th><th>涨跌幅</th></tr></thead>
-      <tbody>
-        <tr><td class="name-col">标普500</td><td>7,730.99</td><td class="val-up">+0.72%</td></tr>
-        <tr><td class="name-col">纳斯达克</td><td>26,541</td><td class="val-up">+1.57%</td></tr>
-        <tr><td class="name-col">费城半导体</td><td>--</td><td class="val-up">+2.33%</td></tr>
-      </tbody>
-    </table>
-  </div>
-
-  <div class="card">
-    <div class="card-title"><span class="icon">🖥️</span> 科技七子（Mag 7）</div>
-    <table class="data-table">
-      <thead><tr><th>股票</th><th>收盘价</th><th>涨跌幅</th></tr></thead>
-      <tbody>
-        <tr><td class="name-col">NVDA</td><td>$227.98</td><td class="val-up">+8.74%</td></tr>
-        <tr><td class="name-col">AAPL</td><td>--</td><td class="val-flat">待更新</td></tr>
-        <tr><td class="name-col">MSFT</td><td>--</td><td class="val-flat">待更新</td></tr>
-        <tr><td class="name-col">GOOGL</td><td>--</td><td class="val-flat">待更新</td></tr>
-        <tr><td class="name-col">AMZN</td><td>--</td><td class="val-flat">待更新</td></tr>
-        <tr><td class="name-col">META</td><td>--</td><td class="val-flat">待更新</td></tr>
-        <tr><td class="name-col">TSLA</td><td>--</td><td class="val-flat">待更新</td></tr>
-      </tbody>
-    </table>
-  </div>
-
-  <div class="card">
-    <div class="card-title"><span class="icon">🔧</span> 关键事件</div>
-    <div class="grid-2">
-      <div class="mini-card">
-        <div class="mc-title">NVDA 暴涨</div>
-        <div class="mc-value val-up">+8.74%</div>
-        <div class="mc-sub">AI 芯片需求强劲</div>
-      </div>
-      <div class="mini-card">
-        <div class="mc-title">油价暴跌</div>
-        <div class="mc-value val-down">WTI &lt;$95</div>
-        <div class="mc-sub">通胀压力缓解</div>
-      </div>
-      <div class="mini-card">
-        <div class="mc-title">加息博弈</div>
-        <div class="mc-value" style="color:var(--gold)">50.9%</div>
-        <div class="mc-sub">10月加息概率</div>
-      </div>
-      <div class="mini-card">
-        <div class="mc-title">PCE 数据</div>
-        <div class="mc-value" style="font-size:14px">9/30</div>
-        <div class="mc-sub">关键验证节点</div>
-      </div>
-    </div>
-  </div>
-
-  <div class="summary-quote">
-    <strong>总结：</strong>NVDA +8.74% 带动半导体板块反弹，油价暴跌缓解通胀压力。但 10 月加息概率仍在 50% 附近，高盛认为"市场定价 4 次加息明显偏多"。<strong>QDII 限购不追加，保持定力。</strong>
+    <strong>数据时间：</strong>2026-11-09 10:22（北京时间）。A股为实时行情，页面每交易日收盘后由脚本自动刷新，不含人工预测。
   </div>
 </div>
 
 <!-- ===== 港股 Tab ===== -->
 <div class="tab-content" id="tab-hkstock">
   <div class="conclusion-card">
-    <p><strong>核心结论：</strong>港股跟随 A 股调整，受全球风险偏好下降影响。油价暴跌对能源股形成压力，但有利于制造业成本端改善。关注 A/H 溢价变化和南向资金动向。</p>
+    <p><strong>港股（2026-11-09 10:22，港股盘中）：</strong>恒生指数 24,632.02（+0.61%），恒生科技 4,111.31（+0.81%）。港股行情经免费授权通道，约 15 分钟延迟。</p>
   </div>
-
   <div class="card">
     <div class="card-title"><span class="icon">🇭🇰</span> 港股指数</div>
     <table class="data-table">
-      <thead><tr><th>指数</th><th>收盘</th><th>涨跌幅</th></tr></thead>
+      <thead><tr><th>指数</th><th>最新</th><th>涨跌幅</th></tr></thead>
       <tbody>
-        <tr><td class="name-col">恒生指数</td><td colspan="2" style="text-align:center;color:var(--text-muted)">待更新</td></tr>
-        <tr><td class="name-col">恒生科技</td><td colspan="2" style="text-align:center;color:var(--text-muted)">待更新</td></tr>
-      </tbody>
-    </table>
-  </div>
-
-  <div class="card">
-    <div class="card-title"><span class="icon">🔗</span> 跨市场信号</div>
-    <table class="data-table">
-      <thead><tr><th>信号</th><th>状态</th></tr></thead>
-      <tbody>
-        <tr><td class="name-col">A/H 溢价</td><td>关注扩大趋势</td></tr>
-        <tr><td class="name-col">南向资金</td><td>待观察</td></tr>
-        <tr><td class="name-col">油价影响</td><td class="val-down">能源承压/制造受益</td></tr>
-        <tr><td class="name-col">美元走势</td><td>DXY 100.22 持平</td></tr>
+        <tr><td class="name-col">恒生指数</td><td>24,632.02</td><td class="val-up">+0.61%</td></tr>
+        <tr><td class="name-col">恒生科技</td><td>4,111.31</td><td class="val-up">+0.81%</td></tr>
       </tbody>
     </table>
   </div>
 </div>
 
-<!-- ===== 持仓基金 Tab ===== -->
+<!-- ===== 美股 Tab ===== -->
+<div class="tab-content" id="tab-usstock">
+  <div class="conclusion-card">
+    <p><strong>美股（最近收盘）：</strong>标普500 7,376.86（+0.31%）、纳斯达克 24,579.42（+1.09%）、道琼斯 51,285.73（-0.46%）。数据为 2026-11-06 收盘价（美东时间），北京时间次日上午更新。</p>
+  </div>
+  <div class="card">
+    <div class="card-title"><span class="icon">🇺🇸</span> 美股指数</div>
+    <table class="data-table">
+      <thead><tr><th>指数</th><th>最新</th><th>涨跌幅</th></tr></thead>
+      <tbody>
+        <tr><td class="name-col">标普500</td><td>$7,376.86</td><td class="val-up">+0.31%</td></tr>
+        <tr><td class="name-col">纳斯达克</td><td>$24,579.42</td><td class="val-up">+1.09%</td></tr>
+        <tr><td class="name-col">道琼斯</td><td>$51,285.73</td><td class="val-down">-0.46%</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ===== 基金·黄金 Tab ===== -->
 <div class="tab-content" id="tab-fund">
   <div class="conclusion-card">
-    <p><strong>核心结论：</strong>60%+ 现金仓位为最优安全垫。半导体高位不新增仓位，QDII 限购不追加。科创 200 PE 20% 低估区间，维持月投 250 元。</p>
+    <p><strong>说明：</strong>本栏为<strong>自选观察</strong>，跟踪 5 只场内 ETF 的价格与换手，不展示个人持仓与操作建议。黄金采用黄金ETF（518880）口径，与场外联接基金净值存在小幅跟踪误差。</p>
   </div>
-
-  <div class="card" style="border-left:3px solid var(--gold);background:var(--gold-bg)">
-    <div class="card-title"><span class="icon">📏</span> 投资规则</div>
-    <ul style="list-style:none;font-size:12px;color:var(--text-secondary)">
-      <li style="padding:3px 0">✅ 60%+ 现金仓位 — 最优安全垫</li>
-      <li style="padding:3px 0">❌ 半导体高位 — 不新增仓位</li>
-      <li style="padding:3px 0">❌ QDII 限购 — 不追加</li>
-      <li style="padding:3px 0"> 黄金 — 📊跟踪观察</li>
-      <li style="padding:3px 0">✅ 科创200 — 月投250元（PE 20%低估）</li>
-    </ul>
-  </div>
-
   <div class="card">
-    <div class="card-title"><span class="icon">💼</span> 持仓净值</div>
+    <div class="card-title"><span class="icon">💼</span> 自选观察</div>
     <table class="data-table">
-      <thead><tr><th>基金</th><th>代码</th><th>自高点</th><th>PE分位</th><th>操作</th></tr></thead>
+      <thead><tr><th>标的</th><th>代码</th><th>类别</th><th>价格</th><th>换手</th><th>涨跌幅</th></tr></thead>
       <tbody>
-        <tr>
-          <td class="name-col">半导体ETF联接C</td>
-          <td>020465</td>
-          <td class="val-down">-22.8%</td>
-          <td style="color:var(--loss)">93%+</td>
-          <td><span class="op-badge no">❌ 不加仓</span></td>
-        </tr>
-        <tr>
-          <td class="name-col">科创200ETF联接C</td>
-          <td>023383</td>
-          <td class="val-down">-20.6%</td>
-          <td style="color:var(--gain)">20%</td>
-          <td><span class="op-badge buy">✅ 月投250</span></td>
-        </tr>
-        <tr>
-          <td class="name-col">标普500 QDII A</td>
-          <td>017641</td>
-          <td class="val-flat">--</td>
-          <td class="val-flat">--</td>
-          <td><span class="op-badge hold">日投10元限额</span></td>
-        </tr>
-        <tr>
-          <td class="name-col">纳指100联接A</td>
-          <td>040046</td>
-          <td class="val-flat">--</td>
-          <td class="val-flat">--</td>
-          <td><span class="op-badge no">限额不追加</span></td>
-        </tr>
-        <tr>
-          <td class="name-col">纳指100联接C</td>
-          <td>014978</td>
-          <td class="val-flat">--</td>
-          <td class="val-flat">--</td>
-          <td><span class="op-badge no">限额不追加</span></td>
-        </tr>
+        <tr><td class="name-col">黄金ETF华安</td><td>sh518880</td><td>黄金</td><td>8.422</td><td class="val-flat">1.29%</td><td class="val-up">+2.05%</td></tr>
+        <tr><td class="name-col">半导体ETF国联安</td><td>sh512480</td><td>半导体</td><td>0.779</td><td class="val-flat">2.39%</td><td class="val-up">+0.52%</td></tr>
+        <tr><td class="name-col">沪深300ETF华泰柏瑞</td><td>sh510300</td><td>宽基</td><td>4.147</td><td class="val-flat">0.78%</td><td class="val-up">+0.56%</td></tr>
+        <tr><td class="name-col">科创50ETF华夏</td><td>sh588000</td><td>科创</td><td>1.338</td><td class="val-flat">2.47%</td><td class="val-up">+0.90%</td></tr>
+        <tr><td class="name-col">创业板ETF易方达</td><td>sz159915</td><td>创业板</td><td>2.506</td><td class="val-flat">3.55%</td><td class="val-up">+1.05%</td></tr>
       </tbody>
     </table>
   </div>
-
-  <div class="grid-2">
-    <div class="mini-card" style="border-left:3px solid var(--loss)">
-      <div class="mc-title">半导体 020465</div>
-      <div class="mc-value val-down">-22.8%</div>
-      <div class="mc-sub">PE 93%+ 高位 ❌</div>
-    </div>
-    <div class="mini-card" style="border-left:3px solid var(--gain)">
-      <div class="mc-title">科创200 023383</div>
-      <div class="mc-value val-down">-20.6%</div>
-      <div class="mc-sub">PE 20% 低估 ✅</div>
-    </div>
-    <div class="mini-card" style="border-left:3px solid var(--primary)">
-      <div class="mc-title">标普500 017641</div>
-      <div class="mc-value" style="font-size:14px">日投10元</div>
-      <div class="mc-sub">QDII 限额</div>
-    </div>
-    <div class="mini-card" style="border-left:3px solid var(--gold)">
-      <div class="mc-title">黄金</div>
-      <div class="mc-value" style="font-size:14px;color:var(--gold)">$4,326</div>
-      <div class="mc-sub">📊跟踪观察</div>
-    </div>
-  </div>
-</div>
-
-<!-- ===== 宏观·黄金 Tab ===== -->
-<div class="tab-content" id="tab-macro">
-  <div class="conclusion-card">
-    <p><strong>黄金行情：</strong>现货黄金 $4,326（-1.18%，油价拖累）— 仅展示行情走势，不作为交易参考。</p>
-  </div>
-
-  <div class="card">
-    <div class="card-title"><span class="icon">🌍</span> 关键宏观指标</div>
-    <div class="macro-grid">
-      <div class="macro-item">
-        <div class="mi-label">DXY 美元指数</div>
-        <div class="mi-value">100.22</div>
-        <div class="mi-chg val-flat">持平</div>
-      </div>
-      <div class="macro-item">
-        <div class="mi-label">现货黄金</div>
-        <div class="mi-value">$4,326</div>
-        <div class="mi-chg val-down">-1.18%</div>
-      </div>
-      <div class="macro-item">
-        <div class="mi-label">10Y 美债</div>
-        <div class="mi-value">~5.0%</div>
-        <div class="mi-chg val-flat">维持高位</div>
-      </div>
-      <div class="macro-item">
-        <div class="mi-label">WTI 原油</div>
-        <div class="mi-value">$92.73</div>
-        <div class="mi-chg val-down">暴跌 3%+</div>
-      </div>
-      <div class="macro-item">
-        <div class="mi-label">布伦特原油</div>
-        <div class="mi-value">$96.22</div>
-        <div class="mi-chg val-down">跌破$100</div>
-      </div>
-      <div class="macro-item">
-        <div class="mi-label">BTC</div>
-        <div class="mi-value">$84,217</div>
-        <div class="mi-chg val-up">+5%</div>
-      </div>
-      <div class="macro-item">
-        <div class="mi-label">Fed 利率预期</div>
-        <div class="mi-value" style="color:var(--gold)">50.9%</div>
-        <div class="mi-chg">10月加息概率</div>
-      </div>
-      <div class="macro-item">
-        <div class="mi-label">PCE 数据</div>
-        <div class="mi-value" style="font-size:15px">9/30</div>
-        <div class="mi-chg" style="color:var(--primary)">关键验证</div>
-      </div>
-    </div>
-  </div>
-
-  <div class="card">
-    <div class="card-title"><span class="icon">🛢️</span> 油价核心逻辑</div>
-    <div class="summary-quote" style="margin-bottom:0">
-      <strong>油价暴跌 → 通胀压力缓解 → 加息预期降温</strong><br><br>
-      WTI 持续低于 $95 是关键信号。若趋势延续，Fed 加息节奏将放缓，利好成长股估值修复。但 10 月加息概率仍在 50.9%，<strong>9/30 PCE 数据是最终验证节点</strong>。
-    </div>
-  </div>
-</div>
-
-<!-- ===== 本周事件 Tab ===== -->
-<div class="tab-content" id="tab-events">
-  <div class="conclusion-card">
-    <p><strong>本周核心：</strong>油价暴跌是最大变量，直接影响通胀预期和 Fed 决策路径。9/30 PCE 数据将决定 10 月加息走向。伊朗总统赴美 UNGA 为中东和谈关键窗口。</p>
-  </div>
-
-  <div class="card">
-    <div class="card-title"><span class="icon">📅</span> 事件时间线</div>
-    <div class="timeline">
-      <div class="timeline-item">
-        <div class="timeline-date">9/22 周日</div>
-        <div class="timeline-text">A 股收盘：上证 -1.27%，创业板 -1.68%，地产涨停潮</div>
-      </div>
-      <div class="timeline-item">
-        <div class="timeline-date">9/19 周五</div>
-        <div class="timeline-text">美股收盘：标普 +0.72%，纳指 +1.57%，NVDA +8.74%，费城半导体 +2.33%</div>
-      </div>
-      <div class="timeline-item">
-        <div class="timeline-date">本周持续</div>
-        <div class="timeline-text">WTI 原油暴跌至 $92.73（-3%+），布伦特跌破 $100 至 $96.22</div>
-      </div>
-      <div class="timeline-item">
-        <div class="timeline-date">本周</div>
-        <div class="timeline-text">伊朗总统赴美 UNGA 大会 — 中东和谈关键窗口</div>
-      </div>
-      <div class="timeline-item">
-        <div class="timeline-date">本周</div>
-        <div class="timeline-text">SpaceX 星舰第 14 次试飞 — 首次尝试入轨</div>
-      </div>
-      <div class="timeline-item">
-        <div class="timeline-date">9/30 周二</div>
-        <div class="timeline-text"><strong>PCE 数据发布</strong> — 关键验证节点，决定 10 月加息走向</div>
-      </div>
-    </div>
-  </div>
-
   <div class="risk-card">
-    <div class="risk-title">⚠️ 核心风险评估</div>
+    <div class="risk-title">⚠️ 口径提示</div>
     <ul>
-      <li>10 月加息 50.9% — 高盛认为市场定价偏多，但仍为悬剑</li>
-      <li>油价波动 — 伊朗 UNGA 结果将影响供给预期</li>
-      <li>地产涨停潮 — 基本面未确认，追高风险大</li>
-      <li>量能萎缩 — A 股信心不足，需等 PCE 验证</li>
+      <li>黄金ETF（518880）跟踪上金所 Au99.99，价格单位元/份</li>
+      <li>场外联接基金净值 T+1 公布，与场内价格存在跟踪误差</li>
+      <li>本页仅展示行情，不构成任何投资建议</li>
     </ul>
   </div>
+</div>
 
-  <div class="summary-quote">
-    <strong>行动指南：</strong>等待 9/30 PCE 数据验证。维持 60%+ 现金仓位，不追地产涨停，半导体不加仓，QDII 不追加。油价暴跌是潜在利好——若通胀确认下行，成长股估值修复可期。
+<!-- ===== 板块热榜 Tab ===== -->
+<div class="tab-content" id="tab-board">
+  <div class="conclusion-card">
+    <p><strong>板块热榜（2026-11-09 10:22）：</strong>行业与概念板块涨幅前列，用于观察当日资金去向，不含预测。</p>
+  </div>
+  <div class="card">
+    <div class="card-title"><span class="icon">🏭</span> 行业板块</div>
+    <table class="data-table">
+      <thead><tr><th>板块</th><th>今日</th><th>5日</th><th>领涨股</th></tr></thead>
+      <tbody>
+        <tr><td class="name-col">航天装备Ⅱ</td><td class="val-up">+7.19%</td><td class="val-flat">7.13%</td><td style="font-size:11px;color:var(--text-muted)">中国卫星(10.00)</td></tr>
+        <tr><td class="name-col">焦炭Ⅱ</td><td class="val-up">+3.65%</td><td class="val-flat">3.46%</td><td style="font-size:11px;color:var(--text-muted)">安泰集团(9.93)</td></tr>
+        <tr><td class="name-col">通信设备</td><td class="val-up">+3.61%</td><td class="val-flat">-5.80%</td><td style="font-size:11px;color:var(--text-muted)">通则康威(20.00)</td></tr>
+        <tr><td class="name-col">元件</td><td class="val-up">+3.56%</td><td class="val-flat">-5.40%</td><td style="font-size:11px;color:var(--text-muted)">世运电路(9.99)</td></tr>
+        <tr><td class="name-col">数字媒体</td><td class="val-up">+2.96%</td><td class="val-flat">13.77%</td><td style="font-size:11px;color:var(--text-muted)">凡拓数创(13.42)</td></tr>
+        <tr><td class="name-col">塑料</td><td class="val-up">+2.84%</td><td class="val-flat">4.11%</td><td style="font-size:11px;color:var(--text-muted)">上纬新材(19.10)</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="card">
+    <div class="card-title"><span class="icon">💡</span> 概念板块</div>
+    <table class="data-table">
+      <thead><tr><th>板块</th><th>今日</th><th>5日</th><th>领涨股</th></tr></thead>
+      <tbody>
+        <tr><td class="name-col">SpaceX概念</td><td class="val-up">+7.95%</td><td class="val-flat">16.13%</td><td style="font-size:11px;color:var(--text-muted)">信维通信(20.00)</td></tr>
+        <tr><td class="name-col">昨日首板</td><td class="val-up">+5.78%</td><td class="val-flat">10.00%</td><td style="font-size:11px;color:var(--text-muted)">日出东方(10.01)</td></tr>
+        <tr><td class="name-col">26三季报预增</td><td class="val-up">+5.45%</td><td class="val-flat">6.23%</td><td style="font-size:11px;color:var(--text-muted)">通则康威(20.00)</td></tr>
+        <tr><td class="name-col">昨日涨停</td><td class="val-up">+5.22%</td><td class="val-flat">11.20%</td><td style="font-size:11px;color:var(--text-muted)">思美传媒(10.07)</td></tr>
+        <tr><td class="name-col">电子签名</td><td class="val-up">+4.88%</td><td class="val-flat">6.34%</td><td style="font-size:11px;color:var(--text-muted)">万兴科技(20.00)</td></tr>
+        <tr><td class="name-col">太空算力</td><td class="val-up">+4.60%</td><td class="val-flat">8.37%</td><td style="font-size:11px;color:var(--text-muted)">顺灏股份(10.02)</td></tr>
+      </tbody>
+    </table>
   </div>
 </div>
 
 <!-- ===== Footer ===== -->
 <footer style="padding:20px 16px 20px;text-align:center;font-size:11px;color:var(--text-muted);line-height:1.8">
-  <p>数据来源：各交易所行情 · 盯盘报告</p>
-  <p>更新时间：2026-09-22</p>
+  <p>数据来源：腾讯行情 / 新浪财经（经 stock-data 网关）· 由 build_dash.py 自动生成</p>
+  <p>更新时间：2026-11-09 10:22</p>
   <p style="margin-top:6px;font-size:10px;color:var(--text-muted)">⚠️ 本页面仅供个人投资参考，不构成任何投资建议。<br>投资有风险，入市需谨慎。</p>
 </footer>
 
